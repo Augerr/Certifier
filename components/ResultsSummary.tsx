@@ -1,0 +1,250 @@
+import type { CSSProperties } from "react";
+import {
+  CheckCircle2,
+  RotateCcw,
+  Sparkles,
+  Trophy,
+  XCircle,
+} from "lucide-react";
+import Link from "next/link";
+
+import type { ExamCategory, ExamQuestion } from "@/lib/exam-data";
+import { examCategories } from "@/lib/exam-data";
+import { passingPercentage } from "@/lib/exam-data";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
+
+const confettiPieces = Array.from({ length: 28 }, (_, index) => ({
+  id: index,
+  left: `${(index * 37) % 100}%`,
+  delay: `${(index % 7) * 90}ms`,
+  drift: `${((index % 9) - 4) * 0.85}rem`,
+  hue: `${140 + ((index * 47) % 180)}`,
+  size: `${6 + (index % 4) * 2}px`,
+  duration: `${1850 + (index % 5) * 170}ms`,
+}));
+
+type ResultsSummaryProps = {
+  questions: ExamQuestion[];
+  answers: Record<number, string>;
+  onRetake: () => void;
+};
+
+export function ResultsSummary({
+  questions,
+  answers,
+  onRetake,
+}: ResultsSummaryProps) {
+  const correctCount = questions.filter(
+    (question) => answers[question.id] === question.correctAnswer
+  ).length;
+  const percentage = Math.round((correctCount / questions.length) * 100);
+  const passed = percentage >= passingPercentage;
+  const categoryPerformance = examCategories
+    .map((category) => {
+      const categoryQuestions = questions.filter(
+        (question) => question.category === category
+      );
+      const categoryCorrect = categoryQuestions.filter(
+        (question) => answers[question.id] === question.correctAnswer
+      ).length;
+      const categoryPercentage =
+        categoryQuestions.length === 0
+          ? 0
+          : Math.round((categoryCorrect / categoryQuestions.length) * 100);
+
+      return {
+        category,
+        correct: categoryCorrect,
+        total: categoryQuestions.length,
+        percentage: categoryPercentage,
+      };
+    })
+    .filter(
+      (
+        result
+      ): result is {
+        category: ExamCategory;
+        correct: number;
+        total: number;
+        percentage: number;
+      } => result.total > 0
+    );
+
+  return (
+    <div className="space-y-6">
+      {passed && (
+        <div className="celebration-confetti" aria-hidden="true">
+          {confettiPieces.map((piece) => (
+            <span
+              key={piece.id}
+              className="celebration-confetti-piece"
+              style={
+                {
+                  "--piece-left": piece.left,
+                  "--piece-delay": piece.delay,
+                  "--piece-drift": piece.drift,
+                  "--piece-hue": piece.hue,
+                  "--piece-size": piece.size,
+                  "--piece-duration": piece.duration,
+                } as CSSProperties &
+                  Record<
+                    | "--piece-left"
+                    | "--piece-delay"
+                    | "--piece-drift"
+                    | "--piece-hue"
+                    | "--piece-size"
+                    | "--piece-duration",
+                    string
+                  >
+              }
+            />
+          ))}
+        </div>
+      )}
+
+      <Card
+        className={`relative border text-neutral-50 ring-0 ${
+          passed
+            ? "celebration-score-card border-emerald-300/30 bg-neutral-900"
+            : "border-white/10 bg-neutral-900"
+        }`}
+      >
+        <CardHeader className="px-6 pt-6">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <div className="relative z-10">
+              <Badge
+                variant="outline"
+                className={
+                  passed
+                    ? "border-emerald-300/50 bg-emerald-300/10 text-emerald-100"
+                    : "border-red-300/50 text-red-200"
+                }
+              >
+                {passed && <Sparkles className="size-3" aria-hidden="true" />}
+                {passed ? "Pass" : "Fail"}
+              </Badge>
+              <CardTitle className="mt-4 flex flex-wrap items-center gap-3 text-3xl text-white">
+                {passed && (
+                  <span className="celebration-trophy flex size-11 items-center justify-center rounded-lg border border-emerald-300/30 bg-emerald-300/10 text-emerald-200">
+                    <Trophy className="size-6" aria-hidden="true" />
+                  </span>
+                )}
+                {correctCount}/{questions.length} correct
+              </CardTitle>
+              <p className="mt-2 text-neutral-400">
+                Score: {percentage}% / Passing score: {passingPercentage}%
+              </p>
+            </div>
+            <div className="relative z-10 flex gap-2">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={onRetake}
+                className="border-white/15 bg-neutral-950 text-neutral-100 hover:bg-neutral-800"
+              >
+                <RotateCcw className="size-4" aria-hidden="true" />
+                Retake
+              </Button>
+              <Button asChild className="bg-emerald-300 text-neutral-950 hover:bg-emerald-200">
+                <Link href="/">Home</Link>
+              </Button>
+            </div>
+          </div>
+        </CardHeader>
+      </Card>
+
+      <Card className="border border-white/10 bg-neutral-900/80 text-neutral-50 ring-0">
+        <CardHeader className="px-6 py-5">
+          <CardTitle className="text-lg text-white">
+            Category Performance
+          </CardTitle>
+          <div className="mt-2 grid gap-4 sm:grid-cols-2">
+            {categoryPerformance.map((result) => (
+              <div
+                key={result.category}
+                className="rounded-lg border border-white/10 bg-neutral-950/50 p-4"
+              >
+                <div className="flex items-center justify-between gap-3 text-sm">
+                  <Badge
+                    variant="outline"
+                    className="border-cyan-300/40 bg-cyan-300/10 text-cyan-100"
+                  >
+                    {result.category}
+                  </Badge>
+                  <span className="text-neutral-300">
+                    {result.correct}/{result.total} / {result.percentage}%
+                  </span>
+                </div>
+                <Progress
+                  value={result.percentage}
+                  className="mt-3 h-2 bg-neutral-800"
+                />
+              </div>
+            ))}
+          </div>
+        </CardHeader>
+      </Card>
+
+      <div className="space-y-3">
+        {questions.map((question, index) => {
+          const selectedAnswer = answers[question.id];
+          const isCorrect = selectedAnswer === question.correctAnswer;
+
+          return (
+            <Card
+              key={question.id}
+              className="border border-white/10 bg-neutral-900/80 text-neutral-50 ring-0"
+            >
+              <CardHeader className="px-5 pt-5">
+                <div className="flex items-start gap-3">
+                  {isCorrect ? (
+                    <CheckCircle2
+                      className="mt-1 size-5 shrink-0 text-emerald-300"
+                      aria-hidden="true"
+                    />
+                  ) : (
+                    <XCircle
+                      className="mt-1 size-5 shrink-0 text-red-300"
+                      aria-hidden="true"
+                    />
+                  )}
+                  <div>
+                    <Badge
+                      variant="outline"
+                      className="mb-3 border-cyan-300/40 bg-cyan-300/10 text-cyan-100"
+                    >
+                      {question.category}
+                    </Badge>
+                    <CardTitle className="text-base leading-6 text-white">
+                      {index + 1}. {question.prompt}
+                    </CardTitle>
+                    <p className="mt-3 text-sm text-neutral-400">
+                      Your answer:{" "}
+                      <span className="text-neutral-100">
+                        {selectedAnswer ?? "No answer"}
+                      </span>
+                    </p>
+                    {!isCorrect && (
+                      <p className="mt-2 text-sm text-neutral-400">
+                        Correct answer:{" "}
+                        <span className="text-emerald-200">
+                          {question.correctAnswer}
+                        </span>
+                      </p>
+                    )}
+                    <p className="mt-3 text-sm leading-6 text-neutral-300">
+                      {question.explanation}
+                    </p>
+                  </div>
+                </div>
+              </CardHeader>
+            </Card>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
