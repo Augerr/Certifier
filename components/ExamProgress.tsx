@@ -9,7 +9,7 @@ export function ExamProgress({
   currentQuestion,
   totalQuestions,
 }: ExamProgressProps) {
-  const value = (currentQuestion / totalQuestions) * 100;
+  const value = ((currentQuestion - 1) / totalQuestions) * 100;
 
   return (
     <div className="space-y-3">
