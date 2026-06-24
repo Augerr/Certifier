@@ -1,30 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+﻿# Saviynt IGA Exam Trainer
 
-## Getting Started
+A local Next.js mock exam trainer for Saviynt IGA concepts.
 
-First, run the development server:
+## Overview
+
+- `app/page.tsx` is the landing page for selecting exam categories and question count.
+- `app/quiz/page.tsx` loads the quiz interface via `components/QuizClient.tsx`.
+- `lib/exam-data.ts` contains the local question bank and exports `examQuestions`.
+- `lib/exam-generator.ts` builds quiz question sets with difficulty balancing.
+- `lib/question-validator.ts` performs question bank validation.
+- `app/api/quiz/route.ts` exposes a quiz API endpoint, but the UI currently loads content directly.
+- `app/api/generate/route.ts` is intentionally stubbed and returns `501`.
+
+## Project structure
+
+- `app/` — App Router pages and API routes
+- `components/` — UI components for the quiz flow
+- `components/ui/` — shadcn UI primitives
+- `lib/` — question generation, loading, and validation logic
+- `types/` — shared TypeScript exam types
+
+## Scripts
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run build
+npm run start
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Notes
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- This MVP uses a fully local question bank.
+- `prisma` / database scaffolding is present but not wired into the UI.
+- AI generation is not enabled in this repo.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Recommended next improvements
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Add unit tests for `lib/generateExam` and `lib/question-validator`.
+2. Extract the raw question bank into a data-only module or JSON file for easier maintenance.
+3. Add a validation script to catch duplicate prompts, invalid answers, and missing explanations.
+4. Remove unused dependencies or wire `Prisma` / `OpenAI` into an actual implementation.
