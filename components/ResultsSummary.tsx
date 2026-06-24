@@ -8,9 +8,10 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-import type { ExamCategory, ExamQuestion } from "@/lib/exam-data";
-import { examCategories } from "@/lib/exam-data";
+import { difficultyPointValue } from "@/lib/exam-data";
 import { passingPercentage } from "@/lib/exam-data";
+import { examCategories } from "@/types/question";
+import type { ExamCategory, ExamQuestion } from "@/types/question";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
@@ -40,7 +41,19 @@ export function ResultsSummary({
   const correctCount = questions.filter(
     (question) => answers[question.id] === question.correctAnswer
   ).length;
-  const percentage = Math.round((correctCount / questions.length) * 100);
+  const totalPoints = questions.reduce(
+    (sum, question) => sum + difficultyPointValue[question.difficulty],
+    0
+  );
+  const earnedPoints = questions.reduce(
+    (sum, question) =>
+      answers[question.id] === question.correctAnswer
+        ? sum + difficultyPointValue[question.difficulty]
+        : sum,
+    0
+  );
+  const percentage =
+    totalPoints === 0 ? 0 : Math.round((earnedPoints / totalPoints) * 100);
   const passed = percentage >= passingPercentage;
   const categoryPerformance = examCategories
     .map((category) => {
@@ -50,15 +63,28 @@ export function ResultsSummary({
       const categoryCorrect = categoryQuestions.filter(
         (question) => answers[question.id] === question.correctAnswer
       ).length;
+      const categoryTotalPoints = categoryQuestions.reduce(
+        (sum, question) => sum + difficultyPointValue[question.difficulty],
+        0
+      );
+      const categoryEarnedPoints = categoryQuestions.reduce(
+        (sum, question) =>
+          answers[question.id] === question.correctAnswer
+            ? sum + difficultyPointValue[question.difficulty]
+            : sum,
+        0
+      );
       const categoryPercentage =
-        categoryQuestions.length === 0
+        categoryTotalPoints === 0
           ? 0
-          : Math.round((categoryCorrect / categoryQuestions.length) * 100);
+          : Math.round((categoryEarnedPoints / categoryTotalPoints) * 100);
 
       return {
         category,
         correct: categoryCorrect,
         total: categoryQuestions.length,
+        earnedPoints: categoryEarnedPoints,
+        totalPoints: categoryTotalPoints,
         percentage: categoryPercentage,
       };
     })
@@ -69,6 +95,8 @@ export function ResultsSummary({
         category: ExamCategory;
         correct: number;
         total: number;
+        earnedPoints: number;
+        totalPoints: number;
         percentage: number;
       } => result.total > 0
     );
@@ -132,10 +160,11 @@ export function ResultsSummary({
                     <Trophy className="size-6" aria-hidden="true" />
                   </span>
                 )}
-                {correctCount}/{questions.length} correct
+                {earnedPoints}/{totalPoints} points
               </CardTitle>
               <p className="mt-2 text-neutral-400">
-                Score: {percentage}% / Passing score: {passingPercentage}%
+                {correctCount}/{questions.length} correct / Score:{" "}
+                {percentage}% / Passing score: {passingPercentage}%
               </p>
             </div>
             <div className="relative z-10 flex gap-2">
@@ -175,9 +204,13 @@ export function ResultsSummary({
                     {result.category}
                   </Badge>
                   <span className="text-neutral-300">
-                    {result.correct}/{result.total} / {result.percentage}%
+                    {result.earnedPoints}/{result.totalPoints} pts /{" "}
+                    {result.percentage}%
                   </span>
                 </div>
+                <p className="mt-2 text-xs text-neutral-500">
+                  {result.correct}/{result.total} correct
+                </p>
                 <Progress
                   value={result.percentage}
                   className="mt-3 h-2 bg-neutral-800"

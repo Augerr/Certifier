@@ -1,35 +1,64 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, ShieldCheck } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { examCategories, type ExamCategory } from "@/lib/exam-data";
+import { Input } from "@/components/ui/input";
+import { examQuestions } from "@/lib/load-question";
+import { examCategories, type ExamCategory } from "@/types/question";
+
+const minQuestionCount = 10;
+const defaultQuestionCount = 25;
+
+function clampQuestionCount(value: number, max: number) {
+  return Math.min(Math.max(value, minQuestionCount), max);
+}
 
 export default function Home() {
-  const [selectedDomains, setSelectedDomains] = useState<ExamCategory[]>([
+  const [selectedCategories, setSelectedCategories] = useState<ExamCategory[]>([
     ...examCategories,
   ]);
-  const allDomainsSelected = selectedDomains.length === examCategories.length;
+  const [questionCount, setQuestionCount] = useState(defaultQuestionCount);
+  const allCategoriesSelected =
+    selectedCategories.length === examCategories.length;
+  const availableQuestionCount = useMemo(
+    () =>
+      examQuestions.filter((question) =>
+        selectedCategories.includes(question.category)
+      ).length,
+    [selectedCategories]
+  );
+  const maxQuestionCount = Math.max(minQuestionCount, availableQuestionCount);
   const startHref = useMemo(() => {
-    if (allDomainsSelected) {
-      return "/quiz";
+    const params = new URLSearchParams();
+    params.set("count", String(questionCount));
+
+    if (allCategoriesSelected) {
+      return `/quiz?${params.toString()}`;
     }
 
-    const params = new URLSearchParams();
-    selectedDomains.forEach((domain) => {
-      params.append("domains", domain);
+    selectedCategories.forEach((category) => {
+      params.append("categories", category);
     });
 
     return `/quiz?${params.toString()}`;
-  }, [allDomainsSelected, selectedDomains]);
+  }, [allCategoriesSelected, questionCount, selectedCategories]);
 
-  function toggleDomain(domain: ExamCategory) {
-    setSelectedDomains((currentDomains) =>
-      currentDomains.includes(domain)
-        ? currentDomains.filter((currentDomain) => currentDomain !== domain)
-        : [...currentDomains, domain],
+  useEffect(() => {
+    setQuestionCount((currentCount) =>
+      clampQuestionCount(currentCount, maxQuestionCount)
+    );
+  }, [maxQuestionCount]);
+
+  function toggleCategory(category: ExamCategory) {
+    setSelectedCategories((currentCategories) =>
+      currentCategories.includes(category)
+        ? currentCategories.filter(
+            (currentCategory) => currentCategory !== category
+          )
+        : [...currentCategories, category],
     );
   }
 
@@ -54,10 +83,10 @@ export default function Home() {
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h2 className="text-base font-medium text-white">
-                Exam domains to be included
+                Exam categories to be included
               </h2>
               <p className="mt-1 text-sm text-neutral-400">
-                {selectedDomains.length} of {examCategories.length} selected
+                {selectedCategories.length} of {examCategories.length} selected
               </p>
             </div>
             <div className="flex gap-2">
@@ -65,7 +94,7 @@ export default function Home() {
                 type="button"
                 variant="outline"
                 className="border-white/15 bg-neutral-950 text-neutral-100 hover:bg-neutral-900"
-                onClick={() => setSelectedDomains([...examCategories])}
+                onClick={() => setSelectedCategories([...examCategories])}
               >
                 All
               </Button>
@@ -73,7 +102,7 @@ export default function Home() {
                 type="button"
                 variant="outline"
                 className="border-white/15 bg-neutral-950 text-neutral-100 hover:bg-neutral-900"
-                onClick={() => setSelectedDomains([])}
+                onClick={() => setSelectedCategories([])}
               >
                 Clear
               </Button>
@@ -81,12 +110,12 @@ export default function Home() {
           </div>
 
           <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {examCategories.map((domain) => {
-              const isSelected = selectedDomains.includes(domain);
+            {examCategories.map((category) => {
+              const isSelected = selectedCategories.includes(category);
 
               return (
                 <label
-                  key={domain}
+                  key={category}
                   className={`flex min-h-12 cursor-pointer items-center gap-3 rounded-lg border px-3 py-2 text-sm transition ${
                     isSelected
                       ? "border-emerald-300/50 bg-emerald-300/10 text-emerald-100"
@@ -96,18 +125,72 @@ export default function Home() {
                   <input
                     type="checkbox"
                     checked={isSelected}
-                    onChange={() => toggleDomain(domain)}
+                    onChange={() => toggleCategory(category)}
                     className="size-4 accent-emerald-300"
                   />
-                  <span>{domain}</span>
+                  <span>{category}</span>
                 </label>
               );
             })}
           </div>
         </div>
 
+        <div className="mt-10 border-t border-white/10 pt-6">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h2 className="text-base font-medium text-white">
+                Number of questions
+              </h2>
+              <p className="mt-1 text-sm text-neutral-400">
+                {selectedCategories.length === 0
+                  ? "Select at least one category to choose an exam length"
+                  : `Choose between ${minQuestionCount} and ${availableQuestionCount} questions`}
+              </p>
+            </div>
+            <div className="flex items-center gap-2 text-sm text-neutral-300">
+              <span>{questionCount}</span>
+              <span>questions</span>
+            </div>
+          </div>
+
+          <div className="mt-4 grid gap-3 sm:grid-cols-[1fr_7rem] sm:items-center">
+            <input
+              type="range"
+              min={minQuestionCount}
+              max={maxQuestionCount}
+              value={questionCount}
+              onChange={(event) =>
+                setQuestionCount(
+                  clampQuestionCount(
+                    Number(event.currentTarget.value),
+                    maxQuestionCount
+                  )
+                )
+              }
+              disabled={selectedCategories.length === 0}
+              className="h-2 w-full cursor-pointer accent-emerald-300 disabled:cursor-not-allowed disabled:opacity-40"
+            />
+            <Input
+              type="number"
+              min={minQuestionCount}
+              max={maxQuestionCount}
+              value={questionCount}
+              onChange={(event) =>
+                setQuestionCount(
+                  clampQuestionCount(
+                    Number(event.currentTarget.value),
+                    maxQuestionCount
+                  )
+                )
+              }
+              disabled={selectedCategories.length === 0}
+              className="h-11 border-white/15 bg-neutral-950 text-neutral-100"
+            />
+          </div>
+        </div>
+
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-          {selectedDomains.length === 0 ? (
+          {selectedCategories.length === 0 ? (
             <Button
               type="button"
               size="lg"
@@ -132,9 +215,9 @@ export default function Home() {
         </div>
 
         <div className="mt-16 grid gap-3 border-t border-white/10 pt-6 text-sm text-neutral-400 sm:grid-cols-3">
-          <div>25 questions</div>
+          <div>{questionCount} questions</div>
           <div>Multiple choice</div>
-          <div>70% passing score</div>
+          <div>Weighted scoring</div>
         </div>
       </section>
     </main>

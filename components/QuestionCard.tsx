@@ -2,7 +2,7 @@
 
 import { CheckCircle2 } from "lucide-react";
 
-import type { ExamQuestion } from "@/lib/exam-data";
+import type { ExamQuestion } from "@/types/question";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,

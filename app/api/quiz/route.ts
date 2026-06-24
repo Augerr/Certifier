@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { examQuestions } from "@/lib/exam-data";
+import { examQuestions } from "@/lib/load-question";
 
 export function GET() {
   return NextResponse.json({
@@ -9,6 +9,7 @@ export function GET() {
       prompt: question.prompt,
       choices: question.choices,
       category: question.category,
+      difficulty: question.difficulty,
     })),
   });
 }

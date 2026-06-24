@@ -8,13 +8,16 @@ import { ExamProgress } from "@/components/ExamProgress";
 import { QuestionCard } from "@/components/QuestionCard";
 import { ResultsSummary } from "@/components/ResultsSummary";
 import { Button } from "@/components/ui/button";
-import type { ExamCategory, ExamQuestion } from "@/lib/exam-data";
-import { examCategories, examQuestions } from "@/lib/exam-data";
+import { generateExam } from "@/lib/exam-generator";
+import { examQuestions } from "@/lib/load-question";
+import { examCategories } from "@/types/question";
+import type { ExamCategory, ExamQuestion } from "@/types/question";
 
-const examQuestionCount = 25;
+const minQuestionCount = 10;
 
 type QuizClientProps = {
-  requestedDomains: string[];
+  questionCount: number;
+  requestedCategories: string[];
 };
 
 function shuffle<T>(items: T[]): T[] {
@@ -25,38 +28,43 @@ function getRandomQuestions(
   questions: ExamQuestion[],
   count: number
 ): ExamQuestion[] {
-  return shuffle(questions)
-    .slice(0, Math.min(count, questions.length))
-    .map((question) => ({
-      ...question,
-      choices: shuffle(question.choices),
-    }));
+  return generateExam(questions, count).map((question) => ({
+    ...question,
+    choices: shuffle(question.choices),
+  }));
 }
 
-function getSelectedDomains(requestedDomainList: string[]) {
-  const selectedDomains = examCategories.filter((category) =>
-    requestedDomainList.includes(category)
+function getSelectedCategories(requestedCategoryList: string[]) {
+  const selectedCategories = examCategories.filter((category) =>
+    requestedCategoryList.includes(category)
   );
 
-  return selectedDomains.length > 0
-    ? selectedDomains
+  return selectedCategories.length > 0
+    ? selectedCategories
     : ([...examCategories] as ExamCategory[]);
 }
 
-export function QuizClient({ requestedDomains }: QuizClientProps) {
-  const selectedDomains = useMemo(
-    () => getSelectedDomains(requestedDomains),
-    [requestedDomains]
+export function QuizClient({
+  questionCount,
+  requestedCategories,
+}: QuizClientProps) {
+  const selectedCategories = useMemo(
+    () => getSelectedCategories(requestedCategories),
+    [requestedCategories]
   );
   const questionPool = useMemo(
     () =>
       examQuestions.filter((question) =>
-        selectedDomains.includes(question.category)
+        selectedCategories.includes(question.category)
       ),
-    [selectedDomains]
+    [selectedCategories]
+  );
+  const boundedQuestionCount = Math.min(
+    Math.max(questionCount, minQuestionCount),
+    questionPool.length
   );
   const [activeQuestions, setActiveQuestions] = useState(() =>
-    getRandomQuestions(questionPool, examQuestionCount)
+    getRandomQuestions(questionPool, boundedQuestionCount)
   );
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<number, string>>({});
@@ -90,7 +98,7 @@ export function QuizClient({ requestedDomains }: QuizClientProps) {
   }
 
   function handleRetake() {
-    setActiveQuestions(getRandomQuestions(questionPool, examQuestionCount));
+    setActiveQuestions(getRandomQuestions(questionPool, boundedQuestionCount));
     setAnswers({});
     setCurrentIndex(0);
     setIsComplete(false);
@@ -122,7 +130,7 @@ export function QuizClient({ requestedDomains }: QuizClientProps) {
           </div>
           {!isComplete && (
             <div className="rounded-lg border border-white/10 bg-neutral-900 px-4 py-3 text-sm text-neutral-300">
-              Passing score: 70%
+              Passing score: 70% weighted
             </div>
           )}
         </header>
