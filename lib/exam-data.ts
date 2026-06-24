@@ -3896,6 +3896,2754 @@ const examQuestionBank: Omit<ExamQuestion, "id">[] = [
     category: "Analytics",
     difficulty: "hard",
   },
+  {
+    prompt:
+      "A user has an Active Directory account but does not appear in any certification campaigns. Which area should be investigated first?",
+    choices: ["Correlation", "Analytics", "Provisioning", "Reporting"],
+    correctAnswer: "Correlation",
+    explanation:
+      "If the account is not properly correlated to an identity, it may not appear in identity-based governance activities.",
+    category: "Correlation",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which ownership role is most likely to approve access to a specific entitlement?",
+    choices: ["Manager", "Entitlement Owner", "Primary Certifier", "Requester"],
+    correctAnswer: "Entitlement Owner",
+    explanation:
+      "Entitlement Owners are responsible for governing and approving access to specific permissions.",
+    category: "Ownership",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "A company wants to automatically identify privileged accounts that have not been reviewed in over a year. Which capability is best suited?",
+    choices: [
+      "Analytics Control",
+      "Provisioning Policy",
+      "Correlation Rule",
+      "Role Assignment",
+    ],
+    correctAnswer: "Analytics Control",
+    explanation:
+      "Controls continuously monitor governance conditions and can identify stale review situations.",
+    category: "Controls",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "What is the primary purpose of an Application Owner during access governance?",
+    choices: [
+      "Configure connectors",
+      "Govern application access and approvals",
+      "Manage imports",
+      "Execute provisioning jobs",
+    ],
+    correctAnswer: "Govern application access and approvals",
+    explanation:
+      "Application Owners provide accountability for access associated with specific applications.",
+    category: "Ownership",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "A request was approved but the target application never received the change. Which process should be investigated first?",
+    choices: ["Provisioning", "Certification", "Correlation", "Transformation"],
+    correctAnswer: "Provisioning",
+    explanation:
+      "Provisioning is responsible for executing approved access changes in target systems.",
+    category: "Provisioning",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "Which process typically provides the source data used by correlation?",
+    choices: [
+      "Analytics",
+      "User and Account Imports",
+      "Certifications",
+      "Risk Scoring",
+    ],
+    correctAnswer: "User and Account Imports",
+    explanation:
+      "Correlation requires imported identities and accounts before associations can be created.",
+    category: "Imports",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "A reviewer notices a user has access to both create and approve purchase orders. What governance issue is present?",
+    choices: [
+      "Provisioning Failure",
+      "SoD Violation",
+      "Correlation Error",
+      "Data Transformation Error",
+    ],
+    correctAnswer: "SoD Violation",
+    explanation:
+      "The user possesses conflicting access that could enable fraud or policy violations.",
+    category: "SoD",
+    difficulty: "medium",
+  },
+  {
+    prompt: "What is the primary purpose of risk-based governance?",
+    choices: [
+      "Eliminate approvals",
+      "Prioritize attention toward higher-risk access",
+      "Replace certifications",
+      "Remove roles",
+    ],
+    correctAnswer: "Prioritize attention toward higher-risk access",
+    explanation:
+      "Risk-based governance helps focus effort on the most critical access issues.",
+    category: "Risk Management",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "A company wants department changes to trigger automatic role recalculation. Which capability is most relevant?",
+    choices: [
+      "User Update Rule",
+      "Analytics Control",
+      "Certification",
+      "Reporting",
+    ],
+    correctAnswer: "User Update Rule",
+    explanation:
+      "User Update Rules react to identity attribute changes and can initiate access updates.",
+    category: "User Update Rules",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "Which governance artifact provides evidence that access was reviewed and retained?",
+    choices: [
+      "Certification Decision",
+      "Endpoint Configuration",
+      "Import Job",
+      "Role Definition",
+    ],
+    correctAnswer: "Certification Decision",
+    explanation:
+      "Certification records document review outcomes and provide audit evidence.",
+    category: "Reporting",
+    difficulty: "medium",
+  },
+  {
+    prompt: "Which type of access assignment is generally easiest to govern?",
+    choices: [
+      "Individual entitlements assigned manually",
+      "Role-based assignments",
+      "Shared accounts",
+      "Uncorrelated accounts",
+    ],
+    correctAnswer: "Role-based assignments",
+    explanation:
+      "Roles simplify administration, certification, and provisioning activities.",
+    category: "Roles",
+    difficulty: "medium",
+  },
+  {
+    prompt: "What is a common indicator of poor identity data quality?",
+    choices: [
+      "Successful certifications",
+      "High numbers of orphan accounts",
+      "Role ownership",
+      "Provisioning success",
+    ],
+    correctAnswer: "High numbers of orphan accounts",
+    explanation:
+      "Orphan accounts often indicate data quality or correlation issues.",
+    category: "Correlation",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "A compliance auditor wants to verify who approved a user's SAP access. Which report is most useful?",
+    choices: [
+      "Request History Report",
+      "Role Hierarchy Report",
+      "Endpoint Report",
+      "Import Summary Report",
+    ],
+    correctAnswer: "Request History Report",
+    explanation:
+      "Request history includes approvers, decisions, timestamps, and outcomes.",
+    category: "Reporting",
+    difficulty: "medium",
+  },
+  {
+    prompt: "Which process most directly supports the Joiner lifecycle event?",
+    choices: [
+      "Birthright Access Assignment",
+      "Certification Revocation",
+      "Orphan Detection",
+      "Risk Scoring",
+    ],
+    correctAnswer: "Birthright Access Assignment",
+    explanation:
+      "Joiner processes commonly assign standard access automatically.",
+    category: "Lifecycle Management",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "Which capability is most useful for identifying users who have administrator access across multiple systems?",
+    choices: ["Analytics", "Provisioning", "Transformation", "ARS"],
+    correctAnswer: "Analytics",
+    explanation:
+      "Analytics provides visibility across applications and access assignments.",
+    category: "Analytics",
+    difficulty: "medium",
+  },
+  {
+    prompt: "Why are certifications considered a detective control?",
+    choices: [
+      "They prevent requests",
+      "They identify inappropriate access after assignment",
+      "They provision access",
+      "They perform imports",
+    ],
+    correctAnswer: "They identify inappropriate access after assignment",
+    explanation:
+      "Certifications evaluate existing access and identify issues requiring remediation.",
+    category: "Certifications",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which process ensures imported values conform to organizational standards?",
+    choices: [
+      "Correlation",
+      "Provisioning",
+      "Data Transformation",
+      "Certification",
+    ],
+    correctAnswer: "Data Transformation",
+    explanation:
+      "Transformations normalize and standardize imported information.",
+    category: "Data Transformation",
+    difficulty: "easy",
+  },
+  {
+    prompt: "A user leaves the company. Which sequence is most appropriate?",
+    choices: [
+      "Import → Correlation → Deprovisioning",
+      "Provisioning → Import → Certification",
+      "Analytics → Reporting → Role Assignment",
+      "Certification → Approval → Request",
+    ],
+    correctAnswer: "Import → Correlation → Deprovisioning",
+    explanation:
+      "Termination information must be imported and associated before access removal occurs.",
+    category: "Lifecycle Management",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which object typically contains the connection information required to communicate with a target application?",
+    choices: ["Endpoint", "Entitlement", "Role", "Certification"],
+    correctAnswer: "Endpoint",
+    explanation:
+      "Endpoints contain connection and integration configuration details.",
+    category: "Endpoints",
+    difficulty: "easy",
+  },
+  {
+    prompt: "What is the primary purpose of entitlement certifications?",
+    choices: [
+      "Validate entitlement assignments",
+      "Create new roles",
+      "Configure connectors",
+      "Manage imports",
+    ],
+    correctAnswer: "Validate entitlement assignments",
+    explanation:
+      "Entitlement certifications verify that assigned permissions remain appropriate.",
+    category: "Certifications",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "Which capability is most useful for identifying inactive accounts older than 180 days?",
+    choices: ["Analytics", "Provisioning", "Role Assignment", "ARS"],
+    correctAnswer: "Analytics",
+    explanation:
+      "Analytics can identify accounts matching specific conditions such as inactivity.",
+    category: "Analytics",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "A request workflow requires approvals from three separate owners. What governance objective is primarily being supported?",
+    choices: [
+      "Segregation of Duties",
+      "Multi-level oversight",
+      "Data Standardization",
+      "Correlation",
+    ],
+    correctAnswer: "Multi-level oversight",
+    explanation:
+      "Multiple approvers increase governance review and accountability.",
+    category: "Approval Workflow",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which governance activity is most likely to discover privilege creep?",
+    choices: [
+      "Access Reviews",
+      "Provisioning",
+      "Imports",
+      "Endpoint Configuration",
+    ],
+    correctAnswer: "Access Reviews",
+    explanation:
+      "Reviews help identify access that has accumulated unnecessarily over time.",
+    category: "Access Reviews",
+    difficulty: "medium",
+  },
+  {
+    prompt: "What is the primary benefit of using Elasticsearch for analytics?",
+    choices: [
+      "Faster search and reporting performance",
+      "Automatic provisioning",
+      "Role generation",
+      "Connector creation",
+    ],
+    correctAnswer: "Faster search and reporting performance",
+    explanation:
+      "Elasticsearch improves scalability and analytics responsiveness.",
+    category: "Analytics",
+    difficulty: "easy",
+  },
+  {
+    prompt: "Which statement best describes a disconnected application?",
+    choices: [
+      "Supports automated provisioning",
+      "Requires manual fulfillment processes",
+      "Uses REST APIs",
+      "Automatically correlates accounts",
+    ],
+    correctAnswer: "Requires manual fulfillment processes",
+    explanation:
+      "Disconnected applications lack direct integration and typically require manual handling.",
+    category: "Applications",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "A user appears in Saviynt but no accounts are associated with their identity after reconciliation. Which process should be investigated first?",
+    choices: ["Correlation", "Certification", "Analytics", "Reporting"],
+    correctAnswer: "Correlation",
+    explanation:
+      "Correlation is responsible for associating imported accounts with identities.",
+    category: "Correlation",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "Which ownership role is most likely to review access granted through a business role?",
+    choices: ["Role Owner", "Requester", "Endpoint Owner", "Primary Certifier"],
+    correctAnswer: "Role Owner",
+    explanation:
+      "Role Owners are accountable for governance decisions related to roles.",
+    category: "Ownership",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "A company wants to detect users who have not completed an access review assigned to them. Which capability is most useful?",
+    choices: ["Analytics", "Provisioning", "Transformation", "Correlation"],
+    correctAnswer: "Analytics",
+    explanation:
+      "Analytics can identify outstanding governance activities and review statuses.",
+    category: "Analytics",
+    difficulty: "medium",
+  },
+  {
+    prompt: "Which action most directly reduces privilege creep?",
+    choices: [
+      "Periodic access reviews",
+      "More provisioning",
+      "More imports",
+      "Additional endpoints",
+    ],
+    correctAnswer: "Periodic access reviews",
+    explanation:
+      "Access reviews help identify and remove unnecessary accumulated access.",
+    category: "Access Reviews",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "A terminated employee still owns several entitlements. What governance concern exists?",
+    choices: [
+      "Ownership accountability gap",
+      "Provisioning optimization",
+      "Transformation issue",
+      "Endpoint configuration issue",
+    ],
+    correctAnswer: "Ownership accountability gap",
+    explanation:
+      "Governance objects should have active and accountable owners.",
+    category: "Ownership",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which process generally occurs before an account can be certified?",
+    choices: [
+      "Import and Correlation",
+      "Provisioning and Reporting",
+      "Analytics and Risk Scoring",
+      "Approval and Delegation",
+    ],
+    correctAnswer: "Import and Correlation",
+    explanation:
+      "Accounts must first be discovered and associated with identities.",
+    category: "Correlation",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "A user requests access that triggers both Manager and Role Owner approvals. What governance principle is being applied?",
+    choices: [
+      "Multi-level approval",
+      "Correlation",
+      "Transformation",
+      "Risk scoring",
+    ],
+    correctAnswer: "Multi-level approval",
+    explanation: "Multiple approvers provide additional governance oversight.",
+    category: "Approval Workflow",
+    difficulty: "medium",
+  },
+  {
+    prompt: "What is the primary purpose of reviewing orphan accounts?",
+    choices: [
+      "Identify unmanaged access",
+      "Improve UI performance",
+      "Generate new roles",
+      "Create endpoints",
+    ],
+    correctAnswer: "Identify unmanaged access",
+    explanation:
+      "Orphan accounts often represent access without accountability.",
+    category: "Correlation",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which capability would best identify accounts with administrator privileges across multiple applications?",
+    choices: ["Analytics", "Transformation", "ARS", "Provisioning"],
+    correctAnswer: "Analytics",
+    explanation:
+      "Analytics provides visibility across identities, accounts, and access assignments.",
+    category: "Analytics",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "A reviewer revokes access during a certification. What should happen next?",
+    choices: ["Remediation", "Correlation", "Transformation", "Import"],
+    correctAnswer: "Remediation",
+    explanation:
+      "Revoked access should be removed through remediation processes.",
+    category: "Certifications",
+    difficulty: "easy",
+  },
+  {
+    prompt: "Which object typically contains AD group memberships?",
+    choices: ["Entitlement", "Endpoint", "Security System", "Certification"],
+    correctAnswer: "Entitlement",
+    explanation: "Groups and permissions are represented as entitlements.",
+    category: "Entitlements",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "What is the primary benefit of using roles instead of assigning individual entitlements?",
+    choices: [
+      "Simplified governance",
+      "Faster imports",
+      "Reduced reporting",
+      "Automatic correlation",
+    ],
+    correctAnswer: "Simplified governance",
+    explanation: "Roles bundle access and reduce administrative complexity.",
+    category: "Roles",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "Which capability continuously evaluates access conditions against governance policies?",
+    choices: ["Controls", "Provisioning", "ARS", "Endpoints"],
+    correctAnswer: "Controls",
+    explanation: "Controls automate ongoing governance monitoring.",
+    category: "Controls",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "A company wants to find all users who have not logged into a critical application in 180 days. Which capability is most appropriate?",
+    choices: ["Analytics", "Provisioning", "Correlation", "Transformation"],
+    correctAnswer: "Analytics",
+    explanation: "Analytics can identify accounts meeting inactivity criteria.",
+    category: "Analytics",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "Which governance activity provides the strongest evidence that access remains justified?",
+    choices: [
+      "Recent certification approval",
+      "Endpoint creation",
+      "Import execution",
+      "Transformation execution",
+    ],
+    correctAnswer: "Recent certification approval",
+    explanation: "Certifications document review and validation decisions.",
+    category: "Certifications",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "A user changes departments but retains access from the previous department. What governance issue may exist?",
+    choices: [
+      "Mover process failure",
+      "Joiner failure",
+      "Analytics failure",
+      "Endpoint failure",
+    ],
+    correctAnswer: "Mover process failure",
+    explanation:
+      "Mover events should update access to reflect organizational changes.",
+    category: "Identity Lifecycle",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which capability helps identify toxic access combinations before an audit discovers them?",
+    choices: ["SoD Analysis", "Provisioning", "ARS", "Transformations"],
+    correctAnswer: "SoD Analysis",
+    explanation:
+      "SoD controls proactively identify conflicting access assignments.",
+    category: "SoD",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "Which governance artifact is most useful when proving that approvals occurred before provisioning?",
+    choices: [
+      "Request history",
+      "Role hierarchy",
+      "Transformation logs",
+      "Import results",
+    ],
+    correctAnswer: "Request history",
+    explanation:
+      "Request history records approvals, timestamps, and provisioning outcomes.",
+    category: "Audit Reporting",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which process is responsible for removing access when a certification decision is revoke?",
+    choices: ["Remediation", "Correlation", "Analytics", "Transformation"],
+    correctAnswer: "Remediation",
+    explanation: "Remediation executes review decisions.",
+    category: "Certifications",
+    difficulty: "medium",
+  },
+  {
+    prompt: "What is a common benefit of Elasticsearch-based analytics?",
+    choices: [
+      "Improved search performance",
+      "Automatic role creation",
+      "Automatic approvals",
+      "Improved correlation",
+    ],
+    correctAnswer: "Improved search performance",
+    explanation:
+      "Elasticsearch improves analytics scalability and responsiveness.",
+    category: "Elasticsearch Analytics",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "Which governance activity helps ensure that users maintain only necessary access over time?",
+    choices: ["Access Reviews", "Imports", "Endpoints", "Transformations"],
+    correctAnswer: "Access Reviews",
+    explanation:
+      "Reviews validate access appropriateness on a recurring basis.",
+    category: "Access Reviews",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "A company wants to prioritize certification efforts toward administrator accounts. Which capability supports this objective?",
+    choices: ["Risk Scoring", "Transformation", "Correlation", "Provisioning"],
+    correctAnswer: "Risk Scoring",
+    explanation: "Risk scores help prioritize governance activities.",
+    category: "Risk Management",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "Which object typically contains the technical details required to communicate with a target system?",
+    choices: ["Endpoint", "Role", "Entitlement", "Certification"],
+    correctAnswer: "Endpoint",
+    explanation: "Endpoints define integration and connectivity information.",
+    category: "Endpoints",
+    difficulty: "easy",
+  },
+  {
+    prompt: "What is the primary governance value of ownership assignments?",
+    choices: ["Accountability", "Performance", "Scalability", "Automation"],
+    correctAnswer: "Accountability",
+    explanation:
+      "Ownership establishes responsibility for governance decisions.",
+    category: "Ownership",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "A compliance team wants to verify that terminated users no longer possess privileged access. Which capability is most useful?",
+    choices: ["Analytics", "Provisioning", "Transformation", "ARS"],
+    correctAnswer: "Analytics",
+    explanation:
+      "Analytics can identify terminated identities that still possess active access.",
+    category: "Analytics",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "A user submits an access request for a role, but the role is not visible in the request catalog. Which area should be investigated first?",
+    choices: ["Access Request System", "Correlation", "Analytics", "Imports"],
+    correctAnswer: "Access Request System",
+    explanation:
+      "Requestability and catalog visibility are managed through the Access Request System.",
+    category: "Access Request System",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "Which activity provides the strongest evidence that a governance process is functioning as intended?",
+    choices: [
+      "Completed certifications",
+      "Endpoint configuration",
+      "Connector installation",
+      "Transformation execution",
+    ],
+    correctAnswer: "Completed certifications",
+    explanation:
+      "Completed certifications demonstrate active governance and review activities.",
+    category: "Certifications",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "A user receives access through a role assignment and later loses the role. What should happen to the associated entitlements?",
+    choices: [
+      "They should be removed",
+      "They should become orphaned",
+      "They should become roles",
+      "They should remain permanently assigned",
+    ],
+    correctAnswer: "They should be removed",
+    explanation:
+      "Entitlements granted through a role should typically be removed when the role is removed.",
+    category: "Roles",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which governance concern is most likely when a critical application has no assigned owner?",
+    choices: [
+      "Lack of accountability",
+      "Provisioning acceleration",
+      "Improved compliance",
+      "Automatic certification",
+    ],
+    correctAnswer: "Lack of accountability",
+    explanation:
+      "Ownership establishes responsibility for governance decisions.",
+    category: "Ownership",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "A company wants to identify users who have access to an application but have never logged in. Which capability is most useful?",
+    choices: ["Analytics", "Provisioning", "Access Requests", "Endpoints"],
+    correctAnswer: "Analytics",
+    explanation:
+      "Analytics can identify unusual access patterns and dormant accounts.",
+    category: "Analytics",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "What is the primary purpose of remediation after an access review?",
+    choices: [
+      "Implement review decisions",
+      "Generate reports",
+      "Create roles",
+      "Run imports",
+    ],
+    correctAnswer: "Implement review decisions",
+    explanation:
+      "Remediation executes the actions resulting from review outcomes.",
+    category: "Access Reviews",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "Which type of application generally provides the highest level of automation?",
+    choices: ["Connected", "Disconnected", "Manual", "Archived"],
+    correctAnswer: "Connected",
+    explanation:
+      "Connected applications support automated provisioning and reconciliation.",
+    category: "Applications",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "A user's account exists in a target system but does not exist in Saviynt. Which process may not have occurred successfully?",
+    choices: ["Imports", "Certifications", "Recommendations", "Roles"],
+    correctAnswer: "Imports",
+    explanation: "Imports bring account and identity information into Saviynt.",
+    category: "Imports",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "Which governance activity is primarily preventive rather than detective?",
+    choices: ["Approval Workflow", "Access Reviews", "Analytics", "Reporting"],
+    correctAnswer: "Approval Workflow",
+    explanation:
+      "Approvals occur before access is granted and help prevent inappropriate access.",
+    category: "Approval Workflow",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "What is the primary purpose of a recommendation during certification?",
+    choices: [
+      "Assist reviewer decisions",
+      "Provision access",
+      "Perform imports",
+      "Configure endpoints",
+    ],
+    correctAnswer: "Assist reviewer decisions",
+    explanation:
+      "Recommendations help reviewers make informed governance decisions.",
+    category: "Recommendations",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "Which object is most likely to contain a permission such as 'SAP_FINANCE_USER'?",
+    choices: ["Entitlement", "Endpoint", "Role Owner", "Security System"],
+    correctAnswer: "Entitlement",
+    explanation: "Permissions and groups are modeled as entitlements.",
+    category: "Entitlements",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "A manager changes departments but retains approval authority over their previous organization. Which governance risk exists?",
+    choices: [
+      "Stale approval authority",
+      "Correlation failure",
+      "Import failure",
+      "Provisioning optimization",
+    ],
+    correctAnswer: "Stale approval authority",
+    explanation:
+      "Governance responsibilities should reflect current organizational structures.",
+    category: "Governance",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which capability helps identify users assigned conflicting financial permissions?",
+    choices: ["SoD", "Imports", "Provisioning", "Connectors"],
+    correctAnswer: "SoD",
+    explanation: "Segregation of Duties identifies toxic access combinations.",
+    category: "SoD",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "A company wants identity updates processed automatically every night. Which capability supports this?",
+    choices: ["Jobs", "Recommendations", "Reporting", "Roles"],
+    correctAnswer: "Jobs",
+    explanation: "Jobs automate recurring processing activities.",
+    category: "Jobs",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "Which governance artifact best demonstrates that access approvals occurred before access was granted?",
+    choices: [
+      "Request records",
+      "Role definitions",
+      "Import results",
+      "Endpoint configuration",
+    ],
+    correctAnswer: "Request records",
+    explanation:
+      "Request records contain approvals, timestamps, and fulfillment outcomes.",
+    category: "Reporting",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "A user is granted access automatically because they belong to the Finance department. Which lifecycle concept is most closely related?",
+    choices: ["Birthright access", "SoD", "Analytics", "Recommendations"],
+    correctAnswer: "Birthright access",
+    explanation:
+      "Birthright access is commonly assigned automatically based on identity attributes.",
+    category: "Lifecycle Management",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "Which component is responsible for communicating with external systems?",
+    choices: ["Connectors", "Roles", "Reviews", "Recommendations"],
+    correctAnswer: "Connectors",
+    explanation:
+      "Connectors enable communication between Saviynt and target applications.",
+    category: "Connectors",
+    difficulty: "easy",
+  },
+  {
+    prompt: "What is the primary purpose of the Identity Repository?",
+    choices: [
+      "Store identities and access data",
+      "Generate certifications",
+      "Provision accounts",
+      "Manage workflows",
+    ],
+    correctAnswer: "Store identities and access data",
+    explanation:
+      "The Identity Repository is the central store for governance information.",
+    category: "Identity Repository",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "Which capability is most useful for identifying access that violates organizational policy?",
+    choices: ["Controls", "Endpoints", "Applications", "Roles"],
+    correctAnswer: "Controls",
+    explanation: "Controls continuously evaluate policy compliance.",
+    category: "Controls",
+    difficulty: "medium",
+  },
+  {
+    prompt: "What is the primary objective of Identity Governance?",
+    choices: [
+      "Ensure appropriate access",
+      "Create applications",
+      "Manage databases",
+      "Deploy connectors",
+    ],
+    correctAnswer: "Ensure appropriate access",
+    explanation:
+      "Identity Governance focuses on ensuring the right people have the right access.",
+    category: "Identity Governance",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "A company wants all access requests for privileged access to require two approvals. Which capability should enforce this?",
+    choices: ["Approval Workflow", "Imports", "Correlation", "Recommendations"],
+    correctAnswer: "Approval Workflow",
+    explanation: "Approval workflows define approval routing and requirements.",
+    category: "Approval Workflow",
+    difficulty: "medium",
+  },
+  {
+    prompt: "What is the most likely result of inaccurate identity data?",
+    choices: [
+      "Governance decisions based on incorrect information",
+      "Improved certifications",
+      "Faster provisioning",
+      "Reduced risk",
+    ],
+    correctAnswer: "Governance decisions based on incorrect information",
+    explanation: "Identity quality directly impacts governance accuracy.",
+    category: "Governance",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which object sits directly below a Security System in the governance hierarchy?",
+    choices: ["Endpoint", "Role", "Entitlement", "Review"],
+    correctAnswer: "Endpoint",
+    explanation: "Security Systems contain Endpoints.",
+    category: "Security Systems",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "A company wants to automatically assign and remove access based on employment status changes. Which area is most relevant?",
+    choices: [
+      "Lifecycle Management",
+      "Reporting",
+      "Recommendations",
+      "Controls",
+    ],
+    correctAnswer: "Lifecycle Management",
+    explanation:
+      "Lifecycle processes manage access throughout employment events.",
+    category: "Lifecycle Management",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "Which capability is most useful for finding access that has never been reviewed?",
+    choices: ["Analytics", "Provisioning", "Connectors", "Applications"],
+    correctAnswer: "Analytics",
+    explanation:
+      "Analytics can identify review gaps and governance exceptions.",
+    category: "Analytics",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "A certification campaign is generated, but several users expected to be included are missing. Which area should be investigated first?",
+    choices: [
+      "Imports and Correlation",
+      "Recommendations",
+      "Endpoints",
+      "Roles",
+    ],
+    correctAnswer: "Imports and Correlation",
+    explanation:
+      "Certification scope depends on accurate identity and account data.",
+    category: "Certifications",
+    difficulty: "hard",
+  },
+  {
+    prompt: "What is the primary purpose of an access request approval?",
+    choices: [
+      "Validate the business need for access",
+      "Import identities",
+      "Configure connectors",
+      "Create roles",
+    ],
+    correctAnswer: "Validate the business need for access",
+    explanation:
+      "Approvals ensure requested access is reviewed before provisioning.",
+    category: "Access Requests",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "Which governance issue is most likely when a user has access to systems unrelated to their job function?",
+    choices: [
+      "Excessive access",
+      "Provisioning optimization",
+      "Import success",
+      "Role normalization",
+    ],
+    correctAnswer: "Excessive access",
+    explanation:
+      "Access unrelated to business responsibilities increases risk.",
+    category: "Governance",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "A company wants to automatically disable accounts when employees leave. Which category is most directly responsible?",
+    choices: [
+      "Lifecycle Management",
+      "Analytics",
+      "Recommendations",
+      "Reporting",
+    ],
+    correctAnswer: "Lifecycle Management",
+    explanation: "Leaver processes commonly trigger account disablement.",
+    category: "Lifecycle Management",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "Which capability is most useful for identifying users with access to a deprecated application?",
+    choices: ["Analytics", "Provisioning", "Connectors", "Workflows"],
+    correctAnswer: "Analytics",
+    explanation:
+      "Analytics provides visibility into application access assignments.",
+    category: "Analytics",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "A role contains ten entitlements. A user is assigned the role. What is the expected result?",
+    choices: [
+      "The user receives the associated entitlements",
+      "The user becomes an owner",
+      "The user receives a certification",
+      "The user becomes correlated",
+    ],
+    correctAnswer: "The user receives the associated entitlements",
+    explanation:
+      "Roles are bundles of access that grant contained entitlements.",
+    category: "Roles",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "Which process helps ensure imported department values are consistent across all users?",
+    choices: [
+      "Data Transformation",
+      "Provisioning",
+      "Certification",
+      "Reporting",
+    ],
+    correctAnswer: "Data Transformation",
+    explanation: "Transformations standardize imported values.",
+    category: "Data Transformation",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "A company wants to identify applications with no assigned owner. Which capability is most appropriate?",
+    choices: ["Analytics", "Endpoints", "Access Requests", "Provisioning"],
+    correctAnswer: "Analytics",
+    explanation:
+      "Analytics can identify governance gaps such as missing ownership.",
+    category: "Analytics",
+    difficulty: "medium",
+  },
+  {
+    prompt: "What is the primary purpose of workflow escalation?",
+    choices: [
+      "Prevent approval bottlenecks",
+      "Improve correlation",
+      "Normalize data",
+      "Create entitlements",
+    ],
+    correctAnswer: "Prevent approval bottlenecks",
+    explanation: "Escalations help ensure approvals continue moving forward.",
+    category: "Workflows",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "A user receives access without any recorded approval. Which governance concern exists?",
+    choices: [
+      "Approval bypass",
+      "Correlation failure",
+      "Import issue",
+      "Connector issue",
+    ],
+    correctAnswer: "Approval bypass",
+    explanation: "Access should follow approved governance processes.",
+    category: "Approval Workflow",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which category is responsible for evaluating access after it has been granted?",
+    choices: [
+      "Access Reviews",
+      "Access Requests",
+      "Provisioning",
+      "Connectors",
+    ],
+    correctAnswer: "Access Reviews",
+    explanation: "Reviews validate ongoing access appropriateness.",
+    category: "Access Reviews",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "A company wants to identify users whose managers have not changed in the repository despite HR updates. Which area should be investigated?",
+    choices: ["Imports", "Roles", "Recommendations", "Controls"],
+    correctAnswer: "Imports",
+    explanation:
+      "Identity updates rely on successful imports from authoritative sources.",
+    category: "Imports",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which governance principle supports assigning only the access required for job duties?",
+    choices: [
+      "Least privilege",
+      "Correlation",
+      "Transformation",
+      "Provisioning",
+    ],
+    correctAnswer: "Least privilege",
+    explanation: "Least privilege minimizes unnecessary access exposure.",
+    category: "Identity Governance",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "A company wants to detect inactive accounts every week automatically. Which capability should be configured?",
+    choices: ["Controls", "Endpoints", "Roles", "Recommendations"],
+    correctAnswer: "Controls",
+    explanation: "Controls continuously evaluate governance conditions.",
+    category: "Controls",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "Which category provides evidence that governance reviews occurred?",
+    choices: ["Reporting", "Provisioning", "Connectors", "Imports"],
+    correctAnswer: "Reporting",
+    explanation: "Reports provide evidence of governance activities.",
+    category: "Reporting",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "A user changes departments and gains new access but does not lose previous access. Which governance concern exists?",
+    choices: [
+      "Access accumulation",
+      "Provisioning success",
+      "Transformation success",
+      "Ownership validation",
+    ],
+    correctAnswer: "Access accumulation",
+    explanation:
+      "Users may accumulate access if mover processes are incomplete.",
+    category: "Lifecycle Management",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which category is most directly responsible for linking accounts and identities?",
+    choices: ["Correlation", "Roles", "Analytics", "Reporting"],
+    correctAnswer: "Correlation",
+    explanation: "Correlation associates accounts with identities.",
+    category: "Correlation",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "A user requests an entitlement directly rather than through a role. Which category manages this process?",
+    choices: ["Access Request System", "Analytics", "Controls", "Imports"],
+    correctAnswer: "Access Request System",
+    explanation:
+      "ARS manages requests for applications, roles, and entitlements.",
+    category: "Access Request System",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "Which category is most useful when investigating why an account was not created after approval?",
+    choices: ["Provisioning", "Certifications", "Ownership", "Recommendations"],
+    correctAnswer: "Provisioning",
+    explanation: "Provisioning executes approved access changes.",
+    category: "Provisioning",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "A company wants every imported location value converted to a standard naming convention. Which capability should be used?",
+    choices: [
+      "Data Transformation",
+      "Correlation",
+      "Access Reviews",
+      "Reporting",
+    ],
+    correctAnswer: "Data Transformation",
+    explanation: "Transformations standardize imported values.",
+    category: "Data Transformation",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "Which governance activity is most likely to identify an unnecessary administrator account?",
+    choices: ["Access Reviews", "Connectors", "Endpoints", "Imports"],
+    correctAnswer: "Access Reviews",
+    explanation:
+      "Reviews evaluate whether privileged access remains appropriate.",
+    category: "Access Reviews",
+    difficulty: "medium",
+  },
+  {
+    prompt: "What is the primary purpose of a Security System?",
+    choices: [
+      "Organize governance objects",
+      "Create reports",
+      "Provision accounts",
+      "Assign roles",
+    ],
+    correctAnswer: "Organize governance objects",
+    explanation: "Security Systems act as top-level governance containers.",
+    category: "Security Systems",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "Which category is most useful for proving compliance during an audit?",
+    choices: ["Reporting", "Correlation", "Recommendations", "Endpoints"],
+    correctAnswer: "Reporting",
+    explanation: "Reports provide documented evidence for auditors.",
+    category: "Reporting",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "A company wants to identify users who have not completed required certifications. Which capability should be used?",
+    choices: ["Analytics", "Provisioning", "Data Transformation", "Connectors"],
+    correctAnswer: "Analytics",
+    explanation: "Analytics can identify outstanding governance activities.",
+    category: "Analytics",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "Which governance category focuses on ensuring the right users have the right access at the right time?",
+    choices: ["Identity Governance", "Endpoints", "Imports", "Connectors"],
+    correctAnswer: "Identity Governance",
+    explanation: "This is the core objective of Identity Governance.",
+    category: "Identity Governance",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "A user successfully receives access through a role assignment, but one entitlement contained within the role is never provisioned. Which area should be investigated first?",
+    choices: ["Provisioning", "Access Reviews", "Ownership", "Recommendations"],
+    correctAnswer: "Provisioning",
+    explanation:
+      "The role assignment succeeded, suggesting the issue occurred while executing access changes.",
+    category: "Provisioning",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "A company discovers that terminated employees are still appearing in access request approval chains. Which area is most likely responsible?",
+    choices: ["Lifecycle Management", "Analytics", "Roles", "Entitlements"],
+    correctAnswer: "Lifecycle Management",
+    explanation:
+      "Termination and organizational changes should be reflected through lifecycle processes.",
+    category: "Lifecycle Management",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which category is most useful for identifying requests that have been waiting for approval for more than 30 days?",
+    choices: ["Analytics", "Provisioning", "Correlation", "Security Systems"],
+    correctAnswer: "Analytics",
+    explanation:
+      "Analytics can identify stalled requests and approval bottlenecks.",
+    category: "Analytics",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "A role owner notices users repeatedly requesting the same entitlement individually. What governance improvement would most likely reduce these requests?",
+    choices: [
+      "Add the entitlement to an appropriate role",
+      "Create a new endpoint",
+      "Run additional imports",
+      "Modify correlation rules",
+    ],
+    correctAnswer: "Add the entitlement to an appropriate role",
+    explanation:
+      "Roles simplify access management by bundling commonly requested access.",
+    category: "Roles",
+    difficulty: "hard",
+  },
+  {
+    prompt: "Which situation represents the greatest governance risk?",
+    choices: [
+      "An active administrator account belonging to a terminated employee",
+      "A completed certification",
+      "A successful import",
+      "A reviewed entitlement",
+    ],
+    correctAnswer:
+      "An active administrator account belonging to a terminated employee",
+    explanation:
+      "Privileged access belonging to terminated users represents a severe governance failure.",
+    category: "Risk Management",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "A company wants to ensure that access requests for privileged roles always require a second approval. Which category should enforce this requirement?",
+    choices: [
+      "Approval Workflow",
+      "Imports",
+      "Analytics",
+      "Data Transformation",
+    ],
+    correctAnswer: "Approval Workflow",
+    explanation:
+      "Approval workflows define approvers and approval requirements.",
+    category: "Approval Workflow",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "An auditor asks why a user currently has access to a sensitive application. Which combination provides the strongest answer?",
+    choices: [
+      "Request history and certification history",
+      "Endpoint configuration and imports",
+      "Connectors and jobs",
+      "Transformations and controls",
+    ],
+    correctAnswer: "Request history and certification history",
+    explanation:
+      "Approval and review evidence provide the strongest justification for access.",
+    category: "Reporting",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which category is most useful for identifying users whose access exceeds their peers in similar job functions?",
+    choices: ["Analytics", "Provisioning", "Security Systems", "Endpoints"],
+    correctAnswer: "Analytics",
+    explanation:
+      "Analytics can identify access outliers and unusual access patterns.",
+    category: "Analytics",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "A company wants manager changes to automatically update future approval routing. Which category is most directly involved?",
+    choices: ["User Update Rules", "Roles", "Controls", "Certifications"],
+    correctAnswer: "User Update Rules",
+    explanation:
+      "Approval routing often depends on current manager information.",
+    category: "User Update Rules",
+    difficulty: "hard",
+  },
+  {
+    prompt: "What is the primary governance value of entitlement ownership?",
+    choices: [
+      "Accountability for permissions",
+      "Faster imports",
+      "Improved UI performance",
+      "Connector automation",
+    ],
+    correctAnswer: "Accountability for permissions",
+    explanation:
+      "Ownership ensures someone is responsible for access decisions.",
+    category: "Ownership",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "Which category is most useful for identifying applications that have never been certified?",
+    choices: ["Analytics", "Provisioning", "Connectors", "Workflows"],
+    correctAnswer: "Analytics",
+    explanation:
+      "Analytics can identify governance gaps and review deficiencies.",
+    category: "Analytics",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "A company wants access removed immediately after a certification revocation. Which category is responsible for executing the removal?",
+    choices: ["Provisioning", "Imports", "Recommendations", "Endpoints"],
+    correctAnswer: "Provisioning",
+    explanation:
+      "Provisioning performs the actual access removal in target systems.",
+    category: "Provisioning",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "A user receives access to two roles that together create a toxic access combination. Which category should detect this?",
+    choices: ["SoD", "Imports", "Recommendations", "Ownership"],
+    correctAnswer: "SoD",
+    explanation:
+      "SoD evaluates conflicting access combinations regardless of how access was granted.",
+    category: "SoD",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which governance issue is most likely when correlation logic uses non-unique attributes?",
+    choices: [
+      "Incorrect account associations",
+      "Faster provisioning",
+      "Improved reporting",
+      "Reduced risk",
+    ],
+    correctAnswer: "Incorrect account associations",
+    explanation:
+      "Correlation requires reliable identifiers to associate accounts accurately.",
+    category: "Correlation",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "A company wants to monitor privileged access assignments continuously instead of waiting for quarterly reviews. Which capability is best suited?",
+    choices: ["Controls", "Roles", "Connectors", "Applications"],
+    correctAnswer: "Controls",
+    explanation:
+      "Controls provide ongoing monitoring of governance conditions.",
+    category: "Controls",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which category is most directly responsible for ensuring imported job titles follow a standard format?",
+    choices: [
+      "Data Transformation",
+      "Provisioning",
+      "Access Requests",
+      "Ownership",
+    ],
+    correctAnswer: "Data Transformation",
+    explanation:
+      "Transformations normalize imported values before governance processing.",
+    category: "Data Transformation",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "A company wants to identify users who have never completed an assigned certification review. Which capability should be used?",
+    choices: ["Analytics", "Endpoints", "Provisioning", "Applications"],
+    correctAnswer: "Analytics",
+    explanation: "Analytics can identify incomplete governance activities.",
+    category: "Analytics",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "Which category is most directly responsible for onboarding access assignments?",
+    choices: [
+      "Lifecycle Management",
+      "Reporting",
+      "Recommendations",
+      "Controls",
+    ],
+    correctAnswer: "Lifecycle Management",
+    explanation:
+      "Joiner processes commonly drive onboarding access assignments.",
+    category: "Lifecycle Management",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "What is the strongest indication that an application is disconnected?",
+    choices: [
+      "Access fulfillment requires manual intervention",
+      "It has an owner",
+      "It has entitlements",
+      "It appears in certifications",
+    ],
+    correctAnswer: "Access fulfillment requires manual intervention",
+    explanation:
+      "Disconnected applications generally require manual fulfillment.",
+    category: "Applications",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "A user requests access that violates a known SoD policy. What is the preferred governance outcome?",
+    choices: [
+      "The request is flagged for review before approval",
+      "The request is automatically granted",
+      "The entitlement is deleted",
+      "The endpoint is disabled",
+    ],
+    correctAnswer: "The request is flagged for review before approval",
+    explanation: "Potential SoD violations should receive additional scrutiny.",
+    category: "SoD",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which category is most useful when investigating why access review campaigns contain outdated manager information?",
+    choices: ["Imports", "Roles", "Recommendations", "Provisioning"],
+    correctAnswer: "Imports",
+    explanation:
+      "Manager data is typically sourced from imported identity information.",
+    category: "Imports",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "A company wants every identity change processed automatically without administrator intervention. Which capability supports this?",
+    choices: ["Jobs", "Endpoints", "Entitlements", "Recommendations"],
+    correctAnswer: "Jobs",
+    explanation: "Jobs automate recurring governance processing.",
+    category: "Jobs",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "Which governance activity provides the best opportunity to remove stale privileged access?",
+    choices: [
+      "Access Reviews",
+      "Imports",
+      "Data Transformation",
+      "Connector Configuration",
+    ],
+    correctAnswer: "Access Reviews",
+    explanation:
+      "Reviews evaluate whether privileged access remains necessary.",
+    category: "Access Reviews",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "Which category is primarily responsible for creating the relationship between an identity and an imported account?",
+    choices: ["Correlation", "Provisioning", "Reporting", "Ownership"],
+    correctAnswer: "Correlation",
+    explanation: "Correlation links identities and accounts together.",
+    category: "Correlation",
+    difficulty: "easy",
+  },
+  {
+    prompt: "What is the primary goal of governance reporting?",
+    choices: [
+      "Provide visibility and audit evidence",
+      "Execute provisioning",
+      "Perform correlation",
+      "Configure applications",
+    ],
+    correctAnswer: "Provide visibility and audit evidence",
+    explanation: "Reporting demonstrates governance activities and compliance.",
+    category: "Reporting",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "A company has multiple endpoints representing different environments of the same application. What is the primary benefit of placing them under a single Security System?",
+    choices: [
+      "Logical grouping and governance organization",
+      "Automatic role creation",
+      "Automatic SoD mitigation",
+      "Automatic certification sign-off",
+    ],
+    correctAnswer: "Logical grouping and governance organization",
+    explanation:
+      "Security Systems provide a governance container for related endpoints and applications.",
+    category: "Security Systems",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "What is the primary purpose of assigning an owner to an application?",
+    choices: [
+      "Establish accountability for governance decisions",
+      "Increase import performance",
+      "Reduce entitlement counts",
+      "Improve connector authentication",
+    ],
+    correctAnswer: "Establish accountability for governance decisions",
+    explanation:
+      "Ownership ensures there is a responsible party for access reviews, approvals, and governance decisions.",
+    category: "Ownership",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "A User Update Rule should trigger only when a user's department changes. What should be configured?",
+    choices: [
+      "A condition evaluating department attribute changes",
+      "A new Security System",
+      "A certification campaign",
+      "A provisioning endpoint",
+    ],
+    correctAnswer: "A condition evaluating department attribute changes",
+    explanation:
+      "User Update Rules execute based on changes to specific identity attributes.",
+    category: "User Update Rules",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "Which job is most commonly scheduled to keep identity data synchronized with an authoritative source?",
+    choices: [
+      "Import job",
+      "Certification job",
+      "Recommendation job",
+      "Workflow job",
+    ],
+    correctAnswer: "Import job",
+    explanation:
+      "Import jobs refresh identity information from authoritative systems.",
+    category: "Jobs",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "What is the primary purpose of recommendations during an access review?",
+    choices: [
+      "Assist reviewer decision making",
+      "Automatically revoke access",
+      "Replace certifications",
+      "Perform provisioning",
+    ],
+    correctAnswer: "Assist reviewer decision making",
+    explanation:
+      "Recommendations provide guidance but do not replace reviewer accountability.",
+    category: "Recommendations",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "Which component stores the authoritative identity record within Saviynt?",
+    choices: ["Identity Repository", "Endpoint", "Entitlement", "Workflow"],
+    correctAnswer: "Identity Repository",
+    explanation:
+      "The Identity Repository stores identity information used throughout governance processes.",
+    category: "Identity Repository",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "A technical rule grants birthright access. When is that access typically assigned?",
+    choices: [
+      "When rule conditions are satisfied",
+      "Only during certifications",
+      "Only after SoD review",
+      "Only through access requests",
+    ],
+    correctAnswer: "When rule conditions are satisfied",
+    explanation:
+      "Technical Rules evaluate conditions and execute associated actions automatically.",
+    category: "Technical Rules",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "Which report would best demonstrate that terminated users were deprovisioned successfully?",
+    choices: [
+      "Lifecycle and provisioning audit report",
+      "Role mining report",
+      "Application discovery report",
+      "SMTP configuration report",
+    ],
+    correctAnswer: "Lifecycle and provisioning audit report",
+    explanation:
+      "Lifecycle and provisioning records provide evidence of successful deprovisioning.",
+    category: "Reporting",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "An endpoint password changes and reconciliation begins failing. What should be reviewed first?",
+    choices: [
+      "Endpoint connection configuration",
+      "Certification ownership",
+      "Role hierarchy",
+      "Analytics datasets",
+    ],
+    correctAnswer: "Endpoint connection configuration",
+    explanation:
+      "Authentication failures commonly originate from endpoint connection settings.",
+    category: "Endpoints",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "What governance principle requires clear accountability for access decisions?",
+    choices: ["Ownership", "Provisioning", "Correlation", "Importing"],
+    correctAnswer: "Ownership",
+    explanation: "Governance relies on clearly assigned accountability.",
+    category: "Governance",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "A recommendation engine repeatedly suggests access that reviewers revoke. What should be investigated?",
+    choices: [
+      "Recommendation data quality and peer logic",
+      "SMTP configuration",
+      "Endpoint passwords",
+      "Campaign templates",
+    ],
+    correctAnswer: "Recommendation data quality and peer logic",
+    explanation:
+      "Poor recommendation quality often results from bad peer-group data or outdated access patterns.",
+    category: "Recommendations",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which scheduled activity is most likely responsible for executing recurring analytics controls?",
+    choices: ["Job", "Role", "Entitlement", "Endpoint"],
+    correctAnswer: "Job",
+    explanation: "Jobs automate recurring processing throughout the platform.",
+    category: "Jobs",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "A company wants to track who owns every application, role, and entitlement. Which governance objective is being strengthened?",
+    choices: [
+      "Accountability",
+      "Provisioning speed",
+      "Connector performance",
+      "Role mining",
+    ],
+    correctAnswer: "Accountability",
+    explanation:
+      "Ownership establishes responsibility throughout the governance model.",
+    category: "Governance",
+    difficulty: "medium",
+  },
+  {
+    prompt: "What is the primary purpose of an endpoint test connection?",
+    choices: [
+      "Validate communication with the target system",
+      "Launch certifications",
+      "Generate reports",
+      "Run SoD analysis",
+    ],
+    correctAnswer: "Validate communication with the target system",
+    explanation: "Connection testing verifies connectivity and credentials.",
+    category: "Endpoints",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "Which category is most closely associated with automated birthright access assignment?",
+    choices: ["Technical Rules", "Reporting", "Recommendations", "Ownership"],
+    correctAnswer: "Technical Rules",
+    explanation:
+      "Technical Rules commonly automate birthright access assignments.",
+    category: "Technical Rules",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "A manager relationship changes but approval routing does not update. Which area should be investigated?",
+    choices: ["User Update Rules", "Analytics", "Entitlements", "Endpoints"],
+    correctAnswer: "User Update Rules",
+    explanation:
+      "User Update Rules often process identity attribute changes affecting approvals.",
+    category: "User Update Rules",
+    difficulty: "hard",
+  },
+  {
+    prompt: "What is the primary purpose of governance reporting?",
+    choices: [
+      "Provide visibility and audit evidence",
+      "Execute provisioning",
+      "Create roles",
+      "Perform imports",
+    ],
+    correctAnswer: "Provide visibility and audit evidence",
+    explanation:
+      "Reporting supports compliance, auditing, and operational oversight.",
+    category: "Reporting",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "A role owner leaves the company. What governance action should occur?",
+    choices: [
+      "Assign a new owner",
+      "Delete all roles",
+      "Disable analytics",
+      "Rebuild the endpoint",
+    ],
+    correctAnswer: "Assign a new owner",
+    explanation:
+      "Ownership should always remain assigned to an active accountable individual.",
+    category: "Ownership",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "Which repository object is most important for lifecycle events such as Joiner, Mover, and Leaver processing?",
+    choices: [
+      "Identity record",
+      "SMTP template",
+      "Certification decision",
+      "Analytics control",
+    ],
+    correctAnswer: "Identity record",
+    explanation:
+      "Lifecycle processing depends on identity attributes and status.",
+    category: "Identity Repository",
+    difficulty: "medium",
+  },
+  {
+    prompt: "A scheduled job stops running. What is the most immediate risk?",
+    choices: [
+      "Governance processes may become stale",
+      "Role ownership changes",
+      "Applications disappear",
+      "Entitlements are deleted",
+    ],
+    correctAnswer: "Governance processes may become stale",
+    explanation:
+      "Many imports, controls, and lifecycle processes depend on scheduled jobs.",
+    category: "Jobs",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "What is the strongest indicator that an ownership model is functioning effectively?",
+    choices: [
+      "Access decisions have clear accountable approvers",
+      "Imports run faster",
+      "Endpoints use fewer credentials",
+      "Roles contain more entitlements",
+    ],
+    correctAnswer: "Access decisions have clear accountable approvers",
+    explanation:
+      "Ownership exists to ensure accountability and governance oversight.",
+    category: "Ownership",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which endpoint attribute is most critical for successful authentication?",
+    choices: [
+      "Connection credentials",
+      "Role ownership",
+      "Campaign scope",
+      "Analytics dataset",
+    ],
+    correctAnswer: "Connection credentials",
+    explanation:
+      "Endpoints require valid authentication information to communicate with targets.",
+    category: "Endpoints",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "Why are recommendations considered advisory rather than authoritative?",
+    choices: [
+      "Reviewers remain accountable for final decisions",
+      "Recommendations cannot analyze access",
+      "Recommendations bypass governance",
+      "Recommendations provision access automatically",
+    ],
+    correctAnswer: "Reviewers remain accountable for final decisions",
+    explanation:
+      "Recommendations support but do not replace governance decisions.",
+    category: "Recommendations",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "What is the primary benefit of a well-maintained Identity Repository?",
+    choices: [
+      "Accurate governance decisions",
+      "Faster SMTP delivery",
+      "Smaller certification campaigns",
+      "More workflow steps",
+    ],
+    correctAnswer: "Accurate governance decisions",
+    explanation: "Identity quality directly affects governance accuracy.",
+    category: "Identity Repository",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which governance principle is violated when nobody is responsible for approving privileged access?",
+    choices: [
+      "Accountability",
+      "Correlation",
+      "Provisioning",
+      "Transformation",
+    ],
+    correctAnswer: "Accountability",
+    explanation:
+      "Governance requires ownership and responsibility for decisions.",
+    category: "Governance",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "A User Update Rule is configured correctly but never executes. What should be verified first?",
+    choices: [
+      "Whether the triggering attribute actually changed",
+      "Whether certifications are enabled",
+      "Whether the endpoint is requestable",
+      "Whether analytics controls are active",
+    ],
+    correctAnswer: "Whether the triggering attribute actually changed",
+    explanation:
+      "User Update Rules only execute when their configured trigger conditions are satisfied.",
+    category: "User Update Rules",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "A technical rule grants access to all Finance employees. A user in Finance does not receive the access. What should be investigated first?",
+    choices: [
+      "Whether the user's attributes satisfy the rule conditions",
+      "Whether the user's manager approved access",
+      "Whether a certification campaign exists",
+      "Whether the endpoint owner changed",
+    ],
+    correctAnswer: "Whether the user's attributes satisfy the rule conditions",
+    explanation:
+      "Technical Rules rely on attribute-based conditions to determine eligibility.",
+    category: "Technical Rules",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which ownership assignment is most responsible for deciding whether an entitlement should remain requestable?",
+    choices: [
+      "Entitlement Owner",
+      "Requester",
+      "User Manager",
+      "Connector Administrator",
+    ],
+    correctAnswer: "Entitlement Owner",
+    explanation:
+      "Entitlement Owners govern entitlement usage, requestability, and approvals.",
+    category: "Ownership",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "A scheduled import has not executed for several days. What is the greatest governance concern?",
+    choices: [
+      "Identity data may no longer reflect reality",
+      "Roles will automatically be deleted",
+      "Certifications will close automatically",
+      "Endpoints will become disconnected",
+    ],
+    correctAnswer: "Identity data may no longer reflect reality",
+    explanation: "Stale identity data impacts nearly every governance process.",
+    category: "Jobs",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which report is most useful for identifying access requests that were approved but never provisioned?",
+    choices: [
+      "Provisioning audit report",
+      "Role hierarchy report",
+      "Endpoint ownership report",
+      "Application discovery report",
+    ],
+    correctAnswer: "Provisioning audit report",
+    explanation:
+      "Provisioning reports provide visibility into fulfillment outcomes.",
+    category: "Reporting",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "What is the primary purpose of an identity repository correlation key?",
+    choices: [
+      "Uniquely identify and match identities",
+      "Generate certification campaigns",
+      "Create workflows",
+      "Launch analytics controls",
+    ],
+    correctAnswer: "Uniquely identify and match identities",
+    explanation:
+      "Correlation keys help associate imported records with existing identities.",
+    category: "Identity Repository",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "A governance audit finds multiple applications without owners. What risk does this create?",
+    choices: [
+      "Lack of accountability for access decisions",
+      "Improved provisioning speed",
+      "Automatic SoD mitigation",
+      "Reduced certification scope",
+    ],
+    correctAnswer: "Lack of accountability for access decisions",
+    explanation: "Ownership is a foundational governance control.",
+    category: "Governance",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which endpoint issue is most likely to prevent account imports from succeeding?",
+    choices: [
+      "Invalid authentication credentials",
+      "Missing campaign template",
+      "Inactive recommendation engine",
+      "Missing role owner",
+    ],
+    correctAnswer: "Invalid authentication credentials",
+    explanation: "Endpoint connectivity depends on successful authentication.",
+    category: "Endpoints",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "What should happen when a User Update Rule changes a user's manager?",
+    choices: [
+      "Approval routing should reflect the new manager relationship",
+      "All access should be revoked",
+      "The user should be terminated",
+      "All endpoints should be disabled",
+    ],
+    correctAnswer:
+      "Approval routing should reflect the new manager relationship",
+    explanation:
+      "Manager-based governance relies on accurate reporting structures.",
+    category: "User Update Rules",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "Which scheduled process commonly executes analytics controls on a recurring basis?",
+    choices: ["Job", "Role", "Entitlement", "Workflow"],
+    correctAnswer: "Job",
+    explanation: "Jobs automate recurring governance processing.",
+    category: "Jobs",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "A recommendation suggests retaining access that was recently revoked by reviewers. What should be investigated?",
+    choices: [
+      "Recommendation source data and model logic",
+      "SMTP configuration",
+      "Campaign ownership",
+      "Endpoint passwords",
+    ],
+    correctAnswer: "Recommendation source data and model logic",
+    explanation:
+      "Recommendations are only as reliable as the data they analyze.",
+    category: "Recommendations",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "What is the strongest reason to maintain accurate ownership assignments?",
+    choices: [
+      "Governance accountability",
+      "Faster imports",
+      "Smaller databases",
+      "Fewer endpoints",
+    ],
+    correctAnswer: "Governance accountability",
+    explanation:
+      "Ownership ensures responsibility for access-related decisions.",
+    category: "Ownership",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "A technical rule removes access unexpectedly from multiple users. What should be reviewed first?",
+    choices: [
+      "Rule conditions and action logic",
+      "Certification comments",
+      "SMTP settings",
+      "Application discovery settings",
+    ],
+    correctAnswer: "Rule conditions and action logic",
+    explanation:
+      "Technical Rules can grant or remove access based on configured logic.",
+    category: "Technical Rules",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which governance report would best support an auditor reviewing privileged access assignments?",
+    choices: [
+      "Privileged access assignment report",
+      "SMTP delivery report",
+      "Application discovery report",
+      "Role mining report",
+    ],
+    correctAnswer: "Privileged access assignment report",
+    explanation:
+      "Auditors typically require visibility into privileged access holders and approvals.",
+    category: "Reporting",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "A user exists in the Identity Repository but has no correlated accounts. What is the most likely concern?",
+    choices: [
+      "The user may lack visibility into actual application access",
+      "The user automatically becomes privileged",
+      "All certifications fail",
+      "The endpoint is deleted",
+    ],
+    correctAnswer:
+      "The user may lack visibility into actual application access",
+    explanation:
+      "Uncorrelated identities reduce governance visibility and effectiveness.",
+    category: "Identity Repository",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which governance principle requires access decisions to be traceable to a responsible person?",
+    choices: [
+      "Accountability",
+      "Provisioning",
+      "Transformation",
+      "Correlation",
+    ],
+    correctAnswer: "Accountability",
+    explanation: "Traceability is a key governance requirement.",
+    category: "Governance",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "An endpoint test succeeds but provisioning fails. What should be reviewed next?",
+    choices: [
+      "Provisioning operation mappings and permissions",
+      "Campaign templates",
+      "Recommendation thresholds",
+      "Role ownership assignments",
+    ],
+    correctAnswer: "Provisioning operation mappings and permissions",
+    explanation:
+      "Connectivity alone does not guarantee provisioning capability.",
+    category: "Endpoints",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "A User Update Rule launches a certification whenever a user's department changes. What governance objective does this support?",
+    choices: [
+      "Validation of access after organizational changes",
+      "Faster endpoint connectivity",
+      "Automatic application discovery",
+      "Improved SMTP delivery",
+    ],
+    correctAnswer: "Validation of access after organizational changes",
+    explanation: "Department changes often require access reevaluation.",
+    category: "User Update Rules",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "What is the primary value of recommendation engines in large organizations?",
+    choices: [
+      "Helping reviewers focus on likely decisions",
+      "Replacing governance reviews",
+      "Disabling SoD policies",
+      "Reducing endpoint count",
+    ],
+    correctAnswer: "Helping reviewers focus on likely decisions",
+    explanation:
+      "Recommendations improve reviewer efficiency while preserving accountability.",
+    category: "Recommendations",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "A nightly job fails repeatedly without alerting administrators. What governance risk exists?",
+    choices: [
+      "Critical governance processes may silently stop running",
+      "All users become administrators",
+      "Roles disappear automatically",
+      "Applications become disconnected",
+    ],
+    correctAnswer: "Critical governance processes may silently stop running",
+    explanation:
+      "Monitoring job execution is essential for governance reliability.",
+    category: "Jobs",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which ownership assignment is most appropriate for reviewing a role's membership and purpose?",
+    choices: [
+      "Role Owner",
+      "Endpoint Owner",
+      "Requester",
+      "Import Administrator",
+    ],
+    correctAnswer: "Role Owner",
+    explanation:
+      "Role Owners are responsible for governance of role contents and assignments.",
+    category: "Ownership",
+    difficulty: "easy",
+  },
+  {
+    prompt: "Why is identity quality important within the Identity Repository?",
+    choices: [
+      "Governance decisions depend on accurate identity data",
+      "It reduces SMTP traffic",
+      "It removes SoD requirements",
+      "It eliminates workflows",
+    ],
+    correctAnswer: "Governance decisions depend on accurate identity data",
+    explanation: "Poor identity quality leads to poor governance outcomes.",
+    category: "Identity Repository",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "A governance dashboard shows applications with no certifications in the past year. Which category is most directly involved?",
+    choices: ["Reporting", "Endpoints", "Recommendations", "Jobs"],
+    correctAnswer: "Reporting",
+    explanation:
+      "Reporting provides visibility into governance coverage and review activity.",
+    category: "Reporting",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "What is the primary purpose of assigning ownership to Security Systems?",
+    choices: [
+      "Provide governance accountability at a higher organizational level",
+      "Improve endpoint authentication",
+      "Increase import speed",
+      "Reduce role counts",
+    ],
+    correctAnswer:
+      "Provide governance accountability at a higher organizational level",
+    explanation: "Ownership should exist throughout the governance hierarchy.",
+    category: "Ownership",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which governance objective is most directly supported by Technical Rules and User Update Rules working together?",
+    choices: [
+      "Automated lifecycle governance",
+      "SMTP management",
+      "Application discovery",
+      "Dataset optimization",
+    ],
+    correctAnswer: "Automated lifecycle governance",
+    explanation:
+      "Together, these rules automate access decisions throughout the identity lifecycle.",
+    category: "Governance",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "A Technical Rule grants access based on location. Several users in the correct location do not receive access. What should be reviewed first?",
+    choices: [
+      "Source identity attributes used by the rule",
+      "Certification comments",
+      "Role ownership",
+      "SMTP settings",
+    ],
+    correctAnswer: "Source identity attributes used by the rule",
+    explanation:
+      "Rules depend on accurate identity attributes to evaluate eligibility.",
+    category: "Technical Rules",
+    difficulty: "hard",
+  },
+  {
+    prompt: "What is the primary purpose of a User Update Rule?",
+    choices: [
+      "React to identity attribute changes",
+      "Provision endpoints",
+      "Generate reports",
+      "Create applications",
+    ],
+    correctAnswer: "React to identity attribute changes",
+    explanation: "User Update Rules are triggered by changes to identity data.",
+    category: "User Update Rules",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "Which governance concern exists when multiple applications share the same inactive owner?",
+    choices: [
+      "Governance accountability may be weakened",
+      "Provisioning becomes faster",
+      "Imports become more accurate",
+      "Roles become easier to certify",
+    ],
+    correctAnswer: "Governance accountability may be weakened",
+    explanation: "Inactive owners create governance gaps and approval risks.",
+    category: "Ownership",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "A scheduled certification generation job fails. What is the most immediate impact?",
+    choices: [
+      "Required reviews may not occur",
+      "Applications are deleted",
+      "Roles are removed",
+      "Endpoints stop communicating",
+    ],
+    correctAnswer: "Required reviews may not occur",
+    explanation: "Certification jobs drive governance review activities.",
+    category: "Jobs",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "Which report best supports proving that privileged access is reviewed regularly?",
+    choices: [
+      "Certification completion report",
+      "Endpoint configuration report",
+      "Connector inventory report",
+      "Import execution report",
+    ],
+    correctAnswer: "Certification completion report",
+    explanation:
+      "Certification records demonstrate review activity and reviewer decisions.",
+    category: "Reporting",
+    difficulty: "medium",
+  },
+  {
+    prompt: "Why is identity uniqueness important in the Identity Repository?",
+    choices: [
+      "To prevent incorrect account associations",
+      "To improve SMTP delivery",
+      "To reduce endpoint count",
+      "To simplify dashboards",
+    ],
+    correctAnswer: "To prevent incorrect account associations",
+    explanation: "Unique identities improve correlation accuracy.",
+    category: "Identity Repository",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "A governance review reveals hundreds of access decisions without identifiable approvers. Which principle was likely violated?",
+    choices: [
+      "Accountability",
+      "Provisioning",
+      "Transformation",
+      "Correlation",
+    ],
+    correctAnswer: "Accountability",
+    explanation:
+      "Every governance decision should have a responsible decision maker.",
+    category: "Governance",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which ownership assignment is most appropriate for approving application-level access?",
+    choices: [
+      "Application Owner",
+      "Requester",
+      "Import Administrator",
+      "Job Scheduler",
+    ],
+    correctAnswer: "Application Owner",
+    explanation:
+      "Application Owners govern access associated with their applications.",
+    category: "Ownership",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "A User Update Rule should remove access when employment status changes to Terminated. What governance objective does this support?",
+    choices: [
+      "Automated deprovisioning",
+      "Role mining",
+      "Reporting optimization",
+      "Application discovery",
+    ],
+    correctAnswer: "Automated deprovisioning",
+    explanation: "Termination events commonly trigger access removal.",
+    category: "User Update Rules",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "Which report would best identify applications lacking assigned owners?",
+    choices: [
+      "Ownership coverage report",
+      "Provisioning audit report",
+      "Import history report",
+      "Password policy report",
+    ],
+    correctAnswer: "Ownership coverage report",
+    explanation: "Ownership reporting identifies accountability gaps.",
+    category: "Reporting",
+    difficulty: "medium",
+  },
+  {
+    prompt: "What is the greatest governance risk of inaccurate identity data?",
+    choices: [
+      "Incorrect access decisions",
+      "Longer passwords",
+      "More endpoints",
+      "Additional reports",
+    ],
+    correctAnswer: "Incorrect access decisions",
+    explanation:
+      "Governance decisions depend on accurate identity information.",
+    category: "Identity Repository",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "A Technical Rule unexpectedly grants administrator access to thousands of users. What should be reviewed immediately?",
+    choices: [
+      "Rule logic and eligibility conditions",
+      "Certification comments",
+      "SMTP logs",
+      "Role ownership assignments",
+    ],
+    correctAnswer: "Rule logic and eligibility conditions",
+    explanation:
+      "Broad unintended access usually indicates rule misconfiguration.",
+    category: "Technical Rules",
+    difficulty: "hard",
+  },
+  {
+    prompt: "What is the primary purpose of governance dashboards?",
+    choices: [
+      "Provide visibility into governance health",
+      "Provision accounts",
+      "Create connectors",
+      "Generate passwords",
+    ],
+    correctAnswer: "Provide visibility into governance health",
+    explanation: "Dashboards help monitor governance performance and risks.",
+    category: "Reporting",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "Which governance principle requires access reviews to be completed by appropriate reviewers?",
+    choices: [
+      "Accountability",
+      "Provisioning",
+      "Transformation",
+      "Correlation",
+    ],
+    correctAnswer: "Accountability",
+    explanation: "Reviews should be performed by responsible decision makers.",
+    category: "Governance",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "A recommendation repeatedly suggests revoking access that reviewers always approve. What should be investigated?",
+    choices: [
+      "Recommendation quality and peer analysis",
+      "Endpoint credentials",
+      "SMTP settings",
+      "Role names",
+    ],
+    correctAnswer: "Recommendation quality and peer analysis",
+    explanation:
+      "Poor recommendations often indicate poor source data or peer grouping.",
+    category: "Recommendations",
+    difficulty: "hard",
+  },
+  {
+    prompt: "What is the primary benefit of automated jobs?",
+    choices: [
+      "Consistent execution of recurring governance processes",
+      "Automatic role creation",
+      "Automatic ownership assignment",
+      "Automatic SoD approval",
+    ],
+    correctAnswer: "Consistent execution of recurring governance processes",
+    explanation: "Jobs automate recurring operational activities.",
+    category: "Jobs",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "Which repository object is most likely to contain manager information?",
+    choices: ["Identity", "Endpoint", "Entitlement", "Application"],
+    correctAnswer: "Identity",
+    explanation: "Manager relationships are stored as part of identity data.",
+    category: "Identity Repository",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "A company wants every access decision traceable to an individual. Which governance principle is most relevant?",
+    choices: ["Accountability", "Provisioning", "Analytics", "Transformation"],
+    correctAnswer: "Accountability",
+    explanation: "Traceability is a core governance objective.",
+    category: "Governance",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "Which ownership assignment should be reviewed if role certifications consistently lack knowledgeable reviewers?",
+    choices: [
+      "Role Owner",
+      "Endpoint Owner",
+      "Requester",
+      "Connector Administrator",
+    ],
+    correctAnswer: "Role Owner",
+    explanation:
+      "Role Owners are typically responsible for role governance decisions.",
+    category: "Ownership",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "A User Update Rule depends on department information that never updates. What should be investigated first?",
+    choices: [
+      "Identity imports",
+      "Reporting schedules",
+      "Recommendation logic",
+      "Security Systems",
+    ],
+    correctAnswer: "Identity imports",
+    explanation: "Rules depend on current identity data.",
+    category: "User Update Rules",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which report would best support an audit of terminated-user access removal?",
+    choices: [
+      "Deprovisioning audit report",
+      "Role hierarchy report",
+      "Connector report",
+      "Ownership report",
+    ],
+    correctAnswer: "Deprovisioning audit report",
+    explanation: "Auditors typically require evidence that access was removed.",
+    category: "Reporting",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "What is the strongest indicator that governance ownership is functioning correctly?",
+    choices: [
+      "Approvals and reviews have accountable decision makers",
+      "Imports run faster",
+      "More roles exist",
+      "Endpoints are consolidated",
+    ],
+    correctAnswer: "Approvals and reviews have accountable decision makers",
+    explanation: "Ownership exists to provide accountability.",
+    category: "Ownership",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "A Technical Rule grants access during onboarding. Which lifecycle event is most closely associated with this activity?",
+    choices: ["Joiner", "Mover", "Leaver", "Certification"],
+    correctAnswer: "Joiner",
+    explanation:
+      "Onboarding access assignments are typically Joiner activities.",
+    category: "Lifecycle Management",
+    difficulty: "easy",
+  },
+  {
+    prompt:
+      "Which governance outcome is most likely when identity data becomes stale?",
+    choices: [
+      "Access decisions become less reliable",
+      "Endpoints disappear",
+      "Roles become disconnected",
+      "Applications are deleted",
+    ],
+    correctAnswer: "Access decisions become less reliable",
+    explanation: "Identity quality directly affects governance quality.",
+    category: "Governance",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "A recommendation engine uses peer analysis. What assumption does this approach rely on?",
+    choices: [
+      "Similar users often require similar access",
+      "All users require the same access",
+      "Managers never change",
+      "Roles eliminate certifications",
+    ],
+    correctAnswer: "Similar users often require similar access",
+    explanation:
+      "Peer analysis compares users with similar business characteristics.",
+    category: "Recommendations",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "Which job failure is most likely to affect manager-based approvals?",
+    choices: [
+      "Identity import failure",
+      "Certification archive failure",
+      "Role export failure",
+      "Dashboard refresh failure",
+    ],
+    correctAnswer: "Identity import failure",
+    explanation:
+      "Manager relationships are typically sourced through identity imports.",
+    category: "Jobs",
+    difficulty: "hard",
+  },
+  {
+    prompt: "Why should ownership be reviewed periodically?",
+    choices: [
+      "People and organizational structures change",
+      "Endpoints require new passwords",
+      "Reports expire",
+      "Roles become entitlements",
+    ],
+    correctAnswer: "People and organizational structures change",
+    explanation: "Ownership assignments can become stale over time.",
+    category: "Ownership",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "Which Identity Repository issue is most likely to create orphan accounts?",
+    choices: [
+      "Missing or incorrect correlation attributes",
+      "Extra dashboards",
+      "Additional workflows",
+      "Multiple reports",
+    ],
+    correctAnswer: "Missing or incorrect correlation attributes",
+    explanation: "Correlation depends on reliable identity data.",
+    category: "Identity Repository",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "A governance team wants visibility into overdue certifications, orphan accounts, inactive owners, and failed imports from a single view. Which capability best supports this?",
+    choices: [
+      "Governance dashboard",
+      "Endpoint configuration",
+      "Role hierarchy",
+      "Connector mapping",
+    ],
+    correctAnswer: "Governance dashboard",
+    explanation:
+      "Dashboards aggregate governance metrics into a centralized view.",
+    category: "Reporting",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "What is the primary objective of combining Technical Rules, User Update Rules, Jobs, and Ownership within an IGA program?",
+    choices: [
+      "Deliver scalable, accountable governance automation",
+      "Eliminate access reviews",
+      "Remove all approvals",
+      "Replace identity repositories",
+    ],
+    correctAnswer: "Deliver scalable, accountable governance automation",
+    explanation:
+      "These capabilities work together to automate governance while preserving accountability.",
+    category: "Identity Governance",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "A scheduled job executes successfully but produces incomplete results because required source data was missing. What lesson does this highlight?",
+    choices: [
+      "Automation depends on data quality",
+      "Jobs replace imports",
+      "Reporting replaces governance",
+      "Ownership is optional",
+    ],
+    correctAnswer: "Automation depends on data quality",
+    explanation:
+      "Successful execution alone does not guarantee quality outcomes.",
+    category: "Governance",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which governance metric is most useful for measuring accountability coverage?",
+    choices: [
+      "Percentage of governed objects with assigned owners",
+      "Number of endpoints",
+      "Number of connectors",
+      "Number of dashboards",
+    ],
+    correctAnswer: "Percentage of governed objects with assigned owners",
+    explanation:
+      "Ownership coverage is a direct measure of governance accountability.",
+    category: "Reporting",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "A company wants to ensure that every new identity receives access, approvals, reviews, and ownership oversight throughout employment. Which category best represents this end-to-end objective?",
+    choices: ["Identity Governance", "Reporting", "Connectors", "Endpoints"],
+    correctAnswer: "Identity Governance",
+    explanation:
+      "Identity Governance encompasses the complete lifecycle of access management and oversight.",
+    category: "Identity Governance",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "Which governance principle is most directly improved by ensuring every application, role, entitlement, and security system has an active owner?",
+    choices: [
+      "Accountability",
+      "Provisioning",
+      "Transformation",
+      "Correlation",
+    ],
+    correctAnswer: "Accountability",
+    explanation: "Ownership is the foundation of governance accountability.",
+    category: "Governance",
+    difficulty: "medium",
+  },
+  {
+    prompt:
+      "A User Update Rule automatically initiates access reviews after major organizational changes. What governance benefit does this provide?",
+    choices: [
+      "Continuous validation of access appropriateness",
+      "Automatic connector creation",
+      "Automatic role mining",
+      "Automatic endpoint discovery",
+    ],
+    correctAnswer: "Continuous validation of access appropriateness",
+    explanation: "Organizational changes often require access reassessment.",
+    category: "User Update Rules",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "What is the most important characteristic of a high-quality Identity Repository?",
+    choices: [
+      "Accurate, complete, and current identity information",
+      "Large number of endpoints",
+      "Many dashboards",
+      "Many certifications",
+    ],
+    correctAnswer: "Accurate, complete, and current identity information",
+    explanation: "Identity quality is the foundation of effective governance.",
+    category: "Identity Repository",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which category is ultimately responsible for ensuring governance decisions remain defensible during audits?",
+    choices: ["Governance", "Endpoints", "Connectors", "Applications"],
+    correctAnswer: "Governance",
+    explanation:
+      "Governance establishes the controls, accountability, and evidence required to support audit scrutiny.",
+    category: "Governance",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "A company wants every governance process to be measurable, repeatable, accountable, and automated where appropriate. Which category best represents this goal?",
+    choices: ["Identity Governance", "Applications", "Endpoints", "Connectors"],
+    correctAnswer: "Identity Governance",
+    explanation:
+      "Identity Governance brings together people, processes, controls, and technology to manage access responsibly.",
+    category: "Identity Governance",
+    difficulty: "hard",
+  },
+  {
+    prompt:
+      "Which metric would best indicate the overall health of an identity governance program?",
+    choices: [
+      "Combination of ownership coverage, certification completion, control compliance, and data quality",
+      "Number of endpoints",
+      "Number of applications",
+      "Number of reports",
+    ],
+    correctAnswer:
+      "Combination of ownership coverage, certification completion, control compliance, and data quality",
+    explanation:
+      "No single metric measures governance maturity; multiple indicators must be considered together.",
+    category: "Reporting",
+    difficulty: "hard",
+  },
 ];
 
 export const examQuestions = generateQuestionBank(examQuestionBank);
