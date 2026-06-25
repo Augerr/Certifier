@@ -32,7 +32,6 @@ npm run lint
 ## Notes
 
 - This MVP uses a fully local question bank.
-- `prisma` / database scaffolding is present but not wired into the UI.
 - AI generation is not enabled in this repo.
 
 ## Recommended next improvements
