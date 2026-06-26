@@ -103,6 +103,16 @@ export default function QuizSetup() {
     );
   }
 
+  function randomizeCategories() {
+    const randomizedCategories = examCategories.filter(() => Math.random() >= 0.5);
+
+    setSelectedCategories(
+      randomizedCategories.length > 0
+        ? randomizedCategories
+        : [examCategories[Math.floor(Math.random() * examCategories.length)]],
+    );
+  }
+
   return (
     <main className="min-h-screen bg-neutral-950 text-neutral-50">
       <section className="mx-auto flex min-h-screen w-full max-w-5xl flex-col justify-center px-6 py-12">
@@ -133,6 +143,14 @@ export default function QuizSetup() {
                 onClick={() => setSelectedCategories([...examCategories])}
               >
                 All
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                className="border-white/15 bg-neutral-950 text-neutral-100 hover:bg-neutral-900"
+                onClick={randomizeCategories}
+              >
+                Randomize
               </Button>
               <Button
                 type="button"

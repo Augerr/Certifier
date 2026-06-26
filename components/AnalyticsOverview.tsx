@@ -51,7 +51,7 @@ function BucketList({
               {bucket.percentage}%
             </span>
           </div>
-          <p className="text-xs text-neutral-500">
+          <p className="text-xs text-neutral-400">
             {bucket.correct}/{bucket.totalQuestions} correct
           </p>
         </div>
@@ -105,7 +105,7 @@ export function AnalyticsOverview({ analytics }: AnalyticsOverviewProps) {
             <BarChart3 className="size-5" aria-hidden="true" />
           </div>
           <div>
-            <h2 className="text-lg font-medium text-white">
+            <h2 className="text-base font-medium text-white">
               Performance History
             </h2>
             <p className="mt-1 text-sm text-neutral-400">
