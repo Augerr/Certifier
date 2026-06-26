@@ -17,9 +17,8 @@ There is no test suite configured in this project.
 
 ### Prisma / database
 
-- Schema lives at `prisma/schema.prisma` (datasource: `sqlite`, generator output: `lib/generated/prisma`, ignored from git).
-- Config is in `prisma.config.ts` (uses `DATABASE_URL` env var via `dotenv/config`).
-- The Prisma client and schema are present but **not yet wired into the app** — the API routes currently serve hardcoded data and a 501 stub (see below). Treat Prisma as scaffolding for a future iteration, not active infrastructure.
+- The project contains optional database scaffolding, but Prisma is not wired into the app.
+- The API routes currently serve local data and stubs; this repo is meant as a local MVP.
 
 ## Architecture
 
