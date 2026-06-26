@@ -207,7 +207,7 @@ export function QuizClient({
 
         {isComplete ? (
           gradingError ? (
-            <div className="rounded-lg border border-red-500 bg-neutral-900/60 p-6 text-sm text-red-200">
+            <div className="rounded-lg border border-red-600 bg-neutral-900/60 p-6 text-sm text-red-300">
               <p className="mb-4">{gradingError}</p>
               <div className="flex gap-2">
                 <Button onClick={() => {
@@ -252,7 +252,7 @@ export function QuizClient({
                 size="lg"
                 onClick={handleNext}
                 disabled={!selectedAnswer || loading || grading}
-                className="h-11 bg-emerald-300 px-5 text-neutral-950 hover:bg-emerald-200"
+                className="h-11 bg-emerald-500 px-5 text-white hover:bg-emerald-400"
               >
                 {isLastQuestion ? "Finish Exam" : "Next"}
                 <ArrowRight className="size-4" aria-hidden="true" />

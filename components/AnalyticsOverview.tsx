@@ -20,26 +20,33 @@ function formatAttemptDate(value: string) {
 function BucketList({
   buckets,
   emptyLabel,
+  formatLabel = (label) => label,
 }: {
   buckets: PerformanceBucket[];
   emptyLabel: string;
+  formatLabel?: (label: string) => string;
 }) {
   if (buckets.length === 0) {
     return <p className="text-sm text-neutral-500">{emptyLabel}</p>;
   }
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-5">
       {buckets.map((bucket) => (
-        <div key={bucket.label} className="space-y-2">
+        <div key={bucket.label} className="space-y-1.5">
           <div className="flex items-center justify-between gap-3 text-sm">
-            <span className="font-medium text-neutral-100">{bucket.label}</span>
+            <span className="font-medium text-neutral-100">
+              {formatLabel(bucket.label)}
+            </span>
             <span className="text-neutral-400">
               {bucket.earnedPoints}/{bucket.totalPoints} pts
             </span>
           </div>
           <div className="flex items-center gap-3">
-            <Progress value={bucket.percentage} className="h-2 bg-neutral-800" />
+            <Progress
+              value={bucket.percentage}
+              className={`h-2 bg-neutral-800 ${getProgressColor(bucket.percentage)}`}
+            />
             <span className="w-10 text-right text-sm text-neutral-300">
               {bucket.percentage}%
             </span>
@@ -51,6 +58,22 @@ function BucketList({
       ))}
     </div>
   );
+}
+
+function capitalizeLabel(label: string) {
+  return label.charAt(0).toUpperCase() + label.slice(1);
+}
+
+function getProgressColor(percentage: number) {
+  if (percentage >= 80) {
+    return "[&_[data-slot=progress-indicator]]:bg-emerald-500";
+  }
+
+  if (percentage >= 60) {
+    return "[&_[data-slot=progress-indicator]]:bg-amber-300";
+  }
+
+  return "[&_[data-slot=progress-indicator]]:bg-red-500";
 }
 
 export function AnalyticsOverview({ analytics }: AnalyticsOverviewProps) {
@@ -76,7 +99,7 @@ export function AnalyticsOverview({ analytics }: AnalyticsOverviewProps) {
     <section className="mt-10 border-t border-white/10 pt-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
-          <div className="flex size-10 items-center justify-center rounded-lg border border-emerald-300/20 bg-emerald-300/10 text-emerald-200">
+          <div className="flex size-10 items-center justify-center rounded-lg border border-emerald-500/25 bg-emerald-500/10 text-emerald-400">
             <BarChart3 className="size-5" aria-hidden="true" />
           </div>
           <div>
@@ -106,7 +129,7 @@ export function AnalyticsOverview({ analytics }: AnalyticsOverviewProps) {
       <div className="mt-5 grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
         <div className="rounded-lg border border-white/10 bg-neutral-900/60 p-4">
           <div className="mb-4 flex items-center gap-2">
-            <Target className="size-4 text-red-200" aria-hidden="true" />
+            <Target className="size-4 text-red-400" aria-hidden="true" />
             <h3 className="text-sm font-medium text-white">Weakest Categories</h3>
           </div>
           <BucketList
@@ -123,6 +146,7 @@ export function AnalyticsOverview({ analytics }: AnalyticsOverviewProps) {
             <BucketList
               buckets={analytics.byDifficulty}
               emptyLabel="No difficulty data yet."
+              formatLabel={capitalizeLabel}
             />
           </div>
 
@@ -146,8 +170,8 @@ export function AnalyticsOverview({ analytics }: AnalyticsOverviewProps) {
                     variant="outline"
                     className={
                       attempt.passed
-                        ? "border-emerald-300/40 bg-emerald-300/10 text-emerald-100"
-                        : "border-red-300/40 bg-red-300/10 text-red-100"
+                        ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-400"
+                        : "border-red-500/40 bg-red-500/10 text-red-400"
                     }
                   >
                     {attempt.percentage}%

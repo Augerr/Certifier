@@ -10,7 +10,7 @@ export default function LoadingSpinner({ message = "Loading..." }: LoadingSpinne
   return (
     <div className="mt-2 flex items-center gap-3 text-sm text-neutral-300">
       <svg
-        className="h-6 w-6 animate-spin text-emerald-300"
+        className="h-6 w-6 animate-spin text-emerald-500"
         viewBox="0 0 24 24"
         fill="none"
         aria-hidden="true"
@@ -27,15 +27,15 @@ export default function LoadingSpinner({ message = "Loading..." }: LoadingSpinne
         <span>{message}</span>
         <span className="flex items-center gap-1">
           <span
-            className="h-1.5 w-1.5 rounded-full bg-emerald-300 animate-bounce"
+            className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-bounce"
             style={{ animationDelay: "0ms" }}
           />
           <span
-            className="h-1.5 w-1.5 rounded-full bg-emerald-300 animate-bounce"
+            className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-bounce"
             style={{ animationDelay: "120ms" }}
           />
           <span
-            className="h-1.5 w-1.5 rounded-full bg-emerald-300 animate-bounce"
+            className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-bounce"
             style={{ animationDelay: "240ms" }}
           />
         </span>

@@ -62,6 +62,11 @@ declare global {
 const databasePath =
   process.env.QUIZ_DATABASE_PATH ??
   path.join(process.cwd(), "data", "quiz-attempts.sqlite");
+const difficultyOrder: Record<Difficulty, number> = {
+  easy: 0,
+  medium: 1,
+  hard: 2,
+};
 
 function getDatabase() {
   if (globalThis.quizAttemptDatabase) {
@@ -432,7 +437,11 @@ export function getQuizAnalytics(): QuizAnalytics {
     )
     .all() as RecentAttemptRow[];
   const byCategory = getPerformanceBuckets("category");
-  const byDifficulty = getPerformanceBuckets("difficulty");
+  const byDifficulty = getPerformanceBuckets("difficulty").sort(
+    (a, b) =>
+      difficultyOrder[a.label as Difficulty] -
+      difficultyOrder[b.label as Difficulty],
+  );
   const totalAttempts = summary.total_attempts || 0;
 
   return {

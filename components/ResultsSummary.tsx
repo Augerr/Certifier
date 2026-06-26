@@ -140,7 +140,7 @@ export function ResultsSummary({
       <Card
         className={`relative border text-neutral-50 ring-0 ${
           passed
-            ? "celebration-score-card border-emerald-300/30 bg-neutral-900"
+            ? "celebration-score-card border-emerald-500/30 bg-neutral-900"
             : "border-white/10 bg-neutral-900"
         }`}
       >
@@ -151,8 +151,8 @@ export function ResultsSummary({
                 variant="outline"
                 className={
                   passed
-                    ? "border-emerald-300/50 bg-emerald-300/10 text-emerald-100"
-                    : "border-red-300/50 text-red-200"
+                    ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-400"
+                    : "border-red-500/50 text-red-400"
                 }
               >
                 {passed && <Sparkles className="size-3" aria-hidden="true" />}
@@ -160,7 +160,7 @@ export function ResultsSummary({
               </Badge>
               <CardTitle className="mt-4 flex flex-wrap items-center gap-3 text-3xl text-white">
                 {passed && (
-                  <span className="celebration-trophy flex size-11 items-center justify-center rounded-lg border border-emerald-300/30 bg-emerald-300/10 text-emerald-200">
+                  <span className="celebration-trophy flex size-11 items-center justify-center rounded-lg border border-emerald-500/30 bg-emerald-500/10 text-emerald-400">
                     <Trophy className="size-6" aria-hidden="true" />
                   </span>
                 )}
@@ -181,7 +181,7 @@ export function ResultsSummary({
                 <RotateCcw className="size-4" aria-hidden="true" />
                 Retake
               </Button>
-              <Button asChild className="bg-emerald-300 text-neutral-950 hover:bg-emerald-200">
+              <Button asChild className="bg-emerald-500 text-white hover:bg-emerald-400">
                 <Link href="/">Home</Link>
               </Button>
             </div>
@@ -195,7 +195,7 @@ export function ResultsSummary({
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <CardTitle className="flex items-center gap-2 text-lg text-white">
-                  <Target className="size-5 text-red-200" aria-hidden="true" />
+                  <Target className="size-5 text-red-400" aria-hidden="true" />
                   Weak Areas Over Time
                 </CardTitle>
                 <p className="mt-2 text-sm text-neutral-400">
@@ -205,7 +205,7 @@ export function ResultsSummary({
               </div>
               <Badge
                 variant="outline"
-                className="w-fit border-emerald-300/40 bg-emerald-300/10 text-emerald-100"
+                className="w-fit border-emerald-500/40 bg-emerald-500/10 text-emerald-400"
               >
                 {analytics.passRate}% pass rate
               </Badge>
@@ -219,7 +219,7 @@ export function ResultsSummary({
                   <div className="flex items-center justify-between gap-3 text-sm">
                     <Badge
                       variant="outline"
-                      className="border-red-300/40 bg-red-300/10 text-red-100"
+                      className="border-red-500/40 bg-red-500/10 text-red-400"
                     >
                       {result.label}
                     </Badge>
@@ -291,12 +291,12 @@ export function ResultsSummary({
                 <div className="flex items-start gap-3">
                   {isCorrect ? (
                     <CheckCircle2
-                      className="mt-1 size-5 shrink-0 text-emerald-300"
+                      className="mt-1 size-5 shrink-0 text-emerald-500"
                       aria-hidden="true"
                     />
                   ) : (
                     <XCircle
-                      className="mt-1 size-5 shrink-0 text-red-300"
+                      className="mt-1 size-5 shrink-0 text-red-500"
                       aria-hidden="true"
                     />
                   )}
@@ -319,7 +319,7 @@ export function ResultsSummary({
                     {!isCorrect && (
                       <p className="mt-2 text-sm text-neutral-400">
                         Correct answer:{" "}
-                        <span className="text-emerald-200">
+                        <span className="text-emerald-400">
                           {question.correctAnswer}
                         </span>
                       </p>

@@ -97,10 +97,10 @@ export default function QuizSetup() {
     <main className="min-h-screen bg-neutral-950 text-neutral-50">
       <section className="mx-auto flex min-h-screen w-full max-w-5xl flex-col justify-center px-6 py-12">
         <div className="flex">
-          <div className="mb-8 flex h-12 w-12 items-center justify-center rounded-lg border border-emerald-400/20 bg-emerald-400/10 text-emerald-300">
+          <div className="mb-8 flex h-12 w-12 items-center justify-center rounded-lg border border-blue-500/25 bg-blue-500/10 text-blue-400">
             <ShieldCheck className="size-6" aria-hidden="true" />
           </div>
-          <p className="mt-4 ml-2 text-sm font-medium uppercase tracking-[0.18em] text-emerald-300">
+          <p className="mt-4 ml-2 text-sm font-medium uppercase tracking-[0.18em] text-blue-400">
             Mock certification exam
           </p>
         </div>
@@ -149,7 +149,7 @@ export default function QuizSetup() {
                   key={category}
                   className={`flex min-h-12 cursor-pointer items-center gap-3 rounded-lg border px-3 py-2 text-sm transition ${
                     isSelected
-                      ? "border-emerald-300/50 bg-emerald-300/10 text-emerald-100"
+                      ? "border-blue-500/50 bg-blue-500/10 text-blue-100"
                       : "border-white/10 bg-neutral-900/60 text-neutral-300 hover:border-white/25 hover:bg-neutral-900"
                   }`}
                 >
@@ -157,7 +157,7 @@ export default function QuizSetup() {
                     type="checkbox"
                     checked={isSelected}
                     onChange={() => toggleCategory(category)}
-                    className="size-4 accent-emerald-300"
+                    className="size-4 accent-blue-500"
                   />
                   <span>{category}</span>
                 </label>
@@ -199,7 +199,7 @@ export default function QuizSetup() {
                 )
               }
               disabled={selectedCategories.length === 0}
-              className="h-2 w-full cursor-pointer accent-emerald-300 disabled:cursor-not-allowed disabled:opacity-40"
+              className="h-2 w-full cursor-pointer accent-blue-500 disabled:cursor-not-allowed disabled:opacity-40"
             />
             <Input
               type="number"
@@ -225,7 +225,7 @@ export default function QuizSetup() {
             <Button
               type="button"
               size="lg"
-              className="h-11 bg-emerald-300 px-5 text-neutral-950 hover:bg-emerald-200"
+              className="h-11 bg-blue-500 px-5 text-white hover:bg-blue-400"
               disabled
             >
               Start Mock Exam
@@ -235,7 +235,7 @@ export default function QuizSetup() {
             <Button
               asChild
               size="lg"
-              className="h-11 bg-emerald-300 px-5 text-neutral-950 hover:bg-emerald-200"
+              className="h-11 bg-blue-500 px-5 text-white hover:bg-blue-400"
             >
               <Link href={startHref}>
                 Start Mock Exam
