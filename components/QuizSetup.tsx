@@ -4,8 +4,10 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, ShieldCheck } from "lucide-react";
 
+import { AnalyticsOverview } from "@/components/AnalyticsOverview";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import type { QuizAnalytics } from "@/types/analytics";
 import { examCategories, type ExamCategory } from "@/types/question";
 
 type CategoryCounts = Record<string, number>;
@@ -27,6 +29,7 @@ export default function QuizSetup() {
   const [categoryCounts, setCategoryCounts] = useState<CategoryCounts | null>(
     null
   );
+  const [analytics, setAnalytics] = useState<QuizAnalytics | null>(null);
 
   const availableQuestionCount = useMemo(() => {
     if (!categoryCounts) return 0;
@@ -55,11 +58,19 @@ export default function QuizSetup() {
 
     async function loadMeta() {
       try {
-        const res = await fetch(`/api/quiz?meta=1`);
-        if (!res.ok) return;
-        const json = await res.json();
+        const [metaResponse, analyticsResponse] = await Promise.all([
+          fetch(`/api/quiz?meta=1`),
+          fetch(`/api/analytics`),
+        ]);
         if (!mounted) return;
-        setCategoryCounts(json.categoryCounts || {});
+        if (metaResponse.ok) {
+          const json = await metaResponse.json();
+          setCategoryCounts(json.categoryCounts || {});
+        }
+        if (analyticsResponse.ok) {
+          const json = (await analyticsResponse.json()) as QuizAnalytics;
+          setAnalytics(json);
+        }
       } catch {
         // ignore
       }
@@ -233,6 +244,8 @@ export default function QuizSetup() {
             </Button>
           )}
         </div>
+
+        <AnalyticsOverview analytics={analytics} />
 
         <div className="mt-16 grid gap-3 border-t border-white/10 pt-6 text-sm text-neutral-400 sm:grid-cols-3">
           <div>{questionCount} questions</div>
