@@ -81,11 +81,13 @@ export function AnalyticsOverview({ analytics }: AnalyticsOverviewProps) {
     return (
       <section className="mt-10 border-t border-white/10 pt-6">
         <div className="flex items-center gap-3">
-          <div className="flex size-10 items-center justify-center rounded-lg border border-white/10 bg-neutral-900 text-neutral-300">
+          <div className="flex size-10 items-center justify-center rounded-lg border border-blue-600/30 bg-blue-600/10 text-blue-500">
             <Activity className="size-5" aria-hidden="true" />
           </div>
           <div>
-            <h2 className="text-base font-medium text-white">Performance History</h2>
+            <h2 className="text-base font-medium text-white">
+              Performance History
+            </h2>
             <p className="mt-1 text-sm text-neutral-400">
               Complete an exam to start tracking weak areas.
             </p>
@@ -99,11 +101,13 @@ export function AnalyticsOverview({ analytics }: AnalyticsOverviewProps) {
     <section className="mt-10 border-t border-white/10 pt-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
-          <div className="flex size-10 items-center justify-center rounded-lg border border-emerald-500/25 bg-emerald-500/10 text-emerald-400">
+          <div className="flex size-12 items-center justify-center rounded-lg border border-blue-600/30 bg-blue-600/10 text-blue-500">
             <BarChart3 className="size-5" aria-hidden="true" />
           </div>
           <div>
-            <h2 className="text-base font-medium text-white">Performance History</h2>
+            <h2 className="text-lg font-medium text-white">
+              Performance History
+            </h2>
             <p className="mt-1 text-sm text-neutral-400">
               {analytics.totalAttempts} attempts /{" "}
               {analytics.totalQuestionsAnswered} questions answered
@@ -130,7 +134,7 @@ export function AnalyticsOverview({ analytics }: AnalyticsOverviewProps) {
         <div className="rounded-lg border border-white/10 bg-neutral-900/60 p-4">
           <div className="mb-4 flex items-center gap-2">
             <Target className="size-4 text-red-400" aria-hidden="true" />
-            <h3 className="text-sm font-medium text-white">Weakest Categories</h3>
+            <h3 className="font-medium text-white">Weakest Categories</h3>
           </div>
           <BucketList
             buckets={analytics.weakCategories}
@@ -140,7 +144,7 @@ export function AnalyticsOverview({ analytics }: AnalyticsOverviewProps) {
 
         <div className="space-y-4">
           <div className="rounded-lg border border-white/10 bg-neutral-900/60 p-4">
-            <h3 className="mb-4 text-sm font-medium text-white">
+            <h3 className="mb-4 font-medium text-white">
               Difficulty Performance
             </h3>
             <BucketList
@@ -151,7 +155,7 @@ export function AnalyticsOverview({ analytics }: AnalyticsOverviewProps) {
           </div>
 
           <div className="rounded-lg border border-white/10 bg-neutral-900/60 p-4">
-            <h3 className="mb-4 text-sm font-medium text-white">Recent Attempts</h3>
+            <h3 className="mb-4 font-medium text-white">Recent Attempts</h3>
             <div className="space-y-2">
               {analytics.recentAttempts.map((attempt) => (
                 <div
