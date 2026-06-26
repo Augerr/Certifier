@@ -9,6 +9,7 @@ import { QuestionCard } from "@/components/QuestionCard";
 import { ResultsSummary } from "@/components/ResultsSummary";
 import { Button } from "@/components/ui/button";
 import LoadingSpinner from "@/components/LoadingSpinner";
+import type { QuizAnalytics } from "@/types/analytics";
 import type { ExamQuestion } from "@/types/question";
 
 const minQuestionCount = 10;
@@ -32,6 +33,7 @@ export function QuizClient({
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [grading, setGrading] = useState(false);
   const [gradingError, setGradingError] = useState<string | null>(null);
+  const [analytics, setAnalytics] = useState<QuizAnalytics | null>(null);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -113,6 +115,7 @@ export function QuizClient({
           }
           const json = await res.json();
           setActiveQuestions(json.gradedQuestions || []);
+          setAnalytics(json.analytics || null);
           setIsComplete(true);
         } catch {
           setGradingError("Network error while grading. Please try again.");
@@ -134,6 +137,7 @@ export function QuizClient({
     setCurrentIndex(0);
     setIsComplete(false);
     setSessionId(null);
+    setAnalytics(null);
     // re-run effect by setting a micro timeout to refetch
     setTimeout(() => {
       const params = new URLSearchParams();
@@ -203,7 +207,7 @@ export function QuizClient({
 
         {isComplete ? (
           gradingError ? (
-            <div className="rounded-lg border border-red-500 bg-neutral-900/60 p-6 text-sm text-red-200">
+            <div className="rounded-lg border border-red-600 bg-neutral-900/60 p-6 text-sm text-red-300">
               <p className="mb-4">{gradingError}</p>
               <div className="flex gap-2">
                 <Button onClick={() => {
@@ -216,6 +220,7 @@ export function QuizClient({
             <ResultsSummary
               questions={activeQuestions}
               answers={answers}
+              analytics={analytics}
               onRetake={handleRetake}
             />
           )
@@ -247,7 +252,7 @@ export function QuizClient({
                 size="lg"
                 onClick={handleNext}
                 disabled={!selectedAnswer || loading || grading}
-                className="h-11 bg-emerald-300 px-5 text-neutral-950 hover:bg-emerald-200"
+                className="h-11 bg-emerald-500 px-5 text-white hover:bg-emerald-400"
               >
                 {isLastQuestion ? "Finish Exam" : "Next"}
                 <ArrowRight className="size-4" aria-hidden="true" />

@@ -4,8 +4,10 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, ShieldCheck } from "lucide-react";
 
+import { AnalyticsOverview } from "@/components/AnalyticsOverview";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import type { QuizAnalytics } from "@/types/analytics";
 import { examCategories, type ExamCategory } from "@/types/question";
 
 type CategoryCounts = Record<string, number>;
@@ -25,15 +27,26 @@ export default function QuizSetup() {
   const allCategoriesSelected =
     selectedCategories.length === examCategories.length;
   const [categoryCounts, setCategoryCounts] = useState<CategoryCounts | null>(
-    null
+    null,
+  );
+  const [analytics, setAnalytics] = useState<QuizAnalytics | null>(null);
+  const sortedExamCategories = useMemo(
+    () => [...examCategories].sort((a, b) => a.localeCompare(b)),
+    []
   );
 
   const availableQuestionCount = useMemo(() => {
     if (!categoryCounts) return 0;
-    return selectedCategories.reduce((sum, c) => sum + (categoryCounts[c] || 0), 0);
+    return selectedCategories.reduce(
+      (sum, c) => sum + (categoryCounts[c] || 0),
+      0,
+    );
   }, [categoryCounts, selectedCategories]);
   const maxQuestionCount = Math.max(minQuestionCount, availableQuestionCount);
-  const displayQuestionCount = clampQuestionCount(questionCount, maxQuestionCount);
+  const displayQuestionCount = clampQuestionCount(
+    questionCount,
+    maxQuestionCount,
+  );
 
   const startHref = useMemo(() => {
     const params = new URLSearchParams();
@@ -55,11 +68,19 @@ export default function QuizSetup() {
 
     async function loadMeta() {
       try {
-        const res = await fetch(`/api/quiz?meta=1`);
-        if (!res.ok) return;
-        const json = await res.json();
+        const [metaResponse, analyticsResponse] = await Promise.all([
+          fetch(`/api/quiz?meta=1`),
+          fetch(`/api/analytics`),
+        ]);
         if (!mounted) return;
-        setCategoryCounts(json.categoryCounts || {});
+        if (metaResponse.ok) {
+          const json = await metaResponse.json();
+          setCategoryCounts(json.categoryCounts || {});
+        }
+        if (analyticsResponse.ok) {
+          const json = (await analyticsResponse.json()) as QuizAnalytics;
+          setAnalytics(json);
+        }
       } catch {
         // ignore
       }
@@ -76,26 +97,21 @@ export default function QuizSetup() {
     setSelectedCategories((currentCategories) =>
       currentCategories.includes(category)
         ? currentCategories.filter(
-            (currentCategory) => currentCategory !== category
+            (currentCategory) => currentCategory !== category,
           )
-        : [...currentCategories, category]
+        : [...currentCategories, category],
     );
   }
 
   return (
     <main className="min-h-screen bg-neutral-950 text-neutral-50">
       <section className="mx-auto flex min-h-screen w-full max-w-5xl flex-col justify-center px-6 py-12">
-        <div className="flex">
-          <div className="mb-8 flex h-12 w-12 items-center justify-center rounded-lg border border-emerald-400/20 bg-emerald-400/10 text-emerald-300">
+        <div className="flex max-w-4xl items-center gap-4">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-blue-600/30 bg-blue-600/10 text-blue-500 sm:h-14 sm:w-14">
             <ShieldCheck className="size-6" aria-hidden="true" />
           </div>
-          <p className="mt-4 ml-2 text-sm font-medium uppercase tracking-[0.18em] text-emerald-300">
-            Mock certification exam
-          </p>
-        </div>
-        <div className="max-w-3xl">
-          <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-6xl">
-            Saviynt IGA 100 Exam Trainer
+          <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-5xl">
+            Saviynt IGA 100 Mock Exam Generator
           </h1>
         </div>
 
@@ -103,7 +119,7 @@ export default function QuizSetup() {
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h2 className="text-base font-medium text-white">
-                Exam categories to be included
+                Categories to be included
               </h2>
               <p className="mt-1 text-sm text-neutral-400">
                 {selectedCategories.length} of {examCategories.length} selected
@@ -130,7 +146,7 @@ export default function QuizSetup() {
           </div>
 
           <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {examCategories.map((category) => {
+            {sortedExamCategories.map((category) => {
               const isSelected = selectedCategories.includes(category);
 
               return (
@@ -138,15 +154,15 @@ export default function QuizSetup() {
                   key={category}
                   className={`flex min-h-12 cursor-pointer items-center gap-3 rounded-lg border px-3 py-2 text-sm transition ${
                     isSelected
-                      ? "border-emerald-300/50 bg-emerald-300/10 text-emerald-100"
-                      : "border-white/10 bg-neutral-900/60 text-neutral-300 hover:border-white/25 hover:bg-neutral-900"
+                      ? "border-blue-600/50 bg-blue-600/10 text-blue-300"
+                      : "border-white/10 bg-neutral-900/60 text-neutral-300 opacity-45 hover:border-white/25 hover:bg-neutral-900 hover:opacity-80"
                   }`}
                 >
                   <input
                     type="checkbox"
                     checked={isSelected}
                     onChange={() => toggleCategory(category)}
-                    className="size-4 accent-emerald-300"
+                    className="size-4 accent-blue-600"
                   />
                   <span>{category}</span>
                 </label>
@@ -183,12 +199,12 @@ export default function QuizSetup() {
                 setQuestionCount(
                   clampQuestionCount(
                     Number(event.currentTarget.value),
-                    maxQuestionCount
-                  )
+                    maxQuestionCount,
+                  ),
                 )
               }
               disabled={selectedCategories.length === 0}
-              className="h-2 w-full cursor-pointer accent-emerald-300 disabled:cursor-not-allowed disabled:opacity-40"
+              className="h-2 w-full cursor-pointer accent-blue-600 disabled:cursor-not-allowed disabled:opacity-40"
             />
             <Input
               type="number"
@@ -199,8 +215,8 @@ export default function QuizSetup() {
                 setQuestionCount(
                   clampQuestionCount(
                     Number(event.currentTarget.value),
-                    maxQuestionCount
-                  )
+                    maxQuestionCount,
+                  ),
                 )
               }
               disabled={selectedCategories.length === 0}
@@ -214,7 +230,7 @@ export default function QuizSetup() {
             <Button
               type="button"
               size="lg"
-              className="h-11 bg-emerald-300 px-5 text-neutral-950 hover:bg-emerald-200"
+              className="h-11 bg-blue-600 px-5 text-white hover:bg-blue-500"
               disabled
             >
               Start Mock Exam
@@ -224,7 +240,7 @@ export default function QuizSetup() {
             <Button
               asChild
               size="lg"
-              className="h-11 bg-emerald-300 px-5 text-neutral-950 hover:bg-emerald-200"
+              className="h-11 bg-blue-600 px-5 text-white hover:bg-blue-500"
             >
               <Link href={startHref}>
                 Start Mock Exam
@@ -233,6 +249,8 @@ export default function QuizSetup() {
             </Button>
           )}
         </div>
+
+        <AnalyticsOverview analytics={analytics} />
 
         <div className="mt-16 grid gap-3 border-t border-white/10 pt-6 text-sm text-neutral-400 sm:grid-cols-3">
           <div>{questionCount} questions</div>

@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import {
   CheckCircle2,
+  Target,
   RotateCcw,
   Sparkles,
   Trophy,
@@ -16,6 +17,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import type { QuizAnalytics } from "@/types/analytics";
 
 const confettiPieces = Array.from({ length: 28 }, (_, index) => ({
   id: index,
@@ -30,12 +32,14 @@ const confettiPieces = Array.from({ length: 28 }, (_, index) => ({
 type ResultsSummaryProps = {
   questions: ExamQuestion[];
   answers: Record<number, string>;
+  analytics?: QuizAnalytics | null;
   onRetake: () => void;
 };
 
 export function ResultsSummary({
   questions,
   answers,
+  analytics,
   onRetake,
 }: ResultsSummaryProps) {
   const correctCount = questions.filter(
@@ -136,7 +140,7 @@ export function ResultsSummary({
       <Card
         className={`relative border text-neutral-50 ring-0 ${
           passed
-            ? "celebration-score-card border-emerald-300/30 bg-neutral-900"
+            ? "celebration-score-card border-emerald-500/30 bg-neutral-900"
             : "border-white/10 bg-neutral-900"
         }`}
       >
@@ -147,8 +151,8 @@ export function ResultsSummary({
                 variant="outline"
                 className={
                   passed
-                    ? "border-emerald-300/50 bg-emerald-300/10 text-emerald-100"
-                    : "border-red-300/50 text-red-200"
+                    ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-400"
+                    : "border-red-500/50 text-red-400"
                 }
               >
                 {passed && <Sparkles className="size-3" aria-hidden="true" />}
@@ -156,7 +160,7 @@ export function ResultsSummary({
               </Badge>
               <CardTitle className="mt-4 flex flex-wrap items-center gap-3 text-3xl text-white">
                 {passed && (
-                  <span className="celebration-trophy flex size-11 items-center justify-center rounded-lg border border-emerald-300/30 bg-emerald-300/10 text-emerald-200">
+                  <span className="celebration-trophy flex size-11 items-center justify-center rounded-lg border border-emerald-500/30 bg-emerald-500/10 text-emerald-400">
                     <Trophy className="size-6" aria-hidden="true" />
                   </span>
                 )}
@@ -177,13 +181,65 @@ export function ResultsSummary({
                 <RotateCcw className="size-4" aria-hidden="true" />
                 Retake
               </Button>
-              <Button asChild className="bg-emerald-300 text-neutral-950 hover:bg-emerald-200">
+              <Button asChild className="bg-emerald-500 text-white hover:bg-emerald-400">
                 <Link href="/">Home</Link>
               </Button>
             </div>
           </div>
         </CardHeader>
       </Card>
+
+      {analytics && analytics.totalAttempts > 0 && (
+        <Card className="border border-white/10 bg-neutral-900/80 text-neutral-50 ring-0">
+          <CardHeader className="px-6 py-5">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <CardTitle className="flex items-center gap-2 text-lg text-white">
+                  <Target className="size-5 text-red-400" aria-hidden="true" />
+                  Weak Areas Over Time
+                </CardTitle>
+                <p className="mt-2 text-sm text-neutral-400">
+                  Lifetime average {analytics.averageScore}% across{" "}
+                  {analytics.totalAttempts} attempts
+                </p>
+              </div>
+              <Badge
+                variant="outline"
+                className="w-fit border-emerald-500/40 bg-emerald-500/10 text-emerald-400"
+              >
+                {analytics.passRate}% pass rate
+              </Badge>
+            </div>
+            <div className="mt-5 grid gap-4 sm:grid-cols-2">
+              {analytics.weakCategories.slice(0, 4).map((result) => (
+                <div
+                  key={result.label}
+                  className="rounded-lg border border-white/10 bg-neutral-950/50 p-4"
+                >
+                  <div className="flex items-center justify-between gap-3 text-sm">
+                    <Badge
+                      variant="outline"
+                      className="border-red-500/40 bg-red-500/10 text-red-400"
+                    >
+                      {result.label}
+                    </Badge>
+                    <span className="text-neutral-300">
+                      {result.percentage}%
+                    </span>
+                  </div>
+                  <p className="mt-2 text-xs text-neutral-500">
+                    {result.correct}/{result.totalQuestions} correct over time
+                  </p>
+                  <Progress
+                    value={result.percentage}
+                    className="mt-3 h-2 bg-neutral-800"
+                  />
+                </div>
+              ))}
+            </div>
+          </CardHeader>
+        </Card>
+      )}
 
       <Card className="border border-white/10 bg-neutral-900/80 text-neutral-50 ring-0">
         <CardHeader className="px-6 py-5">
@@ -235,12 +291,12 @@ export function ResultsSummary({
                 <div className="flex items-start gap-3">
                   {isCorrect ? (
                     <CheckCircle2
-                      className="mt-1 size-5 shrink-0 text-emerald-300"
+                      className="mt-1 size-5 shrink-0 text-emerald-500"
                       aria-hidden="true"
                     />
                   ) : (
                     <XCircle
-                      className="mt-1 size-5 shrink-0 text-red-300"
+                      className="mt-1 size-5 shrink-0 text-red-500"
                       aria-hidden="true"
                     />
                   )}
@@ -263,7 +319,7 @@ export function ResultsSummary({
                     {!isCorrect && (
                       <p className="mt-2 text-sm text-neutral-400">
                         Correct answer:{" "}
-                        <span className="text-emerald-200">
+                        <span className="text-emerald-400">
                           {question.correctAnswer}
                         </span>
                       </p>

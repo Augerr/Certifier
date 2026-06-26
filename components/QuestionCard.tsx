@@ -28,7 +28,7 @@ export function QuestionCard({
     <Card className="border border-white/10 bg-neutral-900/90 text-neutral-50 shadow-2xl shadow-black/30 ring-0">
       <CardHeader className="gap-3 px-6 pt-6">
         <div className="flex flex-wrap items-center gap-2">
-          <CardDescription className="flex items-center gap-2 text-emerald-300">
+          <CardDescription className="flex items-center gap-2 text-emerald-500">
             <CheckCircle2 className="size-4" aria-hidden="true" />
             Saviynt IGA scenario
           </CardDescription>
@@ -58,7 +58,7 @@ export function QuestionCard({
                 value={choice}
                 className={`flex h-auto min-h-14 w-full cursor-pointer items-center justify-start gap-3 rounded-lg border p-4 text-left text-sm leading-6 transition ${
                   isSelected
-                    ? "border-emerald-300 bg-emerald-300/10 text-white"
+                    ? "border-emerald-500 bg-emerald-500/10 text-white"
                     : "border-white/10 bg-neutral-950/60 text-neutral-300 hover:border-white/25 hover:bg-neutral-900"
                 }`}
               >

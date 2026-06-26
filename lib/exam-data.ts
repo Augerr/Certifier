@@ -1,19 +1,12 @@
 ﻿import { generateQuestionBank } from "@/lib/exam-generator";
 import { analyzeQuestionBank } from "@/lib/question-validator";
+import { difficultyPointValue, passingPercentage } from "@/lib/exam-constants";
 import { examCategories } from "@/types/question";
 import type { ExamCategory, ExamQuestion } from "@/types/question";
 
 export { examCategories };
 export type { ExamCategory, ExamQuestion };
-
-export const passingPercentage = 70;
-
-export const difficultyPointValue: Record<ExamQuestion["difficulty"], number> =
-  {
-    easy: 1,
-    medium: 2,
-    hard: 3,
-  };
+export { difficultyPointValue, passingPercentage };
 
 import examQuestionBank from "@/data/exam-question-bank.json";
 
