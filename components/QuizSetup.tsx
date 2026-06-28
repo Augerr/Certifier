@@ -15,6 +15,8 @@ type CategoryCounts = Record<string, number>;
 const minQuestionCount = 10;
 const defaultQuestionCount = 25;
 const secondsPerQuestion = 90;
+const weakCategoryThreshold = 80;
+const weakCategoryFallbackCount = 3;
 
 function clampQuestionCount(value: number, max: number) {
   return Math.min(Math.max(value, minQuestionCount), max);
@@ -79,6 +81,51 @@ export default function QuizSetup() {
     selectedCategories,
     timerEnabled,
   ]);
+
+  const weakCategoryExam = useMemo(() => {
+    if (!analytics || analytics.weakCategories.length === 0) {
+      return null;
+    }
+
+    const belowThreshold = analytics.weakCategories.filter(
+      (bucket) => bucket.percentage < weakCategoryThreshold,
+    );
+    const focusBuckets =
+      belowThreshold.length > 0
+        ? belowThreshold
+        : analytics.weakCategories.slice(0, weakCategoryFallbackCount);
+    const focusCategories = focusBuckets.map((bucket) => bucket.label);
+
+    if (focusCategories.length === 0) {
+      return null;
+    }
+
+    const availableWeakQuestionCount = categoryCounts
+      ? focusCategories.reduce(
+          (sum, category) => sum + (categoryCounts[category] || 0),
+          0,
+        )
+      : 0;
+    const weakMaxQuestionCount =
+      availableWeakQuestionCount > 0
+        ? Math.max(minQuestionCount, availableWeakQuestionCount)
+        : defaultQuestionCount;
+    const weakQuestionCount = clampQuestionCount(
+      questionCount,
+      weakMaxQuestionCount,
+    );
+    const params = new URLSearchParams();
+
+    params.set("count", String(weakQuestionCount));
+    params.set("timer", timerEnabled ? "1" : "0");
+    focusCategories.forEach((category) => {
+      params.append("categories", category);
+    });
+
+    return {
+      href: `/quiz?${params.toString()}`,
+    };
+  }, [analytics, categoryCounts, questionCount, timerEnabled]);
 
   useEffect(() => {
     let mounted = true;
@@ -202,7 +249,7 @@ export default function QuizSetup() {
             </div>
           </div>
 
-          <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
             {sortedExamCategories.map((category) => {
               const isSelected = selectedCategories.includes(category);
 
@@ -335,7 +382,10 @@ export default function QuizSetup() {
           </label>
         </div>
 
-        <AnalyticsOverview analytics={analytics} />
+        <AnalyticsOverview
+          analytics={analytics}
+          weakCategoriesExamHref={weakCategoryExam?.href}
+        />
 
         {analytics && analytics.totalAttempts > 0 && (
           <div className="mt-16 flex justify-end">

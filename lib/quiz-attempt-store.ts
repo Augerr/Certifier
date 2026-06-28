@@ -588,8 +588,7 @@ export function getQuizAnalytics(): QuizAnalytics {
     byDifficulty,
     weakCategories: [...byCategory]
       .filter((bucket) => bucket.totalQuestions > 0)
-      .sort((a, b) => a.percentage - b.percentage || b.totalQuestions - a.totalQuestions)
-      .slice(0, 5),
+      .sort((a, b) => a.percentage - b.percentage || b.totalQuestions - a.totalQuestions),
     weakDifficulties: [...byDifficulty]
       .filter((bucket) => bucket.totalQuestions > 0)
       .sort((a, b) => a.percentage - b.percentage || b.totalQuestions - a.totalQuestions)

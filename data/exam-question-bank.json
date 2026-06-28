@@ -9196,7 +9196,7 @@
     "difficulty": "hard"
   },
   {
-    "type": "order",
+    "type": "Order",
     "prompt": "Arrange the following steps in the correct order.",
     "items": [
       "Provision account",
