@@ -32,13 +32,14 @@ export default function QuizSetup() {
     ...examCategories,
   ]);
   const [questionCount, setQuestionCount] = useState(defaultQuestionCount);
-  const [timerEnabled, setTimerEnabled] = useState(true);
+  const [timerEnabled, setTimerEnabled] = useState(false);
   const allCategoriesSelected =
     selectedCategories.length === examCategories.length;
   const [categoryCounts, setCategoryCounts] = useState<CategoryCounts | null>(
     null,
   );
   const [analytics, setAnalytics] = useState<QuizAnalytics | null>(null);
+  const [resettingAnalytics, setResettingAnalytics] = useState(false);
   const sortedExamCategories = useMemo(
     () => [...examCategories].sort((a, b) => a.localeCompare(b)),
     []
@@ -127,6 +128,28 @@ export default function QuizSetup() {
         ? randomizedCategories
         : [examCategories[Math.floor(Math.random() * examCategories.length)]],
     );
+  }
+
+  async function resetScoreHistory() {
+    const confirmed = window.confirm(
+      "Reset all score history? This cannot be undone.",
+    );
+
+    if (!confirmed) return;
+
+    setResettingAnalytics(true);
+    try {
+      const response = await fetch("/api/analytics", {
+        method: "DELETE",
+      });
+
+      if (!response.ok) return;
+
+      const json = (await response.json()) as QuizAnalytics;
+      setAnalytics(json);
+    } finally {
+      setResettingAnalytics(false);
+    }
   }
 
   return (
@@ -304,7 +327,9 @@ export default function QuizSetup() {
             <span className="flex flex-col leading-none">
               <span className="text-neutral-100">Time limit</span>
               <span className="mt-1 text-xs text-neutral-500">
-                {timerEnabled ? formatDuration(timeLimitSeconds) : "Off"}
+                {timerEnabled
+                  ? `${formatDuration(timeLimitSeconds)} total (90 seconds/question)`
+                  : "90 seconds/question"}
               </span>
             </span>
           </label>
@@ -312,10 +337,28 @@ export default function QuizSetup() {
 
         <AnalyticsOverview analytics={analytics} />
 
-        <div className="mt-16 grid gap-3 border-t border-white/10 pt-6 text-sm text-neutral-400 sm:grid-cols-3">
+        {analytics && analytics.totalAttempts > 0 && (
+          <div className="mt-16 flex justify-end">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={resetScoreHistory}
+              disabled={resettingAnalytics}
+              className="border-red-500/30 bg-neutral-950 text-red-300 hover:bg-red-950/30 hover:text-red-200 disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              {resettingAnalytics ? "Resetting..." : "Reset Score History"}
+            </Button>
+          </div>
+        )}
+
+        <div className="mt-6 grid gap-3 border-t border-white/10 pt-6 text-sm text-neutral-400 sm:grid-cols-3">
           <div>{questionCount} questions</div>
           <div>Multiple choice</div>
-          <div>{timerEnabled ? "Time limit enabled" : "No time limit"}</div>
+          <div>
+            {timerEnabled
+              ? `Time limit: ${formatDuration(timeLimitSeconds)}`
+              : "No time limit"}
+          </div>
         </div>
       </section>
     </main>

@@ -596,3 +596,10 @@ export function getQuizAnalytics(): QuizAnalytics {
       .slice(0, 3),
   };
 }
+
+export function resetQuizAnalytics() {
+  const db = getDatabase();
+  db.prepare("DELETE FROM quiz_attempts").run();
+
+  return getQuizAnalytics();
+}

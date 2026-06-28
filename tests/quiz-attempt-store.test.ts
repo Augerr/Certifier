@@ -97,4 +97,12 @@ describe("quiz attempt store", () => {
     expect(result?.gradedQuestions[0].correctAnswers).toEqual(["A", "C"]);
     expect(result?.gradedQuestions[0].correctAnswerCount).toBe(2);
   });
+
+  it("resets score history", () => {
+    const analytics = store.resetQuizAnalytics();
+
+    expect(analytics.totalAttempts).toBe(0);
+    expect(analytics.totalQuestionsAnswered).toBe(0);
+    expect(analytics.recentAttempts).toEqual([]);
+  });
 });
