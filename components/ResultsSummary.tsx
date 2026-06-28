@@ -17,6 +17,12 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import {
+  formatAnswerList,
+  getCorrectAnswers,
+  isQuestionCorrect,
+  type SelectedAnswers,
+} from "@/lib/answer-utils";
 import type { QuizAnalytics } from "@/types/analytics";
 
 const confettiPieces = Array.from({ length: 28 }, (_, index) => ({
@@ -31,19 +37,34 @@ const confettiPieces = Array.from({ length: 28 }, (_, index) => ({
 
 type ResultsSummaryProps = {
   questions: ExamQuestion[];
-  answers: Record<number, string>;
+  answers: SelectedAnswers;
   analytics?: QuizAnalytics | null;
+  elapsedSeconds?: number;
   onRetake: () => void;
 };
+
+function formatElapsedTime(totalSeconds: number) {
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  if (hours > 0) {
+    return `${hours}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+  }
+
+  return `${minutes}:${String(seconds).padStart(2, "0")}`;
+}
 
 export function ResultsSummary({
   questions,
   answers,
   analytics,
+  elapsedSeconds,
   onRetake,
 }: ResultsSummaryProps) {
   const correctCount = questions.filter(
-    (question) => answers[question.id] === question.correctAnswer
+    (question) =>
+      isQuestionCorrect(question, answers[question.id])
   ).length;
   const totalPoints = questions.reduce(
     (sum, question) => sum + difficultyPointValue[question.difficulty],
@@ -51,7 +72,7 @@ export function ResultsSummary({
   );
   const earnedPoints = questions.reduce(
     (sum, question) =>
-      answers[question.id] === question.correctAnswer
+      isQuestionCorrect(question, answers[question.id])
         ? sum + difficultyPointValue[question.difficulty]
         : sum,
     0
@@ -65,7 +86,8 @@ export function ResultsSummary({
         (question) => question.category === category
       );
       const categoryCorrect = categoryQuestions.filter(
-        (question) => answers[question.id] === question.correctAnswer
+        (question) =>
+          isQuestionCorrect(question, answers[question.id])
       ).length;
       const categoryTotalPoints = categoryQuestions.reduce(
         (sum, question) => sum + difficultyPointValue[question.difficulty],
@@ -73,7 +95,7 @@ export function ResultsSummary({
       );
       const categoryEarnedPoints = categoryQuestions.reduce(
         (sum, question) =>
-          answers[question.id] === question.correctAnswer
+          isQuestionCorrect(question, answers[question.id])
             ? sum + difficultyPointValue[question.difficulty]
             : sum,
         0
@@ -166,10 +188,38 @@ export function ResultsSummary({
                 )}
                 {earnedPoints}/{totalPoints} points
               </CardTitle>
-              <p className="mt-2 text-neutral-400">
-                {correctCount}/{questions.length} correct / Score:{" "}
-                {percentage}% / Passing score: {passingPercentage}%
-              </p>
+              <div className="mt-5 grid gap-2 text-sm sm:grid-cols-2 lg:grid-cols-5">
+                <div className="rounded-md border border-white/10 bg-neutral-950/50 px-3 py-2">
+                  <p className="text-xs text-neutral-500">Score</p>
+                  <p className="mt-1 font-semibold text-white">{percentage}%</p>
+                </div>
+                <div className="rounded-md border border-white/10 bg-neutral-950/50 px-3 py-2">
+                  <p className="text-xs text-neutral-500">Correct</p>
+                  <p className="mt-1 font-semibold text-white">
+                    {correctCount}/{questions.length}
+                  </p>
+                </div>
+                <div className="rounded-md border border-white/10 bg-neutral-950/50 px-3 py-2">
+                  <p className="text-xs text-neutral-500">Points</p>
+                  <p className="mt-1 font-semibold text-white">
+                    {earnedPoints}/{totalPoints}
+                  </p>
+                </div>
+                <div className="rounded-md border border-white/10 bg-neutral-950/50 px-3 py-2">
+                  <p className="text-xs text-neutral-500">Time</p>
+                  <p className="mt-1 font-semibold text-white">
+                    {elapsedSeconds === undefined
+                      ? "Not shown"
+                      : formatElapsedTime(elapsedSeconds)}
+                  </p>
+                </div>
+                <div className="rounded-md border border-white/10 bg-neutral-950/50 px-3 py-2">
+                  <p className="text-xs text-neutral-500">Passing</p>
+                  <p className="mt-1 font-semibold text-white">
+                    {passingPercentage}%
+                  </p>
+                </div>
+              </div>
             </div>
             <div className="relative z-10 flex gap-2">
               <Button
@@ -279,8 +329,9 @@ export function ResultsSummary({
 
       <div className="space-y-3">
         {questions.map((question, index) => {
-          const selectedAnswer = answers[question.id];
-          const isCorrect = selectedAnswer === question.correctAnswer;
+          const selectedAnswers = answers[question.id];
+          const correctAnswers = getCorrectAnswers(question);
+          const isCorrect = isQuestionCorrect(question, selectedAnswers);
 
           return (
             <Card
@@ -313,14 +364,14 @@ export function ResultsSummary({
                     <p className="mt-3 text-sm text-neutral-400">
                       Your answer:{" "}
                       <span className="text-neutral-100">
-                        {selectedAnswer ?? "No answer"}
+                        {formatAnswerList(selectedAnswers)}
                       </span>
                     </p>
                     {!isCorrect && (
                       <p className="mt-2 text-sm text-neutral-400">
-                        Correct answer:{" "}
+                        Correct answer{correctAnswers.length > 1 ? "s" : ""}:{" "}
                         <span className="text-emerald-400">
-                          {question.correctAnswer}
+                          {formatAnswerList(correctAnswers)}
                         </span>
                       </p>
                     )}

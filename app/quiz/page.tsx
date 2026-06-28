@@ -4,6 +4,7 @@ type QuizPageProps = {
   searchParams?: Promise<{
     categories?: string | string[];
     count?: string | string[];
+    timer?: string | string[];
   }>;
 };
 
@@ -21,6 +22,12 @@ function parseQuestionCount(count?: string | string[]) {
   return Math.max(minQuestionCount, Math.floor(parsedCount));
 }
 
+function parseTimerEnabled(timer?: string | string[]) {
+  const timerValue = Array.isArray(timer) ? timer[0] : timer;
+
+  return timerValue !== "0" && timerValue !== "false";
+}
+
 export default async function QuizPage({ searchParams }: QuizPageProps) {
   const params = await searchParams;
   const categories = params?.categories;
@@ -30,12 +37,14 @@ export default async function QuizPage({ searchParams }: QuizPageProps) {
       ? [categories]
       : [];
   const questionCount = parseQuestionCount(params?.count);
+  const timerEnabled = parseTimerEnabled(params?.timer);
 
   return (
     <QuizClient
-      key={`${requestedCategories.join("|") || "all-categories"}-${questionCount}`}
+      key={`${requestedCategories.join("|") || "all-categories"}-${questionCount}-${timerEnabled ? "timer" : "no-timer"}`}
       questionCount={questionCount}
       requestedCategories={requestedCategories}
+      timerEnabled={timerEnabled}
     />
   );
 }

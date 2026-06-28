@@ -2,17 +2,26 @@ import Database from "better-sqlite3";
 import { existsSync, mkdirSync } from "node:fs";
 import path from "node:path";
 
+import {
+  getCorrectAnswers,
+  isQuestionCorrect,
+  normalizeSelectedAnswers,
+  type SubmittedAnswers,
+} from "./answer-utils";
 import { difficultyPointValue, passingPercentage } from "./exam-constants";
 import type {
   PerformanceBucket,
   QuizAnalytics,
 } from "../types/analytics";
-import type { Difficulty, ExamQuestion } from "../types/question";
+import type { Difficulty, ExamQuestion, QuestionType } from "../types/question";
 
 type StoredQuestion = {
   id: number;
-  correctAnswer: string;
+  type: QuestionType;
+  correctAnswers: string[];
+  correctAnswerCount?: number;
   explanation?: string;
+  statements?: string[];
   difficulty: Difficulty;
   category: string;
   prompt: string;
@@ -21,9 +30,12 @@ type StoredQuestion = {
 
 type StoredQuestionRow = {
   question_id: number;
+  question_type: QuestionType | null;
   prompt: string;
+  statements_json: string | null;
   choices_json: string;
   correct_answer: string;
+  correct_answers_json: string | null;
   explanation: string | null;
   category: string;
   difficulty: Difficulty;
@@ -53,6 +65,10 @@ type SummaryRow = {
   total_questions_answered: number;
   average_score: number | null;
   passed_attempts: number;
+};
+
+type TableInfoRow = {
+  name: string;
 };
 
 declare global {
@@ -99,6 +115,7 @@ function migrate(db: Database.Database) {
       total_points INTEGER NOT NULL DEFAULT 0,
       earned_points INTEGER NOT NULL DEFAULT 0,
       percentage INTEGER NOT NULL DEFAULT 0,
+      duration_seconds INTEGER NOT NULL DEFAULT 0,
       passed INTEGER NOT NULL DEFAULT 0
     );
 
@@ -106,10 +123,14 @@ function migrate(db: Database.Database) {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       attempt_id TEXT NOT NULL,
       question_id INTEGER NOT NULL,
+      question_type TEXT NOT NULL DEFAULT 'Single',
       prompt TEXT NOT NULL,
+      statements_json TEXT,
       choices_json TEXT NOT NULL,
       correct_answer TEXT NOT NULL,
+      correct_answers_json TEXT,
       selected_answer TEXT,
+      selected_answers_json TEXT,
       explanation TEXT,
       category TEXT NOT NULL,
       difficulty TEXT NOT NULL,
@@ -130,14 +151,81 @@ function migrate(db: Database.Database) {
     CREATE INDEX IF NOT EXISTS idx_quiz_attempts_completed_at
       ON quiz_attempts(completed_at);
   `);
+
+  ensureColumn(
+    db,
+    "quiz_attempts",
+    "duration_seconds",
+    "duration_seconds INTEGER NOT NULL DEFAULT 0",
+  );
+  ensureColumn(
+    db,
+    "quiz_attempt_questions",
+    "correct_answers_json",
+    "correct_answers_json TEXT",
+  );
+  ensureColumn(
+    db,
+    "quiz_attempt_questions",
+    "selected_answers_json",
+    "selected_answers_json TEXT",
+  );
+  ensureColumn(
+    db,
+    "quiz_attempt_questions",
+    "question_type",
+    "question_type TEXT NOT NULL DEFAULT 'Single'",
+  );
+  ensureColumn(
+    db,
+    "quiz_attempt_questions",
+    "statements_json",
+    "statements_json TEXT",
+  );
+}
+
+function ensureColumn(
+  db: Database.Database,
+  table: "quiz_attempts" | "quiz_attempt_questions",
+  column:
+    | "duration_seconds"
+    | "correct_answers_json"
+    | "selected_answers_json"
+    | "question_type"
+    | "statements_json",
+  definition: string,
+) {
+  const columns = db.prepare(`PRAGMA table_info(${table})`).all() as TableInfoRow[];
+  if (columns.some((existingColumn) => existingColumn.name === column)) {
+    return;
+  }
+
+  db.exec(`ALTER TABLE ${table} ADD COLUMN ${definition}`);
+}
+
+function sanitizeDurationSeconds(durationSeconds: number) {
+  if (!Number.isFinite(durationSeconds)) {
+    return 0;
+  }
+
+  return Math.max(0, Math.round(durationSeconds));
 }
 
 function toStoredQuestion(row: StoredQuestionRow): StoredQuestion {
+  const correctAnswers = row.correct_answers_json
+    ? (JSON.parse(row.correct_answers_json) as string[])
+    : [row.correct_answer];
+
   return {
     id: row.question_id,
+    type: row.question_type ?? (correctAnswers.length > 1 ? "Multiple" : "Single"),
     prompt: row.prompt,
+    statements: row.statements_json
+      ? (JSON.parse(row.statements_json) as string[])
+      : undefined,
     choices: JSON.parse(row.choices_json) as string[],
-    correctAnswer: row.correct_answer,
+    correctAnswers,
+    correctAnswerCount: correctAnswers.length,
     explanation: row.explanation ?? undefined,
     category: row.category,
     difficulty: row.difficulty,
@@ -184,9 +272,12 @@ export function createQuizAttempt({
     INSERT INTO quiz_attempt_questions (
       attempt_id,
       question_id,
+      question_type,
       prompt,
+      statements_json,
       choices_json,
       correct_answer,
+      correct_answers_json,
       explanation,
       category,
       difficulty,
@@ -195,9 +286,12 @@ export function createQuizAttempt({
     VALUES (
       @attemptId,
       @questionId,
+      @questionType,
       @prompt,
+      @statementsJson,
       @choicesJson,
       @correctAnswer,
+      @correctAnswersJson,
       @explanation,
       @category,
       @difficulty,
@@ -214,12 +308,19 @@ export function createQuizAttempt({
     });
 
     for (const question of questions) {
+      const correctAnswers = getCorrectAnswers(question);
+
       createAttemptQuestion.run({
         attemptId,
         questionId: question.id,
+        questionType: question.type,
         prompt: question.prompt,
+        statementsJson: question.statements
+          ? JSON.stringify(question.statements)
+          : null,
         choicesJson: JSON.stringify(question.choices),
-        correctAnswer: question.correctAnswer,
+        correctAnswer: correctAnswers[0],
+        correctAnswersJson: JSON.stringify(correctAnswers),
         explanation: question.explanation,
         category: question.category,
         difficulty: question.difficulty,
@@ -238,9 +339,12 @@ export function getQuizAttemptQuestions(attemptId: string): StoredQuestion[] {
       `
       SELECT
         question_id,
+        question_type,
         prompt,
+        statements_json,
         choices_json,
         correct_answer,
+        correct_answers_json,
         explanation,
         category,
         difficulty,
@@ -257,17 +361,23 @@ export function getQuizAttemptQuestions(attemptId: string): StoredQuestion[] {
 
 export function completeQuizAttempt(
   attemptId: string,
-  answers: Record<number, string>,
+  answers: SubmittedAnswers,
+  durationSeconds = 0,
 ) {
   const db = getDatabase();
+  const selectedAnswers = normalizeSelectedAnswers(answers);
+  const safeDurationSeconds = sanitizeDurationSeconds(durationSeconds);
   const rows = db
     .prepare(
       `
       SELECT
         question_id,
+        question_type,
         prompt,
+        statements_json,
         choices_json,
         correct_answer,
+        correct_answers_json,
         explanation,
         category,
         difficulty,
@@ -289,11 +399,12 @@ export function completeQuizAttempt(
     string,
     { earned: number; total: number; correct: number; count: number }
   > = {};
-  const gradedQuestions: Array<StoredQuestion & { correctAnswer: string }> = [];
+  const gradedQuestions: StoredQuestion[] = [];
 
   const updateQuestion = db.prepare(`
     UPDATE quiz_attempt_questions
     SET selected_answer = @selectedAnswer,
+      selected_answers_json = @selectedAnswersJson,
       correct = @correct
     WHERE attempt_id = @attemptId
       AND question_id = @questionId
@@ -305,14 +416,24 @@ export function completeQuizAttempt(
       total_points = @totalPoints,
       earned_points = @earnedPoints,
       percentage = @percentage,
+      duration_seconds = @durationSeconds,
       passed = @passed
     WHERE id = @attemptId
   `);
 
   const transaction = db.transaction(() => {
     for (const row of rows) {
-      const selectedAnswer = answers[row.question_id];
-      const isCorrect = selectedAnswer === row.correct_answer;
+      const questionCorrectAnswers = row.correct_answers_json
+        ? (JSON.parse(row.correct_answers_json) as string[])
+        : [row.correct_answer];
+      const questionSelectedAnswers = selectedAnswers[row.question_id] ?? [];
+      const isCorrect = isQuestionCorrect(
+        {
+          type: row.question_type ?? "Single",
+          correctAnswers: questionCorrectAnswers,
+        },
+        questionSelectedAnswers,
+      );
       totalPoints += row.point_value;
       if (isCorrect) {
         earnedPoints += row.point_value;
@@ -334,13 +455,13 @@ export function completeQuizAttempt(
       updateQuestion.run({
         attemptId,
         questionId: row.question_id,
-        selectedAnswer: selectedAnswer ?? null,
+        selectedAnswer: questionSelectedAnswers[0] ?? null,
+        selectedAnswersJson: JSON.stringify(questionSelectedAnswers),
         correct: isCorrect ? 1 : 0,
       });
 
       gradedQuestions.push({
         ...toStoredQuestion(row),
-        correctAnswer: row.correct_answer,
       });
     }
 
@@ -353,6 +474,7 @@ export function completeQuizAttempt(
       totalPoints,
       earnedPoints,
       percentage,
+      durationSeconds: safeDurationSeconds,
       passed: percentage >= passingPercentage ? 1 : 0,
     });
   });
@@ -375,6 +497,7 @@ export function completeQuizAttempt(
     totalPoints,
     earnedPoints,
     percentage,
+    durationSeconds: safeDurationSeconds,
     passed: percentage >= passingPercentage,
     categoryPerformance,
   };

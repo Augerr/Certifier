@@ -1,24 +1,64 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
 
 import { ExamProgress } from "@/components/ExamProgress";
 import { QuestionCard } from "@/components/QuestionCard";
 import { ResultsSummary } from "@/components/ResultsSummary";
 import { Button } from "@/components/ui/button";
 import LoadingSpinner from "@/components/LoadingSpinner";
+import type { SelectedAnswers } from "@/lib/answer-utils";
 import type { QuizAnalytics } from "@/types/analytics";
 import type { ExamQuestion } from "@/types/question";
 
 const minQuestionCount = 10;
+const secondsPerQuestion = 90;
 
 type QuizClientProps = {
   questionCount: number;
   requestedCategories: string[];
+  timerEnabled: boolean;
 };
 
+type ExamDraft = {
+  version: 1;
+  sessionId: string | null;
+  questions: ExamQuestion[];
+  answers: SelectedAnswers;
+  currentIndex: number;
+  startedAt: number | null;
+};
+
+function formatElapsedTime(totalSeconds: number) {
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  if (hours > 0) {
+    return `${hours}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+  }
+
+  return `${minutes}:${String(seconds).padStart(2, "0")}`;
+}
+
+function isExamDraft(value: unknown): value is ExamDraft {
+  if (!value || typeof value !== "object") {
+    return false;
+  }
+
+  const draft = value as Partial<ExamDraft>;
+
+  return (
+    draft.version === 1 &&
+    Array.isArray(draft.questions) &&
+    typeof draft.currentIndex === "number" &&
+    (typeof draft.sessionId === "string" || draft.sessionId === null) &&
+    (typeof draft.startedAt === "number" || draft.startedAt === null) &&
+    Boolean(draft.answers && typeof draft.answers === "object")
+  );
+}
 
 // NOTE: questions are generated and filtered server-side; client does not need
 // local category filtering or shuffling. Keep client lightweight.
@@ -26,14 +66,30 @@ type QuizClientProps = {
 export function QuizClient({
   questionCount,
   requestedCategories,
+  timerEnabled,
 }: QuizClientProps) {
   const boundedQuestionCount = Math.max(questionCount, minQuestionCount);
+  const examStorageKey = useMemo(() => {
+    const categoriesKey =
+      requestedCategories.length > 0
+        ? [...requestedCategories].sort().join("|")
+        : "all";
+
+    return `saviynt-exam-draft:v1:${boundedQuestionCount}:${timerEnabled ? "timed" : "untimed"}:${categoriesKey}`;
+  }, [boundedQuestionCount, requestedCategories, timerEnabled]);
   const [activeQuestions, setActiveQuestions] = useState<ExamQuestion[]>([]);
   const [loading, setLoading] = useState(true);
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [grading, setGrading] = useState(false);
   const [gradingError, setGradingError] = useState<string | null>(null);
   const [analytics, setAnalytics] = useState<QuizAnalytics | null>(null);
+  const [startedAt, setStartedAt] = useState<number | null>(null);
+  const [elapsedSeconds, setElapsedSeconds] = useState(0);
+  const [completedDurationSeconds, setCompletedDurationSeconds] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [answers, setAnswers] = useState<SelectedAnswers>({});
+  const [isComplete, setIsComplete] = useState(false);
+  const finishingRef = useRef(false);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -41,6 +97,36 @@ export function QuizClient({
     async function loadExam() {
       setLoading(true);
       try {
+        const savedDraft = window.localStorage.getItem(examStorageKey);
+
+        if (savedDraft) {
+          const parsedDraft = JSON.parse(savedDraft) as unknown;
+
+          if (isExamDraft(parsedDraft) && parsedDraft.questions.length > 0) {
+            setSessionId(parsedDraft.sessionId);
+            setActiveQuestions(parsedDraft.questions);
+            setAnswers(parsedDraft.answers);
+            setCurrentIndex(
+              Math.min(
+                Math.max(parsedDraft.currentIndex, 0),
+                parsedDraft.questions.length - 1,
+              ),
+            );
+            setStartedAt(parsedDraft.startedAt);
+            setElapsedSeconds(
+              parsedDraft.startedAt
+                ? Math.max(
+                    0,
+                    Math.floor((Date.now() - parsedDraft.startedAt) / 1000),
+                  )
+                : 0,
+            );
+            return;
+          }
+
+          window.localStorage.removeItem(examStorageKey);
+        }
+
         const params = new URLSearchParams();
         params.set("count", String(boundedQuestionCount));
         for (const c of requestedCategories) {
@@ -52,8 +138,11 @@ export function QuizClient({
         });
         if (!res.ok) return;
         const json = await res.json();
+        const questions = json.questions || [];
         setSessionId(json.sessionId || null);
-        setActiveQuestions(json.questions || []);
+        setActiveQuestions(questions);
+        setStartedAt(questions.length > 0 ? Date.now() : null);
+        setElapsedSeconds(0);
       } catch (err) {
         const e = err as { name?: string };
         if (e.name === "AbortError") return;
@@ -65,23 +154,88 @@ export function QuizClient({
     loadExam();
 
     return () => controller.abort();
-  }, [boundedQuestionCount, requestedCategories]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [answers, setAnswers] = useState<Record<number, string>>({});
-  const [isComplete, setIsComplete] = useState(false);
+  }, [boundedQuestionCount, examStorageKey, requestedCategories]);
 
   const currentQuestion = activeQuestions[currentIndex];
-  const selectedAnswer = currentQuestion ? answers[currentQuestion.id] : undefined;
+  const selectedAnswers =
+    currentQuestion?.type === "Order" && !answers[currentQuestion.id]
+      ? currentQuestion.choices
+      : currentQuestion
+        ? (answers[currentQuestion.id] ?? [])
+        : [];
+  const isCurrentQuestionAnswered =
+    currentQuestion?.type === "Match"
+      ? Boolean(
+          currentQuestion.statements?.length &&
+          selectedAnswers.length === currentQuestion.statements.length &&
+          selectedAnswers.every(Boolean),
+        )
+      : selectedAnswers.length > 0;
   const isLastQuestion = currentQuestion
     ? currentIndex === activeQuestions.length - 1
     : false;
+  const timeLimitSeconds = timerEnabled
+    ? activeQuestions.length * secondsPerQuestion
+    : null;
+  const remainingSeconds =
+    timeLimitSeconds === null
+      ? 0
+      : Math.max(timeLimitSeconds - elapsedSeconds, 0);
+  const timerUrgencyClass =
+    remainingSeconds <= 60
+      ? "border-red-600/50 bg-red-950/40 text-red-200"
+      : remainingSeconds <= 300
+        ? "border-amber-500/50 bg-amber-950/30 text-amber-200"
+        : "border-white/10 bg-neutral-900 text-neutral-300";
+  const timerValueClass =
+    remainingSeconds <= 60
+      ? "text-red-200"
+      : remainingSeconds <= 300
+        ? "text-amber-200"
+        : "text-white";
 
-  const answeredCount = useMemo(
-    () =>
-      activeQuestions.filter((question) => Boolean(answers[question.id]))
-        .length,
-    [activeQuestions, answers]
-  );
+  useEffect(() => {
+    if (loading || isComplete || activeQuestions.length === 0) {
+      return;
+    }
+
+    const draft: ExamDraft = {
+      version: 1,
+      sessionId,
+      questions: activeQuestions,
+      answers,
+      currentIndex,
+      startedAt,
+    };
+
+    window.localStorage.setItem(examStorageKey, JSON.stringify(draft));
+  }, [
+    activeQuestions,
+    answers,
+    currentIndex,
+    examStorageKey,
+    isComplete,
+    loading,
+    sessionId,
+    startedAt,
+  ]);
+
+  useEffect(() => {
+    if (!startedAt || isComplete || loading) return;
+
+    const startTime = startedAt;
+
+    function updateElapsedTime() {
+      setElapsedSeconds(
+        Math.max(0, Math.floor((Date.now() - startTime) / 1000)),
+      );
+    }
+
+    updateElapsedTime();
+    const interval = window.setInterval(updateElapsedTime, 1000);
+
+    return () => window.clearInterval(interval);
+  }, [isComplete, loading, startedAt]);
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
@@ -100,12 +254,28 @@ export function QuizClient({
 
       const choiceIndex = Number(event.key) - 1;
       const choice = currentQuestion.choices[choiceIndex];
-      if (!choice || choiceIndex < 0 || choiceIndex > 3) return;
+      if (
+        !choice ||
+        choiceIndex < 0 ||
+        choiceIndex > 3 ||
+        currentQuestion.type === "Order" ||
+        currentQuestion.type === "Match"
+      ) {
+        return;
+      }
 
       event.preventDefault();
       setAnswers((currentAnswers) => ({
         ...currentAnswers,
-        [currentQuestion.id]: choice,
+        [currentQuestion.id]:
+          currentQuestion.type === "Multiple" ||
+          currentQuestion.type === "Scenario"
+            ? currentAnswers[currentQuestion.id]?.includes(choice)
+              ? currentAnswers[currentQuestion.id].filter(
+                  (answer) => answer !== choice,
+                )
+              : [...(currentAnswers[currentQuestion.id] ?? []), choice]
+            : [choice],
       }));
     }
 
@@ -116,47 +286,124 @@ export function QuizClient({
     };
   }, [currentQuestion, grading, isComplete, loading]);
 
-  function handleAnswerChange(answer: string) {
+  const finishExam = useCallback(
+    async (answersOverride?: SelectedAnswers) => {
+      if (finishingRef.current || isComplete) return;
+      finishingRef.current = true;
+      const answersToSubmit = answersOverride ?? answers;
+
+      const calculatedDurationSeconds = startedAt
+        ? Math.max(elapsedSeconds, Math.floor((Date.now() - startedAt) / 1000))
+        : elapsedSeconds;
+      const durationSeconds =
+        timeLimitSeconds === null
+          ? calculatedDurationSeconds
+          : Math.min(calculatedDurationSeconds, timeLimitSeconds);
+
+      if (!sessionId) {
+        setCompletedDurationSeconds(durationSeconds);
+        setIsComplete(true);
+        window.localStorage.removeItem(examStorageKey);
+        return;
+      }
+
+      setGrading(true);
+      try {
+        const res = await fetch(`/api/quiz`, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            sessionId,
+            answers: answersToSubmit,
+            durationSeconds,
+          }),
+        });
+        if (!res.ok) {
+          setGradingError("Server error while grading. Please try again.");
+          setCompletedDurationSeconds(durationSeconds);
+          setIsComplete(true);
+          return;
+        }
+        const json = await res.json();
+        setActiveQuestions(json.gradedQuestions || []);
+        setAnalytics(json.analytics || null);
+        setCompletedDurationSeconds(json.durationSeconds ?? durationSeconds);
+        setIsComplete(true);
+        window.localStorage.removeItem(examStorageKey);
+      } catch {
+        setGradingError("Network error while grading. Please try again.");
+        setCompletedDurationSeconds(durationSeconds);
+        setIsComplete(true);
+      } finally {
+        setGrading(false);
+      }
+    },
+    [
+      answers,
+      elapsedSeconds,
+      examStorageKey,
+      isComplete,
+      sessionId,
+      startedAt,
+      timeLimitSeconds,
+    ],
+  );
+
+  useEffect(() => {
+    if (
+      !timerEnabled ||
+      !startedAt ||
+      loading ||
+      grading ||
+      isComplete ||
+      activeQuestions.length === 0 ||
+      remainingSeconds > 0
+    ) {
+      return;
+    }
+
+    const timeout = window.setTimeout(() => {
+      void finishExam();
+    }, 0);
+
+    return () => window.clearTimeout(timeout);
+  }, [
+    activeQuestions.length,
+    finishExam,
+    grading,
+    isComplete,
+    loading,
+    remainingSeconds,
+    startedAt,
+    timerEnabled,
+  ]);
+
+  function handleAnswerChange(questionAnswers: string[]) {
     if (!currentQuestion) return;
 
     setAnswers((currentAnswers) => ({
       ...currentAnswers,
-      [currentQuestion.id]: answer,
+      [currentQuestion.id]: questionAnswers,
     }));
   }
 
   function handleNext() {
-    if (isLastQuestion) {
-      // grade on the server
-      (async () => {
-        if (!sessionId) {
-          setIsComplete(true);
-          return;
-        }
-
-        setGrading(true);
-        try {
-          const res = await fetch(`/api/quiz`, {
-            method: "POST",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify({ sessionId, answers }),
-          });
-          if (!res.ok) {
-            setGradingError("Server error while grading. Please try again.");
-            setIsComplete(true);
-            return;
+    const nextAnswers =
+      currentQuestion &&
+      !answers[currentQuestion.id] &&
+      currentQuestion.type === "Order"
+        ? {
+            ...answers,
+            [currentQuestion.id]: selectedAnswers,
           }
-          const json = await res.json();
-          setActiveQuestions(json.gradedQuestions || []);
-          setAnalytics(json.analytics || null);
-          setIsComplete(true);
-        } catch {
-          setGradingError("Network error while grading. Please try again.");
-          setIsComplete(true);
-        } finally {
-          setGrading(false);
-        }
-      })();
+        : answers;
+
+    if (nextAnswers !== answers) {
+      setAnswers(nextAnswers);
+    }
+
+    if (isLastQuestion) {
+      void finishExam(nextAnswers);
       return;
     }
 
@@ -165,12 +412,17 @@ export function QuizClient({
 
   function handleRetake() {
     // trigger reload by updating state that the effect depends on
+    window.localStorage.removeItem(examStorageKey);
     setActiveQuestions([]);
     setAnswers({});
     setCurrentIndex(0);
     setIsComplete(false);
     setSessionId(null);
     setAnalytics(null);
+    setStartedAt(null);
+    setElapsedSeconds(0);
+    setCompletedDurationSeconds(0);
+    finishingRef.current = false;
     // re-run effect by setting a micro timeout to refetch
     setTimeout(() => {
       const params = new URLSearchParams();
@@ -179,8 +431,11 @@ export function QuizClient({
       fetch(`/api/quiz?${params.toString()}`)
         .then((r) => r.json())
         .then((json) => {
+          const questions = json.questions || [];
           setSessionId(json.sessionId || null);
-          setActiveQuestions(json.questions || []);
+          setActiveQuestions(questions);
+          setStartedAt(questions.length > 0 ? Date.now() : null);
+          setElapsedSeconds(0);
         })
         .catch(() => {});
     }, 50);
@@ -212,28 +467,39 @@ export function QuizClient({
                 Back home
               </Link>
             </Button>
-            <h1 className="text-2xl font-semibold tracking-tight text-white">
-              Mock Exam
+            <h1 className="flex items-center gap-2 text-2xl font-semibold tracking-tight text-white">
+              <CheckCircle2
+                className="size-6 text-emerald-500"
+                aria-hidden="true"
+              />
+              Saviynt Certified IGA Professional Mock Exam
             </h1>
-            <p className="mt-2 text-sm text-neutral-400">
-              {isComplete
-                ? "Review your score and study the explanations."
-                : `${answeredCount} of ${activeQuestions.length} answered`}
-            </p>
+            {isComplete && (
+              <p className="mt-2 text-sm text-neutral-400">
+                Review your score and study the explanations.
+              </p>
+            )}
             <div className="sr-only" aria-live="polite">
               {loading
                 ? "Preparing your exam."
                 : grading
-                ? "Grading your answers."
-                : ""}
+                  ? "Grading your answers."
+                  : ""}
             </div>
             {(loading || grading) && (
-              <LoadingSpinner message={grading ? "Grading..." : "Loading exam..."} />
+              <LoadingSpinner
+                message={grading ? "Grading..." : "Loading exam..."}
+              />
             )}
           </div>
-          {!isComplete && (
-            <div className="rounded-lg border border-white/10 bg-neutral-900 px-4 py-3 text-sm text-neutral-300">
-              Passing score: 70% weighted
+          {!isComplete && timerEnabled && (
+            <div
+              className={`rounded-lg border px-4 py-3 text-sm ${timerUrgencyClass}`}
+            >
+              <p className="text-xs opacity-70">Time remaining</p>
+              <p className={`mt-1 font-mono text-base ${timerValueClass}`}>
+                {formatElapsedTime(remainingSeconds)}
+              </p>
             </div>
           )}
         </header>
@@ -243,10 +509,14 @@ export function QuizClient({
             <div className="rounded-lg border border-red-600 bg-neutral-900/60 p-6 text-sm text-red-300">
               <p className="mb-4">{gradingError}</p>
               <div className="flex gap-2">
-                <Button onClick={() => {
-                  setGradingError(null);
-                  handleRetake();
-                }}>Retake</Button>
+                <Button
+                  onClick={() => {
+                    setGradingError(null);
+                    handleRetake();
+                  }}
+                >
+                  Retake
+                </Button>
               </div>
             </div>
           ) : (
@@ -254,6 +524,9 @@ export function QuizClient({
               questions={activeQuestions}
               answers={answers}
               analytics={analytics}
+              elapsedSeconds={
+                timerEnabled ? completedDurationSeconds : undefined
+              }
               onRetake={handleRetake}
             />
           )
@@ -263,7 +536,9 @@ export function QuizClient({
           </div>
         ) : activeQuestions.length === 0 ? (
           <div className="rounded-lg border border-white/10 bg-neutral-900/60 p-6 text-sm text-neutral-300">
-            <p>No questions were available for the selected categories and count.</p>
+            <p>
+              No questions were available for the selected categories and count.
+            </p>
             <div className="mt-4 flex gap-2">
               <Button onClick={handleRetake}>Try again</Button>
             </div>
@@ -276,7 +551,7 @@ export function QuizClient({
             />
             <QuestionCard
               question={currentQuestion}
-              selectedAnswer={selectedAnswer}
+              selectedAnswers={selectedAnswers}
               onAnswerChange={handleAnswerChange}
             />
             <div className="flex justify-end">
@@ -284,7 +559,7 @@ export function QuizClient({
                 type="button"
                 size="lg"
                 onClick={handleNext}
-                disabled={!selectedAnswer || loading || grading}
+                disabled={!isCurrentQuestionAnswered || loading || grading}
                 className="h-11 bg-emerald-500 px-5 text-white hover:bg-emerald-400"
               >
                 {isLastQuestion ? "Finish Exam" : "Next"}

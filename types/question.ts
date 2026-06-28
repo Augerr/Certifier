@@ -1,4 +1,5 @@
 export type Difficulty = "easy" | "medium" | "hard";
+export type QuestionType = "Single" | "Multiple" | "Order" | "Match" | "Scenario";
 
 export const examCategories = [
   "Access Requests",
@@ -38,9 +39,12 @@ export type ExamCategory = (typeof examCategories)[number];
 
 export type ExamQuestion = {
   id: number;
+  type: QuestionType;
   prompt: string;
+  statements?: string[];
   choices: string[];
-  correctAnswer: string;
+  correctAnswers: string[];
+  correctAnswerCount?: number;
   explanation: string;
   category: ExamCategory;
   difficulty: Difficulty;

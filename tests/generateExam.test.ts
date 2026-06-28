@@ -4,9 +4,10 @@ import { generateExam } from '../lib/exam-generator';
 function makeQuestion(id: number, difficulty: 'easy' | 'medium' | 'hard') {
   return {
     id,
+    type: 'Single' as const,
     prompt: `Q${id}`,
     choices: ['A', 'B', 'C'],
-    correctAnswer: 'A',
+    correctAnswers: ['A'],
     explanation: 'explain',
     category: 'Access Requests' as const,
     difficulty,

@@ -1,4 +1,4 @@
-import type { Difficulty, ExamQuestion } from "@/types/question";
+import type { Difficulty, ExamQuestion, QuestionType } from "@/types/question";
 
 const targetDifficultyRatio: Record<Difficulty, number> = {
   easy: 0.3,
@@ -7,6 +7,13 @@ const targetDifficultyRatio: Record<Difficulty, number> = {
 };
 
 const difficultyFillOrder: Difficulty[] = ["medium", "easy", "hard"];
+const questionTypeByLowercase: Record<string, QuestionType> = {
+  single: "Single",
+  multiple: "Multiple",
+  order: "Order",
+  match: "Match",
+  scenario: "Scenario",
+};
 
 function shuffle<T>(items: T[]): T[] {
   return [...items].sort(() => Math.random() - 0.5);
@@ -42,13 +49,30 @@ function getTargetDifficultyCounts(size: number): Record<Difficulty, number> {
   );
 }
 
-export function generateQuestionBank(
-  questions: Omit<ExamQuestion, "id">[],
-): ExamQuestion[] {
-  return questions.map((question, index) => ({
-    ...question,
-    id: index + 1,
-  }));
+type QuestionBankItem = Partial<Omit<ExamQuestion, "id" | "type">> & {
+  type: string;
+  items?: string[];
+  correctOrder?: string[];
+};
+
+export function generateQuestionBank(questions: QuestionBankItem[]): ExamQuestion[] {
+  return questions.map((question, index) => {
+    const type = questionTypeByLowercase[question.type.toLowerCase()] ?? "Single";
+    const choices = question.choices ?? question.items ?? [];
+    const correctAnswers = question.correctAnswers ?? question.correctOrder ?? [];
+
+    return {
+      ...question,
+      id: index + 1,
+      type,
+      choices,
+      correctAnswers,
+      explanation: question.explanation ?? "",
+      category: question.category as ExamQuestion["category"],
+      difficulty: question.difficulty ?? "medium",
+      prompt: question.prompt ?? "",
+    };
+  });
 }
 
 export function generateExam(

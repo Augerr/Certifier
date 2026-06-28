@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { examQuestions } from "@/lib/load-question";
+import { getCorrectAnswers, type SubmittedAnswers } from "@/lib/answer-utils";
 import { generateExam } from "@/lib/exam-generator";
 import {
   completeQuizAttempt,
@@ -53,8 +54,11 @@ export function GET(request: Request) {
   // redact answers for the client
   const publicQuestions = exam.map((q) => ({
     id: q.id,
+    type: q.type,
     prompt: q.prompt,
+    statements: q.statements,
     choices: q.choices,
+    correctAnswerCount: getCorrectAnswers(q).length,
     difficulty: q.difficulty,
     category: q.category,
   }));
@@ -65,16 +69,17 @@ export function GET(request: Request) {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { sessionId, answers } = body as {
+    const { sessionId, answers, durationSeconds } = body as {
       sessionId?: string;
-      answers?: Record<number, string>;
+      answers?: SubmittedAnswers;
+      durationSeconds?: number;
     };
 
     if (!sessionId || !answers) {
       return NextResponse.json({ error: "missing sessionId or answers" }, { status: 400 });
     }
 
-    const result = completeQuizAttempt(sessionId, answers);
+    const result = completeQuizAttempt(sessionId, answers, durationSeconds);
     if (!result) {
       return NextResponse.json({ error: "invalid or expired sessionId" }, { status: 404 });
     }

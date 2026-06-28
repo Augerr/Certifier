@@ -14,9 +14,17 @@ type CategoryCounts = Record<string, number>;
 
 const minQuestionCount = 10;
 const defaultQuestionCount = 25;
+const secondsPerQuestion = 90;
 
 function clampQuestionCount(value: number, max: number) {
   return Math.min(Math.max(value, minQuestionCount), max);
+}
+
+function formatDuration(totalSeconds: number) {
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+
+  return `${minutes}:${String(seconds).padStart(2, "0")}`;
 }
 
 export default function QuizSetup() {
@@ -24,6 +32,7 @@ export default function QuizSetup() {
     ...examCategories,
   ]);
   const [questionCount, setQuestionCount] = useState(defaultQuestionCount);
+  const [timerEnabled, setTimerEnabled] = useState(true);
   const allCategoriesSelected =
     selectedCategories.length === examCategories.length;
   const [categoryCounts, setCategoryCounts] = useState<CategoryCounts | null>(
@@ -47,10 +56,12 @@ export default function QuizSetup() {
     questionCount,
     maxQuestionCount,
   );
+  const timeLimitSeconds = displayQuestionCount * secondsPerQuestion;
 
   const startHref = useMemo(() => {
     const params = new URLSearchParams();
     params.set("count", String(displayQuestionCount));
+    params.set("timer", timerEnabled ? "1" : "0");
 
     if (allCategoriesSelected) {
       return `/quiz?${params.toString()}`;
@@ -61,7 +72,12 @@ export default function QuizSetup() {
     });
 
     return `/quiz?${params.toString()}`;
-  }, [allCategoriesSelected, displayQuestionCount, selectedCategories]);
+  }, [
+    allCategoriesSelected,
+    displayQuestionCount,
+    selectedCategories,
+    timerEnabled,
+  ]);
 
   useEffect(() => {
     let mounted = true;
@@ -120,7 +136,7 @@ export default function QuizSetup() {
           <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-blue-600/30 bg-blue-600/10 text-blue-500 sm:h-14 sm:w-14">
             <ShieldCheck className="size-6" aria-hidden="true" />
           </div>
-          <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-5xl">
+          <h1 className="text-2xl font-semibold tracking-tight text-white sm:text-4xl">
             Saviynt IGA 100 Mock Exam Generator
           </h1>
         </div>
@@ -163,24 +179,24 @@ export default function QuizSetup() {
             </div>
           </div>
 
-          <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
             {sortedExamCategories.map((category) => {
               const isSelected = selectedCategories.includes(category);
 
               return (
                 <label
                   key={category}
-                  className={`flex min-h-12 cursor-pointer items-center gap-3 rounded-lg border px-3 py-2 text-sm transition ${
+                  className={`flex min-h-9 cursor-pointer items-center gap-2 rounded-md border px-2.5 py-1.5 text-xs leading-5 transition ${
                     isSelected
                       ? "border-blue-600/50 bg-blue-600/10 text-blue-300"
-                      : "border-white/10 bg-neutral-900/60 text-neutral-300 opacity-45 hover:border-white/25 hover:bg-neutral-900 hover:opacity-80"
+                      : "border-white/10 bg-neutral-900/50 text-neutral-300 opacity-45 hover:border-white/25 hover:bg-neutral-900 hover:opacity-80"
                   }`}
                 >
                   <input
                     type="checkbox"
                     checked={isSelected}
                     onChange={() => toggleCategory(category)}
-                    className="size-4 accent-blue-600"
+                    className="size-3.5 shrink-0 accent-blue-600"
                   />
                   <span>{category}</span>
                 </label>
@@ -243,7 +259,7 @@ export default function QuizSetup() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+        <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
           {selectedCategories.length === 0 ? (
             <Button
               type="button"
@@ -266,6 +282,32 @@ export default function QuizSetup() {
               </Link>
             </Button>
           )}
+          <label className="flex h-11 cursor-pointer items-center gap-3 rounded-lg border border-white/10 bg-neutral-900/60 px-4 text-sm text-neutral-300 transition hover:border-white/25 hover:bg-neutral-900">
+            <input
+              type="checkbox"
+              checked={timerEnabled}
+              onChange={(event) => setTimerEnabled(event.currentTarget.checked)}
+              className="sr-only"
+            />
+            <span
+              className={`flex h-6 w-11 items-center rounded-full p-1 transition ${
+                timerEnabled ? "bg-blue-600" : "bg-neutral-700"
+              }`}
+              aria-hidden="true"
+            >
+              <span
+                className={`size-4 rounded-full bg-white transition ${
+                  timerEnabled ? "translate-x-5" : "translate-x-0"
+                }`}
+              />
+            </span>
+            <span className="flex flex-col leading-none">
+              <span className="text-neutral-100">Time limit</span>
+              <span className="mt-1 text-xs text-neutral-500">
+                {timerEnabled ? formatDuration(timeLimitSeconds) : "Off"}
+              </span>
+            </span>
+          </label>
         </div>
 
         <AnalyticsOverview analytics={analytics} />
@@ -273,7 +315,7 @@ export default function QuizSetup() {
         <div className="mt-16 grid gap-3 border-t border-white/10 pt-6 text-sm text-neutral-400 sm:grid-cols-3">
           <div>{questionCount} questions</div>
           <div>Multiple choice</div>
-          <div>Weighted scoring</div>
+          <div>{timerEnabled ? "Time limit enabled" : "No time limit"}</div>
         </div>
       </section>
     </main>
