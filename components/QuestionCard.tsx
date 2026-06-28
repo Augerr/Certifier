@@ -49,7 +49,7 @@ export function QuestionCard({
           onValueChange={onAnswerChange}
           className="gap-3"
         >
-          {question.choices.map((choice) => {
+          {question.choices.map((choice, index) => {
             const isSelected = selectedAnswer === choice;
 
             return (
@@ -62,6 +62,15 @@ export function QuestionCard({
                     : "border-white/10 bg-neutral-950/60 text-neutral-300 hover:border-white/25 hover:bg-neutral-900"
                 }`}
               >
+                <span
+                  className={`flex size-6 shrink-0 items-center justify-center rounded-md border text-xs font-medium ${
+                    isSelected
+                      ? "border-emerald-500/40 bg-emerald-500/15 text-emerald-400"
+                      : "border-white/10 bg-neutral-900 text-neutral-500"
+                  }`}
+                >
+                  {index + 1}
+                </span>
                 <span>{choice}</span>
               </RadioGroupItem>
             );

@@ -83,6 +83,39 @@ export function QuizClient({
     [activeQuestions, answers]
   );
 
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      if (loading || grading || isComplete || !currentQuestion) return;
+      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
+        return;
+      }
+
+      const target = event.target as HTMLElement | null;
+      const isTypingTarget =
+        target?.isContentEditable ||
+        target?.tagName === "INPUT" ||
+        target?.tagName === "SELECT" ||
+        target?.tagName === "TEXTAREA";
+      if (isTypingTarget) return;
+
+      const choiceIndex = Number(event.key) - 1;
+      const choice = currentQuestion.choices[choiceIndex];
+      if (!choice || choiceIndex < 0 || choiceIndex > 3) return;
+
+      event.preventDefault();
+      setAnswers((currentAnswers) => ({
+        ...currentAnswers,
+        [currentQuestion.id]: choice,
+      }));
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [currentQuestion, grading, isComplete, loading]);
+
   function handleAnswerChange(answer: string) {
     if (!currentQuestion) return;
 
