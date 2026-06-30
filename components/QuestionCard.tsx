@@ -126,12 +126,9 @@ export function QuestionCard({
                     moveOrderedAnswer(fromIndex, index);
                   }
                 }}
-                className="flex min-h-14 cursor-grab items-center gap-3 rounded-lg border border-white/10 bg-neutral-950/70 p-4 text-base text-neutral-200 shadow-lg shadow-black/10 transition hover:-translate-y-0.5 hover:border-blue-500/30 hover:bg-neutral-900 active:cursor-grabbing active:translate-y-0"
+                className="flex min-h-14 cursor-grab items-center gap-3 rounded-lg border border-white/10 bg-neutral-950/70 p-4 text-lg text-neutral-200 shadow-lg shadow-black/10 transition hover:-translate-y-0.5 hover:border-blue-500/30 hover:bg-neutral-900 active:cursor-grabbing active:translate-y-0"
               >
                 <GripVertical className="size-4 shrink-0 text-neutral-500" aria-hidden="true" />
-                <span className="flex size-8 shrink-0 items-center justify-center rounded-md border border-white/10 bg-neutral-900 text-sm text-neutral-400">
-                  {index + 1}
-                </span>
                 <span className="flex-1">{choice}</span>
                 <div className="flex gap-1">
                   <button
@@ -173,7 +170,7 @@ export function QuestionCard({
                       assignMatchAnswer(firstEmptyIndex, choice);
                     }
                   }}
-                  className="cursor-grab rounded-md border border-white/10 bg-neutral-950/70 px-3 py-2 text-base text-neutral-200 shadow-lg shadow-black/10 transition hover:-translate-y-0.5 hover:border-blue-500/30 hover:bg-neutral-900 active:cursor-grabbing active:translate-y-0"
+                  className="cursor-grab rounded-md border border-white/10 bg-neutral-950/70 px-3 py-2 text-lg text-neutral-200 shadow-lg shadow-black/10 transition hover:-translate-y-0.5 hover:border-blue-500/30 hover:bg-neutral-900 active:cursor-grabbing active:translate-y-0"
                 >
                   {choice}
                 </button>
@@ -218,7 +215,7 @@ export function QuestionCard({
           </div>
         ) : (
           <div className="grid gap-3">
-          {question.choices.map((choice, index) => {
+          {question.choices.map((choice) => {
             const isSelected = selectedAnswers.includes(choice);
 
             return (
@@ -227,22 +224,12 @@ export function QuestionCard({
                 type="button"
                 aria-pressed={isSelected}
                 onClick={() => toggleAnswer(choice)}
-                className={`group flex h-auto min-h-14 w-full cursor-pointer items-center justify-start gap-3 rounded-lg border border-l-4 p-4 text-left text-base leading-7 shadow-lg shadow-black/10 transition duration-200 hover:-translate-y-0.5 ${
+                className={`group flex h-auto min-h-14 w-full cursor-pointer items-center justify-start gap-3 rounded-lg border border-l-4 p-4 text-left text-lg leading-7 shadow-lg shadow-black/10 transition duration-200 hover:-translate-y-0.5 ${
                   isSelected
                     ? "border-blue-500 bg-blue-500/15 text-white shadow-blue-950/30 ring-1 ring-blue-400/20"
                     : "border-white/10 border-l-neutral-700 bg-neutral-950/70 text-neutral-300 hover:border-blue-500/30 hover:border-l-blue-500/60 hover:bg-neutral-900"
                 }`}
               >
-                <span
-                  className={`flex size-8 shrink-0 items-center justify-center rounded-md border text-sm font-medium transition ${
-                    isSelected
-                      ? "border-blue-300/50 bg-blue-400/20 text-blue-100"
-                      : "border-white/10 bg-neutral-900 text-neutral-500 group-hover:border-blue-500/30 group-hover:text-neutral-300"
-                  }`}
-                  aria-hidden="true"
-                >
-                  {index + 1}
-                </span>
                 {allowsMultipleAnswers && (
                   <span
                     className={`flex size-4 shrink-0 items-center justify-center rounded border ${

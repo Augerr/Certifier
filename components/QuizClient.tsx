@@ -624,9 +624,10 @@ export function QuizClient({
                 <Button
                   type="button"
                   size="lg"
+                  variant="outline"
                   onClick={handleNext}
                   disabled={!isCurrentQuestionAnswered || loading || grading}
-                  className="h-11 border border-emerald-400/30 bg-emerald-500 px-5 text-base text-white shadow-lg shadow-emerald-950/30 transition hover:-translate-y-0.5 hover:bg-emerald-400 disabled:translate-y-0 disabled:shadow-none"
+                  className="h-11 border-blue-600/40 bg-blue-600/10 px-5 text-base text-blue-200 hover:bg-blue-600/20 hover:text-blue-100"
                 >
                   {isLastQuestion ? "Finish Exam" : "Next"}
                   <ArrowRight className="size-4" aria-hidden="true" />

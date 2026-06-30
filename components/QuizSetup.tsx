@@ -559,15 +559,19 @@ export default function QuizSetup() {
           </div>
         )}
 
-        <div className="mt-6 grid gap-3 border-t border-white/10 pt-6 text-sm text-neutral-400 sm:grid-cols-3">
-          <div>{questionCount} questions</div>
-          <div>Multiple choice</div>
-          <div>
+        <footer className="mt-6 flex w-full flex-col gap-3 border-t border-white/10 pt-6 text-sm text-neutral-400 sm:flex-row sm:items-center sm:justify-between">
+          <div className="sm:flex-1">
+            {questionCount} questions
+          </div>
+          <div className="sm:flex-1 sm:text-center">
+            Multiple choice
+          </div>
+          <div className="sm:flex-1 sm:text-right">
             {timerEnabled
               ? `Time limit: ${formatDuration(timeLimitSeconds)}`
               : "No time limit"}
           </div>
-        </div>
+        </footer>
       </section>
     </main>
   );
