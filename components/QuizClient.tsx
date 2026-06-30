@@ -2,7 +2,12 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Clock3,
+  ListChecks,
+} from "lucide-react";
 
 import { ExamProgress } from "@/components/ExamProgress";
 import { QuestionCard } from "@/components/QuestionCard";
@@ -20,6 +25,7 @@ type QuizClientProps = {
   questionCount: number;
   requestedCategories: string[];
   timerEnabled: boolean;
+  freshStart: boolean;
 };
 
 type ExamDraft = {
@@ -29,6 +35,7 @@ type ExamDraft = {
   answers: SelectedAnswers;
   currentIndex: number;
   startedAt: number | null;
+  updatedAt?: number;
 };
 
 function formatElapsedTime(totalSeconds: number) {
@@ -67,6 +74,7 @@ export function QuizClient({
   questionCount,
   requestedCategories,
   timerEnabled,
+  freshStart,
 }: QuizClientProps) {
   const boundedQuestionCount = Math.max(questionCount, minQuestionCount);
   const examStorageKey = useMemo(() => {
@@ -97,7 +105,17 @@ export function QuizClient({
     async function loadExam() {
       setLoading(true);
       try {
-        const savedDraft = window.localStorage.getItem(examStorageKey);
+        if (freshStart) {
+          window.localStorage.removeItem(examStorageKey);
+
+          const currentUrl = new URL(window.location.href);
+          currentUrl.searchParams.delete("fresh");
+          window.history.replaceState(null, "", currentUrl.toString());
+        }
+
+        const savedDraft = freshStart
+          ? null
+          : window.localStorage.getItem(examStorageKey);
 
         if (savedDraft) {
           const parsedDraft = JSON.parse(savedDraft) as unknown;
@@ -154,7 +172,7 @@ export function QuizClient({
     loadExam();
 
     return () => controller.abort();
-  }, [boundedQuestionCount, examStorageKey, requestedCategories]);
+  }, [boundedQuestionCount, examStorageKey, freshStart, requestedCategories]);
 
   const currentQuestion = activeQuestions[currentIndex];
   const selectedAnswers =
@@ -174,6 +192,24 @@ export function QuizClient({
   const isLastQuestion = currentQuestion
     ? currentIndex === activeQuestions.length - 1
     : false;
+  const answeredCount = activeQuestions.filter((question) => {
+    const questionAnswers =
+      question.type === "Order" && !answers[question.id]
+        ? question.choices
+        : (answers[question.id] ?? []);
+
+    return question.type === "Match"
+      ? Boolean(
+          question.statements?.length &&
+            questionAnswers.length === question.statements.length &&
+            questionAnswers.every(Boolean),
+        )
+      : questionAnswers.length > 0;
+  }).length;
+  const progressValue =
+    activeQuestions.length === 0
+      ? 0
+      : Math.round((answeredCount / activeQuestions.length) * 100);
   const timeLimitSeconds = timerEnabled
     ? activeQuestions.length * secondsPerQuestion
     : null;
@@ -206,6 +242,7 @@ export function QuizClient({
       answers,
       currentIndex,
       startedAt,
+      updatedAt: Date.now(),
     };
 
     window.localStorage.setItem(examStorageKey, JSON.stringify(draft));
@@ -454,7 +491,7 @@ export function QuizClient({
           </div>
         </div>
       )}
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-7xl">
         <header className="mb-8 flex flex-col gap-4 border-b border-white/10 pb-6 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <Button
@@ -467,13 +504,6 @@ export function QuizClient({
                 Back home
               </Link>
             </Button>
-            <h1 className="flex items-center gap-2 text-2xl font-semibold tracking-tight text-white">
-              <CheckCircle2
-                className="size-6 text-emerald-500"
-                aria-hidden="true"
-              />
-              Saviynt Certified IGA Professional Mock Exam
-            </h1>
             {isComplete && (
               <p className="mt-2 text-sm text-neutral-400">
                 Review your score and study the explanations.
@@ -492,16 +522,6 @@ export function QuizClient({
               />
             )}
           </div>
-          {!isComplete && timerEnabled && (
-            <div
-              className={`rounded-lg border px-4 py-3 text-sm ${timerUrgencyClass}`}
-            >
-              <p className="text-xs opacity-70">Time remaining</p>
-              <p className={`mt-1 font-mono text-base ${timerValueClass}`}>
-                {formatElapsedTime(remainingSeconds)}
-              </p>
-            </div>
-          )}
         </header>
 
         {isComplete ? (
@@ -544,28 +564,127 @@ export function QuizClient({
             </div>
           </div>
         ) : (
-          <div className="space-y-6">
-            <ExamProgress
-              currentQuestion={currentIndex + 1}
-              totalQuestions={activeQuestions.length}
-            />
-            <QuestionCard
-              question={currentQuestion}
-              selectedAnswers={selectedAnswers}
-              onAnswerChange={handleAnswerChange}
-            />
-            <div className="flex justify-end">
-              <Button
-                type="button"
-                size="lg"
-                onClick={handleNext}
-                disabled={!isCurrentQuestionAnswered || loading || grading}
-                className="h-11 bg-emerald-500 px-5 text-white hover:bg-emerald-400"
-              >
-                {isLastQuestion ? "Finish Exam" : "Next"}
-                <ArrowRight className="size-4" aria-hidden="true" />
-              </Button>
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-start">
+            <div className="min-w-0 space-y-5">
+              <div className="sticky top-4 z-20 overflow-hidden rounded-xl border border-white/10 bg-neutral-950/90 shadow-2xl shadow-black/30 backdrop-blur">
+                <div className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="flex size-10 items-center justify-center rounded-lg border border-blue-600/40 bg-blue-600/10 text-blue-300">
+                      <ListChecks className="size-5" aria-hidden="true" />
+                    </div>
+                    <div>
+                      <p className="text-xs uppercase tracking-wide text-neutral-500">
+                        Question {currentIndex + 1} of {activeQuestions.length}
+                      </p>
+                      <p className="mt-1 text-sm font-medium text-white">
+                        {answeredCount} answered / {activeQuestions.length} total
+                      </p>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 text-sm sm:min-w-72">
+                    <div className="rounded-lg border border-white/10 bg-neutral-900/70 px-3 py-2">
+                      <p className="text-xs text-neutral-500">Progress</p>
+                      <p className="mt-1 font-semibold text-white">
+                        {progressValue}%
+                      </p>
+                    </div>
+                    <div
+                      className={`rounded-lg border px-3 py-2 ${
+                        timerEnabled ? timerUrgencyClass : "border-white/10 bg-neutral-900/70 text-neutral-300"
+                      }`}
+                    >
+                      <p className="flex items-center gap-1 text-xs opacity-70">
+                        <Clock3 className="size-3.5" aria-hidden="true" />
+                        {timerEnabled ? "Remaining" : "Elapsed"}
+                      </p>
+                      <p
+                        className={`mt-1 font-mono font-semibold ${
+                          timerEnabled ? timerValueClass : "text-white"
+                        }`}
+                      >
+                        {timerEnabled
+                          ? formatElapsedTime(remainingSeconds)
+                          : formatElapsedTime(elapsedSeconds)}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <ExamProgress
+                  currentQuestion={currentIndex + 1}
+                  totalQuestions={activeQuestions.length}
+                />
+              </div>
+
+              <QuestionCard
+                question={currentQuestion}
+                selectedAnswers={selectedAnswers}
+                onAnswerChange={handleAnswerChange}
+              />
+              <div className="flex justify-end">
+                <Button
+                  type="button"
+                  size="lg"
+                  onClick={handleNext}
+                  disabled={!isCurrentQuestionAnswered || loading || grading}
+                  className="h-11 border border-emerald-400/30 bg-emerald-500 px-5 text-white shadow-lg shadow-emerald-950/30 transition hover:-translate-y-0.5 hover:bg-emerald-400 disabled:translate-y-0 disabled:shadow-none"
+                >
+                  {isLastQuestion ? "Finish Exam" : "Next"}
+                  <ArrowRight className="size-4" aria-hidden="true" />
+                </Button>
+              </div>
             </div>
+
+            <aside className="rounded-xl border border-white/10 bg-neutral-900/70 p-4 shadow-2xl shadow-black/20 lg:sticky lg:top-4">
+              <div className="mb-4 flex items-center justify-between gap-3">
+                <div>
+                  <h2 className="text-sm font-medium text-white">
+                    Question Navigator
+                  </h2>
+                  <p className="mt-1 text-xs text-neutral-500">
+                    Jump between questions
+                  </p>
+                </div>
+                <span className="rounded-md border border-white/10 bg-neutral-950 px-2 py-1 text-xs text-neutral-400">
+                  {answeredCount}/{activeQuestions.length}
+                </span>
+              </div>
+              <div className="grid max-h-[min(34rem,65vh)] grid-cols-5 gap-2 overflow-y-auto pr-1">
+                {activeQuestions.map((question, index) => {
+                  const questionAnswers =
+                    question.type === "Order" && !answers[question.id]
+                      ? question.choices
+                      : (answers[question.id] ?? []);
+                  const isAnswered =
+                    question.type === "Match"
+                      ? Boolean(
+                          question.statements?.length &&
+                            questionAnswers.length ===
+                              question.statements.length &&
+                            questionAnswers.every(Boolean),
+                        )
+                      : questionAnswers.length > 0;
+                  const isCurrent = index === currentIndex;
+
+                  return (
+                    <button
+                      key={question.id}
+                      type="button"
+                      onClick={() => setCurrentIndex(index)}
+                      aria-current={isCurrent ? "step" : undefined}
+                      className={`flex aspect-square items-center justify-center rounded-lg border text-sm font-medium transition ${
+                        isCurrent
+                          ? "border-blue-400 bg-blue-500/20 text-blue-100 shadow-lg shadow-blue-950/30 ring-1 ring-blue-400/30"
+                          : isAnswered
+                            ? "border-emerald-400/30 bg-emerald-500/15 text-emerald-200 hover:border-emerald-300/50 hover:bg-emerald-500/25"
+                            : "border-white/10 bg-neutral-950/70 text-neutral-400 hover:border-white/25 hover:bg-neutral-900 hover:text-neutral-200"
+                      }`}
+                    >
+                      {index + 1}
+                    </button>
+                  );
+                })}
+              </div>
+            </aside>
           </div>
         )}
       </div>

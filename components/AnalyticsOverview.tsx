@@ -147,7 +147,8 @@ export function AnalyticsOverview({
               <Button
                 asChild
                 size="sm"
-                className="h-8 bg-blue-600 px-3 text-white hover:bg-blue-500"
+                variant="outline"
+                className="h-8 border-blue-600/40 bg-blue-600/10 px-3 text-blue-200 hover:bg-blue-600/20 hover:text-blue-100"
               >
                 <Link href={weakCategoriesExamHref}>
                   Practice Weak Areas

@@ -4,6 +4,7 @@ type QuizPageProps = {
   searchParams?: Promise<{
     categories?: string | string[];
     count?: string | string[];
+    fresh?: string | string[];
     timer?: string | string[];
   }>;
 };
@@ -28,6 +29,12 @@ function parseTimerEnabled(timer?: string | string[]) {
   return timerValue !== "0" && timerValue !== "false";
 }
 
+function parseFreshStart(fresh?: string | string[]) {
+  const freshValue = Array.isArray(fresh) ? fresh[0] : fresh;
+
+  return freshValue === "1" || freshValue === "true";
+}
+
 export default async function QuizPage({ searchParams }: QuizPageProps) {
   const params = await searchParams;
   const categories = params?.categories;
@@ -38,11 +45,13 @@ export default async function QuizPage({ searchParams }: QuizPageProps) {
       : [];
   const questionCount = parseQuestionCount(params?.count);
   const timerEnabled = parseTimerEnabled(params?.timer);
+  const freshStart = parseFreshStart(params?.fresh);
 
   return (
     <QuizClient
-      key={`${requestedCategories.join("|") || "all-categories"}-${questionCount}-${timerEnabled ? "timer" : "no-timer"}`}
+      key={`${requestedCategories.join("|") || "all-categories"}-${questionCount}-${timerEnabled ? "timer" : "no-timer"}-${freshStart ? "fresh" : "resume"}`}
       questionCount={questionCount}
+      freshStart={freshStart}
       requestedCategories={requestedCategories}
       timerEnabled={timerEnabled}
     />

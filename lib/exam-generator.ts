@@ -1,9 +1,9 @@
 import type { Difficulty, ExamQuestion, QuestionType } from "@/types/question";
 
 const targetDifficultyRatio: Record<Difficulty, number> = {
-  easy: 0.3,
+  easy: 0.25,
   medium: 0.5,
-  hard: 0.2,
+  hard: 0.25,
 };
 
 const difficultyFillOrder: Difficulty[] = ["medium", "easy", "hard"];
