@@ -412,7 +412,7 @@ export default function QuizSetup() {
               return (
                 <label
                   key={category}
-                  className={`flex min-h-9 cursor-pointer items-center gap-2 rounded-md border px-2.5 py-1.5 text-xs leading-5 transition ${
+                  className={`flex min-h-9 cursor-pointer items-center gap-2 rounded-md border px-2.5 py-1.5 text-sm leading-5 transition ${
                     isSelected
                       ? "border-blue-600/50 bg-blue-600/10 text-blue-300"
                       : "border-white/10 bg-neutral-900/50 text-neutral-300 opacity-45 hover:border-white/25 hover:bg-neutral-900 hover:opacity-80"
@@ -422,7 +422,7 @@ export default function QuizSetup() {
                     type="checkbox"
                     checked={isSelected}
                     onChange={() => toggleCategory(category)}
-                    className="size-3.5 shrink-0 accent-blue-600"
+                    className="size-4 shrink-0 accent-blue-600"
                   />
                   <span>{category}</span>
                 </label>

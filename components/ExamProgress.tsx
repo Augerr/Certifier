@@ -13,7 +13,7 @@ export function ExamProgress({
 
   return (
     <div className="border-t border-white/10 bg-neutral-900/50 px-4 py-3">
-      <div className="mb-2 flex items-center justify-between text-xs">
+      <div className="mb-2 flex items-center justify-between text-sm">
         <span className="font-medium text-neutral-200">
           Question {currentQuestion} of {totalQuestions}
         </span>

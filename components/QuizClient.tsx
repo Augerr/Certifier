@@ -497,7 +497,7 @@ export function QuizClient({
             <Button
               asChild
               variant="ghost"
-              className="mb-4 px-0 text-neutral-400 hover:bg-transparent hover:text-white"
+              className="mb-4 px-0 text-base text-neutral-400 hover:bg-transparent hover:text-white"
             >
               <Link href="/">
                 <ArrowLeft className="size-4" aria-hidden="true" />
@@ -505,7 +505,7 @@ export function QuizClient({
               </Link>
             </Button>
             {isComplete && (
-              <p className="mt-2 text-sm text-neutral-400">
+              <p className="mt-2 text-base text-neutral-400">
                 Review your score and study the explanations.
               </p>
             )}
@@ -526,7 +526,7 @@ export function QuizClient({
 
         {isComplete ? (
           gradingError ? (
-            <div className="rounded-lg border border-red-600 bg-neutral-900/60 p-6 text-sm text-red-300">
+            <div className="rounded-lg border border-red-600 bg-neutral-900/60 p-6 text-base text-red-300">
               <p className="mb-4">{gradingError}</p>
               <div className="flex gap-2">
                 <Button
@@ -551,11 +551,11 @@ export function QuizClient({
             />
           )
         ) : loading ? (
-          <div className="rounded-lg border border-white/10 bg-neutral-900/60 p-6 text-sm text-neutral-300">
+          <div className="rounded-lg border border-white/10 bg-neutral-900/60 p-6 text-base text-neutral-300">
             <p>Preparing your exam...</p>
           </div>
         ) : activeQuestions.length === 0 ? (
-          <div className="rounded-lg border border-white/10 bg-neutral-900/60 p-6 text-sm text-neutral-300">
+          <div className="rounded-lg border border-white/10 bg-neutral-900/60 p-6 text-base text-neutral-300">
             <p>
               No questions were available for the selected categories and count.
             </p>
@@ -573,17 +573,17 @@ export function QuizClient({
                       <ListChecks className="size-5" aria-hidden="true" />
                     </div>
                     <div>
-                      <p className="text-xs uppercase tracking-wide text-neutral-500">
+                      <p className="text-sm uppercase tracking-wide text-neutral-500">
                         Question {currentIndex + 1} of {activeQuestions.length}
                       </p>
-                      <p className="mt-1 text-sm font-medium text-white">
+                      <p className="mt-1 text-base font-medium text-white">
                         {answeredCount} answered / {activeQuestions.length} total
                       </p>
                     </div>
                   </div>
-                  <div className="grid grid-cols-2 gap-2 text-sm sm:min-w-72">
+                  <div className="grid grid-cols-2 gap-2 text-base sm:min-w-72">
                     <div className="rounded-lg border border-white/10 bg-neutral-900/70 px-3 py-2">
-                      <p className="text-xs text-neutral-500">Progress</p>
+                      <p className="text-sm text-neutral-500">Progress</p>
                       <p className="mt-1 font-semibold text-white">
                         {progressValue}%
                       </p>
@@ -593,7 +593,7 @@ export function QuizClient({
                         timerEnabled ? timerUrgencyClass : "border-white/10 bg-neutral-900/70 text-neutral-300"
                       }`}
                     >
-                      <p className="flex items-center gap-1 text-xs opacity-70">
+                      <p className="flex items-center gap-1 text-sm opacity-70">
                         <Clock3 className="size-3.5" aria-hidden="true" />
                         {timerEnabled ? "Remaining" : "Elapsed"}
                       </p>
@@ -626,7 +626,7 @@ export function QuizClient({
                   size="lg"
                   onClick={handleNext}
                   disabled={!isCurrentQuestionAnswered || loading || grading}
-                  className="h-11 border border-emerald-400/30 bg-emerald-500 px-5 text-white shadow-lg shadow-emerald-950/30 transition hover:-translate-y-0.5 hover:bg-emerald-400 disabled:translate-y-0 disabled:shadow-none"
+                  className="h-11 border border-emerald-400/30 bg-emerald-500 px-5 text-base text-white shadow-lg shadow-emerald-950/30 transition hover:-translate-y-0.5 hover:bg-emerald-400 disabled:translate-y-0 disabled:shadow-none"
                 >
                   {isLastQuestion ? "Finish Exam" : "Next"}
                   <ArrowRight className="size-4" aria-hidden="true" />
@@ -637,14 +637,14 @@ export function QuizClient({
             <aside className="rounded-xl border border-white/10 bg-neutral-900/70 p-4 shadow-2xl shadow-black/20 lg:sticky lg:top-4">
               <div className="mb-4 flex items-center justify-between gap-3">
                 <div>
-                  <h2 className="text-sm font-medium text-white">
+                  <h2 className="text-base font-medium text-white">
                     Question Navigator
                   </h2>
-                  <p className="mt-1 text-xs text-neutral-500">
+                  <p className="mt-1 text-sm text-neutral-500">
                     Jump between questions
                   </p>
                 </div>
-                <span className="rounded-md border border-white/10 bg-neutral-950 px-2 py-1 text-xs text-neutral-400">
+                <span className="rounded-md border border-white/10 bg-neutral-950 px-2 py-1 text-sm text-neutral-400">
                   {answeredCount}/{activeQuestions.length}
                 </span>
               </div>
@@ -671,7 +671,7 @@ export function QuizClient({
                       type="button"
                       onClick={() => setCurrentIndex(index)}
                       aria-current={isCurrent ? "step" : undefined}
-                      className={`flex aspect-square items-center justify-center rounded-lg border text-sm font-medium transition ${
+                      className={`flex aspect-square items-center justify-center rounded-lg border text-base font-medium transition ${
                         isCurrent
                           ? "border-blue-400 bg-blue-500/20 text-blue-100 shadow-lg shadow-blue-950/30 ring-1 ring-blue-400/30"
                           : isAnswered
