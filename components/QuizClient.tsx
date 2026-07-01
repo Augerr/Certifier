@@ -18,7 +18,7 @@ import {
 } from "@/lib/quiz-draft-store";
 import { quizTheme } from "@/lib/theme-tokens";
 import type { QuizAnalytics } from "@/types/analytics";
-import type { ExamQuestion } from "@/types/question";
+import type { Difficulty, ExamQuestion, QuestionType } from "@/types/question";
 
 const minQuestionCount = 10;
 const secondsPerQuestion = 90;
@@ -26,6 +26,8 @@ const secondsPerQuestion = 90;
 type QuizClientProps = {
   questionCount: number;
   requestedCategories: string[];
+  requestedDifficulties: Difficulty[];
+  requestedTypes: QuestionType[];
   timerEnabled: boolean;
   freshStart: boolean;
 };
@@ -71,6 +73,8 @@ function isSequenceQuestion(question: ExamQuestion) {
 export function QuizClient({
   questionCount,
   requestedCategories,
+  requestedDifficulties,
+  requestedTypes,
   timerEnabled,
   freshStart,
 }: QuizClientProps) {
@@ -80,8 +84,16 @@ export function QuizClient({
       questionCount: boundedQuestionCount,
       timerEnabled,
       categories: requestedCategories,
+      difficulties: requestedDifficulties,
+      types: requestedTypes,
     });
-  }, [boundedQuestionCount, requestedCategories, timerEnabled]);
+  }, [
+    boundedQuestionCount,
+    requestedCategories,
+    requestedDifficulties,
+    requestedTypes,
+    timerEnabled,
+  ]);
   const [activeQuestions, setActiveQuestions] = useState<ExamQuestion[]>([]);
   const [loading, setLoading] = useState(true);
   const [sessionId, setSessionId] = useState<string | null>(null);
@@ -139,6 +151,12 @@ export function QuizClient({
         for (const c of requestedCategories) {
           params.append("categories", c);
         }
+        for (const difficulty of requestedDifficulties) {
+          params.append("difficulties", difficulty);
+        }
+        for (const type of requestedTypes) {
+          params.append("types", type);
+        }
 
         const res = await fetch(`/api/quiz?${params.toString()}`, {
           signal: controller.signal,
@@ -161,7 +179,14 @@ export function QuizClient({
     loadExam();
 
     return () => controller.abort();
-  }, [boundedQuestionCount, examStorageKey, freshStart, requestedCategories]);
+  }, [
+    boundedQuestionCount,
+    examStorageKey,
+    freshStart,
+    requestedCategories,
+    requestedDifficulties,
+    requestedTypes,
+  ]);
 
   const currentQuestion = activeQuestions[currentIndex];
   const selectedAnswers = currentQuestion
@@ -447,6 +472,10 @@ export function QuizClient({
       const params = new URLSearchParams();
       params.set("count", String(boundedQuestionCount));
       for (const c of requestedCategories) params.append("categories", c);
+      for (const difficulty of requestedDifficulties) {
+        params.append("difficulties", difficulty);
+      }
+      for (const type of requestedTypes) params.append("types", type);
       fetch(`/api/quiz?${params.toString()}`)
         .then((r) => r.json())
         .then((json) => {

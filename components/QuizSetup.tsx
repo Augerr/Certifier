@@ -14,15 +14,28 @@ import {
 import { buildQuizHref } from "@/lib/quiz-url";
 import { quizTheme } from "@/lib/theme-tokens";
 import type { QuizAnalytics } from "@/types/analytics";
-import { examCategories, type ExamCategory } from "@/types/question";
+import {
+  examCategories,
+  type Difficulty,
+  type ExamCategory,
+  type QuestionType,
+} from "@/types/question";
 
 type CategoryCounts = Record<string, number>;
+type CategoryDifficultyCounts = Record<string, Record<Difficulty, number>>;
 
 const minQuestionCount = 10;
 const defaultQuestionCount = 25;
 const secondsPerQuestion = 90;
 const weakCategoryThreshold = 80;
 const weakCategoryFallbackCount = 3;
+const developmentQuestionTypes: QuestionType[] = ["Timeline", "Workflow"];
+const difficulties: Difficulty[] = ["easy", "medium", "hard"];
+const difficultyLabels: Record<Difficulty, string> = {
+  easy: "Easy",
+  medium: "Medium",
+  hard: "Hard",
+};
 
 function clampQuestionCount(value: number, max: number) {
   return Math.min(Math.max(value, minQuestionCount), max);
@@ -67,13 +80,20 @@ export default function QuizSetup() {
   const [selectedCategories, setSelectedCategories] = useState<ExamCategory[]>([
     ...examCategories,
   ]);
+  const [selectedDifficulties, setSelectedDifficulties] = useState<
+    Difficulty[]
+  >([...difficulties]);
   const [questionCount, setQuestionCount] = useState(defaultQuestionCount);
   const [timerEnabled, setTimerEnabled] = useState(false);
   const allCategoriesSelected =
     selectedCategories.length === examCategories.length;
+  const allDifficultiesSelected =
+    selectedDifficulties.length === difficulties.length;
   const [categoryCounts, setCategoryCounts] = useState<CategoryCounts | null>(
     null,
   );
+  const [categoryDifficultyCounts, setCategoryDifficultyCounts] =
+    useState<CategoryDifficultyCounts | null>(null);
   const [analytics, setAnalytics] = useState<QuizAnalytics | null>(null);
   const [resettingAnalytics, setResettingAnalytics] = useState(false);
   const [continueAttempt, setContinueAttempt] =
@@ -99,24 +119,49 @@ export default function QuizSetup() {
   }, [analytics, sortedExamCategories]);
   const categoryReadiness = useMemo(() => {
     return new Map(
-      analytics?.byCategory.map((bucket) => [bucket.label, bucket.percentage]) ??
-        [],
+      analytics?.byCategory.map((bucket) => [
+        bucket.label,
+        bucket.percentage,
+      ]) ?? [],
     );
   }, [analytics]);
 
   const availableQuestionCount = useMemo(() => {
-    if (!categoryCounts) return 0;
+    if (!categoryDifficultyCounts) {
+      if (!categoryCounts) return 0;
+      return selectedCategories.reduce(
+        (sum, c) => sum + (categoryCounts[c] || 0),
+        0,
+      );
+    }
+
     return selectedCategories.reduce(
-      (sum, c) => sum + (categoryCounts[c] || 0),
+      (sum, category) =>
+        sum +
+        selectedDifficulties.reduce(
+          (difficultySum, difficulty) =>
+            difficultySum +
+            (categoryDifficultyCounts[category]?.[difficulty] || 0),
+          0,
+        ),
       0,
     );
-  }, [categoryCounts, selectedCategories]);
+  }, [
+    categoryCounts,
+    categoryDifficultyCounts,
+    selectedCategories,
+    selectedDifficulties,
+  ]);
   const maxQuestionCount = Math.max(minQuestionCount, availableQuestionCount);
   const displayQuestionCount = clampQuestionCount(
     questionCount,
     maxQuestionCount,
   );
   const timeLimitSeconds = displayQuestionCount * secondsPerQuestion;
+  const hasSelectedQuestionPool =
+    selectedCategories.length > 0 &&
+    selectedDifficulties.length > 0 &&
+    availableQuestionCount > 0;
 
   const startHref = useMemo(() => {
     return buildQuizHref({
@@ -124,16 +169,41 @@ export default function QuizSetup() {
       fresh: true,
       timer: timerEnabled,
       categories: allCategoriesSelected ? [] : selectedCategories,
+      difficulties: allDifficultiesSelected ? [] : selectedDifficulties,
     });
   }, [
     allCategoriesSelected,
+    allDifficultiesSelected,
     displayQuestionCount,
     selectedCategories,
+    selectedDifficulties,
+    timerEnabled,
+  ]);
+
+  const developmentTypeExamLinks = useMemo(() => {
+    return developmentQuestionTypes.map((type) => ({
+      type,
+      href: buildQuizHref({
+        count: displayQuestionCount,
+        fresh: true,
+        timer: timerEnabled,
+        difficulties: allDifficultiesSelected ? [] : selectedDifficulties,
+        types: [type],
+      }),
+    }));
+  }, [
+    allDifficultiesSelected,
+    displayQuestionCount,
+    selectedDifficulties,
     timerEnabled,
   ]);
 
   const weakCategoryExam = useMemo(() => {
-    if (!analytics || analytics.weakCategories.length === 0) {
+    if (
+      !analytics ||
+      analytics.weakCategories.length === 0 ||
+      selectedDifficulties.length === 0
+    ) {
       return null;
     }
 
@@ -150,12 +220,24 @@ export default function QuizSetup() {
       return null;
     }
 
-    const availableWeakQuestionCount = categoryCounts
+    const availableWeakQuestionCount = categoryDifficultyCounts
       ? focusCategories.reduce(
-          (sum, category) => sum + (categoryCounts[category] || 0),
+          (sum, category) =>
+            sum +
+            selectedDifficulties.reduce(
+              (difficultySum, difficulty) =>
+                difficultySum +
+                (categoryDifficultyCounts[category]?.[difficulty] || 0),
+              0,
+            ),
           0,
         )
-      : 0;
+      : categoryCounts
+        ? focusCategories.reduce(
+            (sum, category) => sum + (categoryCounts[category] || 0),
+            0,
+          )
+        : 0;
     const weakMaxQuestionCount =
       availableWeakQuestionCount > 0
         ? Math.max(minQuestionCount, availableWeakQuestionCount)
@@ -171,9 +253,18 @@ export default function QuizSetup() {
         fresh: true,
         timer: timerEnabled,
         categories: focusCategories,
+        difficulties: allDifficultiesSelected ? [] : selectedDifficulties,
       }),
     };
-  }, [analytics, categoryCounts, questionCount, timerEnabled]);
+  }, [
+    allDifficultiesSelected,
+    analytics,
+    categoryCounts,
+    categoryDifficultyCounts,
+    questionCount,
+    selectedDifficulties,
+    timerEnabled,
+  ]);
 
   useEffect(() => {
     let mounted = true;
@@ -188,6 +279,7 @@ export default function QuizSetup() {
         if (metaResponse.ok) {
           const json = await metaResponse.json();
           setCategoryCounts(json.categoryCounts || {});
+          setCategoryDifficultyCounts(json.categoryDifficultyCounts || {});
         }
         if (analyticsResponse.ok) {
           const json = (await analyticsResponse.json()) as QuizAnalytics;
@@ -228,6 +320,16 @@ export default function QuizSetup() {
             (currentCategory) => currentCategory !== category,
           )
         : [...currentCategories, category],
+    );
+  }
+
+  function toggleDifficulty(difficulty: Difficulty) {
+    setSelectedDifficulties((currentDifficulties) =>
+      currentDifficulties.includes(difficulty)
+        ? currentDifficulties.filter(
+            (currentDifficulty) => currentDifficulty !== difficulty,
+          )
+        : [...currentDifficulties, difficulty],
     );
   }
 
@@ -388,18 +490,48 @@ export default function QuizSetup() {
         </div>
 
         <div className="mt-10 border-t border-white/10 pt-6">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <div>
+          <div className="grid gap-4 sm:grid-cols-[1fr_auto_1fr] sm:items-start">
+            <div className="min-w-0">
               <h2 className="text-base font-medium text-white">
                 Number of questions
               </h2>
               <p className="mt-1 text-sm text-neutral-400">
                 {selectedCategories.length === 0
                   ? "Select at least one category to choose an exam length"
-                  : `Choose between ${minQuestionCount} and ${availableQuestionCount} questions`}
+                  : selectedDifficulties.length === 0
+                    ? "Select at least one difficulty to choose an exam length"
+                    : availableQuestionCount === 0
+                      ? "No questions match the selected category and difficulty filters"
+                      : `Choose between ${minQuestionCount} and ${availableQuestionCount} questions`}
               </p>
             </div>
-            <div className="flex items-center gap-2 text-sm text-neutral-300">
+            <div className="flex flex-wrap items-center gap-2 sm:justify-center">
+              <p className="mr-1 text-sm font-medium text-neutral-300">
+                Filter by difficulty
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {difficulties.map((difficulty) => {
+                  const isSelected = selectedDifficulties.includes(difficulty);
+
+                  return (
+                    <button
+                      key={difficulty}
+                      type="button"
+                      aria-pressed={isSelected}
+                      onClick={() => toggleDifficulty(difficulty)}
+                      className={`rounded-md border px-3 py-2 text-sm font-medium transition ${
+                        isSelected
+                          ? "border-blue-500/50 bg-blue-500/15 text-blue-100 shadow-lg shadow-blue-950/20"
+                          : "border-white/10 bg-neutral-950 text-neutral-400 opacity-60 hover:border-white/25 hover:bg-neutral-900 hover:opacity-90"
+                      }`}
+                    >
+                      {difficultyLabels[difficulty]}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+            <div className="flex items-center gap-2 text-sm text-neutral-300 sm:mt-2 sm:justify-end">
               <span>{displayQuestionCount}</span>
               <span>questions</span>
             </div>
@@ -419,7 +551,7 @@ export default function QuizSetup() {
                   ),
                 )
               }
-              disabled={selectedCategories.length === 0}
+              disabled={!hasSelectedQuestionPool}
               className="h-2 w-full cursor-pointer accent-blue-600 disabled:cursor-not-allowed disabled:opacity-40"
             />
             <Input
@@ -435,14 +567,14 @@ export default function QuizSetup() {
                   ),
                 )
               }
-              disabled={selectedCategories.length === 0}
+              disabled={!hasSelectedQuestionPool}
               className="h-11 border-white/15 bg-neutral-950 text-neutral-100"
             />
           </div>
         </div>
 
         <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-          {selectedCategories.length === 0 ? (
+          {!hasSelectedQuestionPool ? (
             <Button
               type="button"
               size="lg"
@@ -496,6 +628,44 @@ export default function QuizSetup() {
           </label>
         </div>
 
+        <div className="mt-4 rounded-lg border border-amber-400/20 bg-amber-400/5 p-3">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-sm font-medium text-amber-200">
+              Development question-type launchers
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {developmentTypeExamLinks.map(({ type, href }) =>
+                selectedDifficulties.length === 0 ? (
+                  <Button
+                    key={type}
+                    type="button"
+                    size="sm"
+                    variant="outline"
+                    disabled
+                    className="border-amber-400/20 bg-neutral-950 text-amber-200 disabled:cursor-not-allowed disabled:opacity-40"
+                  >
+                    Start {type}
+                    <ArrowRight className="size-3.5" aria-hidden="true" />
+                  </Button>
+                ) : (
+                  <Button
+                    key={type}
+                    asChild
+                    size="sm"
+                    variant="outline"
+                    className="border-amber-400/30 bg-neutral-950 text-amber-200 hover:bg-amber-400/10 hover:text-amber-100"
+                  >
+                    <Link href={href}>
+                      Start {type}
+                      <ArrowRight className="size-3.5" aria-hidden="true" />
+                    </Link>
+                  </Button>
+                ),
+              )}
+            </div>
+          </div>
+        </div>
+
         <AnalyticsOverview
           analytics={analytics}
           weakCategoriesExamHref={weakCategoryExam?.href}
@@ -516,12 +686,8 @@ export default function QuizSetup() {
         )}
 
         <footer className="mt-6 flex w-full flex-col gap-3 border-t border-white/10 pt-6 text-sm text-neutral-400 sm:flex-row sm:items-center sm:justify-between">
-          <div className="sm:flex-1">
-            {questionCount} questions
-          </div>
-          <div className="sm:flex-1 sm:text-center">
-            Multiple choice
-          </div>
+          <div className="sm:flex-1">{questionCount} questions</div>
+          <div className="sm:flex-1 sm:text-center">Multiple choice</div>
           <div className="sm:flex-1 sm:text-right">
             {timerEnabled
               ? `Time limit: ${formatDuration(timeLimitSeconds)}`

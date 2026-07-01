@@ -1,15 +1,21 @@
+import type { Difficulty, QuestionType } from "@/types/question";
+
 export type QuizUrlOptions = {
   categories?: string[];
   count: number;
+  difficulties?: Difficulty[];
   fresh?: boolean;
   timer?: boolean;
+  types?: QuestionType[];
 };
 
 export type QuizSearchParams = {
   categories?: string | string[];
   count?: string | string[];
+  difficulties?: string | string[];
   fresh?: string | string[];
   timer?: string | string[];
+  types?: string | string[];
 };
 
 const defaultQuestionCount = 25;
@@ -18,8 +24,10 @@ const minQuestionCount = 10;
 export function buildQuizSearchParams({
   categories = [],
   count,
+  difficulties = [],
   fresh,
   timer,
+  types = [],
 }: QuizUrlOptions) {
   const params = new URLSearchParams();
 
@@ -35,6 +43,14 @@ export function buildQuizSearchParams({
 
   categories.forEach((category) => {
     params.append("categories", category);
+  });
+
+  difficulties.forEach((difficulty) => {
+    params.append("difficulties", difficulty);
+  });
+
+  types.forEach((type) => {
+    params.append("types", type);
   });
 
   return params;

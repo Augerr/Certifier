@@ -1,5 +1,5 @@
 import type { SelectedAnswers } from "@/lib/answer-utils";
-import type { ExamQuestion } from "@/types/question";
+import type { Difficulty, ExamQuestion, QuestionType } from "@/types/question";
 
 export type ExamDraft = {
   version: 1;
@@ -20,6 +20,8 @@ export type ExamDraftKeyOptions = {
   questionCount: number;
   timerEnabled: boolean;
   categories: string[];
+  difficulties?: Difficulty[];
+  types?: QuestionType[];
 };
 
 export const examDraftStoragePrefix = "saviynt-exam-draft:v1:";
@@ -28,11 +30,16 @@ export function createExamDraftStorageKey({
   questionCount,
   timerEnabled,
   categories,
+  difficulties = [],
+  types = [],
 }: ExamDraftKeyOptions) {
   const categoriesKey =
     categories.length > 0 ? [...categories].sort().join("|") : "all";
+  const difficultiesKey =
+    difficulties.length > 0 ? [...difficulties].sort().join("|") : "all";
+  const typesKey = types.length > 0 ? [...types].sort().join("|") : "all";
 
-  return `${examDraftStoragePrefix}${questionCount}:${timerEnabled ? "timed" : "untimed"}:${categoriesKey}`;
+  return `${examDraftStoragePrefix}${questionCount}:${timerEnabled ? "timed" : "untimed"}:${categoriesKey}:${difficultiesKey}:${typesKey}`;
 }
 
 export function isExamDraft(value: unknown): value is ExamDraft {
@@ -105,7 +112,11 @@ export function getLatestContinueAttempt(minQuestionCount: number): ContinueAtte
       continue;
     }
 
-    const [, , count, timer, categoriesKey = "all"] = key.split(":");
+    const [, , count, timer, categoriesKey = "all", nextKey = "all", finalKey] =
+      key.split(":");
+    const hasDifficultyKey = finalKey !== undefined;
+    const difficultiesKey = hasDifficultyKey ? nextKey : "all";
+    const typesKey = hasDifficultyKey ? finalKey : nextKey;
     const questionCount = Number(count);
 
     if (!Number.isFinite(questionCount) || questionCount < minQuestionCount) {
@@ -120,6 +131,22 @@ export function getLatestContinueAttempt(minQuestionCount: number): ContinueAtte
       categoriesKey.split("|").forEach((category) => {
         if (category) {
           params.append("categories", category);
+        }
+      });
+    }
+
+    if (difficultiesKey !== "all") {
+      difficultiesKey.split("|").forEach((difficulty) => {
+        if (difficulty) {
+          params.append("difficulties", difficulty);
+        }
+      });
+    }
+
+    if (typesKey !== "all") {
+      typesKey.split("|").forEach((type) => {
+        if (type) {
+          params.append("types", type);
         }
       });
     }
