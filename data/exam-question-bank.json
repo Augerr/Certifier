@@ -58,9 +58,7 @@
     "explanation": "Catalog filtering can restrict visible requestable access based on attributes such as worker type, department, or business unit.",
     "category": "Access Requests",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Catalog filtering based on identity attributes"
-    ],
+    "correctAnswers": ["Catalog filtering based on identity attributes"],
     "type": "Single"
   },
   {
@@ -250,9 +248,7 @@
     "explanation": "Birthright rules use trusted identity attributes to assign standard access during joiner processing.",
     "category": "Lifecycle Management",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Birthright access rules driven by identity attributes"
-    ],
+    "correctAnswers": ["Birthright access rules driven by identity attributes"],
     "type": "Single"
   },
   {
@@ -442,9 +438,7 @@
     "explanation": "Read and write operations can require different permissions, so a connector may reconcile successfully but fail provisioning actions.",
     "category": "Connectors",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Reconciliation may succeed while deprovisioning fails"
-    ],
+    "correctAnswers": ["Reconciliation may succeed while deprovisioning fails"],
     "type": "Single"
   },
   {
@@ -522,9 +516,7 @@
     "explanation": "Roles drift over time, so their contents, owners, and memberships should be periodically reviewed.",
     "category": "Roles",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Periodic role content and membership certification"
-    ],
+    "correctAnswers": ["Periodic role content and membership certification"],
     "type": "Single"
   },
   {
@@ -538,9 +530,7 @@
     "explanation": "Role quality should favor appropriate access, not simply broad statistical coverage.",
     "category": "Roles",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Least privilege over maximum role coverage"
-    ],
+    "correctAnswers": ["Least privilege over maximum role coverage"],
     "type": "Single"
   },
   {
@@ -570,9 +560,7 @@
     "explanation": "Privileged access approvals should be independent to avoid self-authorization of high-risk access.",
     "category": "Workflows",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Lack of independent approval and separation of duties"
-    ],
+    "correctAnswers": ["Lack of independent approval and separation of duties"],
     "type": "Single"
   },
   {
@@ -698,9 +686,7 @@
     "explanation": "A successful IGA implementation is intended to reduce operational costs and improve efficiency, not increase TCO.",
     "category": "Analytics",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Maintaining a higher total cost of ownership (TCO)"
-    ],
+    "correctAnswers": ["Maintaining a higher total cost of ownership (TCO)"],
     "type": "Single"
   },
   {
@@ -730,53 +716,34 @@
     "explanation": "SAV Roles can be assigned through multiple mechanisms, including connections, access requests or JRM, and rules.",
     "category": "Roles",
     "difficulty": "hard",
-    "correctAnswers": [
-      "All of the above"
-    ],
+    "correctAnswers": ["All of the above"],
     "type": "Single"
   },
   {
     "prompt": "Through SAV Roles, you can control what end-users can do at both broad and granular levels in EIC.",
-    "choices": [
-      "True",
-      "False"
-    ],
+    "choices": ["True", "False"],
     "explanation": "SAV Roles govern user capabilities in EIC at both broad functional and granular permission levels.",
     "category": "Roles",
     "difficulty": "hard",
-    "correctAnswers": [
-      "True"
-    ],
+    "correctAnswers": ["True"],
     "type": "Single"
   },
   {
     "prompt": "The SAV Role name must be in uppercase. For example, ROLE_SAV_MANAGER.",
-    "choices": [
-      "True",
-      "False"
-    ],
+    "choices": ["True", "False"],
     "explanation": "SAV Role naming follows the expected uppercase format, such as ROLE_SAV_MANAGER.",
     "category": "Roles",
     "difficulty": "hard",
-    "correctAnswers": [
-      "True"
-    ],
+    "correctAnswers": ["True"],
     "type": "Single"
   },
   {
     "prompt": "If a user is still having access to critical applications even after leaving an organization or moving to any other department, it is a risk to the company. Which identity event do you think should have been managed properly to avoid such risks?",
-    "choices": [
-      "Resignation",
-      "Exit Interview",
-      "Offboarding",
-      "Transfer"
-    ],
+    "choices": ["Resignation", "Exit Interview", "Offboarding", "Transfer"],
     "explanation": "Offboarding processes ensure access is removed when a user leaves the organization or no longer needs it.",
     "category": "Lifecycle Management",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Offboarding"
-    ],
+    "correctAnswers": ["Offboarding"],
     "type": "Single"
   },
   {
@@ -790,23 +757,16 @@
     "explanation": "Technical Rules are commonly used to grant birthright access based on user attributes and specified conditions.",
     "category": "Lifecycle Management",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Birthright Access"
-    ],
+    "correctAnswers": ["Birthright Access"],
     "type": "Single"
   },
   {
     "prompt": "Technical Rules can be triggered from User Update Rules through re-run of all provisioning rules and selected Technical Rule actions. Select the correct option and click Submit.",
-    "choices": [
-      "True",
-      "False"
-    ],
+    "choices": ["True", "False"],
     "explanation": "User Update Rules can trigger Technical Rule processing through actions that rerun provisioning rules or selected Technical Rules.",
     "category": "Lifecycle Management",
     "difficulty": "hard",
-    "correctAnswers": [
-      "True"
-    ],
+    "correctAnswers": ["True"],
     "type": "Single"
   },
   {
@@ -836,9 +796,7 @@
     "explanation": "User Update Rules respond to identity attribute changes and can launch actions such as notifications or certifications.",
     "category": "Lifecycle Management",
     "difficulty": "hard",
-    "correctAnswers": [
-      "User Update Rules"
-    ],
+    "correctAnswers": ["User Update Rules"],
     "type": "Single"
   },
   {
@@ -852,9 +810,7 @@
     "explanation": "Identity BOT helps integrate with applications that do not expose standard integration APIs.",
     "category": "Connectors",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Integration APIs"
-    ],
+    "correctAnswers": ["Integration APIs"],
     "type": "Single"
   },
   {
@@ -868,9 +824,7 @@
     "explanation": "Saviynt Access Review supports access reviews across connected, disconnected, and hybrid applications.",
     "category": "Certifications",
     "difficulty": "hard",
-    "correctAnswers": [
-      "All the Above"
-    ],
+    "correctAnswers": ["All the Above"],
     "type": "Single"
   },
   {
@@ -884,25 +838,16 @@
     "explanation": "Associating a workflow with the security system is required for making the application requestable through access requests.",
     "category": "Access Requests",
     "difficulty": "hard",
-    "correctAnswers": [
-      "By adding a Workflow to the Security System"
-    ],
+    "correctAnswers": ["By adding a Workflow to the Security System"],
     "type": "Single"
   },
   {
     "prompt": "How many personas does the Saviynt's Access Request System support?",
-    "choices": [
-      "3",
-      "5",
-      "7",
-      "9"
-    ],
+    "choices": ["3", "5", "7", "9"],
     "explanation": "Saviynt's Access Request System supports three personas.",
     "category": "Access Requests",
     "difficulty": "hard",
-    "correctAnswers": [
-      "3"
-    ],
+    "correctAnswers": ["3"],
     "type": "Single"
   },
   {
@@ -932,9 +877,7 @@
     "explanation": "Once the data is available in Elasticsearch, it can be used to create analytics controls.",
     "category": "Analytics",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Utilized to create analytics controls"
-    ],
+    "correctAnswers": ["Utilized to create analytics controls"],
     "type": "Single"
   },
   {
@@ -948,9 +891,7 @@
     "explanation": "A SQL query can retrieve a specific set of data directly from the Saviynt database for analytics configuration.",
     "category": "Analytics",
     "difficulty": "hard",
-    "correctAnswers": [
-      "SQL query"
-    ],
+    "correctAnswers": ["SQL query"],
     "type": "Single"
   },
   {
@@ -980,41 +921,25 @@
     "explanation": "A Security System is a logical container that groups related endpoints and applications belonging to the same target system family.",
     "category": "Connectors",
     "difficulty": "medium",
-    "correctAnswers": [
-      "A collection of applications and endpoints"
-    ],
+    "correctAnswers": ["A collection of applications and endpoints"],
     "type": "Single"
   },
   {
     "prompt": "Which object is used to represent a permission within an application?",
-    "choices": [
-      "User",
-      "Account",
-      "Entitlement",
-      "Endpoint"
-    ],
+    "choices": ["User", "Account", "Entitlement", "Endpoint"],
     "explanation": "An entitlement represents a specific permission, privilege, or access right available within an application.",
     "category": "Roles",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Entitlement"
-    ],
+    "correctAnswers": ["Entitlement"],
     "type": "Single"
   },
   {
     "prompt": "Which lifecycle event typically removes access from a user?",
-    "choices": [
-      "Joiner",
-      "Mover",
-      "Leaver",
-      "Approver"
-    ],
+    "choices": ["Joiner", "Mover", "Leaver", "Approver"],
     "explanation": "The Leaver event handles termination or offboarding, which typically results in revoking and removing the user's access.",
     "category": "Lifecycle Management",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Leaver"
-    ],
+    "correctAnswers": ["Leaver"],
     "type": "Single"
   },
   {
@@ -1028,9 +953,7 @@
     "explanation": "An endpoint represents the connection configuration used to integrate Saviynt with a specific target application or system.",
     "category": "Connectors",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Represent a target system connection"
-    ],
+    "correctAnswers": ["Represent a target system connection"],
     "type": "Single"
   },
   {
@@ -1044,9 +967,7 @@
     "explanation": "Requestable settings must be enabled on the application (and its entitlements) for it to appear in the access request catalog.",
     "category": "Access Requests",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Enable requestable settings on the application"
-    ],
+    "correctAnswers": ["Enable requestable settings on the application"],
     "type": "Single"
   },
   {
@@ -1060,9 +981,7 @@
     "explanation": "An Entitlement Owner Review lets the entitlement owner certify whether the entitlement and the users assigned to it remain appropriate.",
     "category": "Certifications",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Entitlement Owner Review"
-    ],
+    "correctAnswers": ["Entitlement Owner Review"],
     "type": "Single"
   },
   {
@@ -1076,9 +995,7 @@
     "explanation": "Managers are commonly the primary reviewers responsible for certifying the access held by their direct reports.",
     "category": "Certifications",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Manager"
-    ],
+    "correctAnswers": ["Manager"],
     "type": "Single"
   },
   {
@@ -1092,25 +1009,16 @@
     "explanation": "SoD policies are designed to prevent users from holding combinations of access that create unacceptable risk, such as fraud.",
     "category": "SoD",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Prevent conflicting access combinations"
-    ],
+    "correctAnswers": ["Prevent conflicting access combinations"],
     "type": "Single"
   },
   {
     "prompt": "Which Saviynt object groups multiple entitlements together?",
-    "choices": [
-      "Endpoint",
-      "Campaign",
-      "Role",
-      "Dataset"
-    ],
+    "choices": ["Endpoint", "Campaign", "Role", "Dataset"],
     "explanation": "A role bundles multiple entitlements so they can be assigned, requested, and reviewed as a single unit.",
     "category": "Roles",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Role"
-    ],
+    "correctAnswers": ["Role"],
     "type": "Single"
   },
   {
@@ -1124,9 +1032,7 @@
     "explanation": "Enterprise Roles represent business-friendly groupings of access aligned to job functions or business needs.",
     "category": "Roles",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Group business access requirements"
-    ],
+    "correctAnswers": ["Group business access requirements"],
     "type": "Single"
   },
   {
@@ -1140,25 +1046,16 @@
     "explanation": "Account Import (reconciliation) brings account data from target systems into Saviynt so it reflects the current state.",
     "category": "Connectors",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Account Import"
-    ],
+    "correctAnswers": ["Account Import"],
     "type": "Single"
   },
   {
     "prompt": "Which process sends approved access to a target application?",
-    "choices": [
-      "Certification",
-      "Provisioning",
-      "Analytics",
-      "Discovery"
-    ],
+    "choices": ["Certification", "Provisioning", "Analytics", "Discovery"],
     "explanation": "Provisioning takes approved access requests and applies the corresponding changes in the target application.",
     "category": "Access Requests",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Provisioning"
-    ],
+    "correctAnswers": ["Provisioning"],
     "type": "Single"
   },
   {
@@ -1172,9 +1069,7 @@
     "explanation": "Datasets define the data that feeds analytics controls, dashboards, and reports.",
     "category": "Analytics",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Provide data for analytics and reports"
-    ],
+    "correctAnswers": ["Provide data for analytics and reports"],
     "type": "Single"
   },
   {
@@ -1188,9 +1083,7 @@
     "explanation": "SQL-based analytics queries the database directly, offering the greatest flexibility for retrieving specific data sets.",
     "category": "Analytics",
     "difficulty": "medium",
-    "correctAnswers": [
-      "SQL Analytics"
-    ],
+    "correctAnswers": ["SQL Analytics"],
     "type": "Single"
   },
   {
@@ -1204,9 +1097,7 @@
     "explanation": "Submitting a request triggers the configured approval workflow, which routes the request to the appropriate approvers.",
     "category": "Access Requests",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Approval workflow executes"
-    ],
+    "correctAnswers": ["Approval workflow executes"],
     "type": "Single"
   },
   {
@@ -1220,25 +1111,16 @@
     "explanation": "Technical Roles group fine-grained, system-level entitlements that can then be composed into business-facing Enterprise Roles.",
     "category": "Roles",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Bundle low-level entitlements"
-    ],
+    "correctAnswers": ["Bundle low-level entitlements"],
     "type": "Single"
   },
   {
     "prompt": "Which component sends notification emails?",
-    "choices": [
-      "SMTP Configuration",
-      "Endpoint",
-      "Dataset",
-      "Analytics"
-    ],
+    "choices": ["SMTP Configuration", "Endpoint", "Dataset", "Analytics"],
     "explanation": "SMTP configuration defines the mail server settings Saviynt uses to deliver notification emails to users and approvers.",
     "category": "Workflows",
     "difficulty": "easy",
-    "correctAnswers": [
-      "SMTP Configuration"
-    ],
+    "correctAnswers": ["SMTP Configuration"],
     "type": "Single"
   },
   {
@@ -1252,9 +1134,7 @@
     "explanation": "A Mover event occurs when a user's role, department, or position changes, typically requiring access to be adjusted accordingly.",
     "category": "Lifecycle Management",
     "difficulty": "easy",
-    "correctAnswers": [
-      "User changes position or department"
-    ],
+    "correctAnswers": ["User changes position or department"],
     "type": "Single"
   },
   {
@@ -1268,25 +1148,16 @@
     "explanation": "The primary certifier is the designated reviewer responsible for making the certification decision on the access in scope.",
     "category": "Certifications",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Review and certify access"
-    ],
+    "correctAnswers": ["Review and certify access"],
     "type": "Single"
   },
   {
     "prompt": "Which object represents a person's identity in Saviynt?",
-    "choices": [
-      "Account",
-      "Entitlement",
-      "User",
-      "Endpoint"
-    ],
+    "choices": ["Account", "Entitlement", "User", "Endpoint"],
     "explanation": "The User object represents an individual's identity, holding identity attributes and linking to their accounts and access.",
     "category": "Lifecycle Management",
     "difficulty": "easy",
-    "correctAnswers": [
-      "User"
-    ],
+    "correctAnswers": ["User"],
     "type": "Single"
   },
   {
@@ -1300,9 +1171,7 @@
     "explanation": "RBAC grants access by assigning users to roles that bundle the entitlements appropriate to their job function.",
     "category": "Roles",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Access granted through roles assigned to users"
-    ],
+    "correctAnswers": ["Access granted through roles assigned to users"],
     "type": "Single"
   },
   {
@@ -1316,9 +1185,7 @@
     "explanation": "The Joiner process onboards a new user, which includes provisioning the access required for their role.",
     "category": "Lifecycle Management",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Provision required access"
-    ],
+    "correctAnswers": ["Provision required access"],
     "type": "Single"
   },
   {
@@ -1332,9 +1199,7 @@
     "explanation": "Workflows automate and orchestrate business processes such as approvals, notifications, and task routing.",
     "category": "Workflows",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Define business process automation"
-    ],
+    "correctAnswers": ["Define business process automation"],
     "type": "Single"
   },
   {
@@ -1348,9 +1213,7 @@
     "explanation": "A User Access Review centers on individual users and the access they currently hold, so reviewers can validate it remains appropriate.",
     "category": "Certifications",
     "difficulty": "easy",
-    "correctAnswers": [
-      "User Access Review"
-    ],
+    "correctAnswers": ["User Access Review"],
     "type": "Single"
   },
   {
@@ -1364,25 +1227,16 @@
     "explanation": "Certification campaigns periodically confirm that existing access is still required and appropriate, flagging access to revoke otherwise.",
     "category": "Certifications",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Validate that access remains appropriate"
-    ],
+    "correctAnswers": ["Validate that access remains appropriate"],
     "type": "Single"
   },
   {
     "prompt": "Which object can contain child entitlements?",
-    "choices": [
-      "Endpoint",
-      "Entitlement",
-      "User",
-      "Dataset"
-    ],
+    "choices": ["Endpoint", "Entitlement", "User", "Dataset"],
     "explanation": "Entitlements can be modeled hierarchically, with parent entitlements containing child entitlements to reflect nested permissions.",
     "category": "Roles",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Entitlement"
-    ],
+    "correctAnswers": ["Entitlement"],
     "type": "Single"
   },
   {
@@ -1396,25 +1250,16 @@
     "explanation": "SoD violations typically arise when a user holds two or more entitlements that, in combination, create unacceptable risk.",
     "category": "SoD",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Conflicting entitlements assigned together"
-    ],
+    "correctAnswers": ["Conflicting entitlements assigned together"],
     "type": "Single"
   },
   {
     "prompt": "Which feature helps identify risky access combinations?",
-    "choices": [
-      "Campaigns",
-      "SoD Rules",
-      "Datasets",
-      "Endpoints"
-    ],
+    "choices": ["Campaigns", "SoD Rules", "Datasets", "Endpoints"],
     "explanation": "SoD Rules define which entitlement combinations are considered conflicting so they can be detected and flagged.",
     "category": "SoD",
     "difficulty": "easy",
-    "correctAnswers": [
-      "SoD Rules"
-    ],
+    "correctAnswers": ["SoD Rules"],
     "type": "Single"
   },
   {
@@ -1428,9 +1273,7 @@
     "explanation": "Identity Import synchronizes user identity attributes from authoritative sources such as HR systems into Saviynt.",
     "category": "Connectors",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Identity Import"
-    ],
+    "correctAnswers": ["Identity Import"],
     "type": "Single"
   },
   {
@@ -1444,9 +1287,7 @@
     "explanation": "Application Discovery identifies applications in the environment that are not yet onboarded or governed by Saviynt.",
     "category": "Connectors",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Discover unmanaged applications in the environment"
-    ],
+    "correctAnswers": ["Discover unmanaged applications in the environment"],
     "type": "Single"
   },
   {
@@ -1460,41 +1301,25 @@
     "explanation": "A User Campaign scopes the certification around users and the access currently assigned to them.",
     "category": "Certifications",
     "difficulty": "medium",
-    "correctAnswers": [
-      "User Campaign"
-    ],
+    "correctAnswers": ["User Campaign"],
     "type": "Single"
   },
   {
     "prompt": "Which component connects Saviynt to external applications?",
-    "choices": [
-      "Endpoint",
-      "Dataset",
-      "Workflow",
-      "Campaign"
-    ],
+    "choices": ["Endpoint", "Dataset", "Workflow", "Campaign"],
     "explanation": "Endpoints hold the connection details and configuration that link Saviynt to external target applications.",
     "category": "Connectors",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Endpoint"
-    ],
+    "correctAnswers": ["Endpoint"],
     "type": "Single"
   },
   {
     "prompt": "Which object stores access rights within applications?",
-    "choices": [
-      "Entitlement",
-      "User",
-      "Dataset",
-      "Campaign"
-    ],
+    "choices": ["Entitlement", "User", "Dataset", "Campaign"],
     "explanation": "Entitlements represent the individual access rights and permissions available within an application.",
     "category": "Roles",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Entitlement"
-    ],
+    "correctAnswers": ["Entitlement"],
     "type": "Single"
   },
   {
@@ -1508,9 +1333,7 @@
     "explanation": "Automating provisioning removes manual, error-prone steps, speeding up access delivery while improving consistency.",
     "category": "Access Requests",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Reduced manual effort and errors"
-    ],
+    "correctAnswers": ["Reduced manual effort and errors"],
     "type": "Single"
   },
   {
@@ -1524,9 +1347,7 @@
     "explanation": "The Leaver event typically triggers deprovisioning so that a departing user's access is removed from target systems.",
     "category": "Lifecycle Management",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Leaver"
-    ],
+    "correctAnswers": ["Leaver"],
     "type": "Single"
   },
   {
@@ -1540,9 +1361,7 @@
     "explanation": "A Primary Owner/Certifier must be designated so there is always an accountable reviewer for certification decisions.",
     "category": "Certifications",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Primary Owner/Certifier"
-    ],
+    "correctAnswers": ["Primary Owner/Certifier"],
     "type": "Single"
   },
   {
@@ -1556,25 +1375,16 @@
     "explanation": "A mitigation control is a compensating measure that reduces the risk of an SoD conflict when the conflicting access cannot be removed.",
     "category": "SoD",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Alternative control that reduces SoD risk"
-    ],
+    "correctAnswers": ["Alternative control that reduces SoD risk"],
     "type": "Single"
   },
   {
     "prompt": "Which module is commonly used to generate reports?",
-    "choices": [
-      "Analytics",
-      "SMTP",
-      "Endpoint",
-      "Provisioning"
-    ],
+    "choices": ["Analytics", "SMTP", "Endpoint", "Provisioning"],
     "explanation": "The Analytics module provides the controls, datasets, and queries used to generate reports and dashboards.",
     "category": "Analytics",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Analytics"
-    ],
+    "correctAnswers": ["Analytics"],
     "type": "Single"
   },
   {
@@ -1588,25 +1398,16 @@
     "explanation": "Approval workflows route requests to the appropriate approvers so access is validated before it is granted.",
     "category": "Workflows",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Validate requests before granting access"
-    ],
+    "correctAnswers": ["Validate requests before granting access"],
     "type": "Single"
   },
   {
     "prompt": "Which object typically owns business-level access definitions?",
-    "choices": [
-      "Enterprise Role",
-      "Endpoint",
-      "SMTP Server",
-      "Dataset"
-    ],
+    "choices": ["Enterprise Role", "Endpoint", "SMTP Server", "Dataset"],
     "explanation": "Enterprise Roles capture business-level access definitions aligned to job functions, separate from low-level technical permissions.",
     "category": "Roles",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Enterprise Role"
-    ],
+    "correctAnswers": ["Enterprise Role"],
     "type": "Single"
   },
   {
@@ -1620,9 +1421,7 @@
     "explanation": "Enterprise Roles can be composed of one or more Technical Roles, translating business needs into the underlying technical access.",
     "category": "Roles",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Enterprise Roles can contain Technical Roles"
-    ],
+    "correctAnswers": ["Enterprise Roles can contain Technical Roles"],
     "type": "Single"
   },
   {
@@ -1636,25 +1435,16 @@
     "explanation": "Marking an entitlement requestable makes it available in the catalog so users can request it through the access request process.",
     "category": "Access Requests",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Can be requested through the access request process"
-    ],
+    "correctAnswers": ["Can be requested through the access request process"],
     "type": "Single"
   },
   {
     "prompt": "Which component is most involved in enforcing approval chains?",
-    "choices": [
-      "Workflow",
-      "Dataset",
-      "Endpoint",
-      "Entitlement"
-    ],
+    "choices": ["Workflow", "Dataset", "Endpoint", "Entitlement"],
     "explanation": "Workflows define and enforce the sequence of approval steps a request must pass through before access is granted.",
     "category": "Workflows",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Workflow"
-    ],
+    "correctAnswers": ["Workflow"],
     "type": "Single"
   },
   {
@@ -1668,25 +1458,16 @@
     "explanation": "Certification campaigns provide a structured, recurring process to confirm that existing access remains appropriate.",
     "category": "Certifications",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Validate existing access periodically"
-    ],
+    "correctAnswers": ["Validate existing access periodically"],
     "type": "Single"
   },
   {
     "prompt": "Which object represents a user account on a target system?",
-    "choices": [
-      "User",
-      "Endpoint",
-      "Account",
-      "Entitlement"
-    ],
+    "choices": ["User", "Endpoint", "Account", "Entitlement"],
     "explanation": "An Account represents the actual user identity and credentials as they exist on a specific target system.",
     "category": "Connectors",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Account"
-    ],
+    "correctAnswers": ["Account"],
     "type": "Single"
   },
   {
@@ -1700,25 +1481,16 @@
     "explanation": "Entitlement Import brings the available permissions and access rights from a target application into Saviynt.",
     "category": "Connectors",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Entitlement Import"
-    ],
+    "correctAnswers": ["Entitlement Import"],
     "type": "Single"
   },
   {
     "prompt": "Which concept ensures users receive only access needed for their job?",
-    "choices": [
-      "Least Privilege",
-      "SMTP",
-      "Dataset Design",
-      "Discovery"
-    ],
+    "choices": ["Least Privilege", "SMTP", "Dataset Design", "Discovery"],
     "explanation": "The principle of least privilege limits a user's access to only what is necessary to perform their job functions.",
     "category": "Roles",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Least Privilege"
-    ],
+    "correctAnswers": ["Least Privilege"],
     "type": "Single"
   },
   {
@@ -1732,9 +1504,7 @@
     "explanation": "By assigning access through roles rather than individually, RBAC simplifies how access is granted, reviewed, and managed at scale.",
     "category": "Roles",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Simplified access management"
-    ],
+    "correctAnswers": ["Simplified access management"],
     "type": "Single"
   },
   {
@@ -1764,25 +1534,16 @@
     "explanation": "A cloud-native microservices design allows independent scaling and frequent feature delivery without requiring every component to be upgraded as one unit.",
     "category": "Connectors",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Cloud-native microservices architecture"
-    ],
+    "correctAnswers": ["Cloud-native microservices architecture"],
     "type": "Single"
   },
   {
     "prompt": "Which Saviynt data model object represents the target system that contains accounts and entitlements?",
-    "choices": [
-      "Endpoint",
-      "User",
-      "Security System",
-      "Campaign"
-    ],
+    "choices": ["Endpoint", "User", "Security System", "Campaign"],
     "explanation": "An endpoint models the governed target application or system where accounts and entitlements reside.",
     "category": "Connectors",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Endpoint"
-    ],
+    "correctAnswers": ["Endpoint"],
     "type": "Single"
   },
   {
@@ -1796,9 +1557,7 @@
     "explanation": "Disconnected applications can be onboarded for request, review, and governance while fulfillment tasks are completed manually.",
     "category": "Connectors",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Disconnected application with manual fulfillment"
-    ],
+    "correctAnswers": ["Disconnected application with manual fulfillment"],
     "type": "Single"
   },
   {
@@ -1812,9 +1571,7 @@
     "explanation": "Connected imports require a connector plus mapping rules so target data can be transformed into Saviynt users, accounts, and entitlements.",
     "category": "Connectors",
     "difficulty": "medium",
-    "correctAnswers": [
-      "A connector and import mapping for the application"
-    ],
+    "correctAnswers": ["A connector and import mapping for the application"],
     "type": "Single"
   },
   {
@@ -1828,9 +1585,7 @@
     "explanation": "Manual user import uses an uploaded file to create or update identities when no connected source is used.",
     "category": "Lifecycle Management",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Manual user import"
-    ],
+    "correctAnswers": ["Manual user import"],
     "type": "Single"
   },
   {
@@ -1860,9 +1615,7 @@
     "explanation": "Workday commonly acts as an authoritative HR source that feeds identity attributes into Saviynt for lifecycle processing.",
     "category": "Lifecycle Management",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Authoritative source user import"
-    ],
+    "correctAnswers": ["Authoritative source user import"],
     "type": "Single"
   },
   {
@@ -1876,9 +1629,7 @@
     "explanation": "Post-enrollment checks validate and index the application objects created during onboarding.",
     "category": "Connectors",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Post-enrollment check"
-    ],
+    "correctAnswers": ["Post-enrollment check"],
     "type": "Single"
   },
   {
@@ -1892,9 +1643,7 @@
     "explanation": "Application Discovery provides visibility into applications across the environment so they can be assessed and onboarded into governance.",
     "category": "Connectors",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Application Discovery"
-    ],
+    "correctAnswers": ["Application Discovery"],
     "type": "Single"
   },
   {
@@ -1908,9 +1657,7 @@
     "explanation": "Shared account request flows govern access to accounts used by more than one person and can add approval and tracking.",
     "category": "Access Requests",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Shared account request"
-    ],
+    "correctAnswers": ["Shared account request"],
     "type": "Single"
   },
   {
@@ -1940,9 +1687,7 @@
     "explanation": "The global request option for adding account names lets requesters provide account identifiers during the request flow.",
     "category": "Access Requests",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Allow adding account name from request form"
-    ],
+    "correctAnswers": ["Allow adding account name from request form"],
     "type": "Single"
   },
   {
@@ -1956,9 +1701,7 @@
     "explanation": "Analytics guardrails help control query execution behavior, such as query time and memory limits, to keep reporting stable.",
     "category": "Analytics",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Analytics guardrails"
-    ],
+    "correctAnswers": ["Analytics guardrails"],
     "type": "Single"
   },
   {
@@ -1972,9 +1715,7 @@
     "explanation": "Instant provisioning initiates task execution as soon as the required approval or trigger condition is met.",
     "category": "Access Requests",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Instant provisioning task"
-    ],
+    "correctAnswers": ["Instant provisioning task"],
     "type": "Single"
   },
   {
@@ -2004,9 +1745,7 @@
     "explanation": "Peer-group recommendations analyze similar users and access patterns to suggest applications, entitlements, or roles.",
     "category": "Access Requests",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Intelligent recommendations with peer groups"
-    ],
+    "correctAnswers": ["Intelligent recommendations with peer groups"],
     "type": "Single"
   },
   {
@@ -2020,9 +1759,7 @@
     "explanation": "A minimum user threshold avoids weak recommendations by requiring enough peer data before the recommendation is generated.",
     "category": "Access Requests",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Minimum user threshold for a recommendation rule"
-    ],
+    "correctAnswers": ["Minimum user threshold for a recommendation rule"],
     "type": "Single"
   },
   {
@@ -2036,9 +1773,7 @@
     "explanation": "JITA reduces standing privileged access by granting access for a limited purpose and duration.",
     "category": "Workflows",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Granting temporary elevated access only when needed"
-    ],
+    "correctAnswers": ["Granting temporary elevated access only when needed"],
     "type": "Single"
   },
   {
@@ -2052,9 +1787,7 @@
     "explanation": "Time-bound, on-demand access lets users elevate only when required and reduces the attack surface created by persistent privileges.",
     "category": "Workflows",
     "difficulty": "hard",
-    "correctAnswers": [
-      "On-demand access with time-bound approval"
-    ],
+    "correctAnswers": ["On-demand access with time-bound approval"],
     "type": "Single"
   },
   {
@@ -2068,9 +1801,7 @@
     "explanation": "Pre-start day provisioning prepares new-hire access based on effective dates so users are ready on day one without receiving access too early.",
     "category": "Lifecycle Management",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Pre-start day provisioning"
-    ],
+    "correctAnswers": ["Pre-start day provisioning"],
     "type": "Single"
   },
   {
@@ -2084,9 +1815,7 @@
     "explanation": "Technical rules automate account and access changes based on conditions such as user attributes, joins, moves, and leaves.",
     "category": "Lifecycle Management",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Technical rule"
-    ],
+    "correctAnswers": ["Technical rule"],
     "type": "Single"
   },
   {
@@ -2100,9 +1829,7 @@
     "explanation": "User update rules should define the specific attribute-change conditions that trigger their actions.",
     "category": "Lifecycle Management",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Trigger conditions on the updated attributes"
-    ],
+    "correctAnswers": ["Trigger conditions on the updated attributes"],
     "type": "Single"
   },
   {
@@ -2116,9 +1843,7 @@
     "explanation": "Birthright failures usually require checking whether the user matched the rule, the rule triggered, and the mapped access was valid.",
     "category": "Lifecycle Management",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Rule conditions, trigger type, and rule-user mappings"
-    ],
+    "correctAnswers": ["Rule conditions, trigger type, and rule-user mappings"],
     "type": "Single"
   },
   {
@@ -2148,9 +1873,7 @@
     "explanation": "User Manager Certification routes access review to the manager responsible for the users in scope.",
     "category": "Certifications",
     "difficulty": "easy",
-    "correctAnswers": [
-      "User Manager Certification"
-    ],
+    "correctAnswers": ["User Manager Certification"],
     "type": "Single"
   },
   {
@@ -2164,9 +1887,7 @@
     "explanation": "Entitlement Owner Certification asks the entitlement owner to validate users assigned to that entitlement.",
     "category": "Certifications",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Entitlement Owner Certification"
-    ],
+    "correctAnswers": ["Entitlement Owner Certification"],
     "type": "Single"
   },
   {
@@ -2180,9 +1901,7 @@
     "explanation": "The review stage covers certification decisions, completion, revocations, remediation, and evidence needed for audit.",
     "category": "Certifications",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Review certification stage"
-    ],
+    "correctAnswers": ["Review certification stage"],
     "type": "Single"
   },
   {
@@ -2196,9 +1915,7 @@
     "explanation": "Campaign templates simplify repeated review creation by preserving common campaign configuration.",
     "category": "Certifications",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Campaign templates"
-    ],
+    "correctAnswers": ["Campaign templates"],
     "type": "Single"
   },
   {
@@ -2228,9 +1945,7 @@
     "explanation": "Signal weights determine how strongly each access-risk or access-context signal contributes to the overall trust score.",
     "category": "Certifications",
     "difficulty": "medium",
-    "correctAnswers": [
-      "The signal has greater influence on the trust score"
-    ],
+    "correctAnswers": ["The signal has greater influence on the trust score"],
     "type": "Single"
   },
   {
@@ -2244,9 +1959,7 @@
     "explanation": "Banned-access signals indicate access that should not normally be held and therefore reduce confidence in retaining it.",
     "category": "Certifications",
     "difficulty": "hard",
-    "correctAnswers": [
-      "The access is in a banned-access list"
-    ],
+    "correctAnswers": ["The access is in a banned-access list"],
     "type": "Single"
   },
   {
@@ -2260,9 +1973,7 @@
     "explanation": "Analytics is used to query, report, monitor, and act on identity governance data.",
     "category": "Analytics",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Creating reports and controls from Saviynt data"
-    ],
+    "correctAnswers": ["Creating reports and controls from Saviynt data"],
     "type": "Single"
   },
   {
@@ -2276,9 +1987,7 @@
     "explanation": "SQL Query analytics allows direct querying of Saviynt data for custom reporting and controls.",
     "category": "Analytics",
     "difficulty": "medium",
-    "correctAnswers": [
-      "SQL Query"
-    ],
+    "correctAnswers": ["SQL Query"],
     "type": "Single"
   },
   {
@@ -2324,9 +2033,7 @@
     "explanation": "Run history pages provide operational evidence about analytics execution, outcomes, and saved results.",
     "category": "Analytics",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Analytics run history"
-    ],
+    "correctAnswers": ["Analytics run history"],
     "type": "Single"
   },
   {
@@ -2340,9 +2047,7 @@
     "explanation": "Transport packages export and import supported configuration objects between environments.",
     "category": "Workflows",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Transport packages"
-    ],
+    "correctAnswers": ["Transport packages"],
     "type": "Single"
   },
   {
@@ -2372,9 +2077,7 @@
     "explanation": "The Log Viewer helps locate and inspect logs for troubleshooting, including filtering around requests, jobs, and thread execution.",
     "category": "Analytics",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Saviynt Log Viewer"
-    ],
+    "correctAnswers": ["Saviynt Log Viewer"],
     "type": "Single"
   },
   {
@@ -2404,9 +2107,7 @@
     "explanation": "Role mining analyzes access patterns to recommend roles and entitlement groupings that can be reviewed and governed.",
     "category": "Roles",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Suggested roles and entitlements for governance"
-    ],
+    "correctAnswers": ["Suggested roles and entitlements for governance"],
     "type": "Single"
   },
   {
@@ -2443,18 +2144,11 @@
   },
   {
     "prompt": "Which object serves as the top-level governance container in Saviynt?",
-    "choices": [
-      "Endpoint",
-      "Application",
-      "Security System",
-      "Entitlement"
-    ],
+    "choices": ["Endpoint", "Application", "Security System", "Entitlement"],
     "explanation": "A Security System is the top-level governance container that organizes endpoints, applications, and access resources.",
     "category": "Security Systems",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Security System"
-    ],
+    "correctAnswers": ["Security System"],
     "type": "Single"
   },
   {
@@ -2468,9 +2162,7 @@
     "explanation": "Endpoints define the connection, import, and provisioning configuration for target systems.",
     "category": "Endpoints",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Provide connectivity to target systems"
-    ],
+    "correctAnswers": ["Provide connectivity to target systems"],
     "type": "Single"
   },
   {
@@ -2500,9 +2192,7 @@
     "explanation": "User Imports populate the identity repository with employee and workforce information.",
     "category": "Imports",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Load identities into Saviynt"
-    ],
+    "correctAnswers": ["Load identities into Saviynt"],
     "type": "Single"
   },
   {
@@ -2516,9 +2206,7 @@
     "explanation": "Account imports bring account information from applications into Saviynt.",
     "category": "Imports",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Discover accounts from target systems"
-    ],
+    "correctAnswers": ["Discover accounts from target systems"],
     "type": "Single"
   },
   {
@@ -2532,9 +2220,7 @@
     "explanation": "Correlation associates accounts with identities, enabling governance and reporting.",
     "category": "Correlation",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Correlation"
-    ],
+    "correctAnswers": ["Correlation"],
     "type": "Single"
   },
   {
@@ -2548,9 +2234,7 @@
     "explanation": "Uncorrelated accounts remain orphaned until a successful correlation occurs.",
     "category": "Correlation",
     "difficulty": "medium",
-    "correctAnswers": [
-      "The account becomes orphaned"
-    ],
+    "correctAnswers": ["The account becomes orphaned"],
     "type": "Single"
   },
   {
@@ -2564,41 +2248,25 @@
     "explanation": "Reconciliation imports data from target systems into Saviynt.",
     "category": "Connectors",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Reconciliation"
-    ],
+    "correctAnswers": ["Reconciliation"],
     "type": "Single"
   },
   {
     "prompt": "Which process pushes account changes OUT of Saviynt?",
-    "choices": [
-      "Analytics",
-      "Correlation",
-      "Provisioning",
-      "Review"
-    ],
+    "choices": ["Analytics", "Correlation", "Provisioning", "Review"],
     "explanation": "Provisioning executes changes in connected applications after approval.",
     "category": "Provisioning",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Provisioning"
-    ],
+    "correctAnswers": ["Provisioning"],
     "type": "Single"
   },
   {
     "prompt": "Which application type typically requires manual fulfillment?",
-    "choices": [
-      "Connected",
-      "Hybrid",
-      "Disconnected",
-      "Provisioned"
-    ],
+    "choices": ["Connected", "Hybrid", "Disconnected", "Provisioned"],
     "explanation": "Disconnected applications do not support automated provisioning and require manual fulfillment.",
     "category": "Applications",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Disconnected"
-    ],
+    "correctAnswers": ["Disconnected"],
     "type": "Single"
   },
   {
@@ -2612,41 +2280,25 @@
     "explanation": "Data transformations normalize and improve data quality before processing.",
     "category": "Data Transformation",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Standardize imported data"
-    ],
+    "correctAnswers": ["Standardize imported data"],
     "type": "Single"
   },
   {
     "prompt": "Which connector type commonly communicates through APIs?",
-    "choices": [
-      "JDBC",
-      "Flat File",
-      "REST",
-      "CSV"
-    ],
+    "choices": ["JDBC", "Flat File", "REST", "CSV"],
     "explanation": "REST connectors use APIs to communicate with cloud and SaaS applications.",
     "category": "Connectors",
     "difficulty": "easy",
-    "correctAnswers": [
-      "REST"
-    ],
+    "correctAnswers": ["REST"],
     "type": "Single"
   },
   {
     "prompt": "Which connector type allows direct integration with databases?",
-    "choices": [
-      "REST",
-      "JDBC",
-      "LDAP",
-      "SOAP"
-    ],
+    "choices": ["REST", "JDBC", "LDAP", "SOAP"],
     "explanation": "JDBC connectors interact directly with relational databases.",
     "category": "Connectors",
     "difficulty": "easy",
-    "correctAnswers": [
-      "JDBC"
-    ],
+    "correctAnswers": ["JDBC"],
     "type": "Single"
   },
   {
@@ -2660,9 +2312,7 @@
     "explanation": "Technical Rules provide extensibility and custom processing capabilities.",
     "category": "Rules",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Technical Rules"
-    ],
+    "correctAnswers": ["Technical Rules"],
     "type": "Single"
   },
   {
@@ -2676,41 +2326,25 @@
     "explanation": "User Update Rules execute when user information changes.",
     "category": "Rules",
     "difficulty": "medium",
-    "correctAnswers": [
-      "User Update Rule"
-    ],
+    "correctAnswers": ["User Update Rule"],
     "type": "Single"
   },
   {
     "prompt": "Which Saviynt component allows users to request applications, roles, and entitlements?",
-    "choices": [
-      "Analytics",
-      "ARS",
-      "Certification",
-      "Correlation"
-    ],
+    "choices": ["Analytics", "ARS", "Certification", "Correlation"],
     "explanation": "The Access Request System (ARS) manages access requests and approval workflows.",
     "category": "Access Request System",
     "difficulty": "easy",
-    "correctAnswers": [
-      "ARS"
-    ],
+    "correctAnswers": ["ARS"],
     "type": "Single"
   },
   {
     "prompt": "Which step occurs immediately before provisioning in a standard request workflow?",
-    "choices": [
-      "Correlation",
-      "Approval",
-      "Review",
-      "Analytics"
-    ],
+    "choices": ["Correlation", "Approval", "Review", "Analytics"],
     "explanation": "Provisioning only occurs after all required approvals have been completed.",
     "category": "Approval Workflow",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Approval"
-    ],
+    "correctAnswers": ["Approval"],
     "type": "Single"
   },
   {
@@ -2724,9 +2358,7 @@
     "explanation": "Roles simplify access management by grouping related entitlements together.",
     "category": "Roles",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Bundle related access"
-    ],
+    "correctAnswers": ["Bundle related access"],
     "type": "Single"
   },
   {
@@ -2740,9 +2372,7 @@
     "explanation": "Entitlements represent permissions such as AD groups, SAP roles, or permission sets.",
     "category": "Entitlements",
     "difficulty": "easy",
-    "correctAnswers": [
-      "A permission or access right"
-    ],
+    "correctAnswers": ["A permission or access right"],
     "type": "Single"
   },
   {
@@ -2756,9 +2386,7 @@
     "explanation": "The Primary Certifier is the main reviewer responsible for certification decisions.",
     "category": "Certifications",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Primary Certifier"
-    ],
+    "correctAnswers": ["Primary Certifier"],
     "type": "Single"
   },
   {
@@ -2788,25 +2416,16 @@
     "explanation": "Access Reviews ensure users retain only necessary and approved access.",
     "category": "Access Reviews",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Validate that access remains appropriate"
-    ],
+    "correctAnswers": ["Validate that access remains appropriate"],
     "type": "Single"
   },
   {
     "prompt": "Which certification action removes unnecessary access?",
-    "choices": [
-      "Delegate",
-      "Approve",
-      "Escalate",
-      "Revoke"
-    ],
+    "choices": ["Delegate", "Approve", "Escalate", "Revoke"],
     "explanation": "Revoking access initiates remediation and access removal.",
     "category": "Certifications",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Revoke"
-    ],
+    "correctAnswers": ["Revoke"],
     "type": "Single"
   },
   {
@@ -2820,9 +2439,7 @@
     "explanation": "User Access Reviews evaluate all access assigned to specific users.",
     "category": "Certifications",
     "difficulty": "medium",
-    "correctAnswers": [
-      "User Access Review"
-    ],
+    "correctAnswers": ["User Access Review"],
     "type": "Single"
   },
   {
@@ -2836,9 +2453,7 @@
     "explanation": "Roles bundle access into reusable packages, simplifying administration.",
     "category": "Roles",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Roles simplify access management and governance"
-    ],
+    "correctAnswers": ["Roles simplify access management and governance"],
     "type": "Single"
   },
   {
@@ -2852,9 +2467,7 @@
     "explanation": "SoD controls help reduce fraud and compliance risks by identifying conflicting access.",
     "category": "SoD",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Prevent toxic combinations of access"
-    ],
+    "correctAnswers": ["Prevent toxic combinations of access"],
     "type": "Single"
   },
   {
@@ -2868,9 +2481,7 @@
     "explanation": "Creating vendors and approving payments creates a conflict because one user controls multiple stages of a sensitive process.",
     "category": "SoD",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Create vendors and approve payments"
-    ],
+    "correctAnswers": ["Create vendors and approve payments"],
     "type": "Single"
   },
   {
@@ -2884,9 +2495,7 @@
     "explanation": "Analytics provides visibility into identities, access, entitlements, risks, and governance activities.",
     "category": "Analytics",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Retrieve and analyze identity data"
-    ],
+    "correctAnswers": ["Retrieve and analyze identity data"],
     "type": "Single"
   },
   {
@@ -2900,9 +2509,7 @@
     "explanation": "SQL Analytics allows direct querying of Saviynt data sources and is considered the most powerful analytics option.",
     "category": "Analytics",
     "difficulty": "medium",
-    "correctAnswers": [
-      "SQL Analytics"
-    ],
+    "correctAnswers": ["SQL Analytics"],
     "type": "Single"
   },
   {
@@ -2916,25 +2523,16 @@
     "explanation": "Elasticsearch improves scalability and response times for analytics queries.",
     "category": "Analytics",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Improved search and reporting performance"
-    ],
+    "correctAnswers": ["Improved search and reporting performance"],
     "type": "Single"
   },
   {
     "prompt": "After data is indexed into Elasticsearch, it is commonly used to create what?",
-    "choices": [
-      "Roles",
-      "Applications",
-      "Analytics Controls",
-      "Endpoints"
-    ],
+    "choices": ["Roles", "Applications", "Analytics Controls", "Endpoints"],
     "explanation": "Indexed data is leveraged to build monitoring and governance controls.",
     "category": "Analytics",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Analytics Controls"
-    ],
+    "correctAnswers": ["Analytics Controls"],
     "type": "Single"
   },
   {
@@ -2948,9 +2546,7 @@
     "explanation": "Controls evaluate data against risk and compliance requirements.",
     "category": "Controls",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Continuously monitor governance conditions"
-    ],
+    "correctAnswers": ["Continuously monitor governance conditions"],
     "type": "Single"
   },
   {
@@ -2964,9 +2560,7 @@
     "explanation": "Controls continuously monitor for policy violations such as active accounts belonging to terminated users.",
     "category": "Controls",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Analytics Control"
-    ],
+    "correctAnswers": ["Analytics Control"],
     "type": "Single"
   },
   {
@@ -2980,9 +2574,7 @@
     "explanation": "Risk scores help organizations focus on high-impact governance issues first.",
     "category": "Risk Management",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Prioritize governance efforts based on risk"
-    ],
+    "correctAnswers": ["Prioritize governance efforts based on risk"],
     "type": "Single"
   },
   {
@@ -2996,9 +2588,7 @@
     "explanation": "Privileged administrative access typically carries significantly higher risk than standard user access.",
     "category": "Risk Management",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Database Administrator Access"
-    ],
+    "correctAnswers": ["Database Administrator Access"],
     "type": "Single"
   },
   {
@@ -3012,25 +2602,16 @@
     "explanation": "Recommendations assist reviewers by analyzing patterns and historical decisions.",
     "category": "Recommendations",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Suggest certification decisions"
-    ],
+    "correctAnswers": ["Suggest certification decisions"],
     "type": "Single"
   },
   {
     "prompt": "Which ownership role is responsible for governance of a specific application?",
-    "choices": [
-      "Role Owner",
-      "Manager",
-      "Application Owner",
-      "Requester"
-    ],
+    "choices": ["Role Owner", "Manager", "Application Owner", "Requester"],
     "explanation": "Application Owners govern access, approvals, certifications, and application-specific decisions.",
     "category": "Ownership",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Application Owner"
-    ],
+    "correctAnswers": ["Application Owner"],
     "type": "Single"
   },
   {
@@ -3044,9 +2625,7 @@
     "explanation": "Entitlement Owners are responsible for managing and reviewing entitlement assignments.",
     "category": "Ownership",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Entitlement Owner"
-    ],
+    "correctAnswers": ["Entitlement Owner"],
     "type": "Single"
   },
   {
@@ -3060,9 +2639,7 @@
     "explanation": "All required approvals must be completed successfully before provisioning can occur.",
     "category": "Approval Workflow",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Request is denied"
-    ],
+    "correctAnswers": ["Request is denied"],
     "type": "Single"
   },
   {
@@ -3083,98 +2660,56 @@
   },
   {
     "prompt": "A new employee joins the company and automatically receives a standard set of access based on their department. Which lifecycle event is occurring?",
-    "choices": [
-      "Mover",
-      "Leaver",
-      "Joiner",
-      "Certification"
-    ],
+    "choices": ["Mover", "Leaver", "Joiner", "Certification"],
     "explanation": "Joiner processes handle onboarding activities such as account creation and birthright access assignment.",
     "category": "Lifecycle Management",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Joiner"
-    ],
+    "correctAnswers": ["Joiner"],
     "type": "Single"
   },
   {
     "prompt": "An employee transfers from Finance to Human Resources and requires different access. Which lifecycle event is occurring?",
-    "choices": [
-      "Joiner",
-      "Mover",
-      "Leaver",
-      "Provisioning Failure"
-    ],
+    "choices": ["Joiner", "Mover", "Leaver", "Provisioning Failure"],
     "explanation": "Mover events occur when a user's organizational attributes change, requiring access modifications.",
     "category": "Lifecycle Management",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Mover"
-    ],
+    "correctAnswers": ["Mover"],
     "type": "Single"
   },
   {
     "prompt": "An employee leaves the company and all accounts must be disabled. Which lifecycle event is occurring?",
-    "choices": [
-      "Joiner",
-      "Mover",
-      "Leaver",
-      "Correlation"
-    ],
+    "choices": ["Joiner", "Mover", "Leaver", "Correlation"],
     "explanation": "Leaver processes focus on access removal and account deactivation.",
     "category": "Lifecycle Management",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Leaver"
-    ],
+    "correctAnswers": ["Leaver"],
     "type": "Single"
   },
   {
     "prompt": "Which application type supports both automated reconciliation and automated provisioning?",
-    "choices": [
-      "Disconnected",
-      "Connected",
-      "Manual",
-      "Archived"
-    ],
+    "choices": ["Disconnected", "Connected", "Manual", "Archived"],
     "explanation": "Connected applications provide direct integration capabilities for imports and provisioning.",
     "category": "Applications",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Connected"
-    ],
+    "correctAnswers": ["Connected"],
     "type": "Single"
   },
   {
     "prompt": "Which application type may use different mechanisms for reconciliation and provisioning?",
-    "choices": [
-      "Disconnected",
-      "Hybrid",
-      "Inactive",
-      "Provisioning-only"
-    ],
+    "choices": ["Disconnected", "Hybrid", "Inactive", "Provisioning-only"],
     "explanation": "Hybrid applications use separate integration approaches for importing and provisioning.",
     "category": "Applications",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Hybrid"
-    ],
+    "correctAnswers": ["Hybrid"],
     "type": "Single"
   },
   {
     "prompt": "A company manages access through email tickets because no connector exists. Which application type best describes this situation?",
-    "choices": [
-      "Connected",
-      "Hybrid",
-      "Disconnected",
-      "Cloud Native"
-    ],
+    "choices": ["Connected", "Hybrid", "Disconnected", "Cloud Native"],
     "explanation": "Disconnected applications require manual fulfillment because no direct integration exists.",
     "category": "Applications",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Disconnected"
-    ],
+    "correctAnswers": ["Disconnected"],
     "type": "Single"
   },
   {
@@ -3188,9 +2723,7 @@
     "explanation": "Without successful correlation, imported accounts remain orphaned.",
     "category": "Correlation",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Orphan account"
-    ],
+    "correctAnswers": ["Orphan account"],
     "type": "Single"
   },
   {
@@ -3204,25 +2737,16 @@
     "explanation": "Employee IDs are frequently used because they are unique and stable identifiers.",
     "category": "Correlation",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Employee ID"
-    ],
+    "correctAnswers": ["Employee ID"],
     "type": "Single"
   },
   {
     "prompt": "A provisioning request completes all approvals but fails when attempting to create the account in the target system. What stage experienced the failure?",
-    "choices": [
-      "Approval",
-      "Correlation",
-      "Provisioning",
-      "Analytics"
-    ],
+    "choices": ["Approval", "Correlation", "Provisioning", "Analytics"],
     "explanation": "The approval workflow succeeded, but execution in the target system failed during provisioning.",
     "category": "Provisioning",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Provisioning"
-    ],
+    "correctAnswers": ["Provisioning"],
     "type": "Single"
   },
   {
@@ -3236,9 +2760,7 @@
     "explanation": "Deprovisioning removes access from users or accounts.",
     "category": "Provisioning",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Removing an entitlement"
-    ],
+    "correctAnswers": ["Removing an entitlement"],
     "type": "Single"
   },
   {
@@ -3252,9 +2774,7 @@
     "explanation": "Technical Rules are commonly used to implement custom processing and naming logic.",
     "category": "Rules",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Technical Rule"
-    ],
+    "correctAnswers": ["Technical Rule"],
     "type": "Single"
   },
   {
@@ -3268,9 +2788,7 @@
     "explanation": "User Update Rules react specifically to identity attribute changes.",
     "category": "Rules",
     "difficulty": "medium",
-    "correctAnswers": [
-      "User Update Rule"
-    ],
+    "correctAnswers": ["User Update Rule"],
     "type": "Single"
   },
   {
@@ -3300,41 +2818,25 @@
     "explanation": "Transformations standardize and enrich imported data before processing.",
     "category": "Data Transformation",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Data Transformation"
-    ],
+    "correctAnswers": ["Data Transformation"],
     "type": "Single"
   },
   {
     "prompt": "Which object stores imported application accounts?",
-    "choices": [
-      "users",
-      "entitlements",
-      "accounts",
-      "roles"
-    ],
+    "choices": ["users", "entitlements", "accounts", "roles"],
     "explanation": "The accounts table stores accounts imported from target systems.",
     "category": "Identity Repository",
     "difficulty": "medium",
-    "correctAnswers": [
-      "accounts"
-    ],
+    "correctAnswers": ["accounts"],
     "type": "Single"
   },
   {
     "prompt": "Which object stores imported identities?",
-    "choices": [
-      "accounts",
-      "roles",
-      "users",
-      "entitlements"
-    ],
+    "choices": ["accounts", "roles", "users", "entitlements"],
     "explanation": "The users table stores identity information.",
     "category": "Identity Repository",
     "difficulty": "easy",
-    "correctAnswers": [
-      "users"
-    ],
+    "correctAnswers": ["users"],
     "type": "Single"
   },
   {
@@ -3348,25 +2850,16 @@
     "explanation": "The user_accounts relationship links identities and imported accounts.",
     "category": "Identity Repository",
     "difficulty": "medium",
-    "correctAnswers": [
-      "user_accounts"
-    ],
+    "correctAnswers": ["user_accounts"],
     "type": "Single"
   },
   {
     "prompt": "A company wants to schedule account imports nightly without administrator intervention. Which Saviynt capability enables this?",
-    "choices": [
-      "Jobs",
-      "Roles",
-      "Certifications",
-      "Recommendations"
-    ],
+    "choices": ["Jobs", "Roles", "Certifications", "Recommendations"],
     "explanation": "Jobs automate recurring activities such as imports and governance tasks.",
     "category": "Jobs",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Jobs"
-    ],
+    "correctAnswers": ["Jobs"],
     "type": "Single"
   },
   {
@@ -3380,9 +2873,7 @@
     "explanation": "Regular imports ensure Saviynt reflects the current state of connected systems.",
     "category": "Jobs",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Keep identity and access data current"
-    ],
+    "correctAnswers": ["Keep identity and access data current"],
     "type": "Single"
   },
   {
@@ -3396,9 +2887,7 @@
     "explanation": "Outdated identity information often indicates issues with imports or lifecycle events.",
     "category": "Lifecycle Management",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Import and lifecycle processing"
-    ],
+    "correctAnswers": ["Import and lifecycle processing"],
     "type": "Single"
   },
   {
@@ -3428,9 +2917,7 @@
     "explanation": "Role Owners are accountable for role governance, review, and approval decisions.",
     "category": "Ownership",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Role Owner"
-    ],
+    "correctAnswers": ["Role Owner"],
     "type": "Single"
   },
   {
@@ -3444,9 +2931,7 @@
     "explanation": "Recommendations leverage historical patterns and governance data to assist reviewers.",
     "category": "Recommendations",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Recommendation Engine"
-    ],
+    "correctAnswers": ["Recommendation Engine"],
     "type": "Single"
   },
   {
@@ -3460,9 +2945,7 @@
     "explanation": "Certifications document review decisions and support compliance requirements.",
     "category": "Certifications",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Certification Campaign"
-    ],
+    "correctAnswers": ["Certification Campaign"],
     "type": "Single"
   },
   {
@@ -3476,9 +2959,7 @@
     "explanation": "Orphan account reporting identifies accounts lacking identity associations.",
     "category": "Analytics",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Orphan Account Analysis"
-    ],
+    "correctAnswers": ["Orphan Account Analysis"],
     "type": "Single"
   },
   {
@@ -3492,9 +2973,7 @@
     "explanation": "Controls continuously evaluate conditions instead of relying on point-in-time reviews.",
     "category": "Controls",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Controls provide ongoing monitoring"
-    ],
+    "correctAnswers": ["Controls provide ongoing monitoring"],
     "type": "Single"
   },
   {
@@ -3508,9 +2987,7 @@
     "explanation": "Least Privilege reduces risk by limiting unnecessary access.",
     "category": "Identity Governance",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Least Privilege"
-    ],
+    "correctAnswers": ["Least Privilege"],
     "type": "Single"
   },
   {
@@ -3524,9 +3001,7 @@
     "explanation": "SoD reports specifically identify conflicting access combinations and associated risks.",
     "category": "Analytics",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Risk and SoD Violation Report"
-    ],
+    "correctAnswers": ["Risk and SoD Violation Report"],
     "type": "Single"
   },
   {
@@ -3540,25 +3015,16 @@
     "explanation": "Remediation executes actions such as removing access that was revoked during review.",
     "category": "Certifications",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Implement review decisions"
-    ],
+    "correctAnswers": ["Implement review decisions"],
     "type": "Single"
   },
   {
     "prompt": "Which object directly contains entitlements?",
-    "choices": [
-      "Account",
-      "Security System",
-      "Endpoint",
-      "Analytics Control"
-    ],
+    "choices": ["Account", "Security System", "Endpoint", "Analytics Control"],
     "explanation": "Entitlements are assigned to accounts and represent permissions within applications.",
     "category": "Entitlements",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Account"
-    ],
+    "correctAnswers": ["Account"],
     "type": "Single"
   },
   {
@@ -3572,9 +3038,7 @@
     "explanation": "Governance depends on clearly defined owners making review and approval decisions.",
     "category": "Ownership",
     "difficulty": "easy",
-    "correctAnswers": [
-      "It establishes accountability"
-    ],
+    "correctAnswers": ["It establishes accountability"],
     "type": "Single"
   },
   {
@@ -3588,9 +3052,7 @@
     "explanation": "Correlation requires imported identities and accounts before associations can be made.",
     "category": "Correlation",
     "difficulty": "easy",
-    "correctAnswers": [
-      "User and Account Imports"
-    ],
+    "correctAnswers": ["User and Account Imports"],
     "type": "Single"
   },
   {
@@ -3604,9 +3066,7 @@
     "explanation": "Audit reports demonstrate compliance, approvals, reviews, and access decisions.",
     "category": "Analytics",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Provide evidence of governance activities"
-    ],
+    "correctAnswers": ["Provide evidence of governance activities"],
     "type": "Single"
   },
   {
@@ -3620,9 +3080,7 @@
     "explanation": "Reducing privileged or risky access generally lowers calculated risk.",
     "category": "Risk Management",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Removing unnecessary administrator access"
-    ],
+    "correctAnswers": ["Removing unnecessary administrator access"],
     "type": "Single"
   },
   {
@@ -3636,9 +3094,7 @@
     "explanation": "User Access Reviews can apply to any governed identity within scope.",
     "category": "Access Reviews",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Any governed identity"
-    ],
+    "correctAnswers": ["Any governed identity"],
     "type": "Single"
   },
   {
@@ -3652,9 +3108,7 @@
     "explanation": "Analytics is designed to retrieve and analyze access information.",
     "category": "Analytics",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Analytics"
-    ],
+    "correctAnswers": ["Analytics"],
     "type": "Single"
   },
   {
@@ -3668,25 +3122,16 @@
     "explanation": "Provisioning usually executes only after required approvals are completed.",
     "category": "Approval Workflow",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Approvals are generally required before provisioning"
-    ],
+    "correctAnswers": ["Approvals are generally required before provisioning"],
     "type": "Single"
   },
   {
     "prompt": "A manager delegates a certification to another reviewer. Which certification action occurred?",
-    "choices": [
-      "Approve",
-      "Revoke",
-      "Delegate",
-      "Remediate"
-    ],
+    "choices": ["Approve", "Revoke", "Delegate", "Remediate"],
     "explanation": "Delegation transfers review responsibility to another reviewer.",
     "category": "Certifications",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Delegate"
-    ],
+    "correctAnswers": ["Delegate"],
     "type": "Single"
   },
   {
@@ -3700,9 +3145,7 @@
     "explanation": "Periodic reviews help identify privilege creep and unnecessary access.",
     "category": "Access Reviews",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Access Reviews"
-    ],
+    "correctAnswers": ["Access Reviews"],
     "type": "Single"
   },
   {
@@ -3716,9 +3159,7 @@
     "explanation": "Without accountability, orphan accounts may represent unmanaged access.",
     "category": "Correlation",
     "difficulty": "medium",
-    "correctAnswers": [
-      "They cannot be tied to a known identity"
-    ],
+    "correctAnswers": ["They cannot be tied to a known identity"],
     "type": "Single"
   },
   {
@@ -3732,9 +3173,7 @@
     "explanation": "Elasticsearch improves analytics performance and scalability.",
     "category": "Analytics",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Elasticsearch"
-    ],
+    "correctAnswers": ["Elasticsearch"],
     "type": "Single"
   },
   {
@@ -3748,9 +3187,7 @@
     "explanation": "Request history contains approval decisions, timestamps, and provisioning outcomes.",
     "category": "Analytics",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Request History"
-    ],
+    "correctAnswers": ["Request History"],
     "type": "Single"
   },
   {
@@ -3764,9 +3201,7 @@
     "explanation": "Entitlements represent permissions such as groups, roles, or permission sets.",
     "category": "Entitlements",
     "difficulty": "easy",
-    "correctAnswers": [
-      "A permission granted within an application"
-    ],
+    "correctAnswers": ["A permission granted within an application"],
     "type": "Single"
   },
   {
@@ -3780,9 +3215,7 @@
     "explanation": "Roles allow organizations to manage access through reusable bundles.",
     "category": "Roles",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Simplified governance and provisioning"
-    ],
+    "correctAnswers": ["Simplified governance and provisioning"],
     "type": "Single"
   },
   {
@@ -3796,9 +3229,7 @@
     "explanation": "Reviews evaluate existing access to determine whether it remains appropriate.",
     "category": "Access Reviews",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Access Review"
-    ],
+    "correctAnswers": ["Access Review"],
     "type": "Single"
   },
   {
@@ -3812,9 +3243,7 @@
     "explanation": "The user has conflicting access that violates segregation of duties principles.",
     "category": "SoD",
     "difficulty": "easy",
-    "correctAnswers": [
-      "SoD Violation"
-    ],
+    "correctAnswers": ["SoD Violation"],
     "type": "Single"
   },
   {
@@ -3828,9 +3257,7 @@
     "explanation": "Controls continuously evaluate governance conditions and policy requirements.",
     "category": "Controls",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Analytics Controls"
-    ],
+    "correctAnswers": ["Analytics Controls"],
     "type": "Single"
   },
   {
@@ -3851,18 +3278,11 @@
   },
   {
     "prompt": "Which lifecycle event should trigger access removal activities?",
-    "choices": [
-      "Joiner",
-      "Mover",
-      "Leaver",
-      "Certification"
-    ],
+    "choices": ["Joiner", "Mover", "Leaver", "Certification"],
     "explanation": "Leaver processes typically initiate account disablement and access removal.",
     "category": "Lifecycle Management",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Leaver"
-    ],
+    "correctAnswers": ["Leaver"],
     "type": "Single"
   },
   {
@@ -3876,9 +3296,7 @@
     "explanation": "Ownership establishes responsibility for governance actions.",
     "category": "Ownership",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Define accountability for decisions and reviews"
-    ],
+    "correctAnswers": ["Define accountability for decisions and reviews"],
     "type": "Single"
   },
   {
@@ -3892,9 +3310,7 @@
     "explanation": "Lifecycle imports combined with analytics can validate that access removal occurred.",
     "category": "Analytics",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Import records and analytics reports"
-    ],
+    "correctAnswers": ["Import records and analytics reports"],
     "type": "Single"
   },
   {
@@ -3908,9 +3324,7 @@
     "explanation": "Controls continuously monitor for violations and governance issues.",
     "category": "Controls",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Analytics Control"
-    ],
+    "correctAnswers": ["Analytics Control"],
     "type": "Single"
   },
   {
@@ -3924,9 +3338,7 @@
     "explanation": "Regular imports keep identity information current and accurate.",
     "category": "Imports",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Scheduled Imports"
-    ],
+    "correctAnswers": ["Scheduled Imports"],
     "type": "Single"
   },
   {
@@ -3940,25 +3352,16 @@
     "explanation": "Poor correlation quality impacts identity-account relationships.",
     "category": "Correlation",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Orphan accounts or incorrect account associations"
-    ],
+    "correctAnswers": ["Orphan accounts or incorrect account associations"],
     "type": "Single"
   },
   {
     "prompt": "Which component is responsible for grouping related permissions into manageable access packages?",
-    "choices": [
-      "Role",
-      "Endpoint",
-      "Control",
-      "Connector"
-    ],
+    "choices": ["Role", "Endpoint", "Control", "Connector"],
     "explanation": "Roles aggregate entitlements into reusable bundles.",
     "category": "Roles",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Role"
-    ],
+    "correctAnswers": ["Role"],
     "type": "Single"
   },
   {
@@ -3972,25 +3375,16 @@
     "explanation": "Reviews provide current validation of access appropriateness.",
     "category": "Access Reviews",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Recent access review"
-    ],
+    "correctAnswers": ["Recent access review"],
     "type": "Single"
   },
   {
     "prompt": "Which object sits directly below Security System in the Saviynt hierarchy?",
-    "choices": [
-      "Account",
-      "Entitlement",
-      "Endpoint",
-      "Role"
-    ],
+    "choices": ["Account", "Entitlement", "Endpoint", "Role"],
     "explanation": "Security System -> Endpoint -> Application -> Account -> Entitlement.",
     "category": "Security Systems",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Endpoint"
-    ],
+    "correctAnswers": ["Endpoint"],
     "type": "Single"
   },
   {
@@ -4004,9 +3398,7 @@
     "explanation": "Analytics provides visibility across identities, accounts, and entitlements.",
     "category": "Analytics",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Analytics"
-    ],
+    "correctAnswers": ["Analytics"],
     "type": "Single"
   },
   {
@@ -4020,9 +3412,7 @@
     "explanation": "Certifications ensure access remains appropriate and compliant.",
     "category": "Certifications",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Validate access"
-    ],
+    "correctAnswers": ["Validate access"],
     "type": "Single"
   },
   {
@@ -4052,9 +3442,7 @@
     "explanation": "The request was approved and partially fulfilled, suggesting a provisioning issue affecting one entitlement.",
     "category": "Provisioning",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Provisioning logs"
-    ],
+    "correctAnswers": ["Provisioning logs"],
     "type": "Single"
   },
   {
@@ -4068,9 +3456,7 @@
     "explanation": "Role Certifications focus on validating assigned roles.",
     "category": "Certifications",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Role assignments"
-    ],
+    "correctAnswers": ["Role assignments"],
     "type": "Single"
   },
   {
@@ -4084,9 +3470,7 @@
     "explanation": "Birthright access automatically assigns standard access based on business attributes.",
     "category": "Lifecycle Management",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Birthright access"
-    ],
+    "correctAnswers": ["Birthright access"],
     "type": "Single"
   },
   {
@@ -4100,9 +3484,7 @@
     "explanation": "Shared accounts make it difficult to identify who performed actions.",
     "category": "Identity Governance",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Loss of accountability and auditability"
-    ],
+    "correctAnswers": ["Loss of accountability and auditability"],
     "type": "Single"
   },
   {
@@ -4116,9 +3498,7 @@
     "explanation": "Reconciliation imports account information into Saviynt.",
     "category": "Connectors",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Discover account data from target systems"
-    ],
+    "correctAnswers": ["Discover account data from target systems"],
     "type": "Single"
   },
   {
@@ -4132,9 +3512,7 @@
     "explanation": "Request history provides approval records and timestamps.",
     "category": "Analytics",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Request history"
-    ],
+    "correctAnswers": ["Request history"],
     "type": "Single"
   },
   {
@@ -4148,9 +3526,7 @@
     "explanation": "User Update Rules handle identity attribute changes.",
     "category": "Rules",
     "difficulty": "medium",
-    "correctAnswers": [
-      "User Update Rule"
-    ],
+    "correctAnswers": ["User Update Rule"],
     "type": "Single"
   },
   {
@@ -4164,41 +3540,25 @@
     "explanation": "Delegation allows another reviewer to complete the review.",
     "category": "Certifications",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Transfer review responsibility"
-    ],
+    "correctAnswers": ["Transfer review responsibility"],
     "type": "Single"
   },
   {
     "prompt": "Which component would most likely contain connection credentials for Active Directory?",
-    "choices": [
-      "Endpoint",
-      "Role",
-      "Entitlement",
-      "Certification"
-    ],
+    "choices": ["Endpoint", "Role", "Entitlement", "Certification"],
     "explanation": "Endpoints store connection and integration configuration.",
     "category": "Endpoints",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Endpoint"
-    ],
+    "correctAnswers": ["Endpoint"],
     "type": "Single"
   },
   {
     "prompt": "A company wants to identify users with access to both Payroll Administration and Payroll Approval. Which capability is most appropriate?",
-    "choices": [
-      "SoD Analysis",
-      "User Import",
-      "Correlation",
-      "Provisioning"
-    ],
+    "choices": ["SoD Analysis", "User Import", "Correlation", "Provisioning"],
     "explanation": "SoD identifies conflicting access combinations.",
     "category": "SoD",
     "difficulty": "medium",
-    "correctAnswers": [
-      "SoD Analysis"
-    ],
+    "correctAnswers": ["SoD Analysis"],
     "type": "Single"
   },
   {
@@ -4212,9 +3572,7 @@
     "explanation": "Entitlement Owners oversee access associated with specific permissions.",
     "category": "Ownership",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Govern entitlement assignments"
-    ],
+    "correctAnswers": ["Govern entitlement assignments"],
     "type": "Single"
   },
   {
@@ -4228,9 +3586,7 @@
     "explanation": "Access removal should occur following termination processing.",
     "category": "Lifecycle Management",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Deprovisioning"
-    ],
+    "correctAnswers": ["Deprovisioning"],
     "type": "Single"
   },
   {
@@ -4244,25 +3600,16 @@
     "explanation": "Scheduled reviews help maintain compliance and governance.",
     "category": "Certifications",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Automated governance validation"
-    ],
+    "correctAnswers": ["Automated governance validation"],
     "type": "Single"
   },
   {
     "prompt": "Which object typically represents a permission set within Salesforce?",
-    "choices": [
-      "Entitlement",
-      "Security System",
-      "Endpoint",
-      "Certification"
-    ],
+    "choices": ["Entitlement", "Security System", "Endpoint", "Certification"],
     "explanation": "Permission sets are examples of entitlements.",
     "category": "Entitlements",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Entitlement"
-    ],
+    "correctAnswers": ["Entitlement"],
     "type": "Single"
   },
   {
@@ -4276,9 +3623,7 @@
     "explanation": "Roles bundle one or more entitlements.",
     "category": "Roles",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Through entitlements contained in the role"
-    ],
+    "correctAnswers": ["Through entitlements contained in the role"],
     "type": "Single"
   },
   {
@@ -4292,9 +3637,7 @@
     "explanation": "Reviews detect inappropriate access after assignment.",
     "category": "Identity Governance",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Access Review"
-    ],
+    "correctAnswers": ["Access Review"],
     "type": "Single"
   },
   {
@@ -4308,25 +3651,16 @@
     "explanation": "Controls continuously monitor for governance issues.",
     "category": "Controls",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Identify policy violations"
-    ],
+    "correctAnswers": ["Identify policy violations"],
     "type": "Single"
   },
   {
     "prompt": "Which activity most directly supports compliance evidence generation?",
-    "choices": [
-      "Reporting",
-      "Provisioning",
-      "Correlation",
-      "Transformation"
-    ],
+    "choices": ["Reporting", "Provisioning", "Correlation", "Transformation"],
     "explanation": "Reports provide evidence for auditors and compliance teams.",
     "category": "Reporting",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Reporting"
-    ],
+    "correctAnswers": ["Reporting"],
     "type": "Single"
   },
   {
@@ -4340,9 +3674,7 @@
     "explanation": "Transformations standardize imported values.",
     "category": "Data Transformation",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Data Transformation"
-    ],
+    "correctAnswers": ["Data Transformation"],
     "type": "Single"
   },
   {
@@ -4372,9 +3704,7 @@
     "explanation": "Risk scores help focus governance activities on the most important access.",
     "category": "Risk Management",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Risk Scoring"
-    ],
+    "correctAnswers": ["Risk Scoring"],
     "type": "Single"
   },
   {
@@ -4388,9 +3718,7 @@
     "explanation": "Multiple approvers provide additional governance oversight.",
     "category": "Approval Workflow",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Multi-level approval"
-    ],
+    "correctAnswers": ["Multi-level approval"],
     "type": "Single"
   },
   {
@@ -4404,9 +3732,7 @@
     "explanation": "Mover events frequently require access adjustments.",
     "category": "Lifecycle Management",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Department change"
-    ],
+    "correctAnswers": ["Department change"],
     "type": "Single"
   },
   {
@@ -4427,18 +3753,11 @@
   },
   {
     "prompt": "Which capability is most useful for finding all privileged accounts across the organization?",
-    "choices": [
-      "Analytics",
-      "Provisioning",
-      "ARS",
-      "Transformation"
-    ],
+    "choices": ["Analytics", "Provisioning", "ARS", "Transformation"],
     "explanation": "Analytics provides visibility across identities and access assignments.",
     "category": "Analytics",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Analytics"
-    ],
+    "correctAnswers": ["Analytics"],
     "type": "Single"
   },
   {
@@ -4452,9 +3771,7 @@
     "explanation": "Approval confirms the access remains appropriate.",
     "category": "Certifications",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Access remains assigned"
-    ],
+    "correctAnswers": ["Access remains assigned"],
     "type": "Single"
   },
   {
@@ -4468,9 +3785,7 @@
     "explanation": "Controls automate governance monitoring.",
     "category": "Controls",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Continuously evaluate risk and policy compliance"
-    ],
+    "correctAnswers": ["Continuously evaluate risk and policy compliance"],
     "type": "Single"
   },
   {
@@ -4484,9 +3799,7 @@
     "explanation": "REST connectors commonly integrate cloud applications through APIs.",
     "category": "Connectors",
     "difficulty": "easy",
-    "correctAnswers": [
-      "REST Connector"
-    ],
+    "correctAnswers": ["REST Connector"],
     "type": "Single"
   },
   {
@@ -4507,18 +3820,11 @@
   },
   {
     "prompt": "Which object is directly responsible for grouping multiple entitlements into a reusable access package?",
-    "choices": [
-      "Role",
-      "Endpoint",
-      "Connector",
-      "Control"
-    ],
+    "choices": ["Role", "Endpoint", "Connector", "Control"],
     "explanation": "Roles simplify administration by bundling access together.",
     "category": "Roles",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Role"
-    ],
+    "correctAnswers": ["Role"],
     "type": "Single"
   },
   {
@@ -4532,25 +3838,16 @@
     "explanation": "Certification results document who reviewed access and what decisions were made.",
     "category": "Analytics",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Certification records and reviewer decisions"
-    ],
+    "correctAnswers": ["Certification records and reviewer decisions"],
     "type": "Single"
   },
   {
     "prompt": "A user has an Active Directory account but does not appear in any certification campaigns. Which area should be investigated first?",
-    "choices": [
-      "Correlation",
-      "Analytics",
-      "Provisioning",
-      "Reporting"
-    ],
+    "choices": ["Correlation", "Analytics", "Provisioning", "Reporting"],
     "explanation": "If the account is not properly correlated to an identity, it may not appear in identity-based governance activities.",
     "category": "Correlation",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Correlation"
-    ],
+    "correctAnswers": ["Correlation"],
     "type": "Single"
   },
   {
@@ -4564,9 +3861,7 @@
     "explanation": "Entitlement Owners are responsible for governing and approving access to specific permissions.",
     "category": "Ownership",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Entitlement Owner"
-    ],
+    "correctAnswers": ["Entitlement Owner"],
     "type": "Single"
   },
   {
@@ -4580,9 +3875,7 @@
     "explanation": "Controls continuously monitor governance conditions and can identify stale review situations.",
     "category": "Controls",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Analytics Control"
-    ],
+    "correctAnswers": ["Analytics Control"],
     "type": "Single"
   },
   {
@@ -4596,9 +3889,7 @@
     "explanation": "Application Owners provide accountability for access associated with specific applications.",
     "category": "Ownership",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Govern application access and approvals"
-    ],
+    "correctAnswers": ["Govern application access and approvals"],
     "type": "Single"
   },
   {
@@ -4612,9 +3903,7 @@
     "explanation": "Provisioning is responsible for executing approved access changes in target systems.",
     "category": "Provisioning",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Provisioning"
-    ],
+    "correctAnswers": ["Provisioning"],
     "type": "Single"
   },
   {
@@ -4628,9 +3917,7 @@
     "explanation": "Correlation requires imported identities and accounts before associations can be created.",
     "category": "Imports",
     "difficulty": "easy",
-    "correctAnswers": [
-      "User and Account Imports"
-    ],
+    "correctAnswers": ["User and Account Imports"],
     "type": "Single"
   },
   {
@@ -4644,9 +3931,7 @@
     "explanation": "The user possesses conflicting access that could enable fraud or policy violations.",
     "category": "SoD",
     "difficulty": "medium",
-    "correctAnswers": [
-      "SoD Violation"
-    ],
+    "correctAnswers": ["SoD Violation"],
     "type": "Single"
   },
   {
@@ -4660,9 +3945,7 @@
     "explanation": "Risk-based governance helps focus effort on the most critical access issues.",
     "category": "Risk Management",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Prioritize attention toward higher-risk access"
-    ],
+    "correctAnswers": ["Prioritize attention toward higher-risk access"],
     "type": "Single"
   },
   {
@@ -4676,9 +3959,7 @@
     "explanation": "User Update Rules react to identity attribute changes and can initiate access updates.",
     "category": "Rules",
     "difficulty": "medium",
-    "correctAnswers": [
-      "User Update Rule"
-    ],
+    "correctAnswers": ["User Update Rule"],
     "type": "Single"
   },
   {
@@ -4692,9 +3973,7 @@
     "explanation": "Certification records document review outcomes and provide audit evidence.",
     "category": "Reporting",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Certification Decision"
-    ],
+    "correctAnswers": ["Certification Decision"],
     "type": "Single"
   },
   {
@@ -4708,9 +3987,7 @@
     "explanation": "Roles simplify administration, certification, and provisioning activities.",
     "category": "Roles",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Role-based assignments"
-    ],
+    "correctAnswers": ["Role-based assignments"],
     "type": "Single"
   },
   {
@@ -4724,9 +4001,7 @@
     "explanation": "Orphan accounts often indicate data quality or correlation issues.",
     "category": "Correlation",
     "difficulty": "hard",
-    "correctAnswers": [
-      "High numbers of orphan accounts"
-    ],
+    "correctAnswers": ["High numbers of orphan accounts"],
     "type": "Single"
   },
   {
@@ -4740,9 +4015,7 @@
     "explanation": "Request history includes approvers, decisions, timestamps, and outcomes.",
     "category": "Reporting",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Request History Report"
-    ],
+    "correctAnswers": ["Request History Report"],
     "type": "Single"
   },
   {
@@ -4756,25 +4029,16 @@
     "explanation": "Joiner processes commonly assign standard access automatically.",
     "category": "Lifecycle Management",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Birthright Access Assignment"
-    ],
+    "correctAnswers": ["Birthright Access Assignment"],
     "type": "Single"
   },
   {
     "prompt": "Which capability is most useful for identifying users who have administrator access across multiple systems?",
-    "choices": [
-      "Analytics",
-      "Provisioning",
-      "Transformation",
-      "ARS"
-    ],
+    "choices": ["Analytics", "Provisioning", "Transformation", "ARS"],
     "explanation": "Analytics provides visibility across applications and access assignments.",
     "category": "Analytics",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Analytics"
-    ],
+    "correctAnswers": ["Analytics"],
     "type": "Single"
   },
   {
@@ -4788,9 +4052,7 @@
     "explanation": "Certifications evaluate existing access and identify issues requiring remediation.",
     "category": "Certifications",
     "difficulty": "hard",
-    "correctAnswers": [
-      "They identify inappropriate access after assignment"
-    ],
+    "correctAnswers": ["They identify inappropriate access after assignment"],
     "type": "Single"
   },
   {
@@ -4804,9 +4066,7 @@
     "explanation": "Transformations normalize and standardize imported information.",
     "category": "Data Transformation",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Data Transformation"
-    ],
+    "correctAnswers": ["Data Transformation"],
     "type": "Single"
   },
   {
@@ -4820,25 +4080,16 @@
     "explanation": "Termination information must be imported and associated before access removal occurs.",
     "category": "Lifecycle Management",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Import -> Correlation -> Deprovisioning"
-    ],
+    "correctAnswers": ["Import -> Correlation -> Deprovisioning"],
     "type": "Single"
   },
   {
     "prompt": "Which object typically contains the connection information required to communicate with a target application?",
-    "choices": [
-      "Endpoint",
-      "Entitlement",
-      "Role",
-      "Certification"
-    ],
+    "choices": ["Endpoint", "Entitlement", "Role", "Certification"],
     "explanation": "Endpoints contain connection and integration configuration details.",
     "category": "Endpoints",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Endpoint"
-    ],
+    "correctAnswers": ["Endpoint"],
     "type": "Single"
   },
   {
@@ -4852,25 +4103,16 @@
     "explanation": "Entitlement certifications verify that assigned permissions remain appropriate.",
     "category": "Certifications",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Validate entitlement assignments"
-    ],
+    "correctAnswers": ["Validate entitlement assignments"],
     "type": "Single"
   },
   {
     "prompt": "Which capability is most useful for identifying inactive accounts older than 180 days?",
-    "choices": [
-      "Analytics",
-      "Provisioning",
-      "Role Assignment",
-      "ARS"
-    ],
+    "choices": ["Analytics", "Provisioning", "Role Assignment", "ARS"],
     "explanation": "Analytics can identify accounts matching specific conditions such as inactivity.",
     "category": "Analytics",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Analytics"
-    ],
+    "correctAnswers": ["Analytics"],
     "type": "Single"
   },
   {
@@ -4884,9 +4126,7 @@
     "explanation": "Multiple approvers increase governance review and accountability.",
     "category": "Approval Workflow",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Multi-level oversight"
-    ],
+    "correctAnswers": ["Multi-level oversight"],
     "type": "Single"
   },
   {
@@ -4900,9 +4140,7 @@
     "explanation": "Reviews help identify access that has accumulated unnecessarily over time.",
     "category": "Access Reviews",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Access Reviews"
-    ],
+    "correctAnswers": ["Access Reviews"],
     "type": "Single"
   },
   {
@@ -4916,9 +4154,7 @@
     "explanation": "Elasticsearch improves scalability and analytics responsiveness.",
     "category": "Analytics",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Faster search and reporting performance"
-    ],
+    "correctAnswers": ["Faster search and reporting performance"],
     "type": "Single"
   },
   {
@@ -4932,25 +4168,16 @@
     "explanation": "Disconnected applications lack direct integration and typically require manual handling.",
     "category": "Applications",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Requires manual fulfillment processes"
-    ],
+    "correctAnswers": ["Requires manual fulfillment processes"],
     "type": "Single"
   },
   {
     "prompt": "A user appears in Saviynt but no accounts are associated with their identity after reconciliation. Which process should be investigated first?",
-    "choices": [
-      "Correlation",
-      "Certification",
-      "Analytics",
-      "Reporting"
-    ],
+    "choices": ["Correlation", "Certification", "Analytics", "Reporting"],
     "explanation": "Correlation is responsible for associating imported accounts with identities.",
     "category": "Correlation",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Correlation"
-    ],
+    "correctAnswers": ["Correlation"],
     "type": "Single"
   },
   {
@@ -4964,25 +4191,16 @@
     "explanation": "Role Owners are accountable for governance decisions related to roles.",
     "category": "Ownership",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Role Owner"
-    ],
+    "correctAnswers": ["Role Owner"],
     "type": "Single"
   },
   {
     "prompt": "A company wants to detect users who have not completed an access review assigned to them. Which capability is most useful?",
-    "choices": [
-      "Analytics",
-      "Provisioning",
-      "Transformation",
-      "Correlation"
-    ],
+    "choices": ["Analytics", "Provisioning", "Transformation", "Correlation"],
     "explanation": "Analytics can identify outstanding governance activities and review statuses.",
     "category": "Analytics",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Analytics"
-    ],
+    "correctAnswers": ["Analytics"],
     "type": "Single"
   },
   {
@@ -4996,9 +4214,7 @@
     "explanation": "Access reviews help identify and remove unnecessary accumulated access.",
     "category": "Access Reviews",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Periodic access reviews"
-    ],
+    "correctAnswers": ["Periodic access reviews"],
     "type": "Single"
   },
   {
@@ -5012,9 +4228,7 @@
     "explanation": "Governance objects should have active and accountable owners.",
     "category": "Ownership",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Ownership accountability gap"
-    ],
+    "correctAnswers": ["Ownership accountability gap"],
     "type": "Single"
   },
   {
@@ -5028,9 +4242,7 @@
     "explanation": "Accounts must first be discovered and associated with identities.",
     "category": "Correlation",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Import and Correlation"
-    ],
+    "correctAnswers": ["Import and Correlation"],
     "type": "Single"
   },
   {
@@ -5044,9 +4256,7 @@
     "explanation": "Multiple approvers provide additional governance oversight.",
     "category": "Approval Workflow",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Multi-level approval"
-    ],
+    "correctAnswers": ["Multi-level approval"],
     "type": "Single"
   },
   {
@@ -5060,57 +4270,34 @@
     "explanation": "Orphan accounts often represent access without accountability.",
     "category": "Correlation",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Identify unmanaged access"
-    ],
+    "correctAnswers": ["Identify unmanaged access"],
     "type": "Single"
   },
   {
     "prompt": "Which capability would best identify accounts with administrator privileges across multiple applications?",
-    "choices": [
-      "Analytics",
-      "Transformation",
-      "ARS",
-      "Provisioning"
-    ],
+    "choices": ["Analytics", "Transformation", "ARS", "Provisioning"],
     "explanation": "Analytics provides visibility across identities, accounts, and access assignments.",
     "category": "Analytics",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Analytics"
-    ],
+    "correctAnswers": ["Analytics"],
     "type": "Single"
   },
   {
     "prompt": "A reviewer revokes access during a certification. What should happen next?",
-    "choices": [
-      "Remediation",
-      "Correlation",
-      "Transformation",
-      "Import"
-    ],
+    "choices": ["Remediation", "Correlation", "Transformation", "Import"],
     "explanation": "Revoked access should be removed through remediation processes.",
     "category": "Certifications",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Remediation"
-    ],
+    "correctAnswers": ["Remediation"],
     "type": "Single"
   },
   {
     "prompt": "Which object typically contains AD group memberships?",
-    "choices": [
-      "Entitlement",
-      "Endpoint",
-      "Security System",
-      "Certification"
-    ],
+    "choices": ["Entitlement", "Endpoint", "Security System", "Certification"],
     "explanation": "Groups and permissions are represented as entitlements.",
     "category": "Entitlements",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Entitlement"
-    ],
+    "correctAnswers": ["Entitlement"],
     "type": "Single"
   },
   {
@@ -5124,41 +4311,25 @@
     "explanation": "Roles bundle access and reduce administrative complexity.",
     "category": "Roles",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Simplified governance"
-    ],
+    "correctAnswers": ["Simplified governance"],
     "type": "Single"
   },
   {
     "prompt": "Which capability continuously evaluates access conditions against governance policies?",
-    "choices": [
-      "Controls",
-      "Provisioning",
-      "ARS",
-      "Endpoints"
-    ],
+    "choices": ["Controls", "Provisioning", "ARS", "Endpoints"],
     "explanation": "Controls automate ongoing governance monitoring.",
     "category": "Controls",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Controls"
-    ],
+    "correctAnswers": ["Controls"],
     "type": "Single"
   },
   {
     "prompt": "A company wants to find all users who have not logged into a critical application in 180 days. Which capability is most appropriate?",
-    "choices": [
-      "Analytics",
-      "Provisioning",
-      "Correlation",
-      "Transformation"
-    ],
+    "choices": ["Analytics", "Provisioning", "Correlation", "Transformation"],
     "explanation": "Analytics can identify accounts meeting inactivity criteria.",
     "category": "Analytics",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Analytics"
-    ],
+    "correctAnswers": ["Analytics"],
     "type": "Single"
   },
   {
@@ -5172,9 +4343,7 @@
     "explanation": "Certifications document review and validation decisions.",
     "category": "Certifications",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Recent certification approval"
-    ],
+    "correctAnswers": ["Recent certification approval"],
     "type": "Single"
   },
   {
@@ -5188,25 +4357,16 @@
     "explanation": "Mover events should update access to reflect organizational changes.",
     "category": "Identity Lifecycle",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Mover process failure"
-    ],
+    "correctAnswers": ["Mover process failure"],
     "type": "Single"
   },
   {
     "prompt": "Which capability helps identify toxic access combinations before an audit discovers them?",
-    "choices": [
-      "SoD Analysis",
-      "Provisioning",
-      "ARS",
-      "Transformations"
-    ],
+    "choices": ["SoD Analysis", "Provisioning", "ARS", "Transformations"],
     "explanation": "SoD controls proactively identify conflicting access assignments.",
     "category": "SoD",
     "difficulty": "medium",
-    "correctAnswers": [
-      "SoD Analysis"
-    ],
+    "correctAnswers": ["SoD Analysis"],
     "type": "Single"
   },
   {
@@ -5220,25 +4380,16 @@
     "explanation": "Request history records approvals, timestamps, and provisioning outcomes.",
     "category": "Audit Reporting",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Request history"
-    ],
+    "correctAnswers": ["Request history"],
     "type": "Single"
   },
   {
     "prompt": "Which process is responsible for removing access when a certification decision is revoke?",
-    "choices": [
-      "Remediation",
-      "Correlation",
-      "Analytics",
-      "Transformation"
-    ],
+    "choices": ["Remediation", "Correlation", "Analytics", "Transformation"],
     "explanation": "Remediation executes review decisions.",
     "category": "Certifications",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Remediation"
-    ],
+    "correctAnswers": ["Remediation"],
     "type": "Single"
   },
   {
@@ -5252,25 +4403,16 @@
     "explanation": "Elasticsearch improves analytics scalability and responsiveness.",
     "category": "Elasticsearch Analytics",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Improved search performance"
-    ],
+    "correctAnswers": ["Improved search performance"],
     "type": "Single"
   },
   {
     "prompt": "Which governance activity helps ensure that users maintain only necessary access over time?",
-    "choices": [
-      "Access Reviews",
-      "Imports",
-      "Endpoints",
-      "Transformations"
-    ],
+    "choices": ["Access Reviews", "Imports", "Endpoints", "Transformations"],
     "explanation": "Reviews validate access appropriateness on a recurring basis.",
     "category": "Access Reviews",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Access Reviews"
-    ],
+    "correctAnswers": ["Access Reviews"],
     "type": "Single"
   },
   {
@@ -5284,73 +4426,43 @@
     "explanation": "Risk scores help prioritize governance activities.",
     "category": "Risk Management",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Risk Scoring"
-    ],
+    "correctAnswers": ["Risk Scoring"],
     "type": "Single"
   },
   {
     "prompt": "Which object typically contains the technical details required to communicate with a target system?",
-    "choices": [
-      "Endpoint",
-      "Role",
-      "Entitlement",
-      "Certification"
-    ],
+    "choices": ["Endpoint", "Role", "Entitlement", "Certification"],
     "explanation": "Endpoints define integration and connectivity information.",
     "category": "Endpoints",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Endpoint"
-    ],
+    "correctAnswers": ["Endpoint"],
     "type": "Single"
   },
   {
     "prompt": "What is the primary governance value of ownership assignments?",
-    "choices": [
-      "Accountability",
-      "Performance",
-      "Scalability",
-      "Automation"
-    ],
+    "choices": ["Accountability", "Performance", "Scalability", "Automation"],
     "explanation": "Ownership establishes responsibility for governance decisions.",
     "category": "Ownership",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Accountability"
-    ],
+    "correctAnswers": ["Accountability"],
     "type": "Single"
   },
   {
     "prompt": "A compliance team wants to verify that terminated users no longer possess privileged access. Which capability is most useful?",
-    "choices": [
-      "Analytics",
-      "Provisioning",
-      "Transformation",
-      "ARS"
-    ],
+    "choices": ["Analytics", "Provisioning", "Transformation", "ARS"],
     "explanation": "Analytics can identify terminated identities that still possess active access.",
     "category": "Analytics",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Analytics"
-    ],
+    "correctAnswers": ["Analytics"],
     "type": "Single"
   },
   {
     "prompt": "A user submits an access request for a role, but the role is not visible in the request catalog. Which area should be investigated first?",
-    "choices": [
-      "Access Request System",
-      "Correlation",
-      "Analytics",
-      "Imports"
-    ],
+    "choices": ["Access Request System", "Correlation", "Analytics", "Imports"],
     "explanation": "Requestability and catalog visibility are managed through the Access Request System.",
     "category": "Access Request System",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Access Request System"
-    ],
+    "correctAnswers": ["Access Request System"],
     "type": "Single"
   },
   {
@@ -5364,9 +4476,7 @@
     "explanation": "Completed certifications demonstrate active governance and review activities.",
     "category": "Certifications",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Completed certifications"
-    ],
+    "correctAnswers": ["Completed certifications"],
     "type": "Single"
   },
   {
@@ -5380,9 +4490,7 @@
     "explanation": "Entitlements granted through a role should typically be removed when the role is removed.",
     "category": "Roles",
     "difficulty": "hard",
-    "correctAnswers": [
-      "They should be removed"
-    ],
+    "correctAnswers": ["They should be removed"],
     "type": "Single"
   },
   {
@@ -5396,25 +4504,16 @@
     "explanation": "Ownership establishes responsibility for governance decisions.",
     "category": "Ownership",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Lack of accountability"
-    ],
+    "correctAnswers": ["Lack of accountability"],
     "type": "Single"
   },
   {
     "prompt": "A company wants to identify users who have access to an application but have never logged in. Which capability is most useful?",
-    "choices": [
-      "Analytics",
-      "Provisioning",
-      "Access Requests",
-      "Endpoints"
-    ],
+    "choices": ["Analytics", "Provisioning", "Access Requests", "Endpoints"],
     "explanation": "Analytics can identify unusual access patterns and dormant accounts.",
     "category": "Analytics",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Analytics"
-    ],
+    "correctAnswers": ["Analytics"],
     "type": "Single"
   },
   {
@@ -5428,41 +4527,25 @@
     "explanation": "Remediation executes the actions resulting from review outcomes.",
     "category": "Access Reviews",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Implement review decisions"
-    ],
+    "correctAnswers": ["Implement review decisions"],
     "type": "Single"
   },
   {
     "prompt": "Which type of application generally provides the highest level of automation?",
-    "choices": [
-      "Connected",
-      "Disconnected",
-      "Manual",
-      "Archived"
-    ],
+    "choices": ["Connected", "Disconnected", "Manual", "Archived"],
     "explanation": "Connected applications support automated provisioning and reconciliation.",
     "category": "Applications",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Connected"
-    ],
+    "correctAnswers": ["Connected"],
     "type": "Single"
   },
   {
     "prompt": "A user's account exists in a target system but does not exist in Saviynt. Which process may not have occurred successfully?",
-    "choices": [
-      "Imports",
-      "Certifications",
-      "Recommendations",
-      "Roles"
-    ],
+    "choices": ["Imports", "Certifications", "Recommendations", "Roles"],
     "explanation": "Imports bring account and identity information into Saviynt.",
     "category": "Imports",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Imports"
-    ],
+    "correctAnswers": ["Imports"],
     "type": "Single"
   },
   {
@@ -5476,9 +4559,7 @@
     "explanation": "Approvals occur before access is granted and help prevent inappropriate access.",
     "category": "Approval Workflow",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Approval Workflow"
-    ],
+    "correctAnswers": ["Approval Workflow"],
     "type": "Single"
   },
   {
@@ -5492,25 +4573,16 @@
     "explanation": "Recommendations help reviewers make informed governance decisions.",
     "category": "Recommendations",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Assist reviewer decisions"
-    ],
+    "correctAnswers": ["Assist reviewer decisions"],
     "type": "Single"
   },
   {
     "prompt": "Which object is most likely to contain a permission such as 'SAP_FINANCE_USER'?",
-    "choices": [
-      "Entitlement",
-      "Endpoint",
-      "Role Owner",
-      "Security System"
-    ],
+    "choices": ["Entitlement", "Endpoint", "Role Owner", "Security System"],
     "explanation": "Permissions and groups are modeled as entitlements.",
     "category": "Entitlements",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Entitlement"
-    ],
+    "correctAnswers": ["Entitlement"],
     "type": "Single"
   },
   {
@@ -5524,41 +4596,25 @@
     "explanation": "Governance responsibilities should reflect current organizational structures.",
     "category": "Identity Governance",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Stale approval authority"
-    ],
+    "correctAnswers": ["Stale approval authority"],
     "type": "Single"
   },
   {
     "prompt": "Which capability helps identify users assigned conflicting financial permissions?",
-    "choices": [
-      "SoD",
-      "Imports",
-      "Provisioning",
-      "Connectors"
-    ],
+    "choices": ["SoD", "Imports", "Provisioning", "Connectors"],
     "explanation": "Segregation of Duties identifies toxic access combinations.",
     "category": "SoD",
     "difficulty": "medium",
-    "correctAnswers": [
-      "SoD"
-    ],
+    "correctAnswers": ["SoD"],
     "type": "Single"
   },
   {
     "prompt": "A company wants identity updates processed automatically every night. Which capability supports this?",
-    "choices": [
-      "Jobs",
-      "Recommendations",
-      "Reporting",
-      "Roles"
-    ],
+    "choices": ["Jobs", "Recommendations", "Reporting", "Roles"],
     "explanation": "Jobs automate recurring processing activities.",
     "category": "Jobs",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Jobs"
-    ],
+    "correctAnswers": ["Jobs"],
     "type": "Single"
   },
   {
@@ -5572,41 +4628,25 @@
     "explanation": "Request records contain approvals, timestamps, and fulfillment outcomes.",
     "category": "Reporting",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Request records"
-    ],
+    "correctAnswers": ["Request records"],
     "type": "Single"
   },
   {
     "prompt": "A user is granted access automatically because they belong to the Finance department. Which lifecycle concept is most closely related?",
-    "choices": [
-      "Birthright access",
-      "SoD",
-      "Analytics",
-      "Recommendations"
-    ],
+    "choices": ["Birthright access", "SoD", "Analytics", "Recommendations"],
     "explanation": "Birthright access is commonly assigned automatically based on identity attributes.",
     "category": "Lifecycle Management",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Birthright access"
-    ],
+    "correctAnswers": ["Birthright access"],
     "type": "Single"
   },
   {
     "prompt": "Which component is responsible for communicating with external systems?",
-    "choices": [
-      "Connectors",
-      "Roles",
-      "Reviews",
-      "Recommendations"
-    ],
+    "choices": ["Connectors", "Roles", "Reviews", "Recommendations"],
     "explanation": "Connectors enable communication between Saviynt and target applications.",
     "category": "Connectors",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Connectors"
-    ],
+    "correctAnswers": ["Connectors"],
     "type": "Single"
   },
   {
@@ -5620,25 +4660,16 @@
     "explanation": "The Identity Repository is the central store for governance information.",
     "category": "Identity Repository",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Store identities and access data"
-    ],
+    "correctAnswers": ["Store identities and access data"],
     "type": "Single"
   },
   {
     "prompt": "Which capability is most useful for identifying access that violates organizational policy?",
-    "choices": [
-      "Controls",
-      "Endpoints",
-      "Applications",
-      "Roles"
-    ],
+    "choices": ["Controls", "Endpoints", "Applications", "Roles"],
     "explanation": "Controls continuously evaluate policy compliance.",
     "category": "Controls",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Controls"
-    ],
+    "correctAnswers": ["Controls"],
     "type": "Single"
   },
   {
@@ -5652,9 +4683,7 @@
     "explanation": "Identity Governance focuses on ensuring the right people have the right access.",
     "category": "Identity Governance",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Ensure appropriate access"
-    ],
+    "correctAnswers": ["Ensure appropriate access"],
     "type": "Single"
   },
   {
@@ -5668,9 +4697,7 @@
     "explanation": "Approval workflows define approval routing and requirements.",
     "category": "Approval Workflow",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Approval Workflow"
-    ],
+    "correctAnswers": ["Approval Workflow"],
     "type": "Single"
   },
   {
@@ -5684,25 +4711,16 @@
     "explanation": "Identity quality directly impacts governance accuracy.",
     "category": "Identity Governance",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Governance decisions based on incorrect information"
-    ],
+    "correctAnswers": ["Governance decisions based on incorrect information"],
     "type": "Single"
   },
   {
     "prompt": "Which object sits directly below a Security System in the governance hierarchy?",
-    "choices": [
-      "Endpoint",
-      "Role",
-      "Entitlement",
-      "Review"
-    ],
+    "choices": ["Endpoint", "Role", "Entitlement", "Review"],
     "explanation": "Security Systems contain Endpoints.",
     "category": "Security Systems",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Endpoint"
-    ],
+    "correctAnswers": ["Endpoint"],
     "type": "Single"
   },
   {
@@ -5716,25 +4734,16 @@
     "explanation": "Lifecycle processes manage access throughout employment events.",
     "category": "Lifecycle Management",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Lifecycle Management"
-    ],
+    "correctAnswers": ["Lifecycle Management"],
     "type": "Single"
   },
   {
     "prompt": "Which capability is most useful for finding access that has never been reviewed?",
-    "choices": [
-      "Analytics",
-      "Provisioning",
-      "Connectors",
-      "Applications"
-    ],
+    "choices": ["Analytics", "Provisioning", "Connectors", "Applications"],
     "explanation": "Analytics can identify review gaps and governance exceptions.",
     "category": "Analytics",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Analytics"
-    ],
+    "correctAnswers": ["Analytics"],
     "type": "Single"
   },
   {
@@ -5748,9 +4757,7 @@
     "explanation": "Certification scope depends on accurate identity and account data.",
     "category": "Certifications",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Imports and Correlation"
-    ],
+    "correctAnswers": ["Imports and Correlation"],
     "type": "Single"
   },
   {
@@ -5764,9 +4771,7 @@
     "explanation": "Approvals ensure requested access is reviewed before provisioning.",
     "category": "Access Requests",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Validate the business need for access"
-    ],
+    "correctAnswers": ["Validate the business need for access"],
     "type": "Single"
   },
   {
@@ -5780,9 +4785,7 @@
     "explanation": "Access unrelated to business responsibilities increases risk.",
     "category": "Identity Governance",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Excessive access"
-    ],
+    "correctAnswers": ["Excessive access"],
     "type": "Single"
   },
   {
@@ -5796,25 +4799,16 @@
     "explanation": "Leaver processes commonly trigger account disablement.",
     "category": "Lifecycle Management",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Lifecycle Management"
-    ],
+    "correctAnswers": ["Lifecycle Management"],
     "type": "Single"
   },
   {
     "prompt": "Which capability is most useful for identifying users with access to a deprecated application?",
-    "choices": [
-      "Analytics",
-      "Provisioning",
-      "Connectors",
-      "Workflows"
-    ],
+    "choices": ["Analytics", "Provisioning", "Connectors", "Workflows"],
     "explanation": "Analytics provides visibility into application access assignments.",
     "category": "Analytics",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Analytics"
-    ],
+    "correctAnswers": ["Analytics"],
     "type": "Single"
   },
   {
@@ -5828,9 +4822,7 @@
     "explanation": "Roles are bundles of access that grant contained entitlements.",
     "category": "Roles",
     "difficulty": "easy",
-    "correctAnswers": [
-      "The user receives the associated entitlements"
-    ],
+    "correctAnswers": ["The user receives the associated entitlements"],
     "type": "Single"
   },
   {
@@ -5844,25 +4836,16 @@
     "explanation": "Transformations standardize imported values.",
     "category": "Data Transformation",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Data Transformation"
-    ],
+    "correctAnswers": ["Data Transformation"],
     "type": "Single"
   },
   {
     "prompt": "A company wants to identify applications with no assigned owner. Which capability is most appropriate?",
-    "choices": [
-      "Analytics",
-      "Endpoints",
-      "Access Requests",
-      "Provisioning"
-    ],
+    "choices": ["Analytics", "Endpoints", "Access Requests", "Provisioning"],
     "explanation": "Analytics can identify governance gaps such as missing ownership.",
     "category": "Analytics",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Analytics"
-    ],
+    "correctAnswers": ["Analytics"],
     "type": "Single"
   },
   {
@@ -5876,9 +4859,7 @@
     "explanation": "Escalations help ensure approvals continue moving forward.",
     "category": "Workflows",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Prevent approval bottlenecks"
-    ],
+    "correctAnswers": ["Prevent approval bottlenecks"],
     "type": "Single"
   },
   {
@@ -5892,9 +4873,7 @@
     "explanation": "Access should follow approved governance processes.",
     "category": "Approval Workflow",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Approval bypass"
-    ],
+    "correctAnswers": ["Approval bypass"],
     "type": "Single"
   },
   {
@@ -5908,25 +4887,16 @@
     "explanation": "Reviews validate ongoing access appropriateness.",
     "category": "Access Reviews",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Access Reviews"
-    ],
+    "correctAnswers": ["Access Reviews"],
     "type": "Single"
   },
   {
     "prompt": "A company wants to identify users whose managers have not changed in the repository despite HR updates. Which area should be investigated?",
-    "choices": [
-      "Imports",
-      "Roles",
-      "Recommendations",
-      "Controls"
-    ],
+    "choices": ["Imports", "Roles", "Recommendations", "Controls"],
     "explanation": "Identity updates rely on successful imports from authoritative sources.",
     "category": "Imports",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Imports"
-    ],
+    "correctAnswers": ["Imports"],
     "type": "Single"
   },
   {
@@ -5940,41 +4910,25 @@
     "explanation": "Least privilege minimizes unnecessary access exposure.",
     "category": "Identity Governance",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Least privilege"
-    ],
+    "correctAnswers": ["Least privilege"],
     "type": "Single"
   },
   {
     "prompt": "A company wants to detect inactive accounts every week automatically. Which capability should be configured?",
-    "choices": [
-      "Controls",
-      "Endpoints",
-      "Roles",
-      "Recommendations"
-    ],
+    "choices": ["Controls", "Endpoints", "Roles", "Recommendations"],
     "explanation": "Controls continuously evaluate governance conditions.",
     "category": "Controls",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Controls"
-    ],
+    "correctAnswers": ["Controls"],
     "type": "Single"
   },
   {
     "prompt": "Which category provides evidence that governance reviews occurred?",
-    "choices": [
-      "Reporting",
-      "Provisioning",
-      "Connectors",
-      "Imports"
-    ],
+    "choices": ["Reporting", "Provisioning", "Connectors", "Imports"],
     "explanation": "Reports provide evidence of governance activities.",
     "category": "Reporting",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Reporting"
-    ],
+    "correctAnswers": ["Reporting"],
     "type": "Single"
   },
   {
@@ -5988,41 +4942,25 @@
     "explanation": "Users may accumulate access if mover processes are incomplete.",
     "category": "Lifecycle Management",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Access accumulation"
-    ],
+    "correctAnswers": ["Access accumulation"],
     "type": "Single"
   },
   {
     "prompt": "Which category is most directly responsible for linking accounts and identities?",
-    "choices": [
-      "Correlation",
-      "Roles",
-      "Analytics",
-      "Reporting"
-    ],
+    "choices": ["Correlation", "Roles", "Analytics", "Reporting"],
     "explanation": "Correlation associates accounts with identities.",
     "category": "Correlation",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Correlation"
-    ],
+    "correctAnswers": ["Correlation"],
     "type": "Single"
   },
   {
     "prompt": "A user requests an entitlement directly rather than through a role. Which category manages this process?",
-    "choices": [
-      "Access Request System",
-      "Analytics",
-      "Controls",
-      "Imports"
-    ],
+    "choices": ["Access Request System", "Analytics", "Controls", "Imports"],
     "explanation": "ARS manages requests for applications, roles, and entitlements.",
     "category": "Access Request System",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Access Request System"
-    ],
+    "correctAnswers": ["Access Request System"],
     "type": "Single"
   },
   {
@@ -6036,9 +4974,7 @@
     "explanation": "Provisioning executes approved access changes.",
     "category": "Provisioning",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Provisioning"
-    ],
+    "correctAnswers": ["Provisioning"],
     "type": "Single"
   },
   {
@@ -6052,25 +4988,16 @@
     "explanation": "Transformations standardize imported values.",
     "category": "Data Transformation",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Data Transformation"
-    ],
+    "correctAnswers": ["Data Transformation"],
     "type": "Single"
   },
   {
     "prompt": "Which governance activity is most likely to identify an unnecessary administrator account?",
-    "choices": [
-      "Access Reviews",
-      "Connectors",
-      "Endpoints",
-      "Imports"
-    ],
+    "choices": ["Access Reviews", "Connectors", "Endpoints", "Imports"],
     "explanation": "Reviews evaluate whether privileged access remains appropriate.",
     "category": "Access Reviews",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Access Reviews"
-    ],
+    "correctAnswers": ["Access Reviews"],
     "type": "Single"
   },
   {
@@ -6084,25 +5011,16 @@
     "explanation": "Security Systems act as top-level governance containers.",
     "category": "Security Systems",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Organize governance objects"
-    ],
+    "correctAnswers": ["Organize governance objects"],
     "type": "Single"
   },
   {
     "prompt": "Which category is most useful for proving compliance during an audit?",
-    "choices": [
-      "Reporting",
-      "Correlation",
-      "Recommendations",
-      "Endpoints"
-    ],
+    "choices": ["Reporting", "Correlation", "Recommendations", "Endpoints"],
     "explanation": "Reports provide documented evidence for auditors.",
     "category": "Reporting",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Reporting"
-    ],
+    "correctAnswers": ["Reporting"],
     "type": "Single"
   },
   {
@@ -6116,25 +5034,16 @@
     "explanation": "Analytics can identify outstanding governance activities.",
     "category": "Analytics",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Analytics"
-    ],
+    "correctAnswers": ["Analytics"],
     "type": "Single"
   },
   {
     "prompt": "Which governance category focuses on ensuring the right users have the right access at the right time?",
-    "choices": [
-      "Identity Governance",
-      "Endpoints",
-      "Imports",
-      "Connectors"
-    ],
+    "choices": ["Identity Governance", "Endpoints", "Imports", "Connectors"],
     "explanation": "This is the core objective of Identity Governance.",
     "category": "Identity Governance",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Identity Governance"
-    ],
+    "correctAnswers": ["Identity Governance"],
     "type": "Single"
   },
   {
@@ -6148,41 +5057,25 @@
     "explanation": "The role assignment succeeded, suggesting the issue occurred while executing access changes.",
     "category": "Provisioning",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Provisioning"
-    ],
+    "correctAnswers": ["Provisioning"],
     "type": "Single"
   },
   {
     "prompt": "A company discovers that terminated employees are still appearing in access request approval chains. Which area is most likely responsible?",
-    "choices": [
-      "Lifecycle Management",
-      "Analytics",
-      "Roles",
-      "Entitlements"
-    ],
+    "choices": ["Lifecycle Management", "Analytics", "Roles", "Entitlements"],
     "explanation": "Termination and organizational changes should be reflected through lifecycle processes.",
     "category": "Lifecycle Management",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Lifecycle Management"
-    ],
+    "correctAnswers": ["Lifecycle Management"],
     "type": "Single"
   },
   {
     "prompt": "Which category is most useful for identifying requests that have been waiting for approval for more than 30 days?",
-    "choices": [
-      "Analytics",
-      "Provisioning",
-      "Correlation",
-      "Security Systems"
-    ],
+    "choices": ["Analytics", "Provisioning", "Correlation", "Security Systems"],
     "explanation": "Analytics can identify stalled requests and approval bottlenecks.",
     "category": "Analytics",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Analytics"
-    ],
+    "correctAnswers": ["Analytics"],
     "type": "Single"
   },
   {
@@ -6196,9 +5089,7 @@
     "explanation": "Roles simplify access management by bundling commonly requested access.",
     "category": "Roles",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Add the entitlement to an appropriate role"
-    ],
+    "correctAnswers": ["Add the entitlement to an appropriate role"],
     "type": "Single"
   },
   {
@@ -6228,9 +5119,7 @@
     "explanation": "Approval workflows define approvers and approval requirements.",
     "category": "Approval Workflow",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Approval Workflow"
-    ],
+    "correctAnswers": ["Approval Workflow"],
     "type": "Single"
   },
   {
@@ -6244,41 +5133,25 @@
     "explanation": "Approval and review evidence provide the strongest justification for access.",
     "category": "Reporting",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Request history and certification history"
-    ],
+    "correctAnswers": ["Request history and certification history"],
     "type": "Single"
   },
   {
     "prompt": "Which category is most useful for identifying users whose access exceeds their peers in similar job functions?",
-    "choices": [
-      "Analytics",
-      "Provisioning",
-      "Security Systems",
-      "Endpoints"
-    ],
+    "choices": ["Analytics", "Provisioning", "Security Systems", "Endpoints"],
     "explanation": "Analytics can identify access outliers and unusual access patterns.",
     "category": "Analytics",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Analytics"
-    ],
+    "correctAnswers": ["Analytics"],
     "type": "Single"
   },
   {
     "prompt": "A company wants manager changes to automatically update future approval routing. Which category is most directly involved?",
-    "choices": [
-      "User Update Rules",
-      "Roles",
-      "Controls",
-      "Certifications"
-    ],
+    "choices": ["User Update Rules", "Roles", "Controls", "Certifications"],
     "explanation": "Approval routing often depends on current manager information.",
     "category": "Rules",
     "difficulty": "hard",
-    "correctAnswers": [
-      "User Update Rules"
-    ],
+    "correctAnswers": ["User Update Rules"],
     "type": "Single"
   },
   {
@@ -6292,57 +5165,34 @@
     "explanation": "Ownership ensures someone is responsible for access decisions.",
     "category": "Ownership",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Accountability for permissions"
-    ],
+    "correctAnswers": ["Accountability for permissions"],
     "type": "Single"
   },
   {
     "prompt": "Which category is most useful for identifying applications that have never been certified?",
-    "choices": [
-      "Analytics",
-      "Provisioning",
-      "Connectors",
-      "Workflows"
-    ],
+    "choices": ["Analytics", "Provisioning", "Connectors", "Workflows"],
     "explanation": "Analytics can identify governance gaps and review deficiencies.",
     "category": "Analytics",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Analytics"
-    ],
+    "correctAnswers": ["Analytics"],
     "type": "Single"
   },
   {
     "prompt": "A company wants access removed immediately after a certification revocation. Which category is responsible for executing the removal?",
-    "choices": [
-      "Provisioning",
-      "Imports",
-      "Recommendations",
-      "Endpoints"
-    ],
+    "choices": ["Provisioning", "Imports", "Recommendations", "Endpoints"],
     "explanation": "Provisioning performs the actual access removal in target systems.",
     "category": "Provisioning",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Provisioning"
-    ],
+    "correctAnswers": ["Provisioning"],
     "type": "Single"
   },
   {
     "prompt": "A user receives access to two roles that together create a toxic access combination. Which category should detect this?",
-    "choices": [
-      "SoD",
-      "Imports",
-      "Recommendations",
-      "Ownership"
-    ],
+    "choices": ["SoD", "Imports", "Recommendations", "Ownership"],
     "explanation": "SoD evaluates conflicting access combinations regardless of how access was granted.",
     "category": "SoD",
     "difficulty": "hard",
-    "correctAnswers": [
-      "SoD"
-    ],
+    "correctAnswers": ["SoD"],
     "type": "Single"
   },
   {
@@ -6356,25 +5206,16 @@
     "explanation": "Correlation requires reliable identifiers to associate accounts accurately.",
     "category": "Correlation",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Incorrect account associations"
-    ],
+    "correctAnswers": ["Incorrect account associations"],
     "type": "Single"
   },
   {
     "prompt": "A company wants to monitor privileged access assignments continuously instead of waiting for quarterly reviews. Which capability is best suited?",
-    "choices": [
-      "Controls",
-      "Roles",
-      "Connectors",
-      "Applications"
-    ],
+    "choices": ["Controls", "Roles", "Connectors", "Applications"],
     "explanation": "Controls provide ongoing monitoring of governance conditions.",
     "category": "Controls",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Controls"
-    ],
+    "correctAnswers": ["Controls"],
     "type": "Single"
   },
   {
@@ -6388,25 +5229,16 @@
     "explanation": "Transformations normalize imported values before governance processing.",
     "category": "Data Transformation",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Data Transformation"
-    ],
+    "correctAnswers": ["Data Transformation"],
     "type": "Single"
   },
   {
     "prompt": "A company wants to identify users who have never completed an assigned certification review. Which capability should be used?",
-    "choices": [
-      "Analytics",
-      "Endpoints",
-      "Provisioning",
-      "Applications"
-    ],
+    "choices": ["Analytics", "Endpoints", "Provisioning", "Applications"],
     "explanation": "Analytics can identify incomplete governance activities.",
     "category": "Analytics",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Analytics"
-    ],
+    "correctAnswers": ["Analytics"],
     "type": "Single"
   },
   {
@@ -6420,9 +5252,7 @@
     "explanation": "Joiner processes commonly drive onboarding access assignments.",
     "category": "Lifecycle Management",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Lifecycle Management"
-    ],
+    "correctAnswers": ["Lifecycle Management"],
     "type": "Single"
   },
   {
@@ -6436,9 +5266,7 @@
     "explanation": "Disconnected applications generally require manual fulfillment.",
     "category": "Applications",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Access fulfillment requires manual intervention"
-    ],
+    "correctAnswers": ["Access fulfillment requires manual intervention"],
     "type": "Single"
   },
   {
@@ -6452,41 +5280,25 @@
     "explanation": "Potential SoD violations should receive additional scrutiny.",
     "category": "SoD",
     "difficulty": "hard",
-    "correctAnswers": [
-      "The request is flagged for review before approval"
-    ],
+    "correctAnswers": ["The request is flagged for review before approval"],
     "type": "Single"
   },
   {
     "prompt": "Which category is most useful when investigating why access review campaigns contain outdated manager information?",
-    "choices": [
-      "Imports",
-      "Roles",
-      "Recommendations",
-      "Provisioning"
-    ],
+    "choices": ["Imports", "Roles", "Recommendations", "Provisioning"],
     "explanation": "Manager data is typically sourced from imported identity information.",
     "category": "Imports",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Imports"
-    ],
+    "correctAnswers": ["Imports"],
     "type": "Single"
   },
   {
     "prompt": "A company wants every identity change processed automatically without administrator intervention. Which capability supports this?",
-    "choices": [
-      "Jobs",
-      "Endpoints",
-      "Entitlements",
-      "Recommendations"
-    ],
+    "choices": ["Jobs", "Endpoints", "Entitlements", "Recommendations"],
     "explanation": "Jobs automate recurring governance processing.",
     "category": "Jobs",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Jobs"
-    ],
+    "correctAnswers": ["Jobs"],
     "type": "Single"
   },
   {
@@ -6500,25 +5312,16 @@
     "explanation": "Reviews evaluate whether privileged access remains necessary.",
     "category": "Access Reviews",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Access Reviews"
-    ],
+    "correctAnswers": ["Access Reviews"],
     "type": "Single"
   },
   {
     "prompt": "Which category is primarily responsible for creating the relationship between an identity and an imported account?",
-    "choices": [
-      "Correlation",
-      "Provisioning",
-      "Reporting",
-      "Ownership"
-    ],
+    "choices": ["Correlation", "Provisioning", "Reporting", "Ownership"],
     "explanation": "Correlation links identities and accounts together.",
     "category": "Correlation",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Correlation"
-    ],
+    "correctAnswers": ["Correlation"],
     "type": "Single"
   },
   {
@@ -6532,9 +5335,7 @@
     "explanation": "Reporting demonstrates governance activities and compliance.",
     "category": "Reporting",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Provide visibility and audit evidence"
-    ],
+    "correctAnswers": ["Provide visibility and audit evidence"],
     "type": "Single"
   },
   {
@@ -6548,9 +5349,7 @@
     "explanation": "Security Systems provide a governance container for related endpoints and applications.",
     "category": "Security Systems",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Logical grouping and governance organization"
-    ],
+    "correctAnswers": ["Logical grouping and governance organization"],
     "type": "Single"
   },
   {
@@ -6564,9 +5363,7 @@
     "explanation": "Ownership ensures there is a responsible party for access reviews, approvals, and governance decisions.",
     "category": "Ownership",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Establish accountability for governance decisions"
-    ],
+    "correctAnswers": ["Establish accountability for governance decisions"],
     "type": "Single"
   },
   {
@@ -6580,9 +5377,7 @@
     "explanation": "User Update Rules execute based on changes to specific identity attributes.",
     "category": "Rules",
     "difficulty": "medium",
-    "correctAnswers": [
-      "A condition evaluating department attribute changes"
-    ],
+    "correctAnswers": ["A condition evaluating department attribute changes"],
     "type": "Single"
   },
   {
@@ -6596,9 +5391,7 @@
     "explanation": "Import jobs refresh identity information from authoritative systems.",
     "category": "Jobs",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Import job"
-    ],
+    "correctAnswers": ["Import job"],
     "type": "Single"
   },
   {
@@ -6612,25 +5405,16 @@
     "explanation": "Recommendations provide guidance but do not replace reviewer accountability.",
     "category": "Recommendations",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Assist reviewer decision making"
-    ],
+    "correctAnswers": ["Assist reviewer decision making"],
     "type": "Single"
   },
   {
     "prompt": "Which component stores the authoritative identity record within Saviynt?",
-    "choices": [
-      "Identity Repository",
-      "Endpoint",
-      "Entitlement",
-      "Workflow"
-    ],
+    "choices": ["Identity Repository", "Endpoint", "Entitlement", "Workflow"],
     "explanation": "The Identity Repository stores identity information used throughout governance processes.",
     "category": "Identity Repository",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Identity Repository"
-    ],
+    "correctAnswers": ["Identity Repository"],
     "type": "Single"
   },
   {
@@ -6644,9 +5428,7 @@
     "explanation": "Technical Rules evaluate conditions and execute associated actions automatically.",
     "category": "Rules",
     "difficulty": "medium",
-    "correctAnswers": [
-      "When rule conditions are satisfied"
-    ],
+    "correctAnswers": ["When rule conditions are satisfied"],
     "type": "Single"
   },
   {
@@ -6660,9 +5442,7 @@
     "explanation": "Lifecycle and provisioning records provide evidence of successful deprovisioning.",
     "category": "Reporting",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Lifecycle and provisioning audit report"
-    ],
+    "correctAnswers": ["Lifecycle and provisioning audit report"],
     "type": "Single"
   },
   {
@@ -6676,25 +5456,16 @@
     "explanation": "Authentication failures commonly originate from endpoint connection settings.",
     "category": "Endpoints",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Endpoint connection configuration"
-    ],
+    "correctAnswers": ["Endpoint connection configuration"],
     "type": "Single"
   },
   {
     "prompt": "What governance principle requires clear accountability for access decisions?",
-    "choices": [
-      "Ownership",
-      "Provisioning",
-      "Correlation",
-      "Importing"
-    ],
+    "choices": ["Ownership", "Provisioning", "Correlation", "Importing"],
     "explanation": "Governance relies on clearly assigned accountability.",
     "category": "Identity Governance",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Ownership"
-    ],
+    "correctAnswers": ["Ownership"],
     "type": "Single"
   },
   {
@@ -6708,25 +5479,16 @@
     "explanation": "Poor recommendation quality often results from bad peer-group data or outdated access patterns.",
     "category": "Recommendations",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Recommendation data quality and peer logic"
-    ],
+    "correctAnswers": ["Recommendation data quality and peer logic"],
     "type": "Single"
   },
   {
     "prompt": "Which scheduled activity is most likely responsible for executing recurring analytics controls?",
-    "choices": [
-      "Job",
-      "Role",
-      "Entitlement",
-      "Endpoint"
-    ],
+    "choices": ["Job", "Role", "Entitlement", "Endpoint"],
     "explanation": "Jobs automate recurring processing throughout the platform.",
     "category": "Jobs",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Job"
-    ],
+    "correctAnswers": ["Job"],
     "type": "Single"
   },
   {
@@ -6740,9 +5502,7 @@
     "explanation": "Ownership establishes responsibility throughout the governance model.",
     "category": "Identity Governance",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Accountability"
-    ],
+    "correctAnswers": ["Accountability"],
     "type": "Single"
   },
   {
@@ -6756,41 +5516,25 @@
     "explanation": "Connection testing verifies connectivity and credentials.",
     "category": "Endpoints",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Validate communication with the target system"
-    ],
+    "correctAnswers": ["Validate communication with the target system"],
     "type": "Single"
   },
   {
     "prompt": "Which category is most closely associated with automated birthright access assignment?",
-    "choices": [
-      "Technical Rules",
-      "Reporting",
-      "Recommendations",
-      "Ownership"
-    ],
+    "choices": ["Technical Rules", "Reporting", "Recommendations", "Ownership"],
     "explanation": "Technical Rules commonly automate birthright access assignments.",
     "category": "Rules",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Technical Rules"
-    ],
+    "correctAnswers": ["Technical Rules"],
     "type": "Single"
   },
   {
     "prompt": "A manager relationship changes but approval routing does not update. Which area should be investigated?",
-    "choices": [
-      "User Update Rules",
-      "Analytics",
-      "Entitlements",
-      "Endpoints"
-    ],
+    "choices": ["User Update Rules", "Analytics", "Entitlements", "Endpoints"],
     "explanation": "User Update Rules often process identity attribute changes affecting approvals.",
     "category": "Rules",
     "difficulty": "hard",
-    "correctAnswers": [
-      "User Update Rules"
-    ],
+    "correctAnswers": ["User Update Rules"],
     "type": "Single"
   },
   {
@@ -6804,9 +5548,7 @@
     "explanation": "Reporting supports compliance, auditing, and operational oversight.",
     "category": "Reporting",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Provide visibility and audit evidence"
-    ],
+    "correctAnswers": ["Provide visibility and audit evidence"],
     "type": "Single"
   },
   {
@@ -6820,9 +5562,7 @@
     "explanation": "Ownership should always remain assigned to an active accountable individual.",
     "category": "Ownership",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Assign a new owner"
-    ],
+    "correctAnswers": ["Assign a new owner"],
     "type": "Single"
   },
   {
@@ -6836,9 +5576,7 @@
     "explanation": "Lifecycle processing depends on identity attributes and status.",
     "category": "Identity Repository",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Identity record"
-    ],
+    "correctAnswers": ["Identity record"],
     "type": "Single"
   },
   {
@@ -6852,9 +5590,7 @@
     "explanation": "Many imports, controls, and lifecycle processes depend on scheduled jobs.",
     "category": "Jobs",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Governance processes may become stale"
-    ],
+    "correctAnswers": ["Governance processes may become stale"],
     "type": "Single"
   },
   {
@@ -6868,9 +5604,7 @@
     "explanation": "Ownership exists to ensure accountability and governance oversight.",
     "category": "Ownership",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Access decisions have clear accountable approvers"
-    ],
+    "correctAnswers": ["Access decisions have clear accountable approvers"],
     "type": "Single"
   },
   {
@@ -6884,9 +5618,7 @@
     "explanation": "Endpoints require valid authentication information to communicate with targets.",
     "category": "Endpoints",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Connection credentials"
-    ],
+    "correctAnswers": ["Connection credentials"],
     "type": "Single"
   },
   {
@@ -6900,9 +5632,7 @@
     "explanation": "Recommendations support but do not replace governance decisions.",
     "category": "Recommendations",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Reviewers remain accountable for final decisions"
-    ],
+    "correctAnswers": ["Reviewers remain accountable for final decisions"],
     "type": "Single"
   },
   {
@@ -6916,9 +5646,7 @@
     "explanation": "Identity quality directly affects governance accuracy.",
     "category": "Identity Repository",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Accurate governance decisions"
-    ],
+    "correctAnswers": ["Accurate governance decisions"],
     "type": "Single"
   },
   {
@@ -6932,9 +5660,7 @@
     "explanation": "Governance requires ownership and responsibility for decisions.",
     "category": "Identity Governance",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Accountability"
-    ],
+    "correctAnswers": ["Accountability"],
     "type": "Single"
   },
   {
@@ -6948,9 +5674,7 @@
     "explanation": "User Update Rules only execute when their configured trigger conditions are satisfied.",
     "category": "Rules",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Whether the triggering attribute actually changed"
-    ],
+    "correctAnswers": ["Whether the triggering attribute actually changed"],
     "type": "Single"
   },
   {
@@ -6980,9 +5704,7 @@
     "explanation": "Entitlement Owners govern entitlement usage, requestability, and approvals.",
     "category": "Ownership",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Entitlement Owner"
-    ],
+    "correctAnswers": ["Entitlement Owner"],
     "type": "Single"
   },
   {
@@ -6996,9 +5718,7 @@
     "explanation": "Stale identity data impacts nearly every governance process.",
     "category": "Jobs",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Identity data may no longer reflect reality"
-    ],
+    "correctAnswers": ["Identity data may no longer reflect reality"],
     "type": "Single"
   },
   {
@@ -7012,9 +5732,7 @@
     "explanation": "Provisioning reports provide visibility into fulfillment outcomes.",
     "category": "Reporting",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Provisioning audit report"
-    ],
+    "correctAnswers": ["Provisioning audit report"],
     "type": "Single"
   },
   {
@@ -7028,9 +5746,7 @@
     "explanation": "Correlation keys help associate imported records with existing identities.",
     "category": "Identity Repository",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Uniquely identify and match identities"
-    ],
+    "correctAnswers": ["Uniquely identify and match identities"],
     "type": "Single"
   },
   {
@@ -7044,9 +5760,7 @@
     "explanation": "Ownership is a foundational governance control.",
     "category": "Identity Governance",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Lack of accountability for access decisions"
-    ],
+    "correctAnswers": ["Lack of accountability for access decisions"],
     "type": "Single"
   },
   {
@@ -7060,9 +5774,7 @@
     "explanation": "Endpoint connectivity depends on successful authentication.",
     "category": "Endpoints",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Invalid authentication credentials"
-    ],
+    "correctAnswers": ["Invalid authentication credentials"],
     "type": "Single"
   },
   {
@@ -7083,18 +5795,11 @@
   },
   {
     "prompt": "Which scheduled process commonly executes analytics controls on a recurring basis?",
-    "choices": [
-      "Job",
-      "Role",
-      "Entitlement",
-      "Workflow"
-    ],
+    "choices": ["Job", "Role", "Entitlement", "Workflow"],
     "explanation": "Jobs automate recurring governance processing.",
     "category": "Jobs",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Job"
-    ],
+    "correctAnswers": ["Job"],
     "type": "Single"
   },
   {
@@ -7108,9 +5813,7 @@
     "explanation": "Recommendations are only as reliable as the data they analyze.",
     "category": "Recommendations",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Recommendation source data and model logic"
-    ],
+    "correctAnswers": ["Recommendation source data and model logic"],
     "type": "Single"
   },
   {
@@ -7124,9 +5827,7 @@
     "explanation": "Ownership ensures responsibility for access-related decisions.",
     "category": "Ownership",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Governance accountability"
-    ],
+    "correctAnswers": ["Governance accountability"],
     "type": "Single"
   },
   {
@@ -7140,9 +5841,7 @@
     "explanation": "Technical Rules can grant or remove access based on configured logic.",
     "category": "Rules",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Rule conditions and action logic"
-    ],
+    "correctAnswers": ["Rule conditions and action logic"],
     "type": "Single"
   },
   {
@@ -7156,9 +5855,7 @@
     "explanation": "Auditors typically require visibility into privileged access holders and approvals.",
     "category": "Reporting",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Privileged access assignment report"
-    ],
+    "correctAnswers": ["Privileged access assignment report"],
     "type": "Single"
   },
   {
@@ -7188,9 +5885,7 @@
     "explanation": "Traceability is a key governance requirement.",
     "category": "Identity Governance",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Accountability"
-    ],
+    "correctAnswers": ["Accountability"],
     "type": "Single"
   },
   {
@@ -7204,9 +5899,7 @@
     "explanation": "Connectivity alone does not guarantee provisioning capability.",
     "category": "Endpoints",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Provisioning operation mappings and permissions"
-    ],
+    "correctAnswers": ["Provisioning operation mappings and permissions"],
     "type": "Single"
   },
   {
@@ -7220,9 +5913,7 @@
     "explanation": "Department changes often require access reevaluation.",
     "category": "Rules",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Validation of access after organizational changes"
-    ],
+    "correctAnswers": ["Validation of access after organizational changes"],
     "type": "Single"
   },
   {
@@ -7236,9 +5927,7 @@
     "explanation": "Recommendations improve reviewer efficiency while preserving accountability.",
     "category": "Recommendations",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Helping reviewers focus on likely decisions"
-    ],
+    "correctAnswers": ["Helping reviewers focus on likely decisions"],
     "type": "Single"
   },
   {
@@ -7268,9 +5957,7 @@
     "explanation": "Role Owners are responsible for governance of role contents and assignments.",
     "category": "Ownership",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Role Owner"
-    ],
+    "correctAnswers": ["Role Owner"],
     "type": "Single"
   },
   {
@@ -7284,25 +5971,16 @@
     "explanation": "Poor identity quality leads to poor governance outcomes.",
     "category": "Identity Repository",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Governance decisions depend on accurate identity data"
-    ],
+    "correctAnswers": ["Governance decisions depend on accurate identity data"],
     "type": "Single"
   },
   {
     "prompt": "A governance dashboard shows applications with no certifications in the past year. Which category is most directly involved?",
-    "choices": [
-      "Reporting",
-      "Endpoints",
-      "Recommendations",
-      "Jobs"
-    ],
+    "choices": ["Reporting", "Endpoints", "Recommendations", "Jobs"],
     "explanation": "Reporting provides visibility into governance coverage and review activity.",
     "category": "Reporting",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Reporting"
-    ],
+    "correctAnswers": ["Reporting"],
     "type": "Single"
   },
   {
@@ -7332,9 +6010,7 @@
     "explanation": "Together, these rules automate access decisions throughout the identity lifecycle.",
     "category": "Identity Governance",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Automated lifecycle governance"
-    ],
+    "correctAnswers": ["Automated lifecycle governance"],
     "type": "Single"
   },
   {
@@ -7348,9 +6024,7 @@
     "explanation": "Rules depend on accurate identity attributes to evaluate eligibility.",
     "category": "Rules",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Source identity attributes used by the rule"
-    ],
+    "correctAnswers": ["Source identity attributes used by the rule"],
     "type": "Single"
   },
   {
@@ -7364,9 +6038,7 @@
     "explanation": "User Update Rules are triggered by changes to identity data.",
     "category": "Rules",
     "difficulty": "easy",
-    "correctAnswers": [
-      "React to identity attribute changes"
-    ],
+    "correctAnswers": ["React to identity attribute changes"],
     "type": "Single"
   },
   {
@@ -7380,9 +6052,7 @@
     "explanation": "Inactive owners create governance gaps and approval risks.",
     "category": "Ownership",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Governance accountability may be weakened"
-    ],
+    "correctAnswers": ["Governance accountability may be weakened"],
     "type": "Single"
   },
   {
@@ -7396,9 +6066,7 @@
     "explanation": "Certification jobs drive governance review activities.",
     "category": "Jobs",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Required reviews may not occur"
-    ],
+    "correctAnswers": ["Required reviews may not occur"],
     "type": "Single"
   },
   {
@@ -7412,9 +6080,7 @@
     "explanation": "Certification records demonstrate review activity and reviewer decisions.",
     "category": "Reporting",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Certification completion report"
-    ],
+    "correctAnswers": ["Certification completion report"],
     "type": "Single"
   },
   {
@@ -7428,9 +6094,7 @@
     "explanation": "Unique identities improve correlation accuracy.",
     "category": "Identity Repository",
     "difficulty": "medium",
-    "correctAnswers": [
-      "To prevent incorrect account associations"
-    ],
+    "correctAnswers": ["To prevent incorrect account associations"],
     "type": "Single"
   },
   {
@@ -7444,9 +6108,7 @@
     "explanation": "Every governance decision should have a responsible decision maker.",
     "category": "Identity Governance",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Accountability"
-    ],
+    "correctAnswers": ["Accountability"],
     "type": "Single"
   },
   {
@@ -7460,9 +6122,7 @@
     "explanation": "Application Owners govern access associated with their applications.",
     "category": "Ownership",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Application Owner"
-    ],
+    "correctAnswers": ["Application Owner"],
     "type": "Single"
   },
   {
@@ -7476,9 +6136,7 @@
     "explanation": "Termination events commonly trigger access removal.",
     "category": "Rules",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Automated deprovisioning"
-    ],
+    "correctAnswers": ["Automated deprovisioning"],
     "type": "Single"
   },
   {
@@ -7492,9 +6150,7 @@
     "explanation": "Ownership reporting identifies accountability gaps.",
     "category": "Reporting",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Ownership coverage report"
-    ],
+    "correctAnswers": ["Ownership coverage report"],
     "type": "Single"
   },
   {
@@ -7508,9 +6164,7 @@
     "explanation": "Governance decisions depend on accurate identity information.",
     "category": "Identity Repository",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Incorrect access decisions"
-    ],
+    "correctAnswers": ["Incorrect access decisions"],
     "type": "Single"
   },
   {
@@ -7524,9 +6178,7 @@
     "explanation": "Broad unintended access usually indicates rule misconfiguration.",
     "category": "Rules",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Rule logic and eligibility conditions"
-    ],
+    "correctAnswers": ["Rule logic and eligibility conditions"],
     "type": "Single"
   },
   {
@@ -7540,9 +6192,7 @@
     "explanation": "Dashboards help monitor governance performance and risks.",
     "category": "Reporting",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Provide visibility into governance health"
-    ],
+    "correctAnswers": ["Provide visibility into governance health"],
     "type": "Single"
   },
   {
@@ -7556,9 +6206,7 @@
     "explanation": "Reviews should be performed by responsible decision makers.",
     "category": "Identity Governance",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Accountability"
-    ],
+    "correctAnswers": ["Accountability"],
     "type": "Single"
   },
   {
@@ -7572,9 +6220,7 @@
     "explanation": "Poor recommendations often indicate poor source data or peer grouping.",
     "category": "Recommendations",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Recommendation quality and peer analysis"
-    ],
+    "correctAnswers": ["Recommendation quality and peer analysis"],
     "type": "Single"
   },
   {
@@ -7595,18 +6241,11 @@
   },
   {
     "prompt": "Which repository object is most likely to contain manager information?",
-    "choices": [
-      "Identity",
-      "Endpoint",
-      "Entitlement",
-      "Application"
-    ],
+    "choices": ["Identity", "Endpoint", "Entitlement", "Application"],
     "explanation": "Manager relationships are stored as part of identity data.",
     "category": "Identity Repository",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Identity"
-    ],
+    "correctAnswers": ["Identity"],
     "type": "Single"
   },
   {
@@ -7620,9 +6259,7 @@
     "explanation": "Traceability is a core governance objective.",
     "category": "Identity Governance",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Accountability"
-    ],
+    "correctAnswers": ["Accountability"],
     "type": "Single"
   },
   {
@@ -7636,9 +6273,7 @@
     "explanation": "Role Owners are typically responsible for role governance decisions.",
     "category": "Ownership",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Role Owner"
-    ],
+    "correctAnswers": ["Role Owner"],
     "type": "Single"
   },
   {
@@ -7652,9 +6287,7 @@
     "explanation": "Rules depend on current identity data.",
     "category": "Rules",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Identity imports"
-    ],
+    "correctAnswers": ["Identity imports"],
     "type": "Single"
   },
   {
@@ -7668,9 +6301,7 @@
     "explanation": "Auditors typically require evidence that access was removed.",
     "category": "Reporting",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Deprovisioning audit report"
-    ],
+    "correctAnswers": ["Deprovisioning audit report"],
     "type": "Single"
   },
   {
@@ -7691,18 +6322,11 @@
   },
   {
     "prompt": "A Technical Rule grants access during onboarding. Which lifecycle event is most closely associated with this activity?",
-    "choices": [
-      "Joiner",
-      "Mover",
-      "Leaver",
-      "Certification"
-    ],
+    "choices": ["Joiner", "Mover", "Leaver", "Certification"],
     "explanation": "Onboarding access assignments are typically Joiner activities.",
     "category": "Lifecycle Management",
     "difficulty": "easy",
-    "correctAnswers": [
-      "Joiner"
-    ],
+    "correctAnswers": ["Joiner"],
     "type": "Single"
   },
   {
@@ -7716,9 +6340,7 @@
     "explanation": "Identity quality directly affects governance quality.",
     "category": "Identity Governance",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Access decisions become less reliable"
-    ],
+    "correctAnswers": ["Access decisions become less reliable"],
     "type": "Single"
   },
   {
@@ -7732,9 +6354,7 @@
     "explanation": "Peer analysis compares users with similar business characteristics.",
     "category": "Recommendations",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Similar users often require similar access"
-    ],
+    "correctAnswers": ["Similar users often require similar access"],
     "type": "Single"
   },
   {
@@ -7748,9 +6368,7 @@
     "explanation": "Manager relationships are typically sourced through identity imports.",
     "category": "Jobs",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Identity import failure"
-    ],
+    "correctAnswers": ["Identity import failure"],
     "type": "Single"
   },
   {
@@ -7764,9 +6382,7 @@
     "explanation": "Ownership assignments can become stale over time.",
     "category": "Ownership",
     "difficulty": "medium",
-    "correctAnswers": [
-      "People and organizational structures change"
-    ],
+    "correctAnswers": ["People and organizational structures change"],
     "type": "Single"
   },
   {
@@ -7780,9 +6396,7 @@
     "explanation": "Correlation depends on reliable identity data.",
     "category": "Identity Repository",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Missing or incorrect correlation attributes"
-    ],
+    "correctAnswers": ["Missing or incorrect correlation attributes"],
     "type": "Single"
   },
   {
@@ -7796,9 +6410,7 @@
     "explanation": "Dashboards aggregate governance metrics into a centralized view.",
     "category": "Reporting",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Governance dashboard"
-    ],
+    "correctAnswers": ["Governance dashboard"],
     "type": "Single"
   },
   {
@@ -7812,9 +6424,7 @@
     "explanation": "These capabilities work together to automate governance while preserving accountability.",
     "category": "Identity Governance",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Deliver scalable, accountable governance automation"
-    ],
+    "correctAnswers": ["Deliver scalable, accountable governance automation"],
     "type": "Single"
   },
   {
@@ -7828,9 +6438,7 @@
     "explanation": "Successful execution alone does not guarantee quality outcomes.",
     "category": "Identity Governance",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Automation depends on data quality"
-    ],
+    "correctAnswers": ["Automation depends on data quality"],
     "type": "Single"
   },
   {
@@ -7844,25 +6452,16 @@
     "explanation": "Ownership coverage is a direct measure of governance accountability.",
     "category": "Reporting",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Percentage of governed objects with assigned owners"
-    ],
+    "correctAnswers": ["Percentage of governed objects with assigned owners"],
     "type": "Single"
   },
   {
     "prompt": "A company wants to ensure that every new identity receives access, approvals, reviews, and ownership oversight throughout employment. Which category best represents this end-to-end objective?",
-    "choices": [
-      "Identity Governance",
-      "Reporting",
-      "Connectors",
-      "Endpoints"
-    ],
+    "choices": ["Identity Governance", "Reporting", "Connectors", "Endpoints"],
     "explanation": "Identity Governance encompasses the complete lifecycle of access management and oversight.",
     "category": "Identity Governance",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Identity Governance"
-    ],
+    "correctAnswers": ["Identity Governance"],
     "type": "Single"
   },
   {
@@ -7876,9 +6475,7 @@
     "explanation": "Ownership is the foundation of governance accountability.",
     "category": "Identity Governance",
     "difficulty": "medium",
-    "correctAnswers": [
-      "Accountability"
-    ],
+    "correctAnswers": ["Accountability"],
     "type": "Single"
   },
   {
@@ -7892,9 +6489,7 @@
     "explanation": "Organizational changes often require access reassessment.",
     "category": "Rules",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Continuous validation of access appropriateness"
-    ],
+    "correctAnswers": ["Continuous validation of access appropriateness"],
     "type": "Single"
   },
   {
@@ -7908,25 +6503,16 @@
     "explanation": "Identity quality is the foundation of effective governance.",
     "category": "Identity Repository",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Accurate, complete, and current identity information"
-    ],
+    "correctAnswers": ["Accurate, complete, and current identity information"],
     "type": "Single"
   },
   {
     "prompt": "Which category is ultimately responsible for ensuring governance decisions remain defensible during audits?",
-    "choices": [
-      "Governance",
-      "Endpoints",
-      "Connectors",
-      "Applications"
-    ],
+    "choices": ["Governance", "Endpoints", "Connectors", "Applications"],
     "explanation": "Governance establishes the controls, accountability, and evidence required to support audit scrutiny.",
     "category": "Identity Governance",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Governance"
-    ],
+    "correctAnswers": ["Governance"],
     "type": "Single"
   },
   {
@@ -7940,9 +6526,7 @@
     "explanation": "Identity Governance brings together people, processes, controls, and technology to manage access responsibly.",
     "category": "Identity Governance",
     "difficulty": "hard",
-    "correctAnswers": [
-      "Identity Governance"
-    ],
+    "correctAnswers": ["Identity Governance"],
     "type": "Single"
   },
   {
@@ -8049,11 +6633,7 @@
       "Reporting",
       "Recommendations"
     ],
-    "correctAnswers": [
-      "Access Reviews",
-      "SoD",
-      "Lifecycle Management"
-    ],
+    "correctAnswers": ["Access Reviews", "SoD", "Lifecycle Management"],
     "explanation": "These capabilities actively manage and reduce unnecessary access.",
     "category": "Identity Governance",
     "difficulty": "hard"
@@ -8579,11 +7159,7 @@
       "Provisioning",
       "Connectors"
     ],
-    "correctAnswers": [
-      "Analytics",
-      "Reporting",
-      "Access Reviews"
-    ],
+    "correctAnswers": ["Analytics", "Reporting", "Access Reviews"],
     "explanation": "Analytics identifies candidates, reporting provides evidence, and Access Reviews govern the access.",
     "category": "Analytics",
     "difficulty": "hard"
@@ -8714,12 +7290,7 @@
       "Endpoint",
       "Certification Decision"
     ],
-    "correctAnswers": [
-      "Identity",
-      "Role",
-      "Entitlement",
-      "Endpoint"
-    ],
+    "correctAnswers": ["Identity", "Role", "Entitlement", "Endpoint"],
     "explanation": "Joiner processing creates identities, provisions accounts through endpoints, and assigns roles and entitlements.",
     "category": "Lifecycle Management",
     "difficulty": "medium"
@@ -8886,19 +7457,8 @@
   {
     "type": "Multiple",
     "prompt": "A company wants continuous visibility into failed imports, orphan accounts, overdue certifications, and inactive owners. Which capabilities contribute? (Choose all that apply)",
-    "choices": [
-      "Analytics",
-      "Reporting",
-      "Jobs",
-      "Controls",
-      "SMTP"
-    ],
-    "correctAnswers": [
-      "Analytics",
-      "Reporting",
-      "Jobs",
-      "Controls"
-    ],
+    "choices": ["Analytics", "Reporting", "Jobs", "Controls", "SMTP"],
+    "correctAnswers": ["Analytics", "Reporting", "Jobs", "Controls"],
     "explanation": "Monitoring governance health requires automated jobs, analytics, controls, and reporting.",
     "category": "Analytics",
     "difficulty": "hard"
@@ -9113,11 +7673,7 @@
       "Recommendations",
       "Endpoint Testing"
     ],
-    "correctAnswers": [
-      "Analytics",
-      "Controls",
-      "Scheduled Jobs"
-    ],
+    "correctAnswers": ["Analytics", "Controls", "Scheduled Jobs"],
     "explanation": "Continuous governance relies on scheduled analytics and controls rather than periodic reviews alone.",
     "category": "Controls",
     "difficulty": "hard"
@@ -9513,12 +8069,7 @@
       "Scheduled Jobs",
       "Endpoint Testing"
     ],
-    "correctAnswers": [
-      "Analytics",
-      "Controls",
-      "Reporting",
-      "Scheduled Jobs"
-    ],
+    "correctAnswers": ["Analytics", "Controls", "Reporting", "Scheduled Jobs"],
     "explanation": "Continuous governance relies on automated monitoring, scheduled execution, analytics, and reporting.",
     "category": "Analytics",
     "difficulty": "hard"
@@ -9713,12 +8264,7 @@
       "Approval Workflow",
       "Reporting"
     ],
-    "correctAnswers": [
-      "Access Reviews",
-      "Analytics",
-      "Controls",
-      "Reporting"
-    ],
+    "correctAnswers": ["Access Reviews", "Analytics", "Controls", "Reporting"],
     "explanation": "Detective controls identify existing issues, whereas Approval Workflow is preventive.",
     "category": "Controls",
     "difficulty": "hard"
@@ -12425,6 +10971,242 @@
       "Analytics",
       "Reporting",
       "SoD"
+    ],
+    "category": "Identity Governance",
+    "difficulty": "hard"
+  },
+  {
+    "type": "consultant",
+    "prompt": "A global bank has completed its first full production import after integrating Workday, Active Directory, Microsoft Entra ID, SAP, and ServiceNow. Identity imports completed successfully, but nearly 2,500 Active Directory accounts remain orphaned while SAP accounts correlate correctly. Which actions should be prioritized? (Choose all that apply)",
+    "choices": [
+      "Review Active Directory correlation rules",
+      "Validate Active Directory account imports",
+      "Compare correlation attributes between SAP and AD",
+      "Review Identity Transformations",
+      "Restart certification campaigns",
+      "Review duplicate identities",
+      "Validate employee identifiers from Workday",
+      "Delete orphan accounts"
+    ],
+    "correctAnswers": [
+      "Review Active Directory correlation rules",
+      "Validate Active Directory account imports",
+      "Compare correlation attributes between SAP and AD",
+      "Review Identity Transformations",
+      "Review duplicate identities",
+      "Validate employee identifiers from Workday"
+    ],
+    "category": "Correlation",
+    "difficulty": "hard"
+  },
+  {
+    "type": "consultant",
+    "prompt": "A customer reports that every Joiner receives Active Directory and Microsoft Entra ID access automatically, but only managers receive Salesforce access. Engineers and HR employees never receive Salesforce accounts. Which areas should be investigated first? (Choose all that apply)",
+    "choices": [
+      "Technical Rules",
+      "Birthright role assignments",
+      "Lifecycle Management",
+      "Salesforce provisioning configuration",
+      "Recommendation engine",
+      "Role mappings",
+      "Endpoint authentication",
+      "Certification campaign"
+    ],
+    "correctAnswers": [
+      "Technical Rules",
+      "Birthright role assignments",
+      "Lifecycle Management",
+      "Salesforce provisioning configuration",
+      "Role mappings"
+    ],
+    "category": "Technical Rules",
+    "difficulty": "hard"
+  },
+  {
+    "type": "consultant",
+    "prompt": "An external auditor asks how the company proves that privileged access cannot be granted without appropriate governance. Which evidence should the implementation team present? (Choose all that apply)",
+    "choices": [
+      "Approval history",
+      "Provisioning logs",
+      "Request history",
+      "Certification history",
+      "Ownership assignments",
+      "Endpoint configuration",
+      "SoD policy evaluation",
+      "Analytics dashboards"
+    ],
+    "correctAnswers": [
+      "Approval history",
+      "Provisioning logs",
+      "Request history",
+      "Certification history",
+      "Ownership assignments",
+      "SoD policy evaluation"
+    ],
+    "category": "Reporting",
+    "difficulty": "hard"
+  },
+  {
+    "type": "consultant",
+    "prompt": "A healthcare customer has over 6,000 employees. Following an HR reorganization, managers complain that approval requests and certifications continue routing to previous managers. Which areas should be investigated? (Choose all that apply)",
+    "choices": [
+      "Identity Imports",
+      "Identity Repository",
+      "Manager attribute mapping",
+      "User Update Rules",
+      "Approval Workflow",
+      "Correlation Rules",
+      "Analytics",
+      "Recommendations"
+    ],
+    "correctAnswers": [
+      "Identity Imports",
+      "Identity Repository",
+      "Manager attribute mapping",
+      "User Update Rules",
+      "Approval Workflow"
+    ],
+    "category": "Approval Workflow",
+    "difficulty": "hard"
+  },
+  {
+    "type": "consultant",
+    "prompt": "A quarterly audit identifies several privileged SAP roles that have never appeared in any certification campaign. Which implementation areas should be reviewed? (Choose all that apply)",
+    "choices": [
+      "Certification scope",
+      "Application ownership",
+      "Role ownership",
+      "Entitlement ownership",
+      "Analytics datasets",
+      "Provisioning retry queue",
+      "Endpoint SSL configuration",
+      "Campaign scheduling"
+    ],
+    "correctAnswers": [
+      "Certification scope",
+      "Application ownership",
+      "Role ownership",
+      "Entitlement ownership",
+      "Campaign scheduling"
+    ],
+    "category": "Certifications",
+    "difficulty": "hard"
+  },
+  {
+    "type": "consultant",
+    "prompt": "A customer wants to implement a Zero Trust access model. Which Saviynt capabilities should form the core of the implementation? (Choose all that apply)",
+    "choices": [
+      "Lifecycle Management",
+      "Approval Workflows",
+      "SoD Policies",
+      "Continuous Analytics",
+      "Access Reviews",
+      "Recommendations",
+      "Ownership",
+      "Scheduled Jobs"
+    ],
+    "correctAnswers": [
+      "Lifecycle Management",
+      "Approval Workflows",
+      "SoD Policies",
+      "Continuous Analytics",
+      "Access Reviews",
+      "Ownership"
+    ],
+    "category": "Identity Governance",
+    "difficulty": "hard"
+  },
+  {
+    "type": "consultant",
+    "prompt": "An implementation team notices that provisioning succeeds for every endpoint except Oracle ERP. Which investigations are most appropriate? (Choose all that apply)",
+    "choices": [
+      "Oracle endpoint configuration",
+      "Connector mappings",
+      "Provisioning logs",
+      "Endpoint authentication",
+      "Oracle availability",
+      "Recommendation engine",
+      "Certification ownership",
+      "Approval Workflow"
+    ],
+    "correctAnswers": [
+      "Oracle endpoint configuration",
+      "Connector mappings",
+      "Provisioning logs",
+      "Endpoint authentication",
+      "Oracle availability"
+    ],
+    "category": "Provisioning",
+    "difficulty": "hard"
+  },
+  {
+    "type": "consultant",
+    "prompt": "A customer wants Analytics to identify governance issues before auditors do. Which scenarios should Analytics continuously monitor? (Choose all that apply)",
+    "choices": [
+      "Orphan accounts",
+      "Failed provisioning",
+      "SoD violations",
+      "Inactive owners",
+      "Overdue certifications",
+      "Duplicate identities",
+      "Desktop inventory",
+      "Browser versions"
+    ],
+    "correctAnswers": [
+      "Orphan accounts",
+      "Failed provisioning",
+      "SoD violations",
+      "Inactive owners",
+      "Overdue certifications",
+      "Duplicate identities"
+    ],
+    "category": "Analytics",
+    "difficulty": "hard"
+  },
+  {
+    "type": "consultant",
+    "prompt": "A company introduces a new Finance ERP containing highly privileged roles. Before making these roles requestable, which governance activities should be completed? (Choose all that apply)",
+    "choices": [
+      "Assign Application Owner",
+      "Assign Role Owners",
+      "Configure Approval Workflow",
+      "Define SoD Policies",
+      "Verify Provisioning",
+      "Include in Certifications",
+      "Enable Recommendations",
+      "Publish immediately"
+    ],
+    "correctAnswers": [
+      "Assign Application Owner",
+      "Assign Role Owners",
+      "Configure Approval Workflow",
+      "Define SoD Policies",
+      "Verify Provisioning",
+      "Include in Certifications"
+    ],
+    "category": "Applications",
+    "difficulty": "hard"
+  },
+  {
+    "type": "consultant",
+    "prompt": "Six months after go-live, the customer asks for a health assessment of their Saviynt implementation. Which indicators would suggest a mature Identity Governance program? (Choose all that apply)",
+    "choices": [
+      "Low orphan account count",
+      "High certification completion rate",
+      "Consistent ownership coverage",
+      "Few unresolved SoD violations",
+      "Reliable automated provisioning",
+      "Accurate lifecycle processing",
+      "Large number of connectors",
+      "High number of access requests"
+    ],
+    "correctAnswers": [
+      "Low orphan account count",
+      "High certification completion rate",
+      "Consistent ownership coverage",
+      "Few unresolved SoD violations",
+      "Reliable automated provisioning",
+      "Accurate lifecycle processing"
     ],
     "category": "Identity Governance",
     "difficulty": "hard"
