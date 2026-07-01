@@ -1,4 +1,13 @@
 export type Difficulty = "easy" | "medium" | "hard";
+export type QuestionType =
+  | "Single"
+  | "Multiple"
+  | "Order"
+  | "Match"
+  | "Scenario"
+  | "Timeline"
+  | "Workflow"
+  | "Consultant";
 
 export const examCategories = [
   "Access Requests",
@@ -11,7 +20,6 @@ export const examCategories = [
   "Data Transformation",
   "Endpoints",
   "Entitlements",
-  "Governance",
   "Identity Governance",
   "Identity Repository",
   "SoD",
@@ -23,8 +31,6 @@ export const examCategories = [
   "Recommendations",
   "Risk Management",
   "Rules",
-  "Technical Rules",
-  "User Update Rules",
   "Lifecycle Management",
   "Connectors",
   "Imports",
@@ -38,9 +44,12 @@ export type ExamCategory = (typeof examCategories)[number];
 
 export type ExamQuestion = {
   id: number;
+  type: QuestionType;
   prompt: string;
+  statements?: string[];
   choices: string[];
-  correctAnswer: string;
+  correctAnswers: string[];
+  correctAnswerCount?: number;
   explanation: string;
   category: ExamCategory;
   difficulty: Difficulty;

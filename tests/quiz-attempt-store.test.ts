@@ -14,9 +14,10 @@ function makeQuestion(
 ): ExamQuestion {
   return {
     id,
+    type: "Single",
     prompt: `Question ${id}`,
     choices: ["A", "B", "C"],
-    correctAnswer: "A",
+    correctAnswers: ["A"],
     explanation: "Because A is correct.",
     category,
     difficulty,
@@ -44,13 +45,18 @@ describe("quiz attempt store", () => {
       questions,
     });
 
-    const result = store.completeQuizAttempt(attemptId, {
-      1: "A",
-      2: "B",
-    });
+    const result = store.completeQuizAttempt(
+      attemptId,
+      {
+        1: "A",
+        2: "B",
+      },
+      125,
+    );
     const analytics = store.getQuizAnalytics();
 
     expect(result?.percentage).toBe(25);
+    expect(result?.durationSeconds).toBe(125);
     expect(analytics.totalAttempts).toBe(1);
     expect(analytics.totalQuestionsAnswered).toBe(2);
     expect(analytics.weakCategories[0]).toMatchObject({
@@ -63,5 +69,40 @@ describe("quiz attempt store", () => {
         expect.objectContaining({ label: "hard", percentage: 0 }),
       ]),
     );
+  });
+
+  it("scores multi-answer questions by exact selected answer set", () => {
+    const attemptId = crypto.randomUUID();
+    const questions: ExamQuestion[] = [
+      {
+        ...makeQuestion(10, "Controls", "medium"),
+        type: "Multiple",
+        choices: ["A", "B", "C", "D"],
+        correctAnswers: ["A", "C"],
+      },
+    ];
+
+    store.createQuizAttempt({
+      attemptId,
+      requestedCount: questions.length,
+      requestedCategories: ["Controls"],
+      questions,
+    });
+
+    const result = store.completeQuizAttempt(attemptId, {
+      10: ["C", "A"],
+    });
+
+    expect(result?.percentage).toBe(100);
+    expect(result?.gradedQuestions[0].correctAnswers).toEqual(["A", "C"]);
+    expect(result?.gradedQuestions[0].correctAnswerCount).toBe(2);
+  });
+
+  it("resets score history", () => {
+    const analytics = store.resetQuizAnalytics();
+
+    expect(analytics.totalAttempts).toBe(0);
+    expect(analytics.totalQuestionsAnswered).toBe(0);
+    expect(analytics.recentAttempts).toEqual([]);
   });
 });

@@ -14,13 +14,55 @@ function normalize(text) {
 
 const issues = [];
 const seenPrompts = new Map();
+const questionTypes = [
+  "Single",
+  "Multiple",
+  "Order",
+  "Match",
+  "Scenario",
+  "Timeline",
+  "Workflow",
+  "Consultant",
+];
+const questionTypeByLowercase = {
+  single: "Single",
+  multiple: "Multiple",
+  order: "Order",
+  match: "Match",
+  scenario: "Scenario",
+  timeline: "Timeline",
+  workflow: "Workflow",
+  consultant: "Consultant",
+};
+const sequenceQuestionTypes = new Set(["Order", "Timeline", "Workflow"]);
 
 for (let index = 0; index < examQuestionBank.length; index += 1) {
   const q = examQuestionBank[index];
   const normalizedPrompt = normalize(q.prompt || "");
+  const questionType = questionTypeByLowercase[String(q.type).toLowerCase()];
+  const choices = Array.isArray(q.choices)
+    ? q.choices
+    : Array.isArray(q.items)
+      ? q.items
+      : Array.isArray(q.steps)
+        ? q.steps
+        : [];
+  const correctAnswers = Array.isArray(q.correctAnswers)
+    ? q.correctAnswers
+    : Array.isArray(q.correctOrder)
+      ? q.correctOrder
+      : [];
 
   if (!q.prompt || !String(q.prompt).trim()) {
     issues.push({ index, severity: "error", message: "Missing prompt." });
+  }
+
+  if (Object.hasOwn(q, "correctAnswer")) {
+    issues.push({ index, severity: "error", message: "Use correctAnswers instead of correctAnswer." });
+  }
+
+  if (!questionType || !questionTypes.includes(questionType)) {
+    issues.push({ index, severity: "error", message: "Invalid question type." });
   }
 
   if (seenPrompts.has(normalizedPrompt)) {
@@ -33,18 +75,56 @@ for (let index = 0; index < examQuestionBank.length; index += 1) {
     seenPrompts.set(normalizedPrompt, index);
   }
 
-  if (!Array.isArray(q.choices) || q.choices.length < 2 || q.choices.length > 4) {
-    issues.push({ index, severity: "error", message: "Question must have between 2 and 4 choices." });
+  const maxChoices = questionType === "Single" ? 4 : 8;
+
+  if (choices.length < 2 || choices.length > maxChoices) {
+    issues.push({ index, severity: "error", message: `Question must have between 2 and ${maxChoices} choices.` });
   } else {
-    const normalizedChoices = q.choices.map(normalize);
+    const normalizedChoices = choices.map(normalize);
     const uniqueChoices = new Set(normalizedChoices);
 
-    if (uniqueChoices.size !== q.choices.length) {
+    if (uniqueChoices.size !== choices.length) {
       issues.push({ index, severity: "error", message: "Choices must be unique." });
     }
 
-    if (!q.choices.includes(q.correctAnswer)) {
-      issues.push({ index, severity: "error", message: "correctAnswer must exactly match one of the choices." });
+    if (correctAnswers.length === 0) {
+      issues.push({ index, severity: "error", message: "Question must include at least one correctAnswers value." });
+    }
+
+    for (const answer of correctAnswers) {
+      if (!choices.includes(answer)) {
+        issues.push({ index, severity: "error", message: "Each correct answer must exactly match one of the choices." });
+      }
+    }
+
+    if (new Set(correctAnswers).size !== correctAnswers.length) {
+      issues.push({ index, severity: "error", message: "correctAnswers must be unique." });
+    }
+
+    if (questionType === "Single" && correctAnswers.length !== 1) {
+      issues.push({ index, severity: "error", message: "Single questions must include exactly one correct answer." });
+    }
+
+    if (sequenceQuestionTypes.has(questionType)) {
+      const choicesSet = new Set(choices);
+      if (
+        correctAnswers.length !== choices.length ||
+        !correctAnswers.every((answer) => choicesSet.has(answer))
+      ) {
+        issues.push({ index, severity: "error", message: `${questionType} questions must include every choice in correctAnswers in the correct sequence.` });
+      }
+    }
+
+    if (questionType === "Match") {
+      if (!Array.isArray(q.statements) || q.statements.length < 2) {
+        issues.push({ index, severity: "error", message: "Match questions must include at least two statements." });
+      } else if (q.statements.length !== correctAnswers.length) {
+        issues.push({ index, severity: "error", message: "Match questions must have one correct answer per statement." });
+      }
+    }
+
+    if (questionType === "Scenario" && (!Array.isArray(q.statements) || q.statements.length < 2)) {
+      issues.push({ index, severity: "error", message: "Scenario questions must include at least two statements." });
     }
   }
 

@@ -1,11 +1,15 @@
-import { Activity, BarChart3, Target } from "lucide-react";
+import Link from "next/link";
+import { Activity, ArrowRight, BarChart3, Target } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { quizTheme } from "@/lib/theme-tokens";
 import type { PerformanceBucket, QuizAnalytics } from "@/types/analytics";
 
 type AnalyticsOverviewProps = {
   analytics: QuizAnalytics | null;
+  weakCategoriesExamHref?: string | null;
 };
 
 function formatAttemptDate(value: string) {
@@ -76,12 +80,17 @@ function getProgressColor(percentage: number) {
   return "[&_[data-slot=progress-indicator]]:bg-red-500";
 }
 
-export function AnalyticsOverview({ analytics }: AnalyticsOverviewProps) {
+export function AnalyticsOverview({
+  analytics,
+  weakCategoriesExamHref,
+}: AnalyticsOverviewProps) {
   if (!analytics || analytics.totalAttempts === 0) {
     return (
       <section className="mt-10 border-t border-white/10 pt-6">
         <div className="flex items-center gap-3">
-          <div className="flex size-10 items-center justify-center rounded-lg border border-blue-600/30 bg-blue-600/10 text-blue-500">
+          <div
+            className={`flex size-10 items-center justify-center rounded-lg border ${quizTheme.primaryIcon}`}
+          >
             <Activity className="size-5" aria-hidden="true" />
           </div>
           <div>
@@ -101,7 +110,9 @@ export function AnalyticsOverview({ analytics }: AnalyticsOverviewProps) {
     <section className="mt-10 border-t border-white/10 pt-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
-          <div className="flex size-12 items-center justify-center rounded-lg border border-blue-600/30 bg-blue-600/10 text-blue-500">
+          <div
+            className={`flex size-12 items-center justify-center rounded-lg border ${quizTheme.primaryIcon}`}
+          >
             <BarChart3 className="size-5" aria-hidden="true" />
           </div>
           <div>
@@ -131,15 +142,32 @@ export function AnalyticsOverview({ analytics }: AnalyticsOverviewProps) {
       </div>
 
       <div className="mt-5 grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
-        <div className="rounded-lg border border-white/10 bg-neutral-900/60 p-4">
-          <div className="mb-4 flex items-center gap-2">
-            <Target className="size-4 text-red-400" aria-hidden="true" />
-            <h3 className="font-medium text-white">Weakest Categories</h3>
+        <div className="flex min-h-0 flex-col rounded-lg border border-white/10 bg-neutral-900/60 p-4">
+          <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center gap-2">
+              <Target className="size-4 text-red-400" aria-hidden="true" />
+              <h3 className="font-medium text-white">Weakest Categories</h3>
+            </div>
+            {weakCategoriesExamHref && (
+              <Button
+                asChild
+                size="sm"
+                variant="outline"
+                className={`h-8 px-3 ${quizTheme.primaryAction}`}
+              >
+                <Link href={weakCategoriesExamHref}>
+                  Practice Weak Areas
+                  <ArrowRight className="size-3.5" aria-hidden="true" />
+                </Link>
+              </Button>
+            )}
           </div>
-          <BucketList
-            buckets={analytics.weakCategories}
-            emptyLabel="No category data yet."
-          />
+          <div className="max-h-[min(44rem,70vh)] min-h-0 flex-1 overflow-y-auto pr-2">
+            <BucketList
+              buckets={analytics.weakCategories}
+              emptyLabel="No category data yet."
+            />
+          </div>
         </div>
 
         <div className="space-y-4">

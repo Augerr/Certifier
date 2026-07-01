@@ -1,12 +1,27 @@
-import type { Difficulty, ExamQuestion } from "@/types/question";
+import type { Difficulty, ExamQuestion, QuestionType } from "@/types/question";
 
 const targetDifficultyRatio: Record<Difficulty, number> = {
-  easy: 0.3,
+  easy: 0.25,
   medium: 0.5,
-  hard: 0.2,
+  hard: 0.25,
 };
 
 const difficultyFillOrder: Difficulty[] = ["medium", "easy", "hard"];
+const questionTypeByLowercase: Record<string, QuestionType> = {
+  single: "Single",
+  multiple: "Multiple",
+  order: "Order",
+  match: "Match",
+  scenario: "Scenario",
+  timeline: "Timeline",
+  workflow: "Workflow",
+  consultant: "Consultant",
+};
+const categoryAliases: Record<string, ExamQuestion["category"]> = {
+  Governance: "Identity Governance",
+  "Technical Rules": "Rules",
+  "User Update Rules": "Rules",
+};
 
 function shuffle<T>(items: T[]): T[] {
   return [...items].sort(() => Math.random() - 0.5);
@@ -42,13 +57,34 @@ function getTargetDifficultyCounts(size: number): Record<Difficulty, number> {
   );
 }
 
-export function generateQuestionBank(
-  questions: Omit<ExamQuestion, "id">[],
-): ExamQuestion[] {
-  return questions.map((question, index) => ({
-    ...question,
-    id: index + 1,
-  }));
+type QuestionBankItem = Partial<Omit<ExamQuestion, "id" | "type">> & {
+  type: string;
+  items?: string[];
+  steps?: string[];
+  correctOrder?: string[];
+};
+
+export function generateQuestionBank(questions: QuestionBankItem[]): ExamQuestion[] {
+  return questions.map((question, index) => {
+    const type = questionTypeByLowercase[question.type.toLowerCase()] ?? "Single";
+    const choices = question.choices ?? question.items ?? question.steps ?? [];
+    const correctAnswers = question.correctAnswers ?? question.correctOrder ?? [];
+    const category =
+      categoryAliases[question.category ?? ""] ??
+      (question.category as ExamQuestion["category"]);
+
+    return {
+      ...question,
+      id: index + 1,
+      type,
+      choices,
+      correctAnswers,
+      explanation: question.explanation ?? "",
+      category,
+      difficulty: question.difficulty ?? "medium",
+      prompt: question.prompt ?? "",
+    };
+  });
 }
 
 export function generateExam(

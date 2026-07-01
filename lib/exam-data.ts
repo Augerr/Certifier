@@ -11,7 +11,7 @@ export { difficultyPointValue, passingPercentage };
 import examQuestionBank from "@/data/exam-question-bank.json";
 
 export const examQuestions = generateQuestionBank(
-  examQuestionBank as unknown as Omit<import("@/types/question").ExamQuestion, "id">[],
+  examQuestionBank as unknown as Parameters<typeof generateQuestionBank>[0],
 );
 
 export const questionBankAnalysis = analyzeQuestionBank(examQuestions);

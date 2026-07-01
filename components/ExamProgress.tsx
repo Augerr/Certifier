@@ -1,25 +1,23 @@
 import { Progress } from "@/components/ui/progress";
 
 type ExamProgressProps = {
-  currentQuestion: number;
+  completedQuestions: number;
   totalQuestions: number;
 };
 
 export function ExamProgress({
-  currentQuestion,
+  completedQuestions,
   totalQuestions,
 }: ExamProgressProps) {
-  const value = ((currentQuestion - 1) / totalQuestions) * 100;
+  const value = (completedQuestions / totalQuestions) * 100;
 
   return (
-    <div className="space-y-3">
-      <div className="flex items-center justify-between text-sm">
-        <span className="font-medium text-neutral-200">
-          Question {currentQuestion} of {totalQuestions}
-        </span>
-        <span className="text-neutral-400">{Math.round(value)}%</span>
-      </div>
-      <Progress value={value} className="h-2 bg-neutral-800" />
+    <div className="border-t border-white/10 bg-neutral-900/50 px-4 py-3">
+      <Progress
+        value={value}
+        aria-label={`Answered ${completedQuestions} of ${totalQuestions}`}
+        className="h-2 bg-neutral-800 [&_[data-slot=progress-indicator]]:bg-blue-500"
+      />
     </div>
   );
 }
