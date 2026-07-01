@@ -1,5 +1,12 @@
 export type Difficulty = "easy" | "medium" | "hard";
-export type QuestionType = "Single" | "Multiple" | "Order" | "Match" | "Scenario";
+export type QuestionType =
+  | "Single"
+  | "Multiple"
+  | "Order"
+  | "Match"
+  | "Scenario"
+  | "Timeline"
+  | "Workflow";
 
 export const examCategories = [
   "Access Requests",
@@ -12,7 +19,6 @@ export const examCategories = [
   "Data Transformation",
   "Endpoints",
   "Entitlements",
-  "Governance",
   "Identity Governance",
   "Identity Repository",
   "SoD",
@@ -24,8 +30,6 @@ export const examCategories = [
   "Recommendations",
   "Risk Management",
   "Rules",
-  "Technical Rules",
-  "User Update Rules",
   "Lifecycle Management",
   "Connectors",
   "Imports",

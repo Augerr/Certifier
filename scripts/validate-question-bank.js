@@ -14,20 +14,37 @@ function normalize(text) {
 
 const issues = [];
 const seenPrompts = new Map();
-const questionTypes = ["Single", "Multiple", "Order", "Match", "Scenario"];
+const questionTypes = [
+  "Single",
+  "Multiple",
+  "Order",
+  "Match",
+  "Scenario",
+  "Timeline",
+  "Workflow",
+];
 const questionTypeByLowercase = {
   single: "Single",
   multiple: "Multiple",
   order: "Order",
   match: "Match",
   scenario: "Scenario",
+  timeline: "Timeline",
+  workflow: "Workflow",
 };
+const sequenceQuestionTypes = new Set(["Order", "Timeline", "Workflow"]);
 
 for (let index = 0; index < examQuestionBank.length; index += 1) {
   const q = examQuestionBank[index];
   const normalizedPrompt = normalize(q.prompt || "");
   const questionType = questionTypeByLowercase[String(q.type).toLowerCase()];
-  const choices = Array.isArray(q.choices) ? q.choices : Array.isArray(q.items) ? q.items : [];
+  const choices = Array.isArray(q.choices)
+    ? q.choices
+    : Array.isArray(q.items)
+      ? q.items
+      : Array.isArray(q.steps)
+        ? q.steps
+        : [];
   const correctAnswers = Array.isArray(q.correctAnswers)
     ? q.correctAnswers
     : Array.isArray(q.correctOrder)
@@ -86,13 +103,13 @@ for (let index = 0; index < examQuestionBank.length; index += 1) {
       issues.push({ index, severity: "error", message: "Single questions must include exactly one correct answer." });
     }
 
-    if (questionType === "Order") {
+    if (sequenceQuestionTypes.has(questionType)) {
       const choicesSet = new Set(choices);
       if (
         correctAnswers.length !== choices.length ||
         !correctAnswers.every((answer) => choicesSet.has(answer))
       ) {
-        issues.push({ index, severity: "error", message: "Order questions must include every choice in correctAnswers in the correct sequence." });
+        issues.push({ index, severity: "error", message: `${questionType} questions must include every choice in correctAnswers in the correct sequence.` });
       }
     }
 

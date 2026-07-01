@@ -17,6 +17,18 @@ type QuestionCardProps = {
   onAnswerChange: (answers: string[]) => void;
 };
 
+function getSequenceInstruction(type: ExamQuestion["type"]) {
+  if (type === "Timeline") {
+    return "What happens next?";
+  }
+
+  if (type === "Workflow") {
+    return "Administrator workflow";
+  }
+
+  return "Drag to order";
+}
+
 export function QuestionCard({
   question,
   selectedAnswers = [],
@@ -24,10 +36,13 @@ export function QuestionCard({
 }: QuestionCardProps) {
   const allowsMultipleAnswers =
     question.type === "Multiple" || question.type === "Scenario";
-  const isOrderQuestion = question.type === "Order";
+  const isSequenceQuestion =
+    question.type === "Order" ||
+    question.type === "Timeline" ||
+    question.type === "Workflow";
   const isMatchQuestion = question.type === "Match";
   const orderedAnswers =
-    isOrderQuestion && selectedAnswers.length === 0
+    isSequenceQuestion && selectedAnswers.length === 0
       ? question.choices
       : selectedAnswers;
   const matchStatements = question.statements ?? [];
@@ -84,13 +99,13 @@ export function QuestionCard({
           >
             {question.category}
           </Badge>
-          {(allowsMultipleAnswers || isOrderQuestion || isMatchQuestion) && (
+          {(allowsMultipleAnswers || isSequenceQuestion || isMatchQuestion) && (
             <Badge
               variant="outline"
               className="border-blue-500/40 bg-blue-500/10 text-blue-200"
             >
-              {isOrderQuestion
-                ? "Drag to order"
+              {isSequenceQuestion
+                ? getSequenceInstruction(question.type)
                 : isMatchQuestion
                   ? "Drag to match"
                   : "Multiple answers"}
@@ -109,7 +124,7 @@ export function QuestionCard({
         </CardTitle>
       </CardHeader>
       <CardContent className="px-6 pb-6">
-        {isOrderQuestion ? (
+        {isSequenceQuestion ? (
           <div className="grid gap-3">
             {orderedAnswers.map((choice, index) => (
               <div

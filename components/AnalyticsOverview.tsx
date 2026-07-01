@@ -4,6 +4,7 @@ import { Activity, ArrowRight, BarChart3, Target } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { quizTheme } from "@/lib/theme-tokens";
 import type { PerformanceBucket, QuizAnalytics } from "@/types/analytics";
 
 type AnalyticsOverviewProps = {
@@ -87,7 +88,9 @@ export function AnalyticsOverview({
     return (
       <section className="mt-10 border-t border-white/10 pt-6">
         <div className="flex items-center gap-3">
-          <div className="flex size-10 items-center justify-center rounded-lg border border-blue-600/30 bg-blue-600/10 text-blue-500">
+          <div
+            className={`flex size-10 items-center justify-center rounded-lg border ${quizTheme.primaryIcon}`}
+          >
             <Activity className="size-5" aria-hidden="true" />
           </div>
           <div>
@@ -107,7 +110,9 @@ export function AnalyticsOverview({
     <section className="mt-10 border-t border-white/10 pt-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
-          <div className="flex size-12 items-center justify-center rounded-lg border border-blue-600/30 bg-blue-600/10 text-blue-500">
+          <div
+            className={`flex size-12 items-center justify-center rounded-lg border ${quizTheme.primaryIcon}`}
+          >
             <BarChart3 className="size-5" aria-hidden="true" />
           </div>
           <div>
@@ -148,7 +153,7 @@ export function AnalyticsOverview({
                 asChild
                 size="sm"
                 variant="outline"
-                className="h-8 border-blue-600/40 bg-blue-600/10 px-3 text-blue-200 hover:bg-blue-600/20 hover:text-blue-100"
+                className={`h-8 px-3 ${quizTheme.primaryAction}`}
               >
                 <Link href={weakCategoriesExamHref}>
                   Practice Weak Areas

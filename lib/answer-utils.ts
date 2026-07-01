@@ -42,7 +42,12 @@ export function isQuestionCorrect(
 ) {
   const correctAnswers = getCorrectAnswers(question);
 
-  if (question.type === "Order" || question.type === "Match") {
+  if (
+    question.type === "Order" ||
+    question.type === "Match" ||
+    question.type === "Timeline" ||
+    question.type === "Workflow"
+  ) {
     return areAnswerSequencesEqual(selectedAnswers, correctAnswers);
   }
 

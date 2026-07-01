@@ -17,6 +17,8 @@ const QUESTION_TYPES: QuestionType[] = [
   "Order",
   "Match",
   "Scenario",
+  "Timeline",
+  "Workflow",
 ];
 const questionTypeByLowercase: Record<string, QuestionType> = {
   single: "Single",
@@ -24,7 +26,14 @@ const questionTypeByLowercase: Record<string, QuestionType> = {
   order: "Order",
   match: "Match",
   scenario: "Scenario",
+  timeline: "Timeline",
+  workflow: "Workflow",
 };
+const sequenceQuestionTypes = new Set<QuestionType>([
+  "Order",
+  "Timeline",
+  "Workflow",
+]);
 
 function normalize(text: string): string {
   return text
@@ -42,13 +51,16 @@ export function validateQuestions(questions: ExamQuestion[]): ValidationIssue[] 
     const questionType = questionTypeByLowercase[String(q.type).toLowerCase()];
     const legacyQuestion = q as ExamQuestion & {
       items?: string[];
+      steps?: string[];
       correctOrder?: string[];
     };
     const choices = Array.isArray(q.choices)
       ? q.choices
       : Array.isArray(legacyQuestion.items)
         ? legacyQuestion.items
-        : [];
+        : Array.isArray(legacyQuestion.steps)
+          ? legacyQuestion.steps
+          : [];
     const correctAnswers = Array.isArray(q.correctAnswers)
       ? q.correctAnswers
       : Array.isArray(legacyQuestion.correctOrder)
@@ -142,7 +154,7 @@ export function validateQuestions(questions: ExamQuestion[]): ValidationIssue[] 
         });
       }
 
-      if (questionType === "Order") {
+      if (sequenceQuestionTypes.has(questionType)) {
         const choicesSet = new Set(choices);
         if (
           correctAnswers.length !== choices.length ||
@@ -151,7 +163,7 @@ export function validateQuestions(questions: ExamQuestion[]): ValidationIssue[] 
           issues.push({
             index,
             severity: "error",
-            message: "Order questions must include every choice in correctAnswers in the correct sequence.",
+            message: `${questionType} questions must include every choice in correctAnswers in the correct sequence.`,
           });
         }
       }

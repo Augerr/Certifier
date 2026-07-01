@@ -2310,7 +2310,7 @@
       "Entitlements"
     ],
     "explanation": "Technical Rules provide extensibility and custom processing capabilities.",
-    "category": "Technical Rules",
+    "category": "Rules",
     "difficulty": "medium",
     "correctAnswers": ["Technical Rules"],
     "type": "Single"
@@ -2324,7 +2324,7 @@
       "Review Rule"
     ],
     "explanation": "User Update Rules execute when user information changes.",
-    "category": "User Update Rules",
+    "category": "Rules",
     "difficulty": "medium",
     "correctAnswers": ["User Update Rule"],
     "type": "Single"
@@ -2772,7 +2772,7 @@
       "Role Owner"
     ],
     "explanation": "Technical Rules are commonly used to implement custom processing and naming logic.",
-    "category": "Technical Rules",
+    "category": "Rules",
     "difficulty": "medium",
     "correctAnswers": ["Technical Rule"],
     "type": "Single"
@@ -2786,7 +2786,7 @@
       "Endpoint Configuration"
     ],
     "explanation": "User Update Rules react specifically to identity attribute changes.",
-    "category": "User Update Rules",
+    "category": "Rules",
     "difficulty": "medium",
     "correctAnswers": ["User Update Rule"],
     "type": "Single"
@@ -2985,7 +2985,7 @@
       "Data Transformation"
     ],
     "explanation": "Least Privilege reduces risk by limiting unnecessary access.",
-    "category": "Governance",
+    "category": "Identity Governance",
     "difficulty": "medium",
     "correctAnswers": ["Least Privilege"],
     "type": "Single"
@@ -3482,7 +3482,7 @@
       "Better correlation accuracy"
     ],
     "explanation": "Shared accounts make it difficult to identify who performed actions.",
-    "category": "Governance",
+    "category": "Identity Governance",
     "difficulty": "medium",
     "correctAnswers": ["Loss of accountability and auditability"],
     "type": "Single"
@@ -3524,7 +3524,7 @@
       "Role Mining"
     ],
     "explanation": "User Update Rules handle identity attribute changes.",
-    "category": "User Update Rules",
+    "category": "Rules",
     "difficulty": "medium",
     "correctAnswers": ["User Update Rule"],
     "type": "Single"
@@ -3635,7 +3635,7 @@
       "Birthright Assignment"
     ],
     "explanation": "Reviews detect inappropriate access after assignment.",
-    "category": "Governance",
+    "category": "Identity Governance",
     "difficulty": "hard",
     "correctAnswers": ["Access Review"],
     "type": "Single"
@@ -3957,7 +3957,7 @@
       "Reporting"
     ],
     "explanation": "User Update Rules react to identity attribute changes and can initiate access updates.",
-    "category": "User Update Rules",
+    "category": "Rules",
     "difficulty": "medium",
     "correctAnswers": ["User Update Rule"],
     "type": "Single"
@@ -4594,7 +4594,7 @@
       "Provisioning optimization"
     ],
     "explanation": "Governance responsibilities should reflect current organizational structures.",
-    "category": "Governance",
+    "category": "Identity Governance",
     "difficulty": "hard",
     "correctAnswers": ["Stale approval authority"],
     "type": "Single"
@@ -4709,7 +4709,7 @@
       "Reduced risk"
     ],
     "explanation": "Identity quality directly impacts governance accuracy.",
-    "category": "Governance",
+    "category": "Identity Governance",
     "difficulty": "hard",
     "correctAnswers": ["Governance decisions based on incorrect information"],
     "type": "Single"
@@ -4783,7 +4783,7 @@
       "Role normalization"
     ],
     "explanation": "Access unrelated to business responsibilities increases risk.",
-    "category": "Governance",
+    "category": "Identity Governance",
     "difficulty": "medium",
     "correctAnswers": ["Excessive access"],
     "type": "Single"
@@ -5149,7 +5149,7 @@
     "prompt": "A company wants manager changes to automatically update future approval routing. Which category is most directly involved?",
     "choices": ["User Update Rules", "Roles", "Controls", "Certifications"],
     "explanation": "Approval routing often depends on current manager information.",
-    "category": "User Update Rules",
+    "category": "Rules",
     "difficulty": "hard",
     "correctAnswers": ["User Update Rules"],
     "type": "Single"
@@ -5375,7 +5375,7 @@
       "A provisioning endpoint"
     ],
     "explanation": "User Update Rules execute based on changes to specific identity attributes.",
-    "category": "User Update Rules",
+    "category": "Rules",
     "difficulty": "medium",
     "correctAnswers": ["A condition evaluating department attribute changes"],
     "type": "Single"
@@ -5426,7 +5426,7 @@
       "Only through access requests"
     ],
     "explanation": "Technical Rules evaluate conditions and execute associated actions automatically.",
-    "category": "Technical Rules",
+    "category": "Rules",
     "difficulty": "medium",
     "correctAnswers": ["When rule conditions are satisfied"],
     "type": "Single"
@@ -5463,7 +5463,7 @@
     "prompt": "What governance principle requires clear accountability for access decisions?",
     "choices": ["Ownership", "Provisioning", "Correlation", "Importing"],
     "explanation": "Governance relies on clearly assigned accountability.",
-    "category": "Governance",
+    "category": "Identity Governance",
     "difficulty": "easy",
     "correctAnswers": ["Ownership"],
     "type": "Single"
@@ -5500,7 +5500,7 @@
       "Role mining"
     ],
     "explanation": "Ownership establishes responsibility throughout the governance model.",
-    "category": "Governance",
+    "category": "Identity Governance",
     "difficulty": "medium",
     "correctAnswers": ["Accountability"],
     "type": "Single"
@@ -5523,7 +5523,7 @@
     "prompt": "Which category is most closely associated with automated birthright access assignment?",
     "choices": ["Technical Rules", "Reporting", "Recommendations", "Ownership"],
     "explanation": "Technical Rules commonly automate birthright access assignments.",
-    "category": "Technical Rules",
+    "category": "Rules",
     "difficulty": "easy",
     "correctAnswers": ["Technical Rules"],
     "type": "Single"
@@ -5532,7 +5532,7 @@
     "prompt": "A manager relationship changes but approval routing does not update. Which area should be investigated?",
     "choices": ["User Update Rules", "Analytics", "Entitlements", "Endpoints"],
     "explanation": "User Update Rules often process identity attribute changes affecting approvals.",
-    "category": "User Update Rules",
+    "category": "Rules",
     "difficulty": "hard",
     "correctAnswers": ["User Update Rules"],
     "type": "Single"
@@ -5658,7 +5658,7 @@
       "Transformation"
     ],
     "explanation": "Governance requires ownership and responsibility for decisions.",
-    "category": "Governance",
+    "category": "Identity Governance",
     "difficulty": "hard",
     "correctAnswers": ["Accountability"],
     "type": "Single"
@@ -5672,7 +5672,7 @@
       "Whether analytics controls are active"
     ],
     "explanation": "User Update Rules only execute when their configured trigger conditions are satisfied.",
-    "category": "User Update Rules",
+    "category": "Rules",
     "difficulty": "hard",
     "correctAnswers": ["Whether the triggering attribute actually changed"],
     "type": "Single"
@@ -5686,7 +5686,7 @@
       "Whether the endpoint owner changed"
     ],
     "explanation": "Technical Rules rely on attribute-based conditions to determine eligibility.",
-    "category": "Technical Rules",
+    "category": "Rules",
     "difficulty": "hard",
     "correctAnswers": [
       "Whether the user's attributes satisfy the rule conditions"
@@ -5758,7 +5758,7 @@
       "Reduced certification scope"
     ],
     "explanation": "Ownership is a foundational governance control.",
-    "category": "Governance",
+    "category": "Identity Governance",
     "difficulty": "hard",
     "correctAnswers": ["Lack of accountability for access decisions"],
     "type": "Single"
@@ -5786,7 +5786,7 @@
       "All endpoints should be disabled"
     ],
     "explanation": "Manager-based governance relies on accurate reporting structures.",
-    "category": "User Update Rules",
+    "category": "Rules",
     "difficulty": "medium",
     "correctAnswers": [
       "Approval routing should reflect the new manager relationship"
@@ -5839,7 +5839,7 @@
       "Application discovery settings"
     ],
     "explanation": "Technical Rules can grant or remove access based on configured logic.",
-    "category": "Technical Rules",
+    "category": "Rules",
     "difficulty": "hard",
     "correctAnswers": ["Rule conditions and action logic"],
     "type": "Single"
@@ -5883,7 +5883,7 @@
       "Correlation"
     ],
     "explanation": "Traceability is a key governance requirement.",
-    "category": "Governance",
+    "category": "Identity Governance",
     "difficulty": "medium",
     "correctAnswers": ["Accountability"],
     "type": "Single"
@@ -5911,7 +5911,7 @@
       "Improved SMTP delivery"
     ],
     "explanation": "Department changes often require access reevaluation.",
-    "category": "User Update Rules",
+    "category": "Rules",
     "difficulty": "hard",
     "correctAnswers": ["Validation of access after organizational changes"],
     "type": "Single"
@@ -6008,7 +6008,7 @@
       "Dataset optimization"
     ],
     "explanation": "Together, these rules automate access decisions throughout the identity lifecycle.",
-    "category": "Governance",
+    "category": "Identity Governance",
     "difficulty": "hard",
     "correctAnswers": ["Automated lifecycle governance"],
     "type": "Single"
@@ -6022,7 +6022,7 @@
       "SMTP settings"
     ],
     "explanation": "Rules depend on accurate identity attributes to evaluate eligibility.",
-    "category": "Technical Rules",
+    "category": "Rules",
     "difficulty": "hard",
     "correctAnswers": ["Source identity attributes used by the rule"],
     "type": "Single"
@@ -6036,7 +6036,7 @@
       "Create applications"
     ],
     "explanation": "User Update Rules are triggered by changes to identity data.",
-    "category": "User Update Rules",
+    "category": "Rules",
     "difficulty": "easy",
     "correctAnswers": ["React to identity attribute changes"],
     "type": "Single"
@@ -6106,7 +6106,7 @@
       "Correlation"
     ],
     "explanation": "Every governance decision should have a responsible decision maker.",
-    "category": "Governance",
+    "category": "Identity Governance",
     "difficulty": "hard",
     "correctAnswers": ["Accountability"],
     "type": "Single"
@@ -6134,7 +6134,7 @@
       "Application discovery"
     ],
     "explanation": "Termination events commonly trigger access removal.",
-    "category": "User Update Rules",
+    "category": "Rules",
     "difficulty": "medium",
     "correctAnswers": ["Automated deprovisioning"],
     "type": "Single"
@@ -6176,7 +6176,7 @@
       "Role ownership assignments"
     ],
     "explanation": "Broad unintended access usually indicates rule misconfiguration.",
-    "category": "Technical Rules",
+    "category": "Rules",
     "difficulty": "hard",
     "correctAnswers": ["Rule logic and eligibility conditions"],
     "type": "Single"
@@ -6204,7 +6204,7 @@
       "Correlation"
     ],
     "explanation": "Reviews should be performed by responsible decision makers.",
-    "category": "Governance",
+    "category": "Identity Governance",
     "difficulty": "medium",
     "correctAnswers": ["Accountability"],
     "type": "Single"
@@ -6257,7 +6257,7 @@
       "Transformation"
     ],
     "explanation": "Traceability is a core governance objective.",
-    "category": "Governance",
+    "category": "Identity Governance",
     "difficulty": "medium",
     "correctAnswers": ["Accountability"],
     "type": "Single"
@@ -6285,7 +6285,7 @@
       "Security Systems"
     ],
     "explanation": "Rules depend on current identity data.",
-    "category": "User Update Rules",
+    "category": "Rules",
     "difficulty": "hard",
     "correctAnswers": ["Identity imports"],
     "type": "Single"
@@ -6338,7 +6338,7 @@
       "Applications are deleted"
     ],
     "explanation": "Identity quality directly affects governance quality.",
-    "category": "Governance",
+    "category": "Identity Governance",
     "difficulty": "hard",
     "correctAnswers": ["Access decisions become less reliable"],
     "type": "Single"
@@ -6436,7 +6436,7 @@
       "Ownership is optional"
     ],
     "explanation": "Successful execution alone does not guarantee quality outcomes.",
-    "category": "Governance",
+    "category": "Identity Governance",
     "difficulty": "hard",
     "correctAnswers": ["Automation depends on data quality"],
     "type": "Single"
@@ -6473,7 +6473,7 @@
       "Correlation"
     ],
     "explanation": "Ownership is the foundation of governance accountability.",
-    "category": "Governance",
+    "category": "Identity Governance",
     "difficulty": "medium",
     "correctAnswers": ["Accountability"],
     "type": "Single"
@@ -6487,7 +6487,7 @@
       "Automatic endpoint discovery"
     ],
     "explanation": "Organizational changes often require access reassessment.",
-    "category": "User Update Rules",
+    "category": "Rules",
     "difficulty": "hard",
     "correctAnswers": ["Continuous validation of access appropriateness"],
     "type": "Single"
@@ -6510,7 +6510,7 @@
     "prompt": "Which category is ultimately responsible for ensuring governance decisions remain defensible during audits?",
     "choices": ["Governance", "Endpoints", "Connectors", "Applications"],
     "explanation": "Governance establishes the controls, accountability, and evidence required to support audit scrutiny.",
-    "category": "Governance",
+    "category": "Identity Governance",
     "difficulty": "hard",
     "correctAnswers": ["Governance"],
     "type": "Single"
@@ -6655,7 +6655,7 @@
       "Employment status change"
     ],
     "explanation": "User Update Rules react to identity attribute changes.",
-    "category": "User Update Rules",
+    "category": "Rules",
     "difficulty": "medium"
   },
   {
@@ -6794,7 +6794,7 @@
       "Reporting"
     ],
     "explanation": "These establish responsibility and evidence.",
-    "category": "Governance",
+    "category": "Identity Governance",
     "difficulty": "medium"
   },
   {
@@ -7180,7 +7180,7 @@
       "Unexpected access removals"
     ],
     "explanation": "Technical Rules govern automated access assignment and removal.",
-    "category": "Technical Rules",
+    "category": "Rules",
     "difficulty": "hard"
   },
   {
@@ -7371,7 +7371,7 @@
       "The rule conditions must evaluate to true"
     ],
     "explanation": "User Update Rules depend on imported identity changes and rule conditions.",
-    "category": "User Update Rules",
+    "category": "Rules",
     "difficulty": "hard"
   },
   {
@@ -7500,7 +7500,7 @@
       "Policy automation"
     ],
     "explanation": "Technical Rules automate access decisions based on business logic.",
-    "category": "Technical Rules",
+    "category": "Rules",
     "difficulty": "medium"
   },
   {
@@ -7600,7 +7600,7 @@
       "Lifecycle automation"
     ],
     "explanation": "Continuous governance relies on automation, monitoring, and scheduled processing rather than periodic reviews alone.",
-    "category": "Governance",
+    "category": "Identity Governance",
     "difficulty": "hard"
   },
   {
@@ -7835,7 +7835,7 @@
       "Recurring SoD violations"
     ],
     "explanation": "Automation should reduce but not eliminate operational investigation.",
-    "category": "Governance",
+    "category": "Identity Governance",
     "difficulty": "hard"
   },
   {
@@ -7895,7 +7895,7 @@
       "Location change"
     ],
     "explanation": "Birthright access depends on organizational attributes.",
-    "category": "Technical Rules",
+    "category": "Rules",
     "difficulty": "hard"
   },
   {
@@ -8091,7 +8091,7 @@
       "Identity Repository"
     ],
     "explanation": "Approval routing depends on current identity information and manager relationships.",
-    "category": "User Update Rules",
+    "category": "Rules",
     "difficulty": "hard"
   },
   {
@@ -8191,7 +8191,7 @@
       "Determine impacted identities"
     ],
     "explanation": "Immediate investigation should focus on the rule logic and the affected identities.",
-    "category": "Technical Rules",
+    "category": "Rules",
     "difficulty": "hard"
   },
   {
@@ -8231,7 +8231,7 @@
       "Role assignments"
     ],
     "explanation": "Birthright access depends on lifecycle processing, rule evaluation, and provisioning.",
-    "category": "Technical Rules",
+    "category": "Rules",
     "difficulty": "hard"
   },
   {
@@ -8588,7 +8588,7 @@
       "Employment status updates trigger lifecycle processing"
     ],
     "explanation": "User Update Rules react to identity attribute changes, not password resets.",
-    "category": "User Update Rules",
+    "category": "Rules",
     "difficulty": "hard"
   },
   {
@@ -8628,7 +8628,7 @@
       "SoD policies"
     ],
     "explanation": "Privilege creep is reduced through continuous governance rather than infrastructure changes.",
-    "category": "Governance",
+    "category": "Identity Governance",
     "difficulty": "hard"
   },
   {
@@ -8888,7 +8888,7 @@
       "Provisioning execution"
     ],
     "explanation": "The rule depends on imported identity data and successful provisioning.",
-    "category": "Technical Rules",
+    "category": "Rules",
     "difficulty": "hard"
   },
   {
@@ -8928,7 +8928,7 @@
       "Identity Repository"
     ],
     "explanation": "Manager-based approvals depend on accurate identity data and update processing.",
-    "category": "User Update Rules",
+    "category": "Rules",
     "difficulty": "hard"
   },
   {
@@ -9197,21 +9197,762 @@
   },
   {
     "type": "Order",
-    "prompt": "Arrange the following steps in the correct order.",
+    "prompt": "Arrange the typical Joiner process in the correct order.",
     "items": [
-      "Provision account",
+      "Provision accounts",
+      "Assign birthright access",
+      "Import identity",
+      "Correlate accounts"
+    ],
+    "correctOrder": [
+      "Import identity",
+      "Correlate accounts",
+      "Assign birthright access",
+      "Provision accounts"
+    ],
+    "explanation": "The identity must first exist before correlation, access assignment, and provisioning.",
+    "category": "Lifecycle Management",
+    "difficulty": "easy"
+  },
+  {
+    "type": "Order",
+    "prompt": "Arrange the normal Access Request workflow.",
+    "items": [
+      "Provision access",
+      "Submit request",
+      "Approval",
+      "SoD evaluation"
+    ],
+    "correctOrder": [
+      "Submit request",
+      "SoD evaluation",
+      "Approval",
+      "Provision access"
+    ],
+    "explanation": "Policy validation occurs before approvals, followed by provisioning.",
+    "category": "Access Requests",
+    "difficulty": "easy"
+  },
+  {
+    "type": "Order",
+    "prompt": "Arrange the lifecycle of a certification campaign.",
+    "items": [
+      "Review access",
+      "Generate campaign",
+      "Remediate revoked access",
+      "Close campaign"
+    ],
+    "correctOrder": [
+      "Generate campaign",
+      "Review access",
+      "Remediate revoked access",
+      "Close campaign"
+    ],
+    "explanation": "Campaigns are generated, reviewed, remediated, and finally closed.",
+    "category": "Certifications",
+    "difficulty": "medium"
+  },
+  {
+    "type": "Order",
+    "prompt": "Arrange the identity onboarding process.",
+    "items": [
       "Identity imported",
-      "Approval completed",
-      "Correlation performed"
+      "Accounts provisioned",
+      "Role assigned",
+      "Approval completed"
     ],
     "correctOrder": [
       "Identity imported",
-      "Correlation performed",
+      "Role assigned",
       "Approval completed",
-      "Provision account"
+      "Accounts provisioned"
     ],
-    "explanation": "Identities must exist before accounts can be correlated. Once approved, provisioning can execute.",
+    "explanation": "Access is assigned and approved before provisioning.",
+    "category": "Identity Governance",
+    "difficulty": "medium"
+  },
+  {
+    "type": "Order",
+    "prompt": "Arrange the account correlation process.",
+    "items": [
+      "Run correlation",
+      "Import identities",
+      "Import accounts",
+      "Link accounts to identities"
+    ],
+    "correctOrder": [
+      "Import identities",
+      "Import accounts",
+      "Run correlation",
+      "Link accounts to identities"
+    ],
+    "explanation": "Both identities and accounts must exist before correlation.",
+    "category": "Correlation",
+    "difficulty": "medium"
+  },
+  {
+    "type": "Order",
+    "prompt": "Arrange the typical Leaver lifecycle.",
+    "items": [
+      "Disable accounts",
+      "Terminate employee",
+      "Remove access",
+      "Update identity status"
+    ],
+    "correctOrder": [
+      "Terminate employee",
+      "Update identity status",
+      "Remove access",
+      "Disable accounts"
+    ],
+    "explanation": "Termination updates identity status before access removal and account disablement.",
+    "category": "Lifecycle Management",
+    "difficulty": "easy"
+  },
+  {
+    "type": "Order",
+    "prompt": "Arrange the provisioning sequence.",
+    "items": [
+      "Provisioning executes",
+      "Approval received",
+      "Request submitted",
+      "Endpoint receives request"
+    ],
+    "correctOrder": [
+      "Request submitted",
+      "Approval received",
+      "Provisioning executes",
+      "Endpoint receives request"
+    ],
+    "explanation": "Provisioning begins only after approval.",
+    "category": "Provisioning",
+    "difficulty": "medium"
+  },
+  {
+    "type": "Order",
+    "prompt": "Arrange the sequence for creating a governed application.",
+    "items": [
+      "Configure endpoint",
+      "Assign owner",
+      "Import accounts",
+      "Make requestable"
+    ],
+    "correctOrder": [
+      "Configure endpoint",
+      "Assign owner",
+      "Import accounts",
+      "Make requestable"
+    ],
+    "explanation": "Applications should be connected and governed before becoming requestable.",
+    "category": "Applications",
+    "difficulty": "hard"
+  },
+  {
+    "type": "Order",
+    "prompt": "Arrange the SoD evaluation process.",
+    "items": [
+      "Provision access",
+      "Evaluate policy",
+      "Submit request",
+      "Approve request"
+    ],
+    "correctOrder": [
+      "Submit request",
+      "Evaluate policy",
+      "Approve request",
+      "Provision access"
+    ],
+    "explanation": "Policy evaluation occurs before approval and provisioning.",
+    "category": "SoD",
+    "difficulty": "medium"
+  },
+  {
+    "type": "Order",
+    "prompt": "Arrange the recommendation process during certifications.",
+    "items": [
+      "Reviewer makes decision",
+      "Recommendation generated",
+      "Historical data analyzed",
+      "Campaign starts"
+    ],
+    "correctOrder": [
+      "Campaign starts",
+      "Historical data analyzed",
+      "Recommendation generated",
+      "Reviewer makes decision"
+    ],
+    "explanation": "Recommendations are generated after analyzing historical data.",
+    "category": "Recommendations",
+    "difficulty": "medium"
+  },
+  {
+    "type": "Order",
+    "prompt": "Arrange the troubleshooting process for failed provisioning.",
+    "items": [
+      "Review provisioning logs",
+      "Confirm user request",
+      "Check endpoint connectivity",
+      "Verify connector configuration"
+    ],
+    "correctOrder": [
+      "Confirm user request",
+      "Review provisioning logs",
+      "Check endpoint connectivity",
+      "Verify connector configuration"
+    ],
+    "explanation": "Always verify the request exists before investigating technical components.",
+    "category": "Provisioning",
+    "difficulty": "hard"
+  },
+  {
+    "type": "Order",
+    "prompt": "Arrange the onboarding governance activities.",
+    "items": [
+      "Identity imported",
+      "Manager assigned",
+      "Birthright access calculated",
+      "Provision access"
+    ],
+    "correctOrder": [
+      "Identity imported",
+      "Manager assigned",
+      "Birthright access calculated",
+      "Provision access"
+    ],
+    "explanation": "Business attributes are required before calculating birthright access.",
+    "category": "Rules",
+    "difficulty": "medium"
+  },
+  {
+    "type": "Order",
+    "prompt": "Arrange the ownership setup for a new application.",
+    "items": [
+      "Assign Application Owner",
+      "Assign Entitlement Owners",
+      "Assign Role Owners",
+      "Launch certifications"
+    ],
+    "correctOrder": [
+      "Assign Application Owner",
+      "Assign Entitlement Owners",
+      "Assign Role Owners",
+      "Launch certifications"
+    ],
+    "explanation": "Ownership should exist before governance campaigns begin.",
+    "category": "Ownership",
+    "difficulty": "medium"
+  },
+  {
+    "type": "Order",
+    "prompt": "Arrange the analytics lifecycle.",
+    "items": [
+      "Generate report",
+      "Run scheduled job",
+      "Evaluate analytics",
+      "Investigate findings"
+    ],
+    "correctOrder": [
+      "Run scheduled job",
+      "Evaluate analytics",
+      "Generate report",
+      "Investigate findings"
+    ],
+    "explanation": "Analytics are executed before reports and investigations.",
+    "category": "Analytics",
+    "difficulty": "easy"
+  },
+  {
+    "type": "Order",
+    "prompt": "Arrange the governance evidence chain.",
+    "items": [
+      "Approval recorded",
+      "Access requested",
+      "Provisioning completed",
+      "Certification reviewed"
+    ],
+    "correctOrder": [
+      "Access requested",
+      "Approval recorded",
+      "Provisioning completed",
+      "Certification reviewed"
+    ],
+    "explanation": "The governance lifecycle progresses from request through review.",
+    "category": "Reporting",
+    "difficulty": "medium"
+  },
+  {
+    "type": "Order",
+    "prompt": "Arrange the process of handling an orphan account.",
+    "items": [
+      "Investigate correlation",
+      "Import identities",
+      "Reconcile accounts",
+      "Re-run correlation"
+    ],
+    "correctOrder": [
+      "Import identities",
+      "Reconcile accounts",
+      "Investigate correlation",
+      "Re-run correlation"
+    ],
+    "explanation": "Identity and account data must exist before correlation can be corrected.",
+    "category": "Correlation",
+    "difficulty": "hard"
+  },
+  {
+    "type": "Order",
+    "prompt": "Arrange the creation of a Technical Rule.",
+    "items": [
+      "Define conditions",
+      "Define actions",
+      "Test rule",
+      "Deploy rule"
+    ],
+    "correctOrder": [
+      "Define conditions",
+      "Define actions",
+      "Test rule",
+      "Deploy rule"
+    ],
+    "explanation": "Always validate rule behavior before production deployment.",
+    "category": "Rules",
+    "difficulty": "medium"
+  },
+  {
+    "type": "Order",
+    "prompt": "Arrange the governance response to an SoD violation.",
+    "items": [
+      "Detect violation",
+      "Review conflict",
+      "Remediate access",
+      "Verify resolution"
+    ],
+    "correctOrder": [
+      "Detect violation",
+      "Review conflict",
+      "Remediate access",
+      "Verify resolution"
+    ],
+    "explanation": "Violations should be detected, reviewed, corrected, and verified.",
+    "category": "SoD",
+    "difficulty": "medium"
+  },
+  {
+    "type": "Order",
+    "prompt": "Arrange the lifecycle of an identity import.",
+    "items": [
+      "Read source data",
+      "Transform attributes",
+      "Update Identity Repository",
+      "Trigger User Update Rules"
+    ],
+    "correctOrder": [
+      "Read source data",
+      "Transform attributes",
+      "Update Identity Repository",
+      "Trigger User Update Rules"
+    ],
+    "explanation": "Identity data must first be transformed and stored before rules execute.",
+    "category": "Imports",
+    "difficulty": "hard"
+  },
+  {
+    "type": "Order",
+    "prompt": "Arrange the continuous governance cycle.",
+    "items": [
+      "Import new data",
+      "Evaluate policies",
+      "Generate governance findings",
+      "Remediate issues"
+    ],
+    "correctOrder": [
+      "Import new data",
+      "Evaluate policies",
+      "Generate governance findings",
+      "Remediate issues"
+    ],
+    "explanation": "Continuous governance follows an ongoing cycle of data collection, evaluation, reporting, and remediation.",
+    "category": "Identity Governance",
+    "difficulty": "hard"
+  },
+  {
+    "type": "Timeline",
+    "prompt": "A new employee is hired in Workday. Arrange the events in the order they typically occur until the employee receives Active Directory access.",
+    "steps": [
+      "Identity is imported into Saviynt",
+      "Lifecycle processing evaluates the Joiner event",
+      "Technical Rules determine birthright access",
+      "Provisioning creates the Active Directory account"
+    ],
+    "correctOrder": [
+      "Identity is imported into Saviynt",
+      "Lifecycle processing evaluates the Joiner event",
+      "Technical Rules determine birthright access",
+      "Provisioning creates the Active Directory account"
+    ],
+    "explanation": "Identity import precedes lifecycle evaluation, which calculates access before provisioning executes.",
     "category": "Lifecycle Management",
     "difficulty": "medium"
+  },
+  {
+    "type": "Workflow",
+    "prompt": "Arrange the administrator's troubleshooting steps after discovering hundreds of orphan accounts following an account import.",
+    "steps": [
+      "Verify account import completed successfully",
+      "Review correlation rules",
+      "Inspect identity matching attributes",
+      "Run correlation again"
+    ],
+    "correctOrder": [
+      "Verify account import completed successfully",
+      "Review correlation rules",
+      "Inspect identity matching attributes",
+      "Run correlation again"
+    ],
+    "explanation": "Always verify imported data before modifying correlation logic.",
+    "category": "Correlation",
+    "difficulty": "hard"
+  },
+  {
+    "type": "Timeline",
+    "prompt": "Arrange the normal sequence of an access request for a privileged entitlement.",
+    "steps": [
+      "User submits request",
+      "SoD policies are evaluated",
+      "Approvers review the request",
+      "Provisioning grants the entitlement"
+    ],
+    "correctOrder": [
+      "User submits request",
+      "SoD policies are evaluated",
+      "Approvers review the request",
+      "Provisioning grants the entitlement"
+    ],
+    "explanation": "Risk evaluation occurs before approvals and provisioning.",
+    "category": "Access Requests",
+    "difficulty": "easy"
+  },
+  {
+    "type": "Workflow",
+    "prompt": "Arrange the administrator's workflow when onboarding a brand new application into Saviynt.",
+    "steps": [
+      "Configure the endpoint",
+      "Validate connectivity",
+      "Import accounts and entitlements",
+      "Assign governance ownership"
+    ],
+    "correctOrder": [
+      "Configure the endpoint",
+      "Validate connectivity",
+      "Import accounts and entitlements",
+      "Assign governance ownership"
+    ],
+    "explanation": "Applications should first be connected, then populated with data before governance begins.",
+    "category": "Applications",
+    "difficulty": "medium"
+  },
+  {
+    "type": "Timeline",
+    "prompt": "Arrange the normal sequence after an employee transfers departments.",
+    "steps": [
+      "HR updates the employee record",
+      "Identity import updates Saviynt",
+      "User Update Rules execute",
+      "Access is recalculated and provisioned"
+    ],
+    "correctOrder": [
+      "HR updates the employee record",
+      "Identity import updates Saviynt",
+      "User Update Rules execute",
+      "Access is recalculated and provisioned"
+    ],
+    "explanation": "Department changes flow from HR into identity processing before access changes occur.",
+    "category": "Rules",
+    "difficulty": "medium"
+  },
+  {
+    "type": "Workflow",
+    "prompt": "Arrange the investigation after a provisioning job reports success but users still cannot log into SAP.",
+    "steps": [
+      "Review provisioning logs",
+      "Verify connector configuration",
+      "Confirm SAP accepted the provisioning request",
+      "Validate the assigned SAP roles"
+    ],
+    "correctOrder": [
+      "Review provisioning logs",
+      "Verify connector configuration",
+      "Confirm SAP accepted the provisioning request",
+      "Validate the assigned SAP roles"
+    ],
+    "explanation": "Start with Saviynt evidence before moving into the target application.",
+    "category": "Provisioning",
+    "difficulty": "hard"
+  },
+  {
+    "type": "Timeline",
+    "prompt": "Arrange the normal certification lifecycle.",
+    "steps": [
+      "Campaign is generated",
+      "Reviewers certify access",
+      "Revocations are remediated",
+      "Campaign closes"
+    ],
+    "correctOrder": [
+      "Campaign is generated",
+      "Reviewers certify access",
+      "Revocations are remediated",
+      "Campaign closes"
+    ],
+    "explanation": "Certifications proceed from campaign generation to review, remediation, and closure.",
+    "category": "Certifications",
+    "difficulty": "easy"
+  },
+  {
+    "type": "Workflow",
+    "prompt": "Arrange the best troubleshooting sequence after duplicate identities appear following an HR migration.",
+    "steps": [
+      "Review authoritative source mappings",
+      "Validate correlation attributes",
+      "Identify duplicate employee IDs",
+      "Merge or correct duplicate identities"
+    ],
+    "correctOrder": [
+      "Review authoritative source mappings",
+      "Validate correlation attributes",
+      "Identify duplicate employee IDs",
+      "Merge or correct duplicate identities"
+    ],
+    "explanation": "Find the root cause before correcting duplicate identities.",
+    "category": "Imports",
+    "difficulty": "hard"
+  },
+  {
+    "type": "Timeline",
+    "prompt": "Arrange the normal lifecycle of a terminated employee.",
+    "steps": [
+      "HR marks the employee as terminated",
+      "Identity status changes",
+      "Lifecycle processing removes access",
+      "Accounts are disabled"
+    ],
+    "correctOrder": [
+      "HR marks the employee as terminated",
+      "Identity status changes",
+      "Lifecycle processing removes access",
+      "Accounts are disabled"
+    ],
+    "explanation": "Termination begins in HR and ends with account deactivation.",
+    "category": "Lifecycle Management",
+    "difficulty": "easy"
+  },
+  {
+    "type": "Workflow",
+    "prompt": "Arrange the steps for investigating a sudden increase in SoD violations.",
+    "steps": [
+      "Review recent role changes",
+      "Review new entitlement assignments",
+      "Analyze affected users",
+      "Implement remediation"
+    ],
+    "correctOrder": [
+      "Review recent role changes",
+      "Review new entitlement assignments",
+      "Analyze affected users",
+      "Implement remediation"
+    ],
+    "explanation": "Determine what changed before correcting violations.",
+    "category": "SoD",
+    "difficulty": "hard"
+  },
+  {
+    "type": "Timeline",
+    "prompt": "Arrange the events leading to recommendation generation during an access review.",
+    "steps": [
+      "Certification campaign starts",
+      "Historical decisions are analyzed",
+      "Peer groups are evaluated",
+      "Recommendation is displayed"
+    ],
+    "correctOrder": [
+      "Certification campaign starts",
+      "Historical decisions are analyzed",
+      "Peer groups are evaluated",
+      "Recommendation is displayed"
+    ],
+    "explanation": "Recommendations are generated after the campaign context exists and Saviynt can evaluate historical decisions and peer patterns.",
+    "category": "Recommendations",
+    "difficulty": "medium"
+  },
+  {
+    "type": "Workflow",
+    "prompt": "Arrange the process for preparing a new entitlement to become requestable.",
+    "steps": [
+      "Assign an owner",
+      "Define approval workflow",
+      "Configure SoD policies",
+      "Publish the entitlement"
+    ],
+    "correctOrder": [
+      "Assign an owner",
+      "Define approval workflow",
+      "Configure SoD policies",
+      "Publish the entitlement"
+    ],
+    "explanation": "A requestable entitlement needs ownership, approval routing, and risk controls before it is published to the catalog.",
+    "category": "Entitlements",
+    "difficulty": "medium"
+  },
+  {
+    "type": "Timeline",
+    "prompt": "Arrange the sequence for detecting and resolving an orphan account.",
+    "steps": [
+      "Account import completes",
+      "Correlation identifies an orphan",
+      "Administrator investigates",
+      "Account is correlated or removed"
+    ],
+    "correctOrder": [
+      "Account import completes",
+      "Correlation identifies an orphan",
+      "Administrator investigates",
+      "Account is correlated or removed"
+    ],
+    "explanation": "Orphan handling starts after import and correlation identify the unmanaged account, then investigation determines whether to map or remove it.",
+    "category": "Correlation",
+    "difficulty": "medium"
+  },
+  {
+    "type": "Workflow",
+    "prompt": "Arrange the process of building a governance dashboard.",
+    "steps": [
+      "Identify governance KPIs",
+      "Configure Analytics",
+      "Schedule execution",
+      "Review dashboard results"
+    ],
+    "correctOrder": [
+      "Identify governance KPIs",
+      "Configure Analytics",
+      "Schedule execution",
+      "Review dashboard results"
+    ],
+    "explanation": "Dashboard work should begin with the governance measures, then analytics can be configured, scheduled, and reviewed.",
+    "category": "Analytics",
+    "difficulty": "medium"
+  },
+  {
+    "type": "Timeline",
+    "prompt": "Arrange the approval chain for a high-risk access request requiring multiple approvers.",
+    "steps": [
+      "Request submitted",
+      "Manager approval",
+      "Application Owner approval",
+      "Provisioning"
+    ],
+    "correctOrder": [
+      "Request submitted",
+      "Manager approval",
+      "Application Owner approval",
+      "Provisioning"
+    ],
+    "explanation": "High-risk access requests should complete required approvals before provisioning grants the access.",
+    "category": "Approval Workflow",
+    "difficulty": "medium"
+  },
+  {
+    "type": "Workflow",
+    "prompt": "Arrange the administrator's response after an audit discovers unmanaged privileged accounts.",
+    "steps": [
+      "Identify affected accounts",
+      "Assign ownership",
+      "Include accounts in certifications",
+      "Monitor with Analytics"
+    ],
+    "correctOrder": [
+      "Identify affected accounts",
+      "Assign ownership",
+      "Include accounts in certifications",
+      "Monitor with Analytics"
+    ],
+    "explanation": "Unmanaged privileged accounts need identification, accountable owners, review coverage, and ongoing monitoring.",
+    "category": "Ownership",
+    "difficulty": "hard"
+  },
+  {
+    "type": "Timeline",
+    "prompt": "Arrange the process of introducing a new Technical Rule.",
+    "steps": [
+      "Define rule conditions",
+      "Test in a non-production environment",
+      "Deploy to production",
+      "Monitor results"
+    ],
+    "correctOrder": [
+      "Define rule conditions",
+      "Test in a non-production environment",
+      "Deploy to production",
+      "Monitor results"
+    ],
+    "explanation": "Rule changes should be defined and tested before production deployment, then monitored for expected access outcomes.",
+    "category": "Rules",
+    "difficulty": "medium"
+  },
+  {
+    "type": "Workflow",
+    "prompt": "Arrange the investigation after manager approvals begin routing to inactive users.",
+    "steps": [
+      "Verify identity imports",
+      "Review manager attributes",
+      "Validate User Update Rules",
+      "Test approval routing"
+    ],
+    "correctOrder": [
+      "Verify identity imports",
+      "Review manager attributes",
+      "Validate User Update Rules",
+      "Test approval routing"
+    ],
+    "explanation": "Approval routing issues should be traced from identity import data through manager attributes and rule behavior before testing the route.",
+    "category": "Rules",
+    "difficulty": "hard"
+  },
+  {
+    "type": "Timeline",
+    "prompt": "Arrange the governance lifecycle for a privileged entitlement.",
+    "steps": [
+      "Entitlement created",
+      "Ownership assigned",
+      "Access requested and approved",
+      "Periodic certification"
+    ],
+    "correctOrder": [
+      "Entitlement created",
+      "Ownership assigned",
+      "Access requested and approved",
+      "Periodic certification"
+    ],
+    "explanation": "Privileged entitlement governance moves from creation and ownership through controlled assignment and recurring review.",
+    "category": "Identity Governance",
+    "difficulty": "medium"
+  },
+  {
+    "type": "Workflow",
+    "prompt": "Arrange the investigation after an auditor reports that terminated employees still have access to one application.",
+    "steps": [
+      "Verify the termination event was imported",
+      "Review lifecycle processing",
+      "Inspect provisioning logs for the application",
+      "Confirm deprovisioning in the target system"
+    ],
+    "correctOrder": [
+      "Verify the termination event was imported",
+      "Review lifecycle processing",
+      "Inspect provisioning logs for the application",
+      "Confirm deprovisioning in the target system"
+    ],
+    "explanation": "Termination access issues should be traced from source event ingestion through lifecycle logic and provisioning evidence in the target.",
+    "category": "Risk Management",
+    "difficulty": "hard"
   }
 ]

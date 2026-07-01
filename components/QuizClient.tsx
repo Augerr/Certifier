@@ -2,12 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import {
-  ArrowLeft,
-  ArrowRight,
-  Clock3,
-  ListChecks,
-} from "lucide-react";
+import { ArrowLeft, ArrowRight, Clock3, ListChecks } from "lucide-react";
 
 import { ExamProgress } from "@/components/ExamProgress";
 import { QuestionCard } from "@/components/QuestionCard";
@@ -15,6 +10,13 @@ import { ResultsSummary } from "@/components/ResultsSummary";
 import { Button } from "@/components/ui/button";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import type { SelectedAnswers } from "@/lib/answer-utils";
+import {
+  createExamDraftStorageKey,
+  readExamDraft,
+  removeExamDraft,
+  writeExamDraft,
+} from "@/lib/quiz-draft-store";
+import { quizTheme } from "@/lib/theme-tokens";
 import type { QuizAnalytics } from "@/types/analytics";
 import type { ExamQuestion } from "@/types/question";
 
@@ -26,16 +28,6 @@ type QuizClientProps = {
   requestedCategories: string[];
   timerEnabled: boolean;
   freshStart: boolean;
-};
-
-type ExamDraft = {
-  version: 1;
-  sessionId: string | null;
-  questions: ExamQuestion[];
-  answers: SelectedAnswers;
-  currentIndex: number;
-  startedAt: number | null;
-  updatedAt?: number;
 };
 
 function formatElapsedTime(totalSeconds: number) {
@@ -50,20 +42,26 @@ function formatElapsedTime(totalSeconds: number) {
   return `${minutes}:${String(seconds).padStart(2, "0")}`;
 }
 
-function isExamDraft(value: unknown): value is ExamDraft {
-  if (!value || typeof value !== "object") {
-    return false;
+function isQuestionAnswered(
+  question: ExamQuestion,
+  questionAnswers: string[] | undefined,
+) {
+  if (question.type === "Match") {
+    return Boolean(
+      question.statements?.length &&
+        questionAnswers?.length === question.statements.length &&
+        questionAnswers.every(Boolean),
+    );
   }
 
-  const draft = value as Partial<ExamDraft>;
+  return Boolean(questionAnswers?.length);
+}
 
+function isSequenceQuestion(question: ExamQuestion) {
   return (
-    draft.version === 1 &&
-    Array.isArray(draft.questions) &&
-    typeof draft.currentIndex === "number" &&
-    (typeof draft.sessionId === "string" || draft.sessionId === null) &&
-    (typeof draft.startedAt === "number" || draft.startedAt === null) &&
-    Boolean(draft.answers && typeof draft.answers === "object")
+    question.type === "Order" ||
+    question.type === "Timeline" ||
+    question.type === "Workflow"
   );
 }
 
@@ -78,12 +76,11 @@ export function QuizClient({
 }: QuizClientProps) {
   const boundedQuestionCount = Math.max(questionCount, minQuestionCount);
   const examStorageKey = useMemo(() => {
-    const categoriesKey =
-      requestedCategories.length > 0
-        ? [...requestedCategories].sort().join("|")
-        : "all";
-
-    return `saviynt-exam-draft:v1:${boundedQuestionCount}:${timerEnabled ? "timed" : "untimed"}:${categoriesKey}`;
+    return createExamDraftStorageKey({
+      questionCount: boundedQuestionCount,
+      timerEnabled,
+      categories: requestedCategories,
+    });
   }, [boundedQuestionCount, requestedCategories, timerEnabled]);
   const [activeQuestions, setActiveQuestions] = useState<ExamQuestion[]>([]);
   const [loading, setLoading] = useState(true);
@@ -106,43 +103,35 @@ export function QuizClient({
       setLoading(true);
       try {
         if (freshStart) {
-          window.localStorage.removeItem(examStorageKey);
+          removeExamDraft(examStorageKey);
 
           const currentUrl = new URL(window.location.href);
           currentUrl.searchParams.delete("fresh");
           window.history.replaceState(null, "", currentUrl.toString());
         }
 
-        const savedDraft = freshStart
-          ? null
-          : window.localStorage.getItem(examStorageKey);
+        const savedDraft = freshStart ? null : readExamDraft(examStorageKey);
 
         if (savedDraft) {
-          const parsedDraft = JSON.parse(savedDraft) as unknown;
-
-          if (isExamDraft(parsedDraft) && parsedDraft.questions.length > 0) {
-            setSessionId(parsedDraft.sessionId);
-            setActiveQuestions(parsedDraft.questions);
-            setAnswers(parsedDraft.answers);
-            setCurrentIndex(
-              Math.min(
-                Math.max(parsedDraft.currentIndex, 0),
-                parsedDraft.questions.length - 1,
-              ),
-            );
-            setStartedAt(parsedDraft.startedAt);
-            setElapsedSeconds(
-              parsedDraft.startedAt
-                ? Math.max(
-                    0,
-                    Math.floor((Date.now() - parsedDraft.startedAt) / 1000),
-                  )
-                : 0,
-            );
-            return;
-          }
-
-          window.localStorage.removeItem(examStorageKey);
+          setSessionId(savedDraft.sessionId);
+          setActiveQuestions(savedDraft.questions);
+          setAnswers(savedDraft.answers);
+          setCurrentIndex(
+            Math.min(
+              Math.max(savedDraft.currentIndex, 0),
+              savedDraft.questions.length - 1,
+            ),
+          );
+          setStartedAt(savedDraft.startedAt);
+          setElapsedSeconds(
+            savedDraft.startedAt
+              ? Math.max(
+                  0,
+                  Math.floor((Date.now() - savedDraft.startedAt) / 1000),
+                )
+              : 0,
+          );
+          return;
         }
 
         const params = new URLSearchParams();
@@ -175,41 +164,21 @@ export function QuizClient({
   }, [boundedQuestionCount, examStorageKey, freshStart, requestedCategories]);
 
   const currentQuestion = activeQuestions[currentIndex];
-  const selectedAnswers =
-    currentQuestion?.type === "Order" && !answers[currentQuestion.id]
-      ? currentQuestion.choices
-      : currentQuestion
-        ? (answers[currentQuestion.id] ?? [])
-        : [];
+  const selectedAnswers = currentQuestion
+    ? (answers[currentQuestion.id] ?? [])
+    : [];
   const isCurrentQuestionAnswered =
-    currentQuestion?.type === "Match"
-      ? Boolean(
-          currentQuestion.statements?.length &&
-          selectedAnswers.length === currentQuestion.statements.length &&
-          selectedAnswers.every(Boolean),
-        )
-      : selectedAnswers.length > 0;
+    currentQuestion && isSequenceQuestion(currentQuestion)
+      ? currentQuestion.choices.length > 0
+      : currentQuestion
+        ? isQuestionAnswered(currentQuestion, answers[currentQuestion.id])
+        : false;
   const isLastQuestion = currentQuestion
     ? currentIndex === activeQuestions.length - 1
     : false;
-  const answeredCount = activeQuestions.filter((question) => {
-    const questionAnswers =
-      question.type === "Order" && !answers[question.id]
-        ? question.choices
-        : (answers[question.id] ?? []);
-
-    return question.type === "Match"
-      ? Boolean(
-          question.statements?.length &&
-            questionAnswers.length === question.statements.length &&
-            questionAnswers.every(Boolean),
-        )
-      : questionAnswers.length > 0;
-  }).length;
-  const progressValue =
-    activeQuestions.length === 0
-      ? 0
-      : Math.round((answeredCount / activeQuestions.length) * 100);
+  const answeredCount = activeQuestions.filter((question) =>
+    isQuestionAnswered(question, answers[question.id]),
+  ).length;
   const timeLimitSeconds = timerEnabled
     ? activeQuestions.length * secondsPerQuestion
     : null;
@@ -235,17 +204,14 @@ export function QuizClient({
       return;
     }
 
-    const draft: ExamDraft = {
+    writeExamDraft(examStorageKey, {
       version: 1,
       sessionId,
       questions: activeQuestions,
       answers,
       currentIndex,
       startedAt,
-      updatedAt: Date.now(),
-    };
-
-    window.localStorage.setItem(examStorageKey, JSON.stringify(draft));
+    });
   }, [
     activeQuestions,
     answers,
@@ -295,7 +261,7 @@ export function QuizClient({
         !choice ||
         choiceIndex < 0 ||
         choiceIndex > 3 ||
-        currentQuestion.type === "Order" ||
+        isSequenceQuestion(currentQuestion) ||
         currentQuestion.type === "Match"
       ) {
         return;
@@ -340,7 +306,7 @@ export function QuizClient({
       if (!sessionId) {
         setCompletedDurationSeconds(durationSeconds);
         setIsComplete(true);
-        window.localStorage.removeItem(examStorageKey);
+        removeExamDraft(examStorageKey);
         return;
       }
 
@@ -366,7 +332,7 @@ export function QuizClient({
         setAnalytics(json.analytics || null);
         setCompletedDurationSeconds(json.durationSeconds ?? durationSeconds);
         setIsComplete(true);
-        window.localStorage.removeItem(examStorageKey);
+        removeExamDraft(examStorageKey);
       } catch {
         setGradingError("Network error while grading. Please try again.");
         setCompletedDurationSeconds(durationSeconds);
@@ -428,10 +394,10 @@ export function QuizClient({
     const nextAnswers =
       currentQuestion &&
       !answers[currentQuestion.id] &&
-      currentQuestion.type === "Order"
+      isSequenceQuestion(currentQuestion)
         ? {
             ...answers,
-            [currentQuestion.id]: selectedAnswers,
+            [currentQuestion.id]: currentQuestion.choices,
           }
         : answers;
 
@@ -440,6 +406,22 @@ export function QuizClient({
     }
 
     if (isLastQuestion) {
+      const unansweredCount = activeQuestions.filter(
+        (question) => !isQuestionAnswered(question, nextAnswers[question.id]),
+      ).length;
+
+      if (unansweredCount > 0) {
+        const confirmed = window.confirm(
+          `You still have ${unansweredCount} unanswered question${
+            unansweredCount === 1 ? "" : "s"
+          }. Finish exam anyway?`,
+        );
+
+        if (!confirmed) {
+          return;
+        }
+      }
+
       void finishExam(nextAnswers);
       return;
     }
@@ -449,7 +431,7 @@ export function QuizClient({
 
   function handleRetake() {
     // trigger reload by updating state that the effect depends on
-    window.localStorage.removeItem(examStorageKey);
+    removeExamDraft(examStorageKey);
     setActiveQuestions([]);
     setAnswers({});
     setCurrentIndex(0);
@@ -569,48 +551,35 @@ export function QuizClient({
               <div className="sticky top-4 z-20 overflow-hidden rounded-xl border border-white/10 bg-neutral-950/90 shadow-2xl shadow-black/30 backdrop-blur">
                 <div className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center sm:justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="flex size-10 items-center justify-center rounded-lg border border-blue-600/40 bg-blue-600/10 text-blue-300">
+                    <div
+                      className={`flex size-10 items-center justify-center rounded-lg border ${quizTheme.primaryIconSoft}`}
+                    >
                       <ListChecks className="size-5" aria-hidden="true" />
                     </div>
                     <div>
-                      <p className="text-sm uppercase tracking-wide text-neutral-500">
-                        Question {currentIndex + 1} of {activeQuestions.length}
-                      </p>
-                      <p className="mt-1 text-base font-medium text-white">
-                        {answeredCount} answered / {activeQuestions.length} total
+                      <p className="text-base font-medium text-white">
+                        Answered {answeredCount} of {activeQuestions.length}
                       </p>
                     </div>
                   </div>
-                  <div className="grid grid-cols-2 gap-2 text-base sm:min-w-72">
-                    <div className="rounded-lg border border-white/10 bg-neutral-900/70 px-3 py-2">
-                      <p className="text-sm text-neutral-500">Progress</p>
-                      <p className="mt-1 font-semibold text-white">
-                        {progressValue}%
-                      </p>
-                    </div>
+                  {timerEnabled && (
                     <div
-                      className={`rounded-lg border px-3 py-2 ${
-                        timerEnabled ? timerUrgencyClass : "border-white/10 bg-neutral-900/70 text-neutral-300"
-                      }`}
+                      className={`rounded-lg border px-3 py-2 text-base sm:min-w-36 ${timerUrgencyClass}`}
                     >
                       <p className="flex items-center gap-1 text-sm opacity-70">
                         <Clock3 className="size-3.5" aria-hidden="true" />
-                        {timerEnabled ? "Remaining" : "Elapsed"}
+                        Remaining
                       </p>
                       <p
-                        className={`mt-1 font-mono font-semibold ${
-                          timerEnabled ? timerValueClass : "text-white"
-                        }`}
+                        className={`mt-1 font-mono font-semibold ${timerValueClass}`}
                       >
-                        {timerEnabled
-                          ? formatElapsedTime(remainingSeconds)
-                          : formatElapsedTime(elapsedSeconds)}
+                        {formatElapsedTime(remainingSeconds)}
                       </p>
                     </div>
-                  </div>
+                  )}
                 </div>
                 <ExamProgress
-                  currentQuestion={currentIndex + 1}
+                  completedQuestions={answeredCount}
                   totalQuestions={activeQuestions.length}
                 />
               </div>
@@ -626,8 +595,12 @@ export function QuizClient({
                   size="lg"
                   variant="outline"
                   onClick={handleNext}
-                  disabled={!isCurrentQuestionAnswered || loading || grading}
-                  className="h-11 border-blue-600/40 bg-blue-600/10 px-5 text-base text-blue-200 hover:bg-blue-600/20 hover:text-blue-100"
+                  disabled={
+                    (!isLastQuestion && !isCurrentQuestionAnswered) ||
+                    loading ||
+                    grading
+                  }
+                  className={`h-11 px-5 text-base ${quizTheme.primaryAction}`}
                 >
                   {isLastQuestion ? "Finish Exam" : "Next"}
                   <ArrowRight className="size-4" aria-hidden="true" />
@@ -645,25 +618,21 @@ export function QuizClient({
                     Jump between questions
                   </p>
                 </div>
-                <span className="rounded-md border border-white/10 bg-neutral-950 px-2 py-1 text-sm text-neutral-400">
-                  {answeredCount}/{activeQuestions.length}
-                </span>
+                <div className="rounded-md border border-white/10 bg-neutral-950 px-2 py-1 text-right">
+                  <p className="text-[0.65rem] uppercase tracking-wide text-neutral-500">
+                    Completed
+                  </p>
+                  <p className="text-sm text-neutral-400">
+                    {answeredCount}/{activeQuestions.length}
+                  </p>
+                </div>
               </div>
               <div className="grid max-h-[min(34rem,65vh)] grid-cols-5 gap-2 overflow-y-auto pr-1">
                 {activeQuestions.map((question, index) => {
-                  const questionAnswers =
-                    question.type === "Order" && !answers[question.id]
-                      ? question.choices
-                      : (answers[question.id] ?? []);
-                  const isAnswered =
-                    question.type === "Match"
-                      ? Boolean(
-                          question.statements?.length &&
-                            questionAnswers.length ===
-                              question.statements.length &&
-                            questionAnswers.every(Boolean),
-                        )
-                      : questionAnswers.length > 0;
+                  const isAnswered = isQuestionAnswered(
+                    question,
+                    answers[question.id],
+                  );
                   const isCurrent = index === currentIndex;
 
                   return (

@@ -83,6 +83,15 @@ const difficultyOrder: Record<Difficulty, number> = {
   medium: 1,
   hard: 2,
 };
+const categoryAliases: Record<string, string> = {
+  Governance: "Identity Governance",
+  "Technical Rules": "Rules",
+  "User Update Rules": "Rules",
+};
+
+function normalizeCategory(category: string) {
+  return categoryAliases[category] ?? category;
+}
 
 function getDatabase() {
   if (globalThis.quizAttemptDatabase) {
@@ -227,7 +236,7 @@ function toStoredQuestion(row: StoredQuestionRow): StoredQuestion {
     correctAnswers,
     correctAnswerCount: correctAnswers.length,
     explanation: row.explanation ?? undefined,
-    category: row.category,
+    category: normalizeCategory(row.category),
     difficulty: row.difficulty,
   };
 }
@@ -439,17 +448,18 @@ export function completeQuizAttempt(
         earnedPoints += row.point_value;
       }
 
-      categoryAgg[row.category] = categoryAgg[row.category] || {
+      const normalizedCategory = normalizeCategory(row.category);
+      categoryAgg[normalizedCategory] = categoryAgg[normalizedCategory] || {
         earned: 0,
         total: 0,
         correct: 0,
         count: 0,
       };
-      categoryAgg[row.category].total += row.point_value;
-      categoryAgg[row.category].count += 1;
+      categoryAgg[normalizedCategory].total += row.point_value;
+      categoryAgg[normalizedCategory].count += 1;
       if (isCorrect) {
-        categoryAgg[row.category].earned += row.point_value;
-        categoryAgg[row.category].correct += 1;
+        categoryAgg[normalizedCategory].earned += row.point_value;
+        categoryAgg[normalizedCategory].correct += 1;
       }
 
       updateQuestion.run({
@@ -523,7 +533,32 @@ function getPerformanceBuckets(groupColumn: "category" | "difficulty") {
     )
     .all() as BucketRow[];
 
-  return rows.map(toBucket);
+  if (groupColumn === "difficulty") {
+    return rows.map(toBucket);
+  }
+
+  const mergedRows = new Map<string, BucketRow>();
+  for (const row of rows) {
+    const label = normalizeCategory(row.label);
+    const current = mergedRows.get(label);
+
+    if (!current) {
+      mergedRows.set(label, { ...row, label });
+      continue;
+    }
+
+    current.total_questions += row.total_questions;
+    current.correct += row.correct;
+    current.earned_points += row.earned_points;
+    current.total_points += row.total_points;
+  }
+
+  return [...mergedRows.values()]
+    .sort(
+      (a, b) =>
+        b.total_questions - a.total_questions || a.label.localeCompare(b.label),
+    )
+    .map(toBucket);
 }
 
 export function getQuizAnalytics(): QuizAnalytics {

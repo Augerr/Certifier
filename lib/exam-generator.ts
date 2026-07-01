@@ -13,6 +13,13 @@ const questionTypeByLowercase: Record<string, QuestionType> = {
   order: "Order",
   match: "Match",
   scenario: "Scenario",
+  timeline: "Timeline",
+  workflow: "Workflow",
+};
+const categoryAliases: Record<string, ExamQuestion["category"]> = {
+  Governance: "Identity Governance",
+  "Technical Rules": "Rules",
+  "User Update Rules": "Rules",
 };
 
 function shuffle<T>(items: T[]): T[] {
@@ -52,14 +59,18 @@ function getTargetDifficultyCounts(size: number): Record<Difficulty, number> {
 type QuestionBankItem = Partial<Omit<ExamQuestion, "id" | "type">> & {
   type: string;
   items?: string[];
+  steps?: string[];
   correctOrder?: string[];
 };
 
 export function generateQuestionBank(questions: QuestionBankItem[]): ExamQuestion[] {
   return questions.map((question, index) => {
     const type = questionTypeByLowercase[question.type.toLowerCase()] ?? "Single";
-    const choices = question.choices ?? question.items ?? [];
+    const choices = question.choices ?? question.items ?? question.steps ?? [];
     const correctAnswers = question.correctAnswers ?? question.correctOrder ?? [];
+    const category =
+      categoryAliases[question.category ?? ""] ??
+      (question.category as ExamQuestion["category"]);
 
     return {
       ...question,
@@ -68,7 +79,7 @@ export function generateQuestionBank(questions: QuestionBankItem[]): ExamQuestio
       choices,
       correctAnswers,
       explanation: question.explanation ?? "",
-      category: question.category as ExamQuestion["category"],
+      category,
       difficulty: question.difficulty ?? "medium",
       prompt: question.prompt ?? "",
     };

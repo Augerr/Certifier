@@ -7,21 +7,22 @@ import { ArrowRight, ShieldCheck } from "lucide-react";
 import { AnalyticsOverview } from "@/components/AnalyticsOverview";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+  getLatestContinueAttempt,
+  type ContinueAttempt,
+} from "@/lib/quiz-draft-store";
+import { buildQuizHref } from "@/lib/quiz-url";
+import { quizTheme } from "@/lib/theme-tokens";
 import type { QuizAnalytics } from "@/types/analytics";
 import { examCategories, type ExamCategory } from "@/types/question";
 
 type CategoryCounts = Record<string, number>;
-type ContinueAttempt = {
-  href: string;
-  updatedAt: number;
-};
 
 const minQuestionCount = 10;
 const defaultQuestionCount = 25;
 const secondsPerQuestion = 90;
 const weakCategoryThreshold = 80;
 const weakCategoryFallbackCount = 3;
-const examDraftStoragePrefix = "saviynt-exam-draft:v1:";
 
 function clampQuestionCount(value: number, max: number) {
   return Math.min(Math.max(value, minQuestionCount), max);
@@ -34,82 +35,32 @@ function formatDuration(totalSeconds: number) {
   return `${minutes}:${String(seconds).padStart(2, "0")}`;
 }
 
-function getContinueAttemptFromStorage(): ContinueAttempt | null {
-  if (typeof window === "undefined") {
-    return null;
+function getReadinessBadge(percentage?: number) {
+  if (percentage === undefined) {
+    return {
+      label: "Untested",
+      className: "border-white/10 bg-neutral-950/70 text-neutral-400",
+    };
   }
 
-  let latestAttempt: ContinueAttempt | null = null;
-
-  for (let index = 0; index < window.localStorage.length; index += 1) {
-    const key = window.localStorage.key(index);
-
-    if (!key?.startsWith(examDraftStoragePrefix)) {
-      continue;
-    }
-
-    try {
-      const rawDraft = window.localStorage.getItem(key);
-
-      if (!rawDraft) {
-        continue;
-      }
-
-      const draft = JSON.parse(rawDraft) as {
-        version?: unknown;
-        questions?: unknown;
-        currentIndex?: unknown;
-        startedAt?: unknown;
-        updatedAt?: unknown;
-      };
-
-      if (
-        draft.version !== 1 ||
-        !Array.isArray(draft.questions) ||
-        draft.questions.length === 0 ||
-        typeof draft.currentIndex !== "number"
-      ) {
-        continue;
-      }
-
-      const [, , count, timer, categoriesKey = "all"] = key.split(":");
-      const questionCount = Number(count);
-
-      if (!Number.isFinite(questionCount) || questionCount < minQuestionCount) {
-        continue;
-      }
-
-      const params = new URLSearchParams();
-      params.set("count", String(questionCount));
-      params.set("timer", timer === "timed" ? "1" : "0");
-
-      if (categoriesKey !== "all") {
-        categoriesKey.split("|").forEach((category) => {
-          if (category) {
-            params.append("categories", category);
-          }
-        });
-      }
-
-      const updatedAt =
-        typeof draft.updatedAt === "number"
-          ? draft.updatedAt
-          : typeof draft.startedAt === "number"
-            ? draft.startedAt
-            : 0;
-
-      if (!latestAttempt || updatedAt > latestAttempt.updatedAt) {
-        latestAttempt = {
-          href: `/quiz?${params.toString()}`,
-          updatedAt,
-        };
-      }
-    } catch {
-      // Ignore malformed drafts; the quiz page owns cleanup when it sees them.
-    }
+  if (percentage >= 80) {
+    return {
+      label: `${percentage}%`,
+      className: "border-emerald-500/30 bg-emerald-500/10 text-emerald-300",
+    };
   }
 
-  return latestAttempt;
+  if (percentage >= 60) {
+    return {
+      label: `${percentage}%`,
+      className: "border-amber-400/30 bg-amber-400/10 text-amber-200",
+    };
+  }
+
+  return {
+    label: `${percentage}%`,
+    className: "border-red-500/30 bg-red-500/10 text-red-300",
+  };
 }
 
 export default function QuizSetup() {
@@ -146,6 +97,12 @@ export default function QuizSetup() {
       return percentage === undefined || percentage < weakCategoryThreshold;
     });
   }, [analytics, sortedExamCategories]);
+  const categoryReadiness = useMemo(() => {
+    return new Map(
+      analytics?.byCategory.map((bucket) => [bucket.label, bucket.percentage]) ??
+        [],
+    );
+  }, [analytics]);
 
   const availableQuestionCount = useMemo(() => {
     if (!categoryCounts) return 0;
@@ -162,20 +119,12 @@ export default function QuizSetup() {
   const timeLimitSeconds = displayQuestionCount * secondsPerQuestion;
 
   const startHref = useMemo(() => {
-    const params = new URLSearchParams();
-    params.set("count", String(displayQuestionCount));
-    params.set("fresh", "1");
-    params.set("timer", timerEnabled ? "1" : "0");
-
-    if (allCategoriesSelected) {
-      return `/quiz?${params.toString()}`;
-    }
-
-    selectedCategories.forEach((category) => {
-      params.append("categories", category);
+    return buildQuizHref({
+      count: displayQuestionCount,
+      fresh: true,
+      timer: timerEnabled,
+      categories: allCategoriesSelected ? [] : selectedCategories,
     });
-
-    return `/quiz?${params.toString()}`;
   }, [
     allCategoriesSelected,
     displayQuestionCount,
@@ -215,17 +164,14 @@ export default function QuizSetup() {
       questionCount,
       weakMaxQuestionCount,
     );
-    const params = new URLSearchParams();
-
-    params.set("count", String(weakQuestionCount));
-    params.set("fresh", "1");
-    params.set("timer", timerEnabled ? "1" : "0");
-    focusCategories.forEach((category) => {
-      params.append("categories", category);
-    });
 
     return {
-      href: `/quiz?${params.toString()}`,
+      href: buildQuizHref({
+        count: weakQuestionCount,
+        fresh: true,
+        timer: timerEnabled,
+        categories: focusCategories,
+      }),
     };
   }, [analytics, categoryCounts, questionCount, timerEnabled]);
 
@@ -261,7 +207,7 @@ export default function QuizSetup() {
 
   useEffect(() => {
     function updateContinueAttempt() {
-      setContinueAttempt(getContinueAttemptFromStorage());
+      setContinueAttempt(getLatestContinueAttempt(minQuestionCount));
     }
 
     const timeout = window.setTimeout(updateContinueAttempt, 0);
@@ -332,7 +278,9 @@ export default function QuizSetup() {
       <section className="mx-auto flex min-h-screen w-full max-w-5xl flex-col justify-center px-6 py-12">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div className="flex max-w-4xl items-center gap-4">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-blue-600/30 bg-blue-600/10 text-blue-500 sm:h-14 sm:w-14">
+            <div
+              className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border sm:h-14 sm:w-14 ${quizTheme.primaryIcon}`}
+            >
               <ShieldCheck className="size-6" aria-hidden="true" />
             </div>
             <h1 className="text-2xl font-semibold tracking-tight text-white sm:text-4xl">
@@ -343,7 +291,7 @@ export default function QuizSetup() {
             <Button
               asChild
               variant="outline"
-              className="h-10 border-blue-600/40 bg-blue-600/10 text-blue-200 hover:bg-blue-600/20 hover:text-blue-100"
+              className={`h-10 ${quizTheme.primaryAction}`}
             >
               <Link href={continueAttempt.href}>
                 Continue Last Attempt
@@ -408,13 +356,16 @@ export default function QuizSetup() {
           <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
             {sortedExamCategories.map((category) => {
               const isSelected = selectedCategories.includes(category);
+              const readiness = getReadinessBadge(
+                categoryReadiness.get(category),
+              );
 
               return (
                 <label
                   key={category}
-                  className={`flex min-h-9 cursor-pointer items-center gap-2 rounded-md border px-2.5 py-1.5 text-sm leading-5 transition ${
+                  className={`flex min-h-10 cursor-pointer items-center gap-2 rounded-md border px-2.5 py-1.5 text-sm leading-5 transition ${
                     isSelected
-                      ? "border-blue-600/50 bg-blue-600/10 text-blue-300"
+                      ? quizTheme.selectedCategory
                       : "border-white/10 bg-neutral-900/50 text-neutral-300 opacity-45 hover:border-white/25 hover:bg-neutral-900 hover:opacity-80"
                   }`}
                 >
@@ -424,7 +375,12 @@ export default function QuizSetup() {
                     onChange={() => toggleCategory(category)}
                     className="size-4 shrink-0 accent-blue-600"
                   />
-                  <span>{category}</span>
+                  <span className="min-w-0 flex-1">{category}</span>
+                  <span
+                    className={`shrink-0 rounded-full border px-2 py-0.5 text-[0.7rem] leading-4 ${readiness.className}`}
+                  >
+                    {readiness.label}
+                  </span>
                 </label>
               );
             })}
@@ -491,7 +447,7 @@ export default function QuizSetup() {
               type="button"
               size="lg"
               variant="outline"
-              className="h-11 border-blue-600/40 bg-blue-600/10 px-5 text-blue-200 hover:bg-blue-600/20 hover:text-blue-100"
+              className={`h-11 px-5 ${quizTheme.primaryAction}`}
               disabled
             >
               Start New Exam
@@ -502,7 +458,7 @@ export default function QuizSetup() {
               asChild
               size="lg"
               variant="outline"
-              className="h-11 border-blue-600/40 bg-blue-600/10 px-5 text-blue-200 hover:bg-blue-600/20 hover:text-blue-100"
+              className={`h-11 px-5 ${quizTheme.primaryAction}`}
             >
               <Link href={startHref}>
                 Start New Exam
