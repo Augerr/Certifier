@@ -297,7 +297,8 @@ export function QuizClient({
         ...currentAnswers,
         [currentQuestion.id]:
           currentQuestion.type === "Multiple" ||
-          currentQuestion.type === "Scenario"
+          currentQuestion.type === "Scenario" ||
+          currentQuestion.type === "Consultant"
             ? currentAnswers[currentQuestion.id]?.includes(choice)
               ? currentAnswers[currentQuestion.id].filter(
                   (answer) => answer !== choice,

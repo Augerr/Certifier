@@ -46,6 +46,7 @@ const supportedQuestionTypes = new Set<QuestionType>([
   "Scenario",
   "Timeline",
   "Workflow",
+  "Consultant",
 ]);
 const supportedDifficulties = new Set<Difficulty>(["easy", "medium", "hard"]);
 

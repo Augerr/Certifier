@@ -20,6 +20,7 @@ export const reviewTypeFilters = [
   "Scenario",
   "Timeline",
   "Workflow",
+  "Consultant",
 ] as const;
 export type ReviewTypeFilter = (typeof reviewTypeFilters)[number];
 

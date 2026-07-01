@@ -11548,7 +11548,7 @@
   {
     "type": "Timeline",
     "prompt": "Arrange the events after an employee transfers to a new department.",
-    "category": "User Update Rules",
+    "category": "Rules",
     "difficulty": "medium",
     "choices": [
       "HR updates department",
@@ -11768,7 +11768,7 @@
   {
     "type": "Workflow",
     "prompt": "Arrange the recommended troubleshooting process after managers report they are receiving approval requests for employees they no longer manage.",
-    "category": "User Update Rules",
+    "category": "Rules",
     "difficulty": "hard",
     "choices": [
       "Verify HR data",
@@ -11888,7 +11888,7 @@
   {
     "type": "Order",
     "prompt": "Arrange the lifecycle of a Technical Rule.",
-    "category": "Technical Rules",
+    "category": "Rules",
     "difficulty": "medium",
     "choices": [
       "Define conditions",
@@ -12009,7 +12009,7 @@
     "type": "Workflow",
     "prompt": "A customer reports that new employees are appearing in the Identity Repository but never receive their birthright Active Directory groups. Arrange the investigation in the BEST order.",
     "explanation": "Begin by validating the upstream identity data before investigating automation and provisioning.",
-    "category": "Technical Rules",
+    "category": "Rules",
     "difficulty": "hard",
     "choices": [
       "Verify the identity import completed successfully",
@@ -12169,7 +12169,7 @@
   {
     "type": "Workflow",
     "prompt": "Managers report receiving access review tasks for employees they never supervised. Arrange the troubleshooting process.",
-    "category": "User Update Rules",
+    "category": "Rules",
     "difficulty": "hard",
     "choices": [
       "Review manager attribute in Identity Repository",
@@ -12309,5 +12309,124 @@
       "Ownership assigned",
       "Application becomes requestable"
     ]
+  },
+  {
+    "type": "Consultant",
+    "prompt": "Your customer has integrated Workday as the authoritative source, Active Directory for authentication, Microsoft Entra ID for cloud identities, SAP for ERP access, and Salesforce for CRM. During User Acceptance Testing, new employees receive Active Directory and Entra ID accounts successfully, but never receive Salesforce access. SAP provisioning works correctly. Which actions should you perform FIRST? (Choose all that apply)",
+    "choices": [
+      "Review Salesforce provisioning logs",
+      "Verify the Salesforce Endpoint configuration",
+      "Confirm Technical Rules assign Salesforce birthright access",
+      "Review the SAP connector configuration",
+      "Validate Salesforce connector authentication",
+      "Review Lifecycle Management processing",
+      "Restart Tomcat",
+      "Run a certification campaign"
+    ],
+    "correctAnswers": [
+      "Review Salesforce provisioning logs",
+      "Verify the Salesforce Endpoint configuration",
+      "Confirm Technical Rules assign Salesforce birthright access",
+      "Validate Salesforce connector authentication",
+      "Review Lifecycle Management processing"
+    ],
+    "explanation": "Since AD, Entra ID, and SAP provision successfully, lifecycle processing is partially working. The investigation should focus on Salesforce-specific assignment and provisioning.",
+    "category": "Provisioning",
+    "difficulty": "hard"
+  },
+  {
+    "type": "Consultant",
+    "prompt": "Following an acquisition, 25,000 identities are imported into Saviynt. The Identity Repository contains every employee, but over 8,000 Active Directory accounts appear as orphan accounts. Which investigations are most appropriate?",
+    "choices": [
+      "Review correlation rules",
+      "Verify employee IDs imported correctly",
+      "Review duplicate identities",
+      "Confirm account imports completed",
+      "Review approval workflows",
+      "Launch certifications",
+      "Validate identity transformations",
+      "Delete orphan accounts immediately"
+    ],
+    "correctAnswers": [
+      "Review correlation rules",
+      "Verify employee IDs imported correctly",
+      "Review duplicate identities",
+      "Confirm account imports completed",
+      "Validate identity transformations"
+    ],
+    "explanation": "Large-scale orphan accounts almost always indicate correlation or data quality issues.",
+    "category": "Correlation",
+    "difficulty": "hard"
+  },
+  {
+    "type": "Consultant",
+    "prompt": "A quarterly audit finds 42 users with both 'Create Vendor' and 'Approve Payment' privileges across SAP. Management wants to understand how these conflicts occurred. Which evidence should be collected?",
+    "choices": [
+      "Role memberships",
+      "Direct entitlement assignments",
+      "Request history",
+      "Approval history",
+      "Provisioning history",
+      "Connector logs",
+      "Desktop inventory",
+      "Current SoD policy definitions"
+    ],
+    "correctAnswers": [
+      "Role memberships",
+      "Direct entitlement assignments",
+      "Request history",
+      "Approval history",
+      "Provisioning history",
+      "Current SoD policy definitions"
+    ],
+    "category": "SoD",
+    "difficulty": "hard"
+  },
+  {
+    "type": "Consultant",
+    "prompt": "Managers report receiving approval requests for employees they have never supervised. HR recently completed a large organizational restructuring. Which areas should be investigated first?",
+    "choices": [
+      "Identity imports",
+      "Manager attribute mappings",
+      "User Update Rules",
+      "Approval Workflow configuration",
+      "Technical Rules",
+      "Correlation rules",
+      "Identity Repository data",
+      "Recommendations"
+    ],
+    "correctAnswers": [
+      "Identity imports",
+      "Manager attribute mappings",
+      "User Update Rules",
+      "Approval Workflow configuration",
+      "Identity Repository data"
+    ],
+    "category": "Rules",
+    "difficulty": "hard"
+  },
+  {
+    "type": "Consultant",
+    "prompt": "The customer wants every privileged entitlement to satisfy the following requirements: business approval, application owner approval, SoD validation, quarterly certification, analytics monitoring, and complete audit evidence. Which Saviynt capabilities must participate?",
+    "choices": [
+      "Approval Workflow",
+      "Ownership",
+      "Access Reviews",
+      "Analytics",
+      "Reporting",
+      "SoD",
+      "Lifecycle Management",
+      "Recommendations"
+    ],
+    "correctAnswers": [
+      "Approval Workflow",
+      "Ownership",
+      "Access Reviews",
+      "Analytics",
+      "Reporting",
+      "SoD"
+    ],
+    "category": "Identity Governance",
+    "difficulty": "hard"
   }
 ]

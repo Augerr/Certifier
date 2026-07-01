@@ -6,7 +6,8 @@ export type QuestionType =
   | "Match"
   | "Scenario"
   | "Timeline"
-  | "Workflow";
+  | "Workflow"
+  | "Consultant";
 
 export const examCategories = [
   "Access Requests",

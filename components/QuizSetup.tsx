@@ -18,7 +18,6 @@ import {
   examCategories,
   type Difficulty,
   type ExamCategory,
-  type QuestionType,
 } from "@/types/question";
 
 type CategoryCounts = Record<string, number>;
@@ -29,7 +28,6 @@ const defaultQuestionCount = 25;
 const secondsPerQuestion = 90;
 const weakCategoryThreshold = 80;
 const weakCategoryFallbackCount = 3;
-const developmentQuestionTypes: QuestionType[] = ["Timeline", "Workflow"];
 const difficulties: Difficulty[] = ["easy", "medium", "hard"];
 const difficultyLabels: Record<Difficulty, string> = {
   easy: "Easy",
@@ -176,24 +174,6 @@ export default function QuizSetup() {
     allDifficultiesSelected,
     displayQuestionCount,
     selectedCategories,
-    selectedDifficulties,
-    timerEnabled,
-  ]);
-
-  const developmentTypeExamLinks = useMemo(() => {
-    return developmentQuestionTypes.map((type) => ({
-      type,
-      href: buildQuizHref({
-        count: displayQuestionCount,
-        fresh: true,
-        timer: timerEnabled,
-        difficulties: allDifficultiesSelected ? [] : selectedDifficulties,
-        types: [type],
-      }),
-    }));
-  }, [
-    allDifficultiesSelected,
-    displayQuestionCount,
     selectedDifficulties,
     timerEnabled,
   ]);
@@ -626,44 +606,6 @@ export default function QuizSetup() {
               </span>
             </span>
           </label>
-        </div>
-
-        <div className="mt-4 rounded-lg border border-amber-400/20 bg-amber-400/5 p-3">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-sm font-medium text-amber-200">
-              Development question-type launchers
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {developmentTypeExamLinks.map(({ type, href }) =>
-                selectedDifficulties.length === 0 ? (
-                  <Button
-                    key={type}
-                    type="button"
-                    size="sm"
-                    variant="outline"
-                    disabled
-                    className="border-amber-400/20 bg-neutral-950 text-amber-200 disabled:cursor-not-allowed disabled:opacity-40"
-                  >
-                    Start {type}
-                    <ArrowRight className="size-3.5" aria-hidden="true" />
-                  </Button>
-                ) : (
-                  <Button
-                    key={type}
-                    asChild
-                    size="sm"
-                    variant="outline"
-                    className="border-amber-400/30 bg-neutral-950 text-amber-200 hover:bg-amber-400/10 hover:text-amber-100"
-                  >
-                    <Link href={href}>
-                      Start {type}
-                      <ArrowRight className="size-3.5" aria-hidden="true" />
-                    </Link>
-                  </Button>
-                ),
-              )}
-            </div>
-          </div>
         </div>
 
         <AnalyticsOverview

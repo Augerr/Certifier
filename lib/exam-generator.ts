@@ -15,6 +15,7 @@ const questionTypeByLowercase: Record<string, QuestionType> = {
   scenario: "Scenario",
   timeline: "Timeline",
   workflow: "Workflow",
+  consultant: "Consultant",
 };
 const categoryAliases: Record<string, ExamQuestion["category"]> = {
   Governance: "Identity Governance",

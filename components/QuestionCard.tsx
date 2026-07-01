@@ -35,7 +35,9 @@ export function QuestionCard({
   onAnswerChange,
 }: QuestionCardProps) {
   const allowsMultipleAnswers =
-    question.type === "Multiple" || question.type === "Scenario";
+    question.type === "Multiple" ||
+    question.type === "Scenario" ||
+    question.type === "Consultant";
   const isSequenceQuestion =
     question.type === "Order" ||
     question.type === "Timeline" ||

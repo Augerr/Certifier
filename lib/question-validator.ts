@@ -19,6 +19,7 @@ const QUESTION_TYPES: QuestionType[] = [
   "Scenario",
   "Timeline",
   "Workflow",
+  "Consultant",
 ];
 const questionTypeByLowercase: Record<string, QuestionType> = {
   single: "Single",
@@ -28,6 +29,7 @@ const questionTypeByLowercase: Record<string, QuestionType> = {
   scenario: "Scenario",
   timeline: "Timeline",
   workflow: "Workflow",
+  consultant: "Consultant",
 };
 const sequenceQuestionTypes = new Set<QuestionType>([
   "Order",

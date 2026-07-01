@@ -22,6 +22,7 @@ const questionTypes = [
   "Scenario",
   "Timeline",
   "Workflow",
+  "Consultant",
 ];
 const questionTypeByLowercase = {
   single: "Single",
@@ -31,6 +32,7 @@ const questionTypeByLowercase = {
   scenario: "Scenario",
   timeline: "Timeline",
   workflow: "Workflow",
+  consultant: "Consultant",
 };
 const sequenceQuestionTypes = new Set(["Order", "Timeline", "Workflow"]);
 
